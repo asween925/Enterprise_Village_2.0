@@ -1,0 +1,1808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{78667CAC-9D7A-4A89-8046-BC2E2E170BAC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Enterprise_Village_2._0</RootNamespace>
+    <AssemblyName>Enterprise_Village_2.0</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Enterprise_Village_2.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Enterprise_Village_2.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.DebuggerVisualizers %282010%29">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\AForge.DebuggerVisualizers (2010).dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\dawsonja\OneDrive - Pinellas County Schools\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\Icons\wi-day-sunny-overcast.png" />
+    <Content Include="images\Icons\wi-day-sunny.png" />
+    <Content Include="navInv.html" />
+    <Content Include="media\Logos\Achieva\achieva.png" />
+    <Content Include="Parent_Letter.aspx" />
+    <Content Include="Bus_Transportation.aspx" />
+    <Content Include="School_Schedule.aspx" />
+    <Content Include="Requested_Features.aspx" />
+    <Content Include="Closed_Business_Checks.aspx" />
+    <Content Include="Edit_Business.aspx" />
+    <Content Include="Visit_Calendar.aspx" />
+    <Content Include="Volunteer_Database.aspx" />
+    <Content Include="Voting_System_Mayor.aspx" />
+    <Content Include="Voting_System.aspx" />
+    <Content Include="Template_Student_Full.aspx" />
+    <Content Include="BayCare_Admin_Assist.aspx" />
+    <Content Include="Account_Summary.aspx" />
+    <Content Include="Magic_Computer.aspx" />
+    <Content Include="Amount_spend_report.aspx" />
+    <Content Include="Astro_Skate_Editorial.aspx" />
+    <Content Include="Astro_Skate_Skate_Attendant.aspx" />
+    <Content Include="Astro_Skate_Rink_Manager_Checklist.aspx" />
+    <Content Include="Badge_Creator_Print.aspx" />
+    <Content Include="City_Hall_PCU_Manager.aspx" />
+    <Content Include="images\EV Screenshots\Amount Spent Report.jpg" />
+    <Content Include="images\EV Screenshots\ATM Student.jpg" />
+    <Content Include="images\EV Screenshots\ATM.jpg" />
+    <Content Include="images\EV Screenshots\Badge Creator.jpg" />
+    <Content Include="images\EV Screenshots\Badge History.jpg" />
+    <Content Include="images\EV Screenshots\Badge Printing.jpg" />
+    <Content Include="images\EV Screenshots\Business Directory.jpg" />
+    <Content Include="images\EV Screenshots\Business operating Checks.jpg" />
+    <Content Include="images\EV Screenshots\Business Sales Report.jpg" />
+    <Content Include="images\EV Screenshots\Check Writing System %28Payroll%29.jpg" />
+    <Content Include="images\EV Screenshots\Checklist Directory.jpg" />
+    <Content Include="images\EV Screenshots\Create a School.jpg" />
+    <Content Include="images\EV Screenshots\Create a Teacher.jpg" />
+    <Content Include="images\EV Screenshots\Create a Visit.jpg" />
+    <Content Include="images\EV Screenshots\Duplicate Number Report.jpg" />
+    <Content Include="images\EV Screenshots\Edit Open Closed Status.jpg" />
+    <Content Include="images\EV Screenshots\Edit Profits.jpg" />
+    <Content Include="images\EV Screenshots\Edit Sales.jpg" />
+    <Content Include="images\EV Screenshots\Edit School.jpg" />
+    <Content Include="images\EV Screenshots\Edit Teachers.jpg" />
+    <Content Include="images\EV Screenshots\Edit Visit.jpg" />
+    <Content Include="images\EV Screenshots\EMS.jpg" />
+    <Content Include="images\EV Screenshots\EV Daily Forms OOC.jpg" />
+    <Content Include="images\EV Screenshots\EV Daily Forms.jpg" />
+    <Content Include="images\EV Screenshots\EV Lunch Forms Letter.jpg" />
+    <Content Include="images\EV Screenshots\EV Lunch Forms Receipt.jpg" />
+    <Content Include="images\EV Screenshots\EV Lunch Forms.jpg" />
+    <Content Include="images\EV Screenshots\Family Community Info.jpg" />
+    <Content Include="images\EV Screenshots\Home Page.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - Add.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - Create.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - Edit.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - Home.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - Low Inventory Report .jpg" />
+    <Content Include="images\EV Screenshots\Inventory - Low Inventory Report.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - View All Items.jpg" />
+    <Content Include="images\EV Screenshots\Inventory - View.jpg" />
+    <Content Include="images\EV Screenshots\ISI.jpg" />
+    <Content Include="images\EV Screenshots\Kit Inventory Table.jpg" />
+    <Content Include="images\EV Screenshots\Kit Inventory.jpg" />
+    <Content Include="images\EV Screenshots\Login.jpg" />
+    <Content Include="images\EV Screenshots\Magic Computer Bottom.jpg" />
+    <Content Include="images\EV Screenshots\Magic Computer Top.jpg" />
+    <Content Include="images\EV Screenshots\Magic Computer.jpg" />
+    <Content Include="images\EV Screenshots\Manager System.jpg" />
+    <Content Include="images\EV Screenshots\Negative Balance Report.jpg" />
+    <Content Include="images\EV Screenshots\Online Banking.jpg" />
+    <Content Include="images\EV Screenshots\operating_checks.jpeg" />
+    <Content Include="images\EV Screenshots\Payroll Check Help.jpg" />
+    <Content Include="images\EV Screenshots\payroll_checks.jpeg" />
+    <Content Include="images\EV Screenshots\Profit Report.jpg" />
+    <Content Include="images\EV Screenshots\Sales History.jpg" />
+    <Content Include="images\EV Screenshots\Sales System Help.jpg" />
+    <Content Include="images\EV Screenshots\Sales System.jpg" />
+    <Content Include="images\EV Screenshots\School Notes.jpg" />
+    <Content Include="images\EV Screenshots\School Report.jpg" />
+    <Content Include="images\EV Screenshots\School Visit Checklist 2.jpg" />
+    <Content Include="images\EV Screenshots\School Visit Checklist.jpg" />
+    <Content Include="images\EV Screenshots\School Workbook Inv.jpg" />
+    <Content Include="images\EV Screenshots\SRF Checklist.jpg" />
+    <Content Include="images\EV Screenshots\Student Report.jpg" />
+    <Content Include="images\EV Screenshots\Student Spending Report 2.jpg" />
+    <Content Include="images\EV Screenshots\Student Spending Report.jpg" />
+    <Content Include="images\EV Screenshots\Teacher Home.jpg" />
+    <Content Include="images\EV Screenshots\Teacher Letter.jpg" />
+    <Content Include="images\EV Screenshots\Teacher Report.jpg" />
+    <Content Include="images\EV Screenshots\Teller System.jpg" />
+    <Content Include="images\EV Screenshots\Town Hall PP.jpg" />
+    <Content Include="images\EV Screenshots\Visit Report.jpg" />
+    <Content Include="Teacher_Home.aspx" />
+    <Content Include="nav.html" />
+    <Content Include="Print_Teller_Savings.aspx" />
+    <Content Include="School_Workbook_Inv.aspx" />
+    <Content Include="Inventory_Home.aspx" />
+    <Content Include="Create_Item.aspx" />
+    <Content Include="Edit_Sales.aspx" />
+    <Content Include="Edit_Item.aspx" />
+    <Content Include="KnowBe4_FO_Checklist.aspx" />
+    <Content Include="Ditek_Inventory_Checklist.aspx" />
+    <Content Include="bin\AForge.Controls.dll" />
+    <Content Include="bin\AForge.DebuggerVisualizers %282010%29.dll" />
+    <Content Include="bin\AForge.dll" />
+    <Content Include="bin\AForge.Video.DirectShow.dll" />
+    <Content Include="bin\AForge.Video.DirectShow.xml" />
+    <Content Include="bin\AForge.Video.dll" />
+    <Content Include="bin\AForge.Video.xml" />
+    <Content Include="bin\AForge.xml" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\Enterprise_Village_2.0.dll" />
+    <Content Include="bin\Enterprise_Village_2.0.pdb" />
+    <Content Include="bin\Enterprise_Village_2.0.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Net.Http.dll" />
+    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Data.SqlClient.dll" />
+    <Content Include="bin\System.Data.SqlClient.xml" />
+    <Content Include="Business_profit_report.aspx" />
+    <Content Include="Business_profit_updates.aspx" />
+    <Content Include="Business_sales_report.aspx" />
+    <Content Include="Edit_Visit.aspx" />
+    <Content Include="css\Styles.SalesSystem.css" />
+    <Content Include="css\Styles.Teller2.css" />
+    <Content Include="css\Styles.McDonaldsSales.css" />
+    <Content Include="Database.aspx" />
+    <Content Include="Duplicate_numbers_report.aspx" />
+    <Content Include="images\1200px-Tampa_Bay_Rays.svg.png" />
+    <Content Include="images\200px-NewMix1007.png" />
+    <Content Include="images\AstroSkate.jpg" />
+    <Content Include="images\AstroSkate1.jpg" />
+    <Content Include="images\Bank_of_America.png" />
+    <Content Include="images\Bank_of_America2.jpg" />
+    <Content Include="images\BayCare.jpg" />
+    <Content Include="images\BBB-logo2.png" />
+    <Content Include="images\BBB_7469.jpg" />
+    <Content Include="images\biclogo.jpg" />
+    <Content Include="images\Bucs logo.jpg" />
+    <Content Include="images\cityhall.jpg" />
+    <Content Include="images\cvs-logo.jpg" />
+    <Content Include="images\CVS.jpg" />
+    <Content Include="images\Dali Museum Red Logo .jpg" />
+    <Content Include="images\Ditek Print Check Button.png" />
+    <Content Include="images\DITEK.png" />
+    <Content Include="images\Ditek_Print_Check.png" />
+    <Content Include="images\Ditek_Print_Check_Button.png" />
+    <Content Include="images\duke.jpg" />
+    <Content Include="images\EV2.0_PCSB.png" />
+    <Content Include="images\HSN bubble.jpg" />
+    <Content Include="images\Icons\noun_Computer_216.png" />
+    <Content Include="images\Icons\noun_Excitement_267.png" />
+    <Content Include="images\kane-s-furniture-office.jpg" />
+    <Content Include="images\McDonalds logo.png" />
+    <Content Include="images\noun_Computer_216.png" />
+    <Content Include="images\noun_Excitement_267.png" />
+    <Content Include="images\professionaloffice.jpg" />
+    <Content Include="images\Stavros Institute New Logo.png" />
+    <Content Include="images\Stavros-Logo.jpg" />
+    <Content Include="images\TechData-logo.png" />
+    <Content Include="images\times_logo_horizontal_black.jpg" />
+    <Content Include="images\unified giving logo.png" />
+    <Content Include="images\UPSLogo.jpg" />
+    <Content Include="images\Utilities_color-rgb.png" />
+    <Content Include="images\Verizonlogo.png" />
+    <Content Include="images\Verizonlogo2.png" />
+    <Content Include="jscript\jquery.min.js" />
+    <Content Include="jscript\jquery.sumoselect.js" />
+    <Content Include="jscript\jquery.sumoselect.min.js" />
+    <Content Include="directory.aspx" />
+    <Content Include="EV_Daily_Forms.aspx" />
+    <Content Include="Upload_Move_Articles.aspx" />
+    <Content Include="EV_Lunch_Forms.aspx" />
+    <Content Include="Schedule_Request_Form_Checklist.aspx" />
+    <Content Include="Kit_Inventory.aspx" />
+    <Content Include="School_Notes.aspx" />
+    <Content Include="Break_Schedules.aspx" />
+    <Content Include="Staff_List.aspx" />
+    <Content Include="Changelog.aspx" />
+    <Content Include="Duplicate_Students.aspx" />
+    <Content Include="View_All_Items.aspx" />
+    <Content Include="Print_ISI.aspx" />
+    <Content Include="Teacher_Letter.aspx" />
+    <Content Include="media\backgrounds\bg1.jpg" />
+    <Content Include="media\backgrounds\bg2.jpg" />
+    <Content Include="media\backgrounds\bg3.jpg" />
+    <Content Include="media\backgrounds\bg4.jpg" />
+    <Content Include="media\backgrounds\bg5.jpg" />
+    <Content Include="media\backgrounds\bg6.jpg" />
+    <Content Include="media\Badge Photos\badge-211-Bugs Bunny-4-13-2022- 30656- PM.png" />
+    <Content Include="media\Badge Photos\badge-211-Bugs Bunny-4-14-2022- 91854- AM.png" />
+    <Content Include="media\Badge Photos\badge-211-Bugs Bunny-4-15-2022- 75500- AM.png" />
+    <Content Include="media\Badge Photos\badge-211-Bugs Bunny-4-15-2022- 91721- AM.png" />
+    <Content Include="media\Badge Photos\badge-211-Bugs Bunny-4-20-2022- 30925- PM.png" />
+    <Content Include="media\Badge Photos\badge-211-Bugs Bunny-4-26-2022- 20721- PM.png" />
+    <Content Include="media\Badge Photos\badge-212-Daffy Duck-4-13-2022- 31514- PM.png" />
+    <Content Include="media\Badge Photos\badge-212-Daffy Duck-4-14-2022- 91909- AM.png" />
+    <Content Include="media\Badge Photos\badge-212-Daffy Duck-4-15-2022- 75936- AM.png" />
+    <Content Include="media\Badge Photos\badge-212-Daffy Duck-4-15-2022- 91806- AM.png" />
+    <Content Include="media\Badge Photos\badge-212-Daffy Duck-4-22-2022- 20916- PM.png" />
+    <Content Include="media\Badge Photos\badge-212-Daffy Duck-4-26-2022- 20737- PM.png" />
+    <Content Include="media\Badge Photos\badge-213-Elmer Fudd-4-14-2022- 91933- AM.png" />
+    <Content Include="media\Badge Photos\badge-213-Elmer Fudd-4-15-2022- 123237- PM.png" />
+    <Content Include="media\Badge Photos\badge-213-Elmer Fudd-4-15-2022- 80417- AM.png" />
+    <Content Include="media\Badge Photos\badge-213-Elmer Fudd-4-26-2022- 20748- PM.png" />
+    <Content Include="media\Badge Photos\badge-214-Pepe Le Pew-4-14-2022- 91948- AM.png" />
+    <Content Include="media\Badge Photos\badge-214-Pepe Le Pew-4-15-2022- 123244- PM.png" />
+    <Content Include="media\Badge Photos\badge-214-Pepe Le Pew-4-15-2022- 80444- AM.png" />
+    <Content Include="media\Badge Photos\badge-214-Pepe Le Pew-4-26-2022- 20757- PM.png" />
+    <Content Include="media\Badge Photos\badge-215-Bugs Bunny-4-14-2022- 23519- PM.png" />
+    <Content Include="media\Badge Photos\badge-215-John Doe-4-14-2022- 23246- PM.png" />
+    <Content Include="media\Badge Photos\badge-215-John Doe-4-15-2022- 123552- PM.png" />
+    <Content Include="media\Badge Photos\badge-216-Foghorn Leghorn-4-15-2022- 123602- PM.png" />
+    <Content Include="media\Badge Photos\badge-217-Speedy Gonzales-4-15-2022- 123610- PM.png" />
+    <Content Include="media\Badge Photos\badge-218-Wile Coyote-4-15-2022- 123617- PM.png" />
+    <Content Include="media\Badge Photos\badge-219-Marvin Martian-4-15-2022- 123637- PM.png" />
+    <Content Include="media\Badge Photos\badge-220-Mel Blanc-4-15-2022- 14111- PM.png" />
+    <Content Include="media\Badge Photos\myPhoto.png" />
+    <Content Include="media\EnterpriseVillage.png" />
+    <Content Include="media\EV_favicon.png" />
+    <Content Include="media\EV_Favicon_2.png" />
+    <Content Include="media\EV_logo.png" />
+    <Content Include="images\badge_creator.jpeg" />
+    <Content Include="images\operating_checks.jpeg" />
+    <Content Include="images\payroll_checks.jpeg" />
+    <Content Include="media\Logos\Aegon\AegonLogo.jpg" />
+    <Content Include="media\Logos\AstroSkate\AstroSkate White Background.png" />
+    <Content Include="media\Logos\AstroSkate\AstroSkate.jpg" />
+    <Content Include="media\Logos\AstroSkate\AstroSkate.png" />
+    <Content Include="media\Logos\AstroSkate\AstroSkate2.jpg" />
+    <Content Include="media\Logos\Bar ass\ClearwaterBarF_blk.jpg" />
+    <Content Include="media\Logos\Bar ass\ClearwaterBarF_color.jpg" />
+    <Content Include="media\Logos\Bar ass\SPBFoundation Logo 1.jpg" />
+    <Content Include="media\Logos\BayCare\BayCare.jpg" />
+    <Content Include="media\Logos\BBB\bbb.png" />
+    <Content Include="media\Logos\BBF\BBF logo.tiff" />
+    <Content Include="media\Logos\BBF\BBFlogo.gif" />
+    <Content Include="media\Logos\Bic\Bic Graphic USA.tiff" />
+    <Content Include="media\Logos\Bic\Bic.jpg" />
+    <Content Include="media\Logos\Bic\bicold.png" />
+    <Content Include="media\Logos\BOA\Bank_of_America.png" />
+    <Content Include="media\Logos\BOA\Bank_of_America2.png" />
+    <Content Include="media\Logos\Brighthouse\Bright House Networks.tiff" />
+    <Content Include="media\Logos\Bucs\Bucs logo.tiff" />
+    <Content Include="media\Logos\Bucs\Bucs.gif" />
+    <Content Include="media\Logos\Bucs\bucs.png" />
+    <Content Include="media\Logos\City_hall\cityhall.jpg" />
+    <Content Include="media\Logos\Crown Automotive\Crown Logo.bmp" />
+    <Content Include="media\Logos\Crown Automotive\CrownAutoLogoSmall.jpg" />
+    <Content Include="media\Logos\CVS\CVS.jpg" />
+    <Content Include="media\Logos\CVS\CVS.png" />
+    <Content Include="media\Logos\Dali\Dalilogo.gif" />
+    <Content Include="media\Logos\Ditek\DITEK Logo 2005.JPG" />
+    <Content Include="media\Logos\Ditek\DITEK.jpg" />
+    <Content Include="media\Logos\Ditek\DITEK.tif" />
+    <Content Include="media\Logos\Dominos\Dominos.gif" />
+    <Content Include="media\Logos\Duke\Duke.gif" />
+    <Content Include="media\Logos\Duke\DukeOLD.jpg" />
+    <Content Include="media\Logos\FT.jpg" />
+    <Content Include="media\Logos\Horace Mann\Cucchi,GaryWebBanner.jpg" />
+    <Content Include="media\Logos\Horace Mann\Cucchi,GaryWebBannerLong.jpg" />
+    <Content Include="media\Logos\Horace Mann\CucchiGaryWebBanner.jpg" />
+    <Content Include="media\Logos\Horace Mann\CucchiGaryWebBannerLong.jpg" />
+    <Content Include="media\Logos\Horace Mann\Insurance Agetn.jpg" />
+    <Content Include="media\Logos\HSN\hsn.png" />
+    <Content Include="media\Logos\Kanes\Kanes.png" />
+    <Content Include="media\Logos\Kimberly K-Tech During\kteklogo-300-bw-sm.jpg" />
+    <Content Include="media\Logos\Kimberly K-Tech During\kteklogo-300-bw.jpg" />
+    <Content Include="media\Logos\Kimberly K-Tech During\kteklogo-300.jpg" />
+    <Content Include="media\Logos\Kimberly K-Tech During\kteklogo.jpg" />
+    <Content Include="media\Logos\Lifestyle\LifestyleFamilyFitnessRedBox.jpg" />
+    <Content Include="media\Logos\Lifestyle\LifestyleFFSwirl.jpg" />
+    <Content Include="media\Logos\Lighthouse\Lighthouse.gif" />
+    <Content Include="media\Logos\Lightning\lightning.JPG" />
+    <Content Include="media\Logos\Mcdonalds\McDonalds.png" />
+    <Content Include="media\Logos\Mix 1007\Mix 100.7.tiff" />
+    <Content Include="media\Logos\Mix 1007\MIX100.7 Wide.png" />
+    <Content Include="media\Logos\MPM\Morton Plant Mease Logo 2.jpg" />
+    <Content Include="media\Logos\MPM\Motron Plant Mease Logo 1.jpg" />
+    <Content Include="media\Logos\NAA\NAA_Logo_2011.png" />
+    <Content Include="media\Logos\Old out of date logos\Honeywell.tiff" />
+    <Content Include="media\Logos\Old out of date logos\Old Dali Museum Red Logo .jpg" />
+    <Content Include="media\Logos\Old out of date logos\OLD Devil_Rays.gif" />
+    <Content Include="media\Logos\Old out of date logos\OLD DRays-Primary-%281%29.jpg" />
+    <Content Include="media\Logos\Old out of date logos\Old HSN\2010 100px-HSN_logo_svg.png" />
+    <Content Include="media\Logos\Old out of date logos\Old HSN\HSN_2010.png" />
+    <Content Include="media\Logos\Old out of date logos\OLD OLD Ruth Eckerd Hall.jpg" />
+    <Content Include="media\Logos\Old out of date logos\OLD Ruth_Eckerd.jpg" />
+    <Content Include="media\Logos\Old out of date logos\St. Pete Times Web Resolution.jpg" />
+    <Content Include="media\Logos\Old out of date logos\St. Pete Times.jpg" />
+    <Content Include="media\Logos\OSI\OSI.JPG" />
+    <Content Include="media\Logos\PCU\PCUSMALL.png" />
+    <Content Include="media\Logos\PCU\Pinellas County Utlities SMALL VERSION.png" />
+    <Content Include="media\Logos\PCU\Pinellas County Utlities.png" />
+    <Content Include="media\Logos\PEF\PEF Logo-Blue.png" />
+    <Content Include="media\Logos\Professional Offices\professionaloffice.jpg" />
+    <Content Include="media\Logos\Progress Energy\ProgEngy-3C.tiff" />
+    <Content Include="media\Logos\PSC.gif" />
+    <Content Include="media\Logos\pTEC\PTEClogo.jpg" />
+    <Content Include="media\Logos\Rays\rays.png" />
+    <Content Include="media\Logos\Rays\RaysPrimaryLogo2010.jpg" />
+    <Content Include="media\Logos\REH\REH_Black_signature.jpg" />
+    <Content Include="media\Logos\Sembler\Sembler.png" />
+    <Content Include="media\Logos\Signs Now\ItsADesignIssueLogo.jpg" />
+    <Content Include="media\Logos\Signs Now\ItsADesignIssueLogo2.jpg" />
+    <Content Include="media\Logos\Signs Now\Signs Now OLD\SignsNow.jpg" />
+    <Content Include="media\Logos\Signs Now\solutions.vcf" />
+    <Content Include="media\Logos\Solid_waste\Solid_waste.png" />
+    <Content Include="media\Logos\Stavros\STAVROS ENTRY-SMALL.jpg" />
+    <Content Include="media\Logos\Sweetbay\Sweetbaylogo.jpg" />
+    <Content Include="media\Logos\Sweetbay\SweetbaylogoLARGE.jpg" />
+    <Content Include="media\Logos\TD Synnex\TD_SYNNEX.png" />
+    <Content Include="media\Logos\TD Synnex\techdata.png" />
+    <Content Include="media\Logos\Times\times_logo.jpg" />
+    <Content Include="media\Logos\Tradewinds\TradeWindsLogo.png" />
+    <Content Include="media\Logos\Tradewinds\TradewindsLogoSmall.jpg" />
+    <Content Include="media\Logos\Unified Giving\unified giving logo.tiff" />
+    <Content Include="media\Logos\UPS\ups_2color_Fullsize_2010.jpg" />
+    <Content Include="media\Logos\UPS\UPS_Logo_Small_2010.jpg" />
+    <Content Include="media\Logos\USF\USF Bull Logo.png" />
+    <Content Include="media\Logos\USF\USF Horizontal Logo.jpg" />
+    <Content Include="media\Logos\USF\USF Horizontal Logo.png" />
+    <Content Include="media\Logos\USF\USFlogo2010.jpg" />
+    <Content Include="media\Logos\ValPak\ValPak.gif" />
+    <Content Include="media\Logos\Verizon\verizon1.png" />
+    <Content Include="media\Logos\Verizon\Verizonlogo.png" />
+    <Content Include="media\Logos\WorkNet\WORKNET with website.jpg" />
+    <Content Include="media\Logos\WorkNet\WorkNetPinellas.gif" />
+    <Content Include="media\Stavros_logo.png" />
+    <Content Include="Negative_balance_report.aspx" />
+    <Content Include="Not used\ATM.aspx" />
+    <Content Include="Badge_Creator.aspx" />
+    <Content Include="Bank_Of_America_Manager_Checklist.aspx" />
+    <Content Include="Bank_Of_America_Representative_Checklist.aspx" />
+    <Content Include="Bank_Of_America_Savings_Officer_Checklist.aspx" />
+    <Content Include="Not used\Bank_Of_America_Teller_Account_Search.aspx" />
+    <Content Include="Not used\Bank_Of_America_Teller_Account_View.aspx" />
+    <Content Include="BayCare_Bill_Collection_Checklist.aspx" />
+    <Content Include="BBB_Accreditation_Specialist_Checklist.aspx" />
+    <Content Include="BBB_Information_Specialist_Checklist.aspx" />
+    <Content Include="Check_Writing_System.aspx" />
+    <Content Include="css\Styles.Checklist.css" />
+    <Content Include="default.aspx" />
+    <Content Include="Ditek_Check.aspx" />
+    <Content Include="Duke_Electric_Bill_Checklist.aspx" />
+    <Content Include="Duke_Energy_Manager_Electric_Bill_Checklist.aspx" />
+    <Content Include="Duke_Energy_Utility_Engineer_Energy_Conservation_Checklist.aspx" />
+    <Content Include="Not used\Employee_Management_System.aspx" />
+    <Content Include="Employee_Management_System_Review.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Input_Student_Information.aspx" />
+    <Content Include="Judgement_Case_Missing_Teddy_Bear.aspx" />
+    <Content Include="Judgement_Case_Slippery_Pickle.aspx" />
+    <Content Include="Lawyer_Promissory_Note_Checklist.aspx" />
+    <Content Include="Not used\Manage_Sales_History_.aspx" />
+    <Content Include="Mayor_Population_Count.aspx" />
+    <Content Include="Mix_100.7_Marketing_Representative_Checklist.aspx" />
+    <Content Include="Mix_100.7_Station_Manager_Editorial.aspx" />
+    <Content Include="Online_Banking.aspx" />
+    <Content Include="Operating_Check_Writing_System.aspx" />
+    <Content Include="packages\AForge.2.2.5\lib\AForge.dll" />
+    <Content Include="packages\AForge.2.2.5\lib\AForge.xml" />
+    <Content Include="packages\AForge.Video.2.2.5\lib\AForge.Video.dll" />
+    <Content Include="packages\AForge.Video.2.2.5\lib\AForge.Video.xml" />
+    <Content Include="packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll" />
+    <Content Include="packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.xml" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csi.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.CodeAnalysis.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\System.AppContext.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\System.Collections.Immutable.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\System.Diagnostics.StackTrace.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\System.IO.FileSystem.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\System.Reflection.Metadata.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\vbc.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\VBCSCompiler.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csc.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csi.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.CodeAnalysis.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.Win32.Primitives.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.AppContext.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Collections.Immutable.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Console.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Diagnostics.StackTrace.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Globalization.Calendars.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.IO.Compression.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.IO.Compression.ZipFile.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.IO.FileSystem.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Net.Http.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Net.Sockets.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Reflection.Metadata.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Text.Encoding.CodePages.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.ValueTuple.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Xml.ReaderWriter.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Xml.XmlDocument.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Xml.XPath.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Xml.XPath.XDocument.dll" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\Icon.png" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\net451\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\net46\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netcoreapp2.1\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netstandard1.2\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netstandard1.2\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netstandard1.3\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netstandard1.3\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netstandard2.0\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\netstandard2.0\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\LICENSE.TXT" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\net451\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\net461\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\net461\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\net46\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netcoreapp2.1\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\de\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\es\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\fr\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\it\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\ja\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\ko\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\ru\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\zh-hans\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.2\zh-hant\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\de\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\es\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\fr\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\it\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\ja\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\ko\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\ru\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\zh-hans\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard1.3\zh-hant\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard2.0\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\netstandard2.0\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\unix\lib\netstandard1.3\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\net451\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\net461\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\net461\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\net46\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\netstandard1.3\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\uap10.0.16299\System.Data.SqlClient.dll" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\runtimes\win\lib\uap10.0.16299\System.Data.SqlClient.xml" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\version.txt" />
+    <Content Include="Bic_Graphic_Manager_Advertising_Letter_Checklist.aspx" />
+    <Content Include="City_Hall_Mayor_Checklist.aspx" />
+    <Content Include="PCSW_FO_Checklist.aspx" />
+    <Content Include="Pinellas_County_Utilities_Checklist.aspx" />
+    <Content Include="Print_Badges.aspx" />
+    <Content Include="Print_Checks.aspx" />
+    <Content Include="Professional_Office_Financial_Officer_Checklist.aspx" />
+    <Content Include="Profit_display.aspx" />
+    <Content Include="Home_Page.aspx" />
+    <Content Include="Sales_History.aspx" />
+    <Content Include="Not used\Sales_History_Edit.aspx" />
+    <Content Include="Sales_System_McDonalds.aspx" />
+    <Content Include="Sales_System.aspx" />
+    <Content Include="Salvador_Dali_Museum_Art_Curator_Checklist.aspx" />
+    <Content Include="Not used\Stavros_Input_Student_Information.aspx" />
+    <Content Include="css\Styles.updated.css" />
+    <Content Include="Tampa_Bay_Times_Graphic_Artist_Checklist.aspx" />
+    <Content Include="Tampa_Bay_Times_Marketing_Representative_Checklist.aspx" />
+    <Content Include="Not used\Teller_Startup.aspx" />
+    <Content Include="Low_Inventory_Report.aspx" />
+    <Content Include="Add_Remove_Amount.aspx" />
+    <Content Include="Teller_System.aspx" />
+    <Content Include="Tools.aspx" />
+    <Content Include="Unified_Giving_Director%27s_Checklist.aspx" />
+    <Content Include="UPS_Package_Handler_Checklist.aspx" />
+    <Content Include="Verizon_Graphic_Artist_Checklist.aspx" />
+    <Content Include="Verizon_Manager%27s_Checklist.aspx" />
+    <Content Include="Verizon_Telecommunication_Engineer_Checklist.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="webcam.js" />
+    <Content Include="Checklist_Directory.aspx" />
+    <Content Include="teacher_input.aspx" />
+    <Content Include="Print_Operating_Checks.aspx" />
+    <Content Include="Employee_Report.aspx" />
+    <Content Include="School_Report.aspx" />
+    <Content Include="Visit_Report.aspx" />
+    <Content Include="Teacher_Report.aspx" />
+    <Content Include="Create_School.aspx" />
+    <Content Include="Edit_School.aspx" />
+    <Content Include="Edit_Teacher.aspx" />
+    <Content Include="Open_Closed_Status.aspx" />
+    <Content Include="Student_Spending_Report.aspx" />
+    <Content Include="Print_Teller.aspx" />
+    <Content Include="Print_Sales.aspx" />
+    <Content Include="School_Visit_Checklist.aspx" />
+    <Content Include="Help_Page.aspx" />
+    <Content Include="Liason_Information.aspx" />
+    <Content Include="Badge_Creator_History.aspx" />
+    <Content Include="Manager_System.aspx" />
+    <Content Include="Template_Staff.aspx" />
+    <Content Include="Z_Test_Page.aspx" />
+    <Content Include="Print_Direct_Deposit.aspx" />
+    <Content Include="Newspaper_Hub.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class_SchoolSchedule.vb" />
+    <Compile Include="Parent_Letter.aspx.designer.vb">
+      <DependentUpon>Parent_Letter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Parent_Letter.aspx.vb">
+      <DependentUpon>Parent_Letter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bus_Transportation.aspx.designer.vb">
+      <DependentUpon>Bus_Transportation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bus_Transportation.aspx.vb">
+      <DependentUpon>Bus_Transportation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="School_Schedule.aspx.designer.vb">
+      <DependentUpon>School_Schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School_Schedule.aspx.vb">
+      <DependentUpon>School_Schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requested_Features.aspx.designer.vb">
+      <DependentUpon>Requested_Features.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requested_Features.aspx.vb">
+      <DependentUpon>Requested_Features.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Closed_Business_Checks.aspx.designer.vb">
+      <DependentUpon>Closed_Business_Checks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Closed_Business_Checks.aspx.vb">
+      <DependentUpon>Closed_Business_Checks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit_Business.aspx.designer.vb">
+      <DependentUpon>Edit_Business.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Business.aspx.vb">
+      <DependentUpon>Edit_Business.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WeatherAPI.vb" />
+    <Compile Include="Visit_Calendar.aspx.designer.vb">
+      <DependentUpon>Visit_Calendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Visit_Calendar.aspx.vb">
+      <DependentUpon>Visit_Calendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Volunteer_Database.aspx.designer.vb">
+      <DependentUpon>Volunteer_Database.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Volunteer_Database.aspx.vb">
+      <DependentUpon>Volunteer_Database.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Voting_System_Mayor.aspx.designer.vb">
+      <DependentUpon>Voting_System_Mayor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Voting_System_Mayor.aspx.vb">
+      <DependentUpon>Voting_System_Mayor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Voting_System.aspx.designer.vb">
+      <DependentUpon>Voting_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Voting_System.aspx.vb">
+      <DependentUpon>Voting_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template_Student_Full.aspx.designer.vb">
+      <DependentUpon>Template_Student_Full.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template_Student_Full.aspx.vb">
+      <DependentUpon>Template_Student_Full.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BayCare_Admin_Assist.aspx.designer.vb">
+      <DependentUpon>BayCare_Admin_Assist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BayCare_Admin_Assist.aspx.vb">
+      <DependentUpon>BayCare_Admin_Assist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account_Summary.aspx.designer.vb">
+      <DependentUpon>Account_Summary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account_Summary.aspx.vb">
+      <DependentUpon>Account_Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Magic_Computer.aspx.designer.vb">
+      <DependentUpon>Magic_Computer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Magic_Computer.aspx.vb">
+      <DependentUpon>Magic_Computer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Amount_spend_report.aspx.designer.vb">
+      <DependentUpon>Amount_spend_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Amount_spend_report.aspx.vb">
+      <DependentUpon>Amount_spend_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Astro_Skate_Editorial.aspx.designer.vb">
+      <DependentUpon>Astro_Skate_Editorial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Astro_Skate_Editorial.aspx.vb">
+      <DependentUpon>Astro_Skate_Editorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Astro_Skate_Skate_Attendant.aspx.designer.vb">
+      <DependentUpon>Astro_Skate_Skate_Attendant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Astro_Skate_Skate_Attendant.aspx.vb">
+      <DependentUpon>Astro_Skate_Skate_Attendant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Astro_Skate_Rink_Manager_Checklist.aspx.designer.vb">
+      <DependentUpon>Astro_Skate_Rink_Manager_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Astro_Skate_Rink_Manager_Checklist.aspx.vb">
+      <DependentUpon>Astro_Skate_Rink_Manager_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Badge_Creator_Print.aspx.designer.vb">
+      <DependentUpon>Badge_Creator_Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Badge_Creator_Print.aspx.vb">
+      <DependentUpon>Badge_Creator_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="City_Hall_PCU_Manager.aspx.designer.vb">
+      <DependentUpon>City_Hall_PCU_Manager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="City_Hall_PCU_Manager.aspx.vb">
+      <DependentUpon>City_Hall_PCU_Manager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Class_BadgesData.vb" />
+    <Compile Include="Class_TransactionData.vb" />
+    <Compile Include="Class_BusinessData.vb" />
+    <Compile Include="Class_TeacherData.vb" />
+    <Compile Include="Class_SQLCommands.vb" />
+    <Compile Include="Class_StudentData.vb" />
+    <Compile Include="Class_SchoolData.vb" />
+    <Compile Include="Teacher_Home.aspx.designer.vb">
+      <DependentUpon>Teacher_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher_Home.aspx.vb">
+      <DependentUpon>Teacher_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Teller_Savings.aspx.designer.vb">
+      <DependentUpon>Print_Teller_Savings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Teller_Savings.aspx.vb">
+      <DependentUpon>Print_Teller_Savings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Class_SchoolHeader.vb" />
+    <Compile Include="School_Workbook_Inv.aspx.designer.vb">
+      <DependentUpon>School_Workbook_Inv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School_Workbook_Inv.aspx.vb">
+      <DependentUpon>School_Workbook_Inv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventory_Home.aspx.designer.vb">
+      <DependentUpon>Inventory_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory_Home.aspx.vb">
+      <DependentUpon>Inventory_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Create_Item.aspx.designer.vb">
+      <DependentUpon>Create_Item.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Create_Item.aspx.vb">
+      <DependentUpon>Create_Item.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit_Sales.aspx.designer.vb">
+      <DependentUpon>Edit_Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Sales.aspx.vb">
+      <DependentUpon>Edit_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit_Item.aspx.designer.vb">
+      <DependentUpon>Edit_Item.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Item.aspx.vb">
+      <DependentUpon>Edit_Item.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KnowBe4_FO_Checklist.aspx.designer.vb">
+      <DependentUpon>KnowBe4_FO_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KnowBe4_FO_Checklist.aspx.vb">
+      <DependentUpon>KnowBe4_FO_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ditek_Inventory_Checklist.aspx.designer.vb">
+      <DependentUpon>Ditek_Inventory_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ditek_Inventory_Checklist.aspx.vb">
+      <DependentUpon>Ditek_Inventory_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business_profit_report.aspx.designer.vb">
+      <DependentUpon>Business_profit_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business_profit_report.aspx.vb">
+      <DependentUpon>Business_profit_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business_profit_updates.aspx.designer.vb">
+      <DependentUpon>Business_profit_updates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business_profit_updates.aspx.vb">
+      <DependentUpon>Business_profit_updates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business_sales_report.aspx.designer.vb">
+      <DependentUpon>Business_sales_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business_sales_report.aspx.vb">
+      <DependentUpon>Business_sales_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit_Visit.aspx.designer.vb">
+      <DependentUpon>Edit_Visit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Visit.aspx.vb">
+      <DependentUpon>Edit_Visit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Database.aspx.designer.vb">
+      <DependentUpon>Database.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Database.aspx.vb">
+      <DependentUpon>Database.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Duplicate_numbers_report.aspx.designer.vb">
+      <DependentUpon>Duplicate_numbers_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Duplicate_numbers_report.aspx.vb">
+      <DependentUpon>Duplicate_numbers_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="directory.aspx.designer.vb">
+      <DependentUpon>directory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="directory.aspx.vb">
+      <DependentUpon>directory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EV_Daily_Forms.aspx.designer.vb">
+      <DependentUpon>EV_Daily_Forms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EV_Daily_Forms.aspx.vb">
+      <DependentUpon>EV_Daily_Forms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Upload_Move_Articles.aspx.designer.vb">
+      <DependentUpon>Upload_Move_Articles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Upload_Move_Articles.aspx.vb">
+      <DependentUpon>Upload_Move_Articles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EV_Lunch_Forms.aspx.designer.vb">
+      <DependentUpon>EV_Lunch_Forms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EV_Lunch_Forms.aspx.vb">
+      <DependentUpon>EV_Lunch_Forms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Schedule_Request_Form_Checklist.aspx.designer.vb">
+      <DependentUpon>Schedule_Request_Form_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule_Request_Form_Checklist.aspx.vb">
+      <DependentUpon>Schedule_Request_Form_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kit_Inventory.aspx.designer.vb">
+      <DependentUpon>Kit_Inventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Kit_Inventory.aspx.vb">
+      <DependentUpon>Kit_Inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="School_Notes.aspx.designer.vb">
+      <DependentUpon>School_Notes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School_Notes.aspx.vb">
+      <DependentUpon>School_Notes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Break_Schedules.aspx.designer.vb">
+      <DependentUpon>Break_Schedules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Break_Schedules.aspx.vb">
+      <DependentUpon>Break_Schedules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff_List.aspx.designer.vb">
+      <DependentUpon>Staff_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff_List.aspx.vb">
+      <DependentUpon>Staff_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Changelog.aspx.designer.vb">
+      <DependentUpon>Changelog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Changelog.aspx.vb">
+      <DependentUpon>Changelog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Duplicate_Students.aspx.designer.vb">
+      <DependentUpon>Duplicate_Students.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Duplicate_Students.aspx.vb">
+      <DependentUpon>Duplicate_Students.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View_All_Items.aspx.designer.vb">
+      <DependentUpon>View_All_Items.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_All_Items.aspx.vb">
+      <DependentUpon>View_All_Items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_ISI.aspx.designer.vb">
+      <DependentUpon>Print_ISI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_ISI.aspx.vb">
+      <DependentUpon>Print_ISI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher_Letter.aspx.designer.vb">
+      <DependentUpon>Teacher_Letter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher_Letter.aspx.vb">
+      <DependentUpon>Teacher_Letter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Negative_balance_report.aspx.designer.vb">
+      <DependentUpon>Negative_balance_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Negative_balance_report.aspx.vb">
+      <DependentUpon>Negative_balance_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\ATM.aspx.designer.vb">
+      <DependentUpon>ATM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\ATM.aspx.vb">
+      <DependentUpon>ATM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Badge_Creator.aspx.designer.vb">
+      <DependentUpon>Badge_Creator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Badge_Creator.aspx.vb">
+      <DependentUpon>Badge_Creator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bank_Of_America_Manager_Checklist.aspx.designer.vb">
+      <DependentUpon>Bank_Of_America_Manager_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bank_Of_America_Manager_Checklist.aspx.vb">
+      <DependentUpon>Bank_Of_America_Manager_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bank_Of_America_Representative_Checklist.aspx.designer.vb">
+      <DependentUpon>Bank_Of_America_Representative_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bank_Of_America_Representative_Checklist.aspx.vb">
+      <DependentUpon>Bank_Of_America_Representative_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bank_Of_America_Savings_Officer_Checklist.aspx.designer.vb">
+      <DependentUpon>Bank_Of_America_Savings_Officer_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bank_Of_America_Savings_Officer_Checklist.aspx.vb">
+      <DependentUpon>Bank_Of_America_Savings_Officer_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Bank_Of_America_Teller_Account_Search.aspx.designer.vb">
+      <DependentUpon>Bank_Of_America_Teller_Account_Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Bank_Of_America_Teller_Account_Search.aspx.vb">
+      <DependentUpon>Bank_Of_America_Teller_Account_Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Bank_Of_America_Teller_Account_View.aspx.designer.vb">
+      <DependentUpon>Bank_Of_America_Teller_Account_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Bank_Of_America_Teller_Account_View.aspx.vb">
+      <DependentUpon>Bank_Of_America_Teller_Account_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BayCare_Bill_Collection_Checklist.aspx.designer.vb">
+      <DependentUpon>BayCare_Bill_Collection_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BayCare_Bill_Collection_Checklist.aspx.vb">
+      <DependentUpon>BayCare_Bill_Collection_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BBB_Accreditation_Specialist_Checklist.aspx.designer.vb">
+      <DependentUpon>BBB_Accreditation_Specialist_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BBB_Accreditation_Specialist_Checklist.aspx.vb">
+      <DependentUpon>BBB_Accreditation_Specialist_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BBB_Information_Specialist_Checklist.aspx.designer.vb">
+      <DependentUpon>BBB_Information_Specialist_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BBB_Information_Specialist_Checklist.aspx.vb">
+      <DependentUpon>BBB_Information_Specialist_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Check_Writing_System.aspx.designer.vb">
+      <DependentUpon>Check_Writing_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Check_Writing_System.aspx.vb">
+      <DependentUpon>Check_Writing_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Class_DatabaseConnection.vb" />
+    <Compile Include="default.aspx.designer.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ditek_Check.aspx.designer.vb">
+      <DependentUpon>Ditek_Check.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ditek_Check.aspx.vb">
+      <DependentUpon>Ditek_Check.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Duke_Electric_Bill_Checklist.aspx.designer.vb">
+      <DependentUpon>Duke_Electric_Bill_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Duke_Electric_Bill_Checklist.aspx.vb">
+      <DependentUpon>Duke_Electric_Bill_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Duke_Energy_Manager_Electric_Bill_Checklist.aspx.designer.vb">
+      <DependentUpon>Duke_Energy_Manager_Electric_Bill_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Duke_Energy_Manager_Electric_Bill_Checklist.aspx.vb">
+      <DependentUpon>Duke_Energy_Manager_Electric_Bill_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Duke_Energy_Utility_Engineer_Energy_Conservation_Checklist.aspx.designer.vb">
+      <DependentUpon>Duke_Energy_Utility_Engineer_Energy_Conservation_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Duke_Energy_Utility_Engineer_Energy_Conservation_Checklist.aspx.vb">
+      <DependentUpon>Duke_Energy_Utility_Engineer_Energy_Conservation_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Employee_Management_System.aspx.designer.vb">
+      <DependentUpon>Employee_Management_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Employee_Management_System.aspx.vb">
+      <DependentUpon>Employee_Management_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee_Management_System_Review.aspx.designer.vb">
+      <DependentUpon>Employee_Management_System_Review.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee_Management_System_Review.aspx.vb">
+      <DependentUpon>Employee_Management_System_Review.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Class_VisitData.vb" />
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Input_Student_Information.aspx.designer.vb">
+      <DependentUpon>Input_Student_Information.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Input_Student_Information.aspx.vb">
+      <DependentUpon>Input_Student_Information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Judgement_Case_Missing_Teddy_Bear.aspx.designer.vb">
+      <DependentUpon>Judgement_Case_Missing_Teddy_Bear.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Judgement_Case_Missing_Teddy_Bear.aspx.vb">
+      <DependentUpon>Judgement_Case_Missing_Teddy_Bear.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Judgement_Case_Slippery_Pickle.aspx.designer.vb">
+      <DependentUpon>Judgement_Case_Slippery_Pickle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Judgement_Case_Slippery_Pickle.aspx.vb">
+      <DependentUpon>Judgement_Case_Slippery_Pickle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lawyer_Promissory_Note_Checklist.aspx.designer.vb">
+      <DependentUpon>Lawyer_Promissory_Note_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lawyer_Promissory_Note_Checklist.aspx.vb">
+      <DependentUpon>Lawyer_Promissory_Note_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Manage_Sales_History_.aspx.designer.vb">
+      <DependentUpon>Manage_Sales_History_.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Manage_Sales_History_.aspx.vb">
+      <DependentUpon>Manage_Sales_History_.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mayor_Population_Count.aspx.designer.vb">
+      <DependentUpon>Mayor_Population_Count.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mayor_Population_Count.aspx.vb">
+      <DependentUpon>Mayor_Population_Count.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mix_100.7_Marketing_Representative_Checklist.aspx.designer.vb">
+      <DependentUpon>Mix_100.7_Marketing_Representative_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mix_100.7_Marketing_Representative_Checklist.aspx.vb">
+      <DependentUpon>Mix_100.7_Marketing_Representative_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mix_100.7_Station_Manager_Editorial.aspx.designer.vb">
+      <DependentUpon>Mix_100.7_Station_Manager_Editorial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mix_100.7_Station_Manager_Editorial.aspx.vb">
+      <DependentUpon>Mix_100.7_Station_Manager_Editorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
+    <Compile Include="Online_Banking.aspx.designer.vb">
+      <DependentUpon>Online_Banking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Online_Banking.aspx.vb">
+      <DependentUpon>Online_Banking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operating_Check_Writing_System.aspx.designer.vb">
+      <DependentUpon>Operating_Check_Writing_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operating_Check_Writing_System.aspx.vb">
+      <DependentUpon>Operating_Check_Writing_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bic_Graphic_Manager_Advertising_Letter_Checklist.aspx.designer.vb">
+      <DependentUpon>Bic_Graphic_Manager_Advertising_Letter_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bic_Graphic_Manager_Advertising_Letter_Checklist.aspx.vb">
+      <DependentUpon>Bic_Graphic_Manager_Advertising_Letter_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="City_Hall_Mayor_Checklist.aspx.designer.vb">
+      <DependentUpon>City_Hall_Mayor_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="City_Hall_Mayor_Checklist.aspx.vb">
+      <DependentUpon>City_Hall_Mayor_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCSW_FO_Checklist.aspx.designer.vb">
+      <DependentUpon>PCSW_FO_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCSW_FO_Checklist.aspx.vb">
+      <DependentUpon>PCSW_FO_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pinellas_County_Utilities_Checklist.aspx.designer.vb">
+      <DependentUpon>Pinellas_County_Utilities_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pinellas_County_Utilities_Checklist.aspx.vb">
+      <DependentUpon>Pinellas_County_Utilities_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Badges.aspx.designer.vb">
+      <DependentUpon>Print_Badges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Badges.aspx.vb">
+      <DependentUpon>Print_Badges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Checks.aspx.designer.vb">
+      <DependentUpon>Print_Checks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Checks.aspx.vb">
+      <DependentUpon>Print_Checks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Professional_Office_Financial_Officer_Checklist.aspx.designer.vb">
+      <DependentUpon>Professional_Office_Financial_Officer_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Professional_Office_Financial_Officer_Checklist.aspx.vb">
+      <DependentUpon>Professional_Office_Financial_Officer_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profit_display.aspx.designer.vb">
+      <DependentUpon>Profit_display.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profit_display.aspx.vb">
+      <DependentUpon>Profit_display.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home_Page.aspx.designer.vb">
+      <DependentUpon>Home_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home_Page.aspx.vb">
+      <DependentUpon>Home_Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales_History.aspx.designer.vb">
+      <DependentUpon>Sales_History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales_History.aspx.vb">
+      <DependentUpon>Sales_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Sales_History_Edit.aspx.designer.vb">
+      <DependentUpon>Sales_History_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Sales_History_Edit.aspx.vb">
+      <DependentUpon>Sales_History_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales_System_McDonalds.aspx.designer.vb">
+      <DependentUpon>Sales_System_McDonalds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales_System_McDonalds.aspx.vb">
+      <DependentUpon>Sales_System_McDonalds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales_System.aspx.designer.vb">
+      <DependentUpon>Sales_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales_System.aspx.vb">
+      <DependentUpon>Sales_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salvador_Dali_Museum_Art_Curator_Checklist.aspx.designer.vb">
+      <DependentUpon>Salvador_Dali_Museum_Art_Curator_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Salvador_Dali_Museum_Art_Curator_Checklist.aspx.vb">
+      <DependentUpon>Salvador_Dali_Museum_Art_Curator_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Stavros_Input_Student_Information.aspx.designer.vb">
+      <DependentUpon>Stavros_Input_Student_Information.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Stavros_Input_Student_Information.aspx.vb">
+      <DependentUpon>Stavros_Input_Student_Information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tampa_Bay_Times_Graphic_Artist_Checklist.aspx.designer.vb">
+      <DependentUpon>Tampa_Bay_Times_Graphic_Artist_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tampa_Bay_Times_Graphic_Artist_Checklist.aspx.vb">
+      <DependentUpon>Tampa_Bay_Times_Graphic_Artist_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tampa_Bay_Times_Marketing_Representative_Checklist.aspx.designer.vb">
+      <DependentUpon>Tampa_Bay_Times_Marketing_Representative_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tampa_Bay_Times_Marketing_Representative_Checklist.aspx.vb">
+      <DependentUpon>Tampa_Bay_Times_Marketing_Representative_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Not used\Teller_Startup.aspx.designer.vb">
+      <DependentUpon>Teller_Startup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Not used\Teller_Startup.aspx.vb">
+      <DependentUpon>Teller_Startup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Low_Inventory_Report.aspx.designer.vb">
+      <DependentUpon>Low_Inventory_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Low_Inventory_Report.aspx.vb">
+      <DependentUpon>Low_Inventory_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Add_Remove_Amount.aspx.designer.vb">
+      <DependentUpon>Add_Remove_Amount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Remove_Amount.aspx.vb">
+      <DependentUpon>Add_Remove_Amount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teller_System.aspx.designer.vb">
+      <DependentUpon>Teller_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teller_System.aspx.vb">
+      <DependentUpon>Teller_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tools.aspx.designer.vb">
+      <DependentUpon>Tools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools.aspx.vb">
+      <DependentUpon>Tools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Unified_Giving_Director%27s_Checklist.aspx.designer.vb">
+      <DependentUpon>Unified_Giving_Director%27s_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Unified_Giving_Director%27s_Checklist.aspx.vb">
+      <DependentUpon>Unified_Giving_Director%27s_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UPS_Package_Handler_Checklist.aspx.designer.vb">
+      <DependentUpon>UPS_Package_Handler_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UPS_Package_Handler_Checklist.aspx.vb">
+      <DependentUpon>UPS_Package_Handler_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Verizon_Graphic_Artist_Checklist.aspx.designer.vb">
+      <DependentUpon>Verizon_Graphic_Artist_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Verizon_Graphic_Artist_Checklist.aspx.vb">
+      <DependentUpon>Verizon_Graphic_Artist_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Verizon_Manager%27s_Checklist.aspx.designer.vb">
+      <DependentUpon>Verizon_Manager%27s_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Verizon_Manager%27s_Checklist.aspx.vb">
+      <DependentUpon>Verizon_Manager%27s_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Verizon_Telecommunication_Engineer_Checklist.aspx.designer.vb">
+      <DependentUpon>Verizon_Telecommunication_Engineer_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Verizon_Telecommunication_Engineer_Checklist.aspx.vb">
+      <DependentUpon>Verizon_Telecommunication_Engineer_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checklist_Directory.aspx.designer.vb">
+      <DependentUpon>Checklist_Directory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checklist_Directory.aspx.vb">
+      <DependentUpon>Checklist_Directory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="teacher_input.aspx.designer.vb">
+      <DependentUpon>teacher_input.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="teacher_input.aspx.vb">
+      <DependentUpon>teacher_input.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Operating_Checks.aspx.designer.vb">
+      <DependentUpon>Print_Operating_Checks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Operating_Checks.aspx.vb">
+      <DependentUpon>Print_Operating_Checks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee_Report.aspx.designer.vb">
+      <DependentUpon>Employee_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee_Report.aspx.vb">
+      <DependentUpon>Employee_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="School_Report.aspx.designer.vb">
+      <DependentUpon>School_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School_Report.aspx.vb">
+      <DependentUpon>School_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Visit_Report.aspx.designer.vb">
+      <DependentUpon>Visit_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Visit_Report.aspx.vb">
+      <DependentUpon>Visit_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher_Report.aspx.designer.vb">
+      <DependentUpon>Teacher_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher_Report.aspx.vb">
+      <DependentUpon>Teacher_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Create_School.aspx.designer.vb">
+      <DependentUpon>Create_School.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Create_School.aspx.vb">
+      <DependentUpon>Create_School.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit_School.aspx.designer.vb">
+      <DependentUpon>Edit_School.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_School.aspx.vb">
+      <DependentUpon>Edit_School.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit_Teacher.aspx.designer.vb">
+      <DependentUpon>Edit_Teacher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Teacher.aspx.vb">
+      <DependentUpon>Edit_Teacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Open_Closed_Status.aspx.designer.vb">
+      <DependentUpon>Open_Closed_Status.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Open_Closed_Status.aspx.vb">
+      <DependentUpon>Open_Closed_Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student_Spending_Report.aspx.designer.vb">
+      <DependentUpon>Student_Spending_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Spending_Report.aspx.vb">
+      <DependentUpon>Student_Spending_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Teller.aspx.designer.vb">
+      <DependentUpon>Print_Teller.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Teller.aspx.vb">
+      <DependentUpon>Print_Teller.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Sales.aspx.designer.vb">
+      <DependentUpon>Print_Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Sales.aspx.vb">
+      <DependentUpon>Print_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="School_Visit_Checklist.aspx.designer.vb">
+      <DependentUpon>School_Visit_Checklist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="School_Visit_Checklist.aspx.vb">
+      <DependentUpon>School_Visit_Checklist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help_Page.aspx.designer.vb">
+      <DependentUpon>Help_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help_Page.aspx.vb">
+      <DependentUpon>Help_Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Liason_Information.aspx.designer.vb">
+      <DependentUpon>Liason_Information.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Liason_Information.aspx.vb">
+      <DependentUpon>Liason_Information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Badge_Creator_History.aspx.designer.vb">
+      <DependentUpon>Badge_Creator_History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Badge_Creator_History.aspx.vb">
+      <DependentUpon>Badge_Creator_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager_System.aspx.designer.vb">
+      <DependentUpon>Manager_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_System.aspx.vb">
+      <DependentUpon>Manager_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template_Staff.aspx.designer.vb">
+      <DependentUpon>Template_Staff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template_Staff.aspx.vb">
+      <DependentUpon>Template_Staff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Z_Test_Page.aspx.designer.vb">
+      <DependentUpon>Z_Test_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Z_Test_Page.aspx.vb">
+      <DependentUpon>Z_Test_Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Print_Direct_Deposit.aspx.designer.vb">
+      <DependentUpon>Print_Direct_Deposit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Print_Direct_Deposit.aspx.vb">
+      <DependentUpon>Print_Direct_Deposit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Newspaper_Hub.aspx.designer.vb">
+      <DependentUpon>Newspaper_Hub.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Newspaper_Hub.aspx.vb">
+      <DependentUpon>Newspaper_Hub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jscript\jquery.sumoselect.jquery.json" />
+    <Content Include="bin\Enterprise_Village_2.0.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="media\Logos\Kimberly K-Tech During\Concept Sketch.pdf" />
+    <Content Include="media\Logos\Kimberly K-Tech During\K.TEK_LOGOS_IMAGES_SLOGANS.docx" />
+    <Content Include="media\Logos\Kimberly K-Tech During\kteklogo-300.psd" />
+    <Content Include="media\Logos\Lightning\lightning_logo.eps" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="obj\Release\Enterprise_Village_2.0.vbproj.AssemblyReference.cache" />
+    <Content Include="obj\Release\Enterprise_Village_2.0.vbprojAssemblyReference.cache" />
+    <None Include="packages.config" />
+    <Content Include="packages\AForge.2.2.5\.signature.p7s" />
+    <Content Include="packages\AForge.2.2.5\AForge.2.2.5.nupkg" />
+    <Content Include="packages\AForge.Video.2.2.5\.signature.p7s" />
+    <Content Include="packages\AForge.Video.2.2.5\AForge.Video.2.2.5.nupkg" />
+    <Content Include="packages\AForge.Video.DirectShow.2.2.5\.signature.p7s" />
+    <Content Include="packages\AForge.Video.DirectShow.2.2.5\AForge.Video.DirectShow.2.2.5.nupkg" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\.signature.p7s" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.Extensions.props" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.Extensions.props" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net45\app.config.install.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net45\app.config.uninstall.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net45\web.config.install.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net45\web.config.uninstall.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net46\app.config.install.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net46\app.config.uninstall.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net46\web.config.install.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\content\net46\web.config.uninstall.xdt" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1.nupkg" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\net45\install.ps1" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\net45\uninstall.ps1" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe.config" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.rsp" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csi.rsp" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.CSharp.Core.targets" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\vbc.exe.config" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\vbc.rsp" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\VBCSCompiler.exe.config" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csc.exe.config" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csc.rsp" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csi.exe.config" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\csi.rsp" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.CSharp.Core.targets" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.Managed.Core.targets" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe.config" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.rsp" />
+    <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe.config" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\.signature.p7s" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\MonoAndroid10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\MonoTouch10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\xamarinios10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\xamarinmac20\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\xamarintvos10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\lib\xamarinwatchos10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\MonoAndroid10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\MonoTouch10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\xamarinios10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\xamarinmac20\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\xamarintvos10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\ref\xamarinwatchos10\_._" />
+    <Content Include="packages\System.Data.SqlClient.4.8.3\System.Data.SqlClient.4.8.3.nupkg" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="media\Help Page\" />
+    <Folder Include="media\Logos\WorkNet\WorkNet OLD\" />
+    <Folder Include="Models\" />
+    <Folder Include="System\Web\UI\" />
+    <Folder Include="uploads\Articles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56776</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56776/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

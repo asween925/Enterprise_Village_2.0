@@ -1,0 +1,1018 @@
+﻿@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -webkit-print-color-adjust: exact !important;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+@media print {
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .transparent {
+        background-color: rgba(211, 211, 211, 0.5);
+        border: 2px solid black;
+        border-radius: 25px;
+        margin: 50px;
+    }
+
+    .badge_print {
+        border: 2px solid black;
+        border-radius: 0px;
+        text-align: left;
+        width: 8.5cm;
+        height: 5.5cm;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin: 10px;
+        /*padding-top: 100px;*/
+        background-color: white;
+        display: inline-block;
+        font-size: 11px;
+        position: relative;
+    }
+
+    .badge_print2 {
+        border: 2px solid black;
+        border-radius: 0px;
+        text-align: left;
+        width: 8.5cm;
+        height: 5.5cm;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin: 10px;
+        /*padding-top: 100px;*/
+        background-color: white;
+        display: inline-block;
+        font-size: 11px;
+        position: relative;
+    }
+
+    .badge_print3 {
+        border: 2px solid black;
+        border-radius: 0px;
+        text-align: left;
+        width: 8.5cm;
+        height: 5.5cm;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin: 10px;
+        /*padding-top: 100px;*/
+        background-color: white;
+        display: inline-block;
+        font-size: 11px;
+        position: relative;
+    }
+
+    .badge_print4 {
+        border: 2px solid black;
+        border-radius: 0px;
+        text-align: left;
+        width: 8.5cm;
+        height: 5.5cm;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin: 10px;
+        /*padding-top: 100px;*/
+        background-color: white;
+        display: inline-block;
+        font-size: 11px;
+        position: relative;
+    }
+
+    .badge_logo {
+        float: left;       
+        padding-top: 10px;
+        margin-left: auto;
+        height: 25%;
+        width: 45%;
+    }
+
+    .print_photo {
+        float: right;
+        width: 140px;
+        height: 140px;
+        top: 15px;
+        left: 10px;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .d-none {
+
+    }
+
+    .print, print * {
+        display: unset !important;
+    }
+
+    .header3 {
+        grid-area: header3;
+        display: flex;
+        opacity: 1;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+
+
+    .Business_logo_reciept {
+        /*display: block;*/
+        margin: auto;
+        width: auto;
+        height: 80px;
+    }
+
+    .Check_textbox {
+        font-size: 18px;
+        border-bottom: solid black 1px;
+        border-top: hidden;
+        border-right: hidden;
+        border-left: hidden;
+    }
+
+    .Check_textbox_DD {
+        font-size: 18px;
+        border-bottom: solid black 1px;
+        border-top: hidden;
+        border-right: hidden;
+        border-left: hidden;
+        border-bottom: hidden;
+    }
+
+    .Check_textbox1 {
+        font-size: 18px;
+        border: solid black 1px;
+    }
+
+
+    .Customer_name {
+        padding-bottom: 20px;
+    }
+
+    .Print_bold {
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .Print {
+        font-size: 14px;
+    }
+
+    .Sales_text {
+    }
+
+    .Print_logo {
+        width: 130px;
+        padding-top: -200px;
+        padding-bottom: 100px;
+    }
+
+    #Label_date_time {
+        display: inline;
+    }
+
+    .Check_creation {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin: auto;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_print1 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.14444cm;
+        margin-top: 0px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        /*display: inline-block;*/
+        position: static;
+    }
+
+    .Check_print2 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin-top: 11px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_print3 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin-top: 25px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_print4 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.14444cm;
+        margin-left: 27px;
+        margin-top: 35px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        
+    }
+
+    .Check_print5 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.14444cm;
+        margin-left: 27px;
+        margin-top: 0px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+        position: absolute;
+    }
+
+    .Check_number {
+        float: right;
+        padding-right: 20px;
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .Check_business_name {
+        float: left;
+        padding-left: 24px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .Business_address {
+        float: left;
+        font-size: 15px;
+        padding-left: 24px;
+    }
+
+    .Check_date_text {
+        float: right;
+        padding-right: 8px;
+        font-size: 18px;
+    }
+
+    .Check_textbox {
+        font-size: 18px;
+    }
+
+    .Check_date {
+        float: right;
+        padding-right: 52px;
+        font-size: 18px;
+    }
+
+    .Pay_to_the {
+        float: left;
+        padding-right: 8px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Pay_to_the_DD {
+       /* float: left;*/
+        padding-right: 310px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Student_name {
+        float: left;
+        padding-left: 5px;
+        font-size: 18px;
+    }
+
+    .Student_name_DD {
+        float: left;
+        padding-left: 125px;
+        font-size: 18px;
+    }
+
+    .written_amount_DD {
+        /*float: left;*/
+        padding-left: 48px;
+        font-size: 18px;
+    }
+
+    .Check_amount_written {
+        float: left;
+        font-size: 18px;
+    }
+
+    .Dollars_text {
+        float: left;
+        padding-left: 8px;
+        font-size: 18px;
+    }
+
+    .Memo {
+        float: left;
+        padding-right: 5px;
+        padding-top: 2px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Memo_DD {
+        float: left;
+        padding-right: 5px;
+        margin-left: 50px;
+        padding-top: 2px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Memo_text {
+        padding-top: 10px;
+        float: left;
+    }
+
+    .Sign_line {
+        float: right;
+        padding-top: 8px;
+        font-weight: bold;
+    }
+
+    .Sign_line_DD {
+        /*float: right;*/
+        padding-top: 8px;
+        font-weight: bold;
+    }
+
+    .Bottom_check {
+    }
+
+    .teller_logo_print {
+        position: relative;
+        right: 180px;
+        width: 170px;
+    }
+
+    .teller_deposit_print {
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .teller_sidebar_print {
+        border: none;
+        font-size: 6px;
+        color: black;
+        text-align: left;
+        text-decoration-line: none;
+        font-weight: 100;
+        padding: 0px;
+    }
+
+    .teller_sidebar_text_print {
+        border: none;
+        font-size: 12px;
+        color: black;
+        text-align: left;
+        text-decoration-line: none;
+        font-weight: 100;
+    }
+
+    .EV_logo_print {
+        margin-left: 42%;
+        width: 130px;
+        height: 70px;
+        position: fixed;
+        bottom: 0px;
+    }
+
+    .stavros_logo_print {
+        width: 150px;
+        height: 40px;
+        position: absolute;
+        right: 0px;
+    } 
+
+    /*School Visit Checklist*/
+
+    .title_print {
+        text-align: center;
+    }
+
+    .school_visit_section_print {
+        border-top: 1px solid gray;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .SV_stavros_logo_print {
+        width: 150px;
+        height: 40px;
+        position: absolute;
+        left: 0px;
+    }
+
+    /*School Visit Checklist End*/
+
+    /*EV Lunches*/
+    .daily_receipt {
+        border: 2px solid black;
+        padding: 10px;
+        background-image: radial-gradient(#212121 20%, transparent 20%), radial-gradient(#fafafa 20%, transparent 20%);
+        /*background-color: #e53935;*/
+        background-position: 0 0, 50px 50px;
+        background-size: 3px 3px;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .letter_print {
+        margin-top: -20px;
+        font-size: 14px;
+    }
+
+    .EV_logo_lunches_receipt_print {
+        height: 80px;
+        width: 100px;
+        float: right;
+    }
+    /*EV Lunches End*/
+
+    /*Break Schedules*/
+    .button_grid_home {
+        text-align: center;
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+    }
+
+    .button_item2 {
+        padding: 10px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .break_schedules_printing_moving_up {
+        margin-top: -40px;
+    }
+    /*break schedules end*/
+
+    /*Manager System*/
+
+    .Manager_System_QA_Block {
+        text-align: center;
+        padding: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .Manager_System_Questions {
+        padding: 10px;
+        font-size: 17px;
+        text-align: left;
+        font-weight: bold;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .Manager_System_Duke_Directions {
+        border: 2px solid black;
+        border-radius: 25px;
+        font-size: 18px;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .Manager_System_Duke_Middle {
+        display: grid;
+        grid-template-columns: 40% 60%;
+    }
+
+    .Manager_System_Duke_Readings {
+        border: 2px solid black;
+        border-radius: 25px;
+        font-size: 14px;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .Manager_System_Duke_Service {
+        border: 2px solid black;
+        border-radius: 25px;
+        font-size: 14px;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .Manager_System_Duke_Bottom {
+        border-top: 2px dashed black;
+        position: relative;
+        text-align: center;
+    }
+
+    .Manager_System_Duke_Bottom_Total {
+        border: 2px solid black;
+        float: right;
+        margin-right: 5px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    .Manager_System_Duke_Bottom_Logo {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 200px;
+        height: 80px;
+    }
+
+    .Manager_System_Duke_Bottom_Text {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .Manager_System_Ditek_Profit_Calc_Print {
+        margin-left: 10%;
+        margin-right: 10%;
+        border: 2px solid black;
+        font-weight: bold;
+    }
+
+    /*Manager System End*/
+
+    /*Parent Letter*/
+
+    .Parent_Letter_Slip {
+        border-top: 2px dashed black;
+    }
+
+    /*Parent Letter End*/
+
+    /*-----Closed Business Checks-----*/
+
+    .Closed_Checks_Print1 {
+        border: none;
+        text-align: center;
+        width: 600px;
+        height: 200px;
+        margin-top: 0px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        display: inline-block;
+        position: relative;
+        left: 180px;
+        top: -42px;
+    }
+
+    .Closed_Checks_Print2 {
+        border: none;
+        text-align: center;
+        width: 600px;
+        height: 6.34444cm;
+        margin-top: 0px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+        position: relative;
+        left: 180px;
+    }
+
+    .Closed_Checks_Print3 {
+        border: none;
+        text-align: center;
+        width: 600px;
+        height: 6.34444cm;
+        margin-top: 25px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+        position: relative;
+        left: 180px;
+    }
+
+    .Closed_Checks_Print4 {
+        border: none;
+        text-align: center;
+        width: 600px;
+        height: 6.14444cm;
+        margin-left: 27px;
+        margin-top: 35px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        position: relative;
+        left: 180px;
+    }
+
+    .Closed_Checks_Check_Number {
+        float: right;
+        padding-right: 20px;
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .Closed_Checks_Check_Business_Name {
+        float: left;
+        padding-left: 24px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .Closed_Checks_Business_Address {
+        float: left;
+        font-size: 15px;
+        padding-left: 24px;
+    }
+
+    .Closed_Checks_Check_Date_Text {
+        float: right;
+        padding-right: 8px;
+        font-size: 18px;
+    }
+
+    .Closed_Checks_Check_Date {
+        float: right;
+        padding-right: 0px;
+        font-size: 18px;
+    }
+
+    .Closed_Checks_Pay_To_The {
+        float: left;
+        padding-right: 8px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Closed_Checks_Student_Name {
+        float: left;
+        padding-left: 5px;
+        font-size: 18px;
+        width: 270px;
+    }
+
+    .Closed_Checks_Written_Amount {
+        float: left;
+        padding-left: 5px;
+        font-size: 18px;
+        width: 450px;
+    }
+
+    .Closed_Checks_Memo_Text {
+        float: left;
+        padding-left: 5px;
+        font-size: 18px;
+        width: 150px;
+    }
+
+    .Closed_Checks_Dollars_Text {
+        float: left;
+        padding-left: 8px;
+        font-size: 18px;
+    }
+
+    .Closed_Checks_Memo {
+        float: left;
+        padding-right: 5px;
+        padding-top: 2px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Closed_Checks_Sign_Line {
+        float: right;
+        padding-top: 8px;
+        font-weight: normal;
+    }
+
+    .Closed_Checks_Bottom_Check {
+        padding-top: 10px;
+    }
+
+    .Closed_Checks_Signature_Image_Print {
+        width: 160px;
+        height: 50px;
+        position:  absolute;
+        margin-left: 100px;
+        margin-top: -20px;
+    }
+
+
+    /*-----Closed Business Checks End-----*/
+
+    /*-----Break Schedules-----*/
+
+    .Break1 {
+        color: red;
+    }
+
+    .Break2 {
+        color: blue;
+    }
+
+    .Break3 {
+        color: green;
+    }
+    
+    /*-----Break Schedules End-----*/
+
+    /*-----Voting System Mayor-----*/
+
+    .Voting_System_H3_Print {
+        font-size: 20px;
+    }
+
+    /*-----Voting System Mayor End-----*/
+
+
+    /*-----Sales System-----*/
+
+    .Sales_System_Item_TB_Print {
+        width: 100px;
+    }
+
+    /*-----Sales System End-----*/
+}
+
+
+
+@media (min-width:1001px) {
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .header3 {
+        grid-area: header3;
+        display: flex;
+        opacity: 1;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+
+
+    .Business_logo_reciept {
+        display: block;
+        margin: auto;
+        width: auto;
+        height: 1000px;
+    }
+
+
+    .Customer_name {
+        padding-bottom: 20px;
+    }
+
+    .Print_bold {
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .Print {
+        font-size: 14px;
+    }
+
+    .Print_logo {
+        width: 130px;
+        padding-top: -200px;
+    }
+
+    #Label_date_time {
+        display: inline;
+    }
+
+    .Check_creation {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin: auto;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_print1 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin-top: 16px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        /*background: linear-gradient(90deg, hsl(255,255,255) (2px; - 22px;), transparent 1%) center, linear-gradient($bg-color (hsl(255,255,255); - 2px;), transparent 1%) center, hsl(256,33,70);
+        background-size: 22px 2px;*/
+        display: inline-block;
+    }
+
+    .Check_print2 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin-top: 11px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_print3 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin-top: 11px;
+        margin-bottom: 9.5px;
+        margin-left: 27px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_print4 {
+        border: 2px solid black;
+        text-align: center;
+        width: 20.2cm;
+        height: 6.34444cm;
+        margin-left: 27px;
+        margin-top: 11px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
+        background-color: lightcyan;
+        display: inline-block;
+    }
+
+    .Check_number {
+        float: right;
+        padding-right: 20px;
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .Check_business_name {
+        float: left;
+        padding-left: 24px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .Business_address {
+        float: left;
+        font-size: 15px;
+        padding-left: 24px;
+    }
+
+    .Check_date_text {
+        float: right;
+        padding-right: 8px;
+        font-size: 18px;
+    }
+
+    .Check_textbox {
+        font-size: 18px;
+        border-bottom: solid black 1px
+    }
+
+    .Check_date {
+        float: right;
+        padding-right: 52px;
+        font-size: 18px;
+    }
+
+    .Pay_to_the {
+        float: left;
+        padding-right: 8px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Student_name {
+        float: left;
+        padding-left: 5px;
+        font-size: 18px;
+    }
+
+    .Check_amount_written {
+        float: left;
+        font-size: 18px;
+    }
+
+    .Dollars_text {
+        float: left;
+        padding-left: 8px;
+        font-size: 18px;
+    }
+
+    .Memo {
+        float: left;
+        padding-right: 5px;
+        padding-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .Memo_textbox {
+        float: left;
+        font-size: 18px;
+        margin-top: 10px
+    }
+
+    .Memo_text {
+        padding-top: 10px;
+        float: left;
+    }
+
+    .Sign_line {
+        float: right;
+        padding-top: 12px;
+        font-weight: bold;
+    }
+
+    .Bottom_check {
+        float: right;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
