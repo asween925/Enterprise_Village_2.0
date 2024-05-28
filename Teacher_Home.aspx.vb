@@ -20,7 +20,7 @@ Public Class Teacher_Home
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("LoggedIn") <> "1" Then
-            Response.Redirect(".\default.aspx")
+            Response.Redirect("../../default.aspx")
         End If
 
         'currentVisitID_hf.Value = Visit
@@ -160,6 +160,6 @@ Public Class Teacher_Home
 
     Protected Sub logOut_btn_Click(sender As Object, e As EventArgs) Handles logOut_btn.Click
         HttpContext.Current.Session.Abandon()
-        Response.Redirect(".\default.aspx")
+        Response.Redirect("../../default.aspx")
     End Sub
 End Class

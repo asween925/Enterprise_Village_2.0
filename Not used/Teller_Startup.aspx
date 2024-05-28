@@ -10,7 +10,7 @@
 
 
 <link href="css/Styles.Teller.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" type="image/png" href="media/EV_favicon_2.png"/>
+    <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png"/>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div id="site_wrap">
     <div class="header1">
     
-    <img class="EV" alt="Enterprise Village" src="Images/EV2.0_PCSB.png">
+    <img class="EV" alt="Enterprise Village" src="../../Images/EV2.0_PCSB.png">
     
     </div>
         
@@ -83,7 +83,7 @@
     
         
 </div> 
-<script src="Scripts.js"></script>
+<script src="../../Scripts.js"></script>
         </form>
 </body>
 </html>

@@ -17,7 +17,7 @@
     <div id="site_wrap">
     <div class="header1">
     
-    <img class="EV" alt="Enterprise Village" src="Images/EV2.0_PCSB.png">
+    <img class="EV" alt="Enterprise Village" src="../../Images/EV2.0_PCSB.png">
     
     </div>
         
@@ -89,7 +89,7 @@
     
         
 </div> 
-<script src="Scripts.js"></script>
+<script src="../../Scripts.js"></script>
         </form>
 </body>
 </html>

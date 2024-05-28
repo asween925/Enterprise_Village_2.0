@@ -121,9 +121,9 @@ Public Class login
                         'Check if GSI staff member is bus driver or not; sends them to the inventory page
                         While dr.Read()
                             If dr("job").ToString = "Bus Driver" Then
-                                Response.Redirect(".\Inventory_Home.aspx")
+                                Response.Redirect("/pages/inventory/Inventory_Home.aspx")
                             Else
-                                Response.Redirect(".\home_page.aspx")
+                                Response.Redirect("/pages/home_page.aspx")
                             End If
                         End While
 

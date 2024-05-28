@@ -8,8 +8,8 @@
 
     <title>Enterprise Village - Input Student Information</title>
 
-    <link href="css/Styles.updated.css" rel="stylesheet" media="screen" type="text/css">
-    <link href="css/Styles.print.css" rel="stylesheet" media="print" type="text/css">
+    <link href="~/css/Styles.updated.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.print.css" rel="stylesheet" media="print" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/png" href="media/EV_favicon_2.png" />
 </head>
@@ -137,7 +137,7 @@
         <asp:HiddenField ID="replyBy" runat="server" />
         <asp:HiddenField ID="visitID_hf" runat="server" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="Scripts.js"></script>
+        <script src="../../Scripts.js"></script>
         <script>
             /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
             $(".sub-menu ul").hide();

@@ -16,7 +16,7 @@ Public Class Input_Student_Information
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Asks If the session Is still active, If Not, then it will redirect to the login screen
         If Session("LoggedIn") <> "1" Then
-            Response.Redirect(".\default.aspx")
+            Response.Redirect("../../default.aspx")
         End If
 
         'Get schoolID from URL from login page
@@ -473,7 +473,7 @@ Public Class Input_Student_Information
 
         'employees_dgv.Visible = True
         Dim schoolID As String = Request.QueryString("b")
-        Response.Redirect(".\Print_ISI.aspx?b=" & schoolID)
+        Response.Redirect("/pages/print/Print_ISI.aspx?b=" & schoolID)
 
     End Sub
 
@@ -484,7 +484,7 @@ Public Class Input_Student_Information
     Protected Sub print_btn_Click(sender As Object, e As EventArgs) Handles print_btn.Click
         'employees_dgv.Visible = True
         Dim schoolID As String = Request.QueryString("b")
-        Response.Redirect(".\Print_ISI.aspx?b=" & schoolID)
+        Response.Redirect("/pages/print/Print_ISI.aspx?b=" & schoolID)
     End Sub
 
     Protected Sub logout_btn_Click(sender As Object, e As EventArgs) Handles logout_btn.Click

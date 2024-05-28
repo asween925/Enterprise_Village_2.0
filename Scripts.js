@@ -73,19 +73,19 @@ function HideDiv() {
 
 function DitekCheck() {
 
-    var myWindow = window.open("https://ev.pcsb.org/ditek_check.aspx");
+    var myWindow = window.open("https://ev.pcsb.org/pages/student/ditek_check.aspx");
     myWindow.print();
 }
 
 function DitekCheck2() {
 
-    var myWindow = window.open("https://ev.pcsb.org/ditek_check.aspx");
+    var myWindow = window.open("https://ev.pcsb.org/pages/student/ditek_check.aspx");
     myWindow.print();
 }
 
 function PrintPayrollChecks() {
 
-    var myWindow = window.open("https://ev.pcsb.org/print_checks.aspx");
+    var myWindow = window.open("https://ev.pcsb.org/pages/print/print_checks.aspx");
     myWindow.print();
 }
 

@@ -8,9 +8,9 @@
 
     <title>EV 2.0 - Login</title>
 
-    <link href="css/Styles.updated.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.updated.css" rel="stylesheet" media="screen" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" type="image/png" href="media/EV_favicon_2.png" />
+    <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 
 </head>
 
@@ -51,7 +51,7 @@
         <asp:HiddenField ID="visitID_hf" runat="server" />
         <asp:HiddenField ID="clientName_hf" runat="server" />
         <asp:HiddenField ID="teacherID_hf" runat="server" />
-        <script src="Scripts.js"></script>
+        <script src="../../Scripts.js"></script>
     </form>
 </body>
 </html>

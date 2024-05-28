@@ -8,9 +8,9 @@
 
     <title>Enterprise Village - Teacher Home</title>
 
-    <link href="css/Styles.updated.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.updated.css" rel="stylesheet" media="screen" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" type="image/png" href="media/EV_favicon_2.png" />
+    <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <style>
@@ -77,7 +77,7 @@
         <asp:HiddenField ID="visitDate_hf" runat="server" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="Scripts.js"></script>
+        <script src="../../Scripts.js"></script>
         <script>
             /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
             $(".sub-menu ul").hide();

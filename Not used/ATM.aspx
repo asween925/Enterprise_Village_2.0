@@ -9,8 +9,8 @@
           <title>ATM</title>
 
 
-<link href="css/Styles.profit.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" type="image/png" href="media/EV_favicon_2.png"/>
+<link href="~/css/Styles.profit.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png"/>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
     
         
 </div> 
-<script src="Scripts.js"></script>
+<script src="../../Scripts.js"></script>
         </form>
 </body>
 </html>
