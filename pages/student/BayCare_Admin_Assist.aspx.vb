@@ -63,7 +63,7 @@ Public Class BayCare_Admin_Assist
             con.ConnectionString = connection_string
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "SELECT id, checkupsPerformed, businessName FROM BayCareAdmin WHERE visitDate = '" & VisitDate & "' AND visitID = '" & VisitID & "' ORDER BY businessName ASC"
+            cmd.CommandText = "SELECT id, checkupsPerformed, businessName FROM BayCareAdmin WHERE visitID = '" & VisitID & "' ORDER BY businessName ASC"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -94,9 +94,9 @@ Public Class BayCare_Admin_Assist
             dr = cmd.ExecuteReader
 
             If dr.HasRows = True Then
-                SQLStatement = "UPDATE BayCareAdmin SET checkupsPerformed = checkupsPerformed + 1 WHERE visitDate = '" & VisitDate & "' AND visitID = '" & VisitID & "' AND businessName = '" & BusinessName & "'"
+                SQLStatement = "UPDATE BayCareAdmin SET checkupsPerformed = checkupsPerformed + 1 WHERE visitID = '" & VisitID & "' AND businessName = '" & BusinessName & "'"
             Else
-                SQLStatement = "INSERT INTO BayCareAdmin (visitDate, visitID, checkupsPerformed, businessName) VALUES ('" & VisitDate & "', '" & VisitID & "', '1', '" & BusinessName & "')"
+                SQLStatement = "INSERT INTO BayCareAdmin (visitID, checkupsPerformed, businessName) VALUES ('" & VisitID & "', '1', '" & BusinessName & "')"
             End If
 
             cmd.Dispose()

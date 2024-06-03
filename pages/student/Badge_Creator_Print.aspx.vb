@@ -8,16 +8,16 @@ Public Class Badge_Creator_Print
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
     Dim DBConnection As New DatabaseConection
     Dim dr As SqlDataReader
-    Dim BadgesData As New Class_BadgesData
-    Dim VisitID As New Class_VisitData
-    Dim Visit As Integer = VisitID.GetVisitID
+    Dim Badges As New Class_BadgesData
+    Dim Visit As New Class_VisitData
+    Dim VisitID As Integer = Visit.GetVisitID
     Dim path As String = "X:\inetpub\wwwroot\EV\media\Badge Photos\"
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         'Check if visit ID is not 0
-        If Visit = 0 Then
+        If VisitID = 0 Then
             error_lbl.Text = "No visit date, please go to 'Database Creator' on the 'Tools / Reports' page and create a new school visit date."
             Exit Sub
         End If
@@ -29,8 +29,7 @@ Public Class Badge_Creator_Print
 
     Sub LoadPrintBadges()
         Dim studentName() As String = badges_ddl.SelectedValue.Split(".")
-        Dim SQLWhere As String = " AND (employeeNumber = '" & studentName(0) & "')"
-
+        Dim SQLWhere As String = " AND (s.employeeNumber = '" & studentName(0) & "')"
 
         If employeeNumber_lbl1.Text = Nothing Then
 
@@ -40,7 +39,7 @@ Public Class Badge_Creator_Print
 
             'Load gridview with badge of account num
             Try
-                printBadges_dgv.DataSource = BadgesData.LoadExistingBadgesTable(Visit, SQLWhere)
+                printBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhere)
                 printBadges_dgv.DataBind()
             Catch
                 error_lbl.Text = "Error in LoadPrintBadges(). Cannot load badges. Please find an Enterprise Village teacher!"
@@ -49,17 +48,17 @@ Public Class Badge_Creator_Print
 
             'Assign labels 
             If badges_ddl.SelectedValue <> Nothing Then
+
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
-                'Dim path As String = "~/media/"
-                studentName_lbl1.Text = row.Cells(2).Text
-                businessName_lbl1.Text = row.Cells(3).Text
-                position_lbl1.Text = row.Cells(4).Text
-                date_lbl1.Text = FormatDateTime(row.Cells(6).Text, DateFormat.ShortDate)
-                'photo_img1.ImageUrl = path & row.Cells(7).Text
-                photo_img1.ImageUrl = row.Cells(7).Text
-                photo_img1.Visible = True
+
                 employeeNumber_lbl1.Text = row.Cells(1).Text
+                studentName_lbl1.Text = row.Cells(2).Text
+                photo_img1.ImageUrl = row.Cells(3).Text
+                photo_img1.Visible = True
+                businessName_lbl1.Text = row.Cells(4).Text
+                position_lbl1.Text = row.Cells(5).Text
+                date_lbl1.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -76,7 +75,7 @@ Public Class Badge_Creator_Print
 
             'Load gridview with badge of account num
             Try
-                printBadges_dgv.DataSource = BadgesData.LoadExistingBadgesTable(Visit, SQLWhere)
+                printBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhere)
                 printBadges_dgv.DataBind()
             Catch
                 error_lbl.Text = "Error in LoadPrintBadges(). Cannot load badges. Please find an Enterprise Village teacher!"
@@ -85,17 +84,17 @@ Public Class Badge_Creator_Print
 
             'Assign labels 
             If badges_ddl.SelectedValue <> Nothing Then
+
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
-                Dim path As String = "~/media/"
-                studentName_lbl2.Text = row.Cells(2).Text
-                businessName_lbl2.Text = row.Cells(3).Text
-                position_lbl2.Text = row.Cells(4).Text
-                date_lbl2.Text = FormatDateTime(row.Cells(6).Text, DateFormat.ShortDate)
-                'photo_img2.ImageUrl = path & row.Cells(7).Text
-                photo_img2.ImageUrl = row.Cells(7).Text
-                photo_img2.Visible = True
+
                 employeeNumber_lbl2.Text = row.Cells(1).Text
+                studentName_lbl2.Text = row.Cells(2).Text
+                photo_img2.ImageUrl = row.Cells(3).Text
+                photo_img2.Visible = True
+                businessName_lbl2.Text = row.Cells(4).Text
+                position_lbl2.Text = row.Cells(5).Text
+                date_lbl2.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -112,7 +111,7 @@ Public Class Badge_Creator_Print
 
             'Load gridview with badge of account num
             Try
-                printBadges_dgv.DataSource = BadgesData.LoadExistingBadgesTable(Visit, SQLWhere)
+                printBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhere)
                 printBadges_dgv.DataBind()
             Catch
                 error_lbl.Text = "Error in LoadPrintBadges(). Cannot load badges. Please find an Enterprise Village teacher!"
@@ -121,17 +120,17 @@ Public Class Badge_Creator_Print
 
             'Assign labels 
             If badges_ddl.SelectedValue <> Nothing Then
+
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
-                Dim path As String = "~/media/"
-                studentName_lbl3.Text = row.Cells(2).Text
-                businessName_lbl3.Text = row.Cells(3).Text
-                position_lbl3.Text = row.Cells(4).Text
-                date_lbl3.Text = FormatDateTime(row.Cells(6).Text, DateFormat.ShortDate)
-                'photo_img3.ImageUrl = path & row.Cells(7).Text
-                photo_img3.ImageUrl = row.Cells(7).Text
-                photo_img3.Visible = True
+
                 employeeNumber_lbl3.Text = row.Cells(1).Text
+                studentName_lbl3.Text = row.Cells(2).Text
+                photo_img3.ImageUrl = row.Cells(3).Text
+                photo_img3.Visible = True
+                businessName_lbl3.Text = row.Cells(4).Text
+                position_lbl3.Text = row.Cells(5).Text
+                date_lbl3.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -148,7 +147,7 @@ Public Class Badge_Creator_Print
 
             'Load gridview with badge of account num
             Try
-                printBadges_dgv.DataSource = BadgesData.LoadExistingBadgesTable(Visit, SQLWhere)
+                printBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhere)
                 printBadges_dgv.DataBind()
             Catch
                 error_lbl.Text = "Error in LoadPrintBadges(). Cannot load badges. Please find an Enterprise Village teacher!"
@@ -157,17 +156,17 @@ Public Class Badge_Creator_Print
 
             'Assign labels 
             If badges_ddl.SelectedValue <> Nothing Then
+
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
-                Dim path As String = "~/media/"
-                studentName_lbl4.Text = row.Cells(2).Text
-                businessName_lbl4.Text = row.Cells(3).Text
-                position_lbl4.Text = row.Cells(4).Text
-                date_lbl4.Text = FormatDateTime(row.Cells(6).Text, DateFormat.ShortDate)
-                'photo_img4.ImageUrl = path & row.Cells(7).Text
-                photo_img4.ImageUrl = row.Cells(7).Text
-                photo_img4.Visible = True
+
                 employeeNumber_lbl4.Text = row.Cells(1).Text
+                studentName_lbl4.Text = row.Cells(2).Text
+                photo_img4.ImageUrl = row.Cells(3).Text
+                photo_img4.Visible = True
+                businessName_lbl4.Text = row.Cells(4).Text
+                position_lbl4.Text = row.Cells(5).Text
+                date_lbl4.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -183,7 +182,7 @@ Public Class Badge_Creator_Print
 
         'Load badges into DDL
         Try
-            BadgesData.LoadExistingBadgesNamesDDL(Visit, badges_ddl)
+            Badges.LoadExistingBadgesNamesDDL(VisitID, badges_ddl)
         Catch
             error_lbl.Text = "Error in LoadBadgesIntoDDL(). Cannot find employeeName or employeeNumber. Contact IT support."
             Exit Sub

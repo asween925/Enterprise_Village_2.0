@@ -67,6 +67,8 @@ Public Class Class_StudentData
         Return studentCount
     End Function
 
+
+    '
     Function GetStudentCountOfBusiness(VisitDate As String, BusinessName As String)
         Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
@@ -258,4 +260,62 @@ Public Class Class_StudentData
     End Function
 
 
+    'Check savings
+    Function CheckSavings(VisitID As String)
+        Dim studentCountSQL As String = "SELECT savings FROM studentInfo WHERE visit='" & VisitID & "'"
+        Dim Savings As Boolean = False
+
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.CommandText = studentCountSQL
+        cmd.Connection = con
+        dr = cmd.ExecuteReader
+
+        While dr.Read()
+            If dr("savings").ToString() = Nothing Or dr("savings").ToString() = "0.00" Then
+                Savings = False
+            Else
+                Savings = True
+            End If
+        End While
+
+        cmd.Dispose()
+        con.Close()
+
+        Return Savings
+    End Function
+
+
+    'Update savings
+    Sub TransferToSavings(VisitID As String, SavingsAmount As String)
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.CommandText = "UPDATE studentInfo SET savings='" & SavingsAmount & "' WHERE visit='" & VisitID & "'"
+        cmd.Connection = con
+        cmd.ExecuteNonQuery()
+
+        cmd.Dispose()
+        con.Close()
+    End Sub
+
+
+    'Get student name from student ID
+    Function GetStudentNameFromID(StudentID As Integer)
+        Dim StudentName As String = ""
+
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.Connection = con
+        cmd.CommandText = "SELECT CONCAT(firstName, ' ', lastName) as studentName FROM studentInfo WHERE id='" + StudentID.ToString() + "'"
+        dr = cmd.ExecuteReader
+
+        While dr.Read()
+            StudentName = dr("studentName").ToString()
+        End While
+
+        cmd.Dispose()
+        con.Close()
+
+        Return StudentName
+    End Function
 End Class

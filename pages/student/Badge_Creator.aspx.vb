@@ -13,21 +13,22 @@ Public Class Badge_Creator
     Dim dr2 As SqlDataReader
     Dim path As String = "X:\inetpub\wwwroot\EV\media\Badge Photos\"
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-    Dim newPhotoPath As String
-    Dim StudentData As New Class_StudentData
-    Dim BadgesData As New Class_BadgesData
-    Dim VisitID As New Class_VisitData
-    Dim Visit As Integer = VisitID.GetVisitID
+    Dim PhotoPath As String
+    Dim Students As New Class_StudentData
+    Dim Badges As New Class_BadgesData
+    Dim Visit As New Class_VisitData
+    Dim VisitID As Integer = Visit.GetVisitID
+    Dim StudentID As Integer
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         'Checks visit date
         If Not (IsPostBack) Then
 
-            If Visit <> 0 Then
-                visitdate_hf.Value = Visit
+            If VisitID <> 0 Then
+                visitID_hf.Value = VisitID
             Else
-                error_lbl.Text = "No visit date, please go to 'Database Creator' on the 'Tools / Reports' page and create a new school visit date."
+                error_lbl.Text = "No visit date."
                 employeeNumber_tb.Enabled = False
                 Enter_btn.Enabled = False
                 capture_btn.Enabled = False
@@ -49,7 +50,7 @@ Public Class Badge_Creator
         tablerowIndex_hf.Value = 0
 
         'load existing table
-        existingBadges_dgv.DataSource = BadgesData.LoadExistingBadgesTable(Visit, "", " ORDER BY id DESC")
+        existingBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, "", " ORDER BY id DESC")
         existingBadges_dgv.DataBind()
 
         'Check if there are no badges, if no then display error
@@ -69,7 +70,8 @@ Public Class Badge_Creator
 
     Sub EnterAccountNumber()
         Dim empID As Integer = employeeNumber_tb.Text
-        Dim StudentLookup = StudentData.StudentLookup(Visit, empID)
+        Dim StudentLookup = Students.StudentLookup(VisitID, empID)
+        StudentID = StudentLookup.StudentID
         Dim FirstName = StudentLookup.FirstName
         Dim LastName = StudentLookup.LastName
         Dim BusinessName = StudentLookup.BusinessName
@@ -100,7 +102,7 @@ Public Class Badge_Creator
 
         'Check if entered number is already saved
         Try
-            If BadgesData.CheckIfBadgeExists(Visit, empID) = True Then
+            If Badges.CheckIfBadgeExists(VisitID, StudentID) = True Then
                 error_lbl.Text = "A badge with that number associated to it already exists. Please delete the badge from the 'Badge History' to create it again."
                 Exit Sub
             End If
@@ -149,42 +151,34 @@ Public Class Badge_Creator
     End Sub
 
     Sub LoadRecentBadge()
+
         'Populate badge with data from the existingBadges table
         Dim row As GridViewRow = existingBadges_dgv.Rows(0)
-        'Dim path As String = "~/media/"
-        studentName_lbl.Text = row.Cells(2).Text
-        businessName_lbl.Text = row.Cells(3).Text
-        position_lbl.Text = row.Cells(4).Text
-        date_lbl.Text = FormatDateTime(row.Cells(6).Text, DateFormat.ShortDate)
-        photo_img.ImageUrl = row.Cells(7).Text
-        'photo_img.ImageUrl = path & row.Cells(7).Text
+        Dim Student = Students.StudentLookup(VisitID, employeeNumber_tb.Text)
+
+        'Assign data to labels on badge
+        studentName_lbl.Text = Student.FirstName + " " + Student.LastName
+        businessName_lbl.Text = Student.BusinessName
+        position_lbl.Text = Student.JobTitle
+        date_lbl.Text = DateTime.Now.ToShortDateString
+        photo_img.ImageUrl = row.Cells(3).Text
         photo_img.Visible = True
-        employeeNumber_lbl.Text = row.Cells(1).Text
+        employeeNumber_lbl.Text = employeeNumber_tb.Text
 
         error_lbl.Text = "Photo successfully uploaded!"
     End Sub
 
     Sub UploadBadge()
         Dim filePath As String = Server.MapPath("~/media/Badge Photos/")
-        Dim badgeDate As String = DateTime.Now.ToString().Replace("/", "-").Replace(" ", "- ").Replace(":", "")
         Dim count As Integer = 1
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim visitID As Integer = visitdate_hf.Value
-        Dim businessID As String = Request.QueryString("b")
-        Dim studentName As String = studentName_lbl.Text
+        Dim Student = Students.StudentLookup(VisitID, employeeNumber_tb.Text)
+        Dim StudentID As Integer = Student.StudentID
 
         'Message for uploading photos
         error_lbl.Text = "Please wait for the badge to finish creating . . ."
 
         'Wait 3 seconds for download to finish
         Threading.Thread.Sleep(3000)
-
-        'Check if studentName contains an apostraphe
-        If studentName.Contains("'") Then
-            studentName = studentName.ToString().Replace("'", "")
-        End If
 
         'First checks if myPhoto.png exists, this is the base photo. Should not be deleted.
         If My.Computer.FileSystem.FileExists(filePath & "myPhoto.png") Then
@@ -197,7 +191,7 @@ Public Class Badge_Creator
                     'If the count number does not match with the file number, it will subtract 1 from the count number and rename the latest picture with their ID, name, and date.                   
                     count = count - 1
                     If My.Computer.FileSystem.FileExists(filePath & "myPhoto (" & count & ").png") Then
-                        My.Computer.FileSystem.RenameFile(filePath & "myPhoto (" & count & ").png", "badge-" + employeeNumber_tb.Text + "-" + studentName + "-" + badgeDate + ".png")
+                        My.Computer.FileSystem.RenameFile(filePath & "myPhoto (" & count & ").png", "badge-" + StudentID.ToString() + ".png")
                     Else
                         error_lbl.Text = "There is no photo saved. Please inform a staff member."
                         Exit Sub
@@ -219,18 +213,12 @@ Public Class Badge_Creator
             Exit Sub
         End If
 
-        newPhotoPath = "Badge Photos/badge-" + employeeNumber_tb.Text + "-" + studentName + "-" + badgeDate + ".png"
+        'Create photo path
+        PhotoPath = "Badge Photos/badge-" + StudentID.ToString() + ".png"
 
         'Insert data into DB
         Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd = New SqlCommand
-            cmd.Connection = con
-            cmd.CommandText = "INSERT INTO badges (employeeNumber, employeeName, businessName, position, businessID, date, photoPath, visitID ) VALUES ('" & employeeNumber_tb.Text & "', '" & studentName & "', '" & businessName_lbl.Text & "', '" & position_lbl.Text & "', '" & businessID & "', '" & date_lbl.Text & "', '" & newPhotoPath & "', '" & visitID & "')"
-            cmd.ExecuteNonQuery()
-            cmd.Dispose()
-            con.Close()
+            Badges.CreateBadge(VisitID, StudentID, PhotoPath)
         Catch
             error_lbl.Text = "Error: could not upload photo. Student name could have an unusuable character (', ., etc.)."
             Exit Sub
@@ -241,24 +229,7 @@ Public Class Badge_Creator
 
     End Sub
 
-    Sub NewBadge()
-        'Makes cursor go to textbox
-        employeeNumber_tb.Focus()
 
-        'Enable employee number textbox
-        employeeNumber_tb.Enabled = True
-
-        'Clear error label
-        error_lbl.Text = ""
-
-        'Clear Badges
-        studentName_lbl.Text = ""
-        businessName_lbl.Text = ""
-        position_lbl.Text = ""
-        date_lbl.Text = ""
-        photo_img.Visible = False
-        employeeNumber_lbl.Text = ""
-    End Sub
 
     Private Sub Enter_btn_Click(sender As Object, e As EventArgs) Handles Enter_btn.Click
         If Enter_btn.Text = "New Badge" Then

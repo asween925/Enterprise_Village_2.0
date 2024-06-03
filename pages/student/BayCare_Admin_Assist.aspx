@@ -8,7 +8,7 @@
 
     <title>EV 2.0 - BayCare Administrative Assistant</title>
 
-    <link href="~/~/css/Styles.StudentPages.css" rel="stylesheet" type="text/css"> <%--look in this css file for body and h3 tags--%>
+    <link href="~/css/Styles.StudentPages.css" rel="stylesheet" type="text/css"> <%--look in this css file for body and h3 tags--%>
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 </head>
 

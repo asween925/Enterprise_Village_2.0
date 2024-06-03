@@ -10,7 +10,7 @@
     <title class="no-print">Badge Printing</title>
 
     <link href="~/css/Styles.Print.css" rel="stylesheet" media="print" type="text/css">
-    <link href="~/~/css/Styles.profit.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.profit.css" rel="stylesheet" media="screen" type="text/css">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 
     <script src="../../Scripts.js"></script>  

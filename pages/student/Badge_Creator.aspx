@@ -11,7 +11,7 @@
     <title class="no-print">Badge Creator</title>
 
     <link href="~/css/Styles.Print.css" rel="stylesheet" media="print" type="text/css">
-    <link href="~/~/css/Styles.profit.css" rel="stylesheet" type="text/css">
+    <link href="~/css/Styles.profit.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 
     <script src="../../script-jquery-3.6.0.slim.js"></script>
@@ -102,7 +102,7 @@
                     <br />
                     <asp:Label ID="uploadWarning_lbl" runat="server" Text="Uploading a photo takes 3 seconds, please DO NOT click upload again after clicking once." Font-Bold="True" Font-Size="16px" ForeColor="Yellow"></asp:Label>
                 </div>
-                <asp:HiddenField ID="visitdate_hf" runat="server" />
+                <asp:HiddenField ID="visitID_hf" runat="server" />
                 <asp:HiddenField ID="tablemaxRow_hf" runat="server" Value="0" />
                 <asp:HiddenField ID="tablerowIndex_hf" runat="server" Value="0" />
             </div>

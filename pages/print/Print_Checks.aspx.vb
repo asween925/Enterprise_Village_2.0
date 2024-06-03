@@ -54,9 +54,9 @@ Public Class Print_Checks
             con.Open()
             cmd.CommandText = "SELECT COUNT(*) as count
                                FROM checksInfo c
-                               RIGHT JOIN studentInfo s ON s.employeenumber = c.payee
-                               WHERE c.memo='" & payrollGroup_lbl.Text & "' AND c.check_type = '0' AND 
-                               (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID='" & businessID & "')"
+                               RIGHT JOIN studentInfo s ON s.id = c.studentID
+                               WHERE c.memo='" & payrollGroup_lbl.Text & "' AND 
+                               (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID='" & businessID & "')"
             cmd.Connection = con
             dr = cmd.ExecuteReader()
             'error_lbl.Text = payroll & " " & rowCount & " " & visitdate_hf.Value
@@ -324,10 +324,10 @@ Public Class Print_Checks
 
             con.ConnectionString = connection_string
             con.Open()
-            cmd.CommandText = "SELECT c.id, c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee2, c.check_amount, c.written_amount, c.memo
+            cmd.CommandText = "SELECT c.id, c.businessID, CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
-                                            RIGHT JOIN studentInfo s ON s.employeenumber = c.payee
-                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND c.check_type = '0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")
+                                            RIGHT JOIN studentInfo s ON s.id = c.studentID
+                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
                                             ORDER BY id ASC"
             cmd.Connection = con
             dr = cmd.ExecuteReader
@@ -379,17 +379,17 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.id, c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee2, c.check_amount, c.written_amount, c.memo
+                cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
-                                            RIGHT JOIN studentInfo s ON s.employeenumber = c.payee
-                                            WHERE c.id = '" & check1 & "' AND c.check_type = '0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+                                            RIGHT JOIN studentInfo s ON s.id = c.StudentID
+                                            WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName1_tb.Text = dr("payee2")
-                    checkAmount1_lbl.Text = dr("check_amount")
-                    writtenAmount1_tb.Text = dr("written_amount")
+                    checkAmount1_lbl.Text = dr("checkAmount")
+                    writtenAmount1_tb.Text = dr("writtenAmount")
                     Memo1_tb.Text = dr("Memo")
                 End While
 
@@ -410,18 +410,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check2 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check2 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName2_tb.Text = dr("payee")
-                    checkAmount2_lbl.Text = dr("check_amount")
-                    writtenAmount2_tb.Text = dr("written_amount")
+                    checkAmount2_lbl.Text = dr("checkAmount")
+                    writtenAmount2_tb.Text = dr("writtenAmount")
                     Memo2_tb.Text = dr("Memo")
                 End While
 
@@ -442,18 +442,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check3 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check3 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName3_tb.Text = dr("payee")
-                    checkAmount3_lbl.Text = dr("check_amount")
-                    writtenAmount3_tb.Text = dr("written_amount")
+                    checkAmount3_lbl.Text = dr("checkAmount")
+                    writtenAmount3_tb.Text = dr("writtenAmount")
                     Memo3_tb.Text = dr("Memo")
                 End While
 
@@ -474,18 +474,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check4 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check4 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName4_tb.Text = dr("payee")
-                    checkAmount4_lbl.Text = dr("check_amount")
-                    writtenAmount4_tb.Text = dr("written_amount")
+                    checkAmount4_lbl.Text = dr("checkAmount")
+                    writtenAmount4_tb.Text = dr("writtenAmount")
                     Memo4_tb.Text = dr("Memo")
                 End While
 
@@ -506,18 +506,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check5 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check5 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName5_tb.Text = dr("payee")
-                    checkAmount5_lbl.Text = dr("check_amount")
-                    writtenAmount5_tb.Text = dr("written_amount")
+                    checkAmount5_lbl.Text = dr("checkAmount")
+                    writtenAmount5_tb.Text = dr("writtenAmount")
                     Memo5_tb.Text = dr("Memo")
                 End While
 
@@ -538,18 +538,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check6 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.studentID = s.id
+        WHERE c.ID='" & check6 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName6_tb.Text = dr("payee")
-                    checkAmount6_lbl.Text = dr("check_amount")
-                    writtenAmount6_tb.Text = dr("written_amount")
+                    checkAmount6_lbl.Text = dr("checkAmount")
+                    writtenAmount6_tb.Text = dr("writtenAmount")
                     Memo6_tb.Text = dr("Memo")
                 End While
 
@@ -570,18 +570,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check7 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check7 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName7_tb.Text = dr("payee")
-                    checkAmount7_lbl.Text = dr("check_amount")
-                    writtenAmount7_tb.Text = dr("written_amount")
+                    checkAmount7_lbl.Text = dr("checkAmount")
+                    writtenAmount7_tb.Text = dr("writtenAmount")
                     Memo7_tb.Text = dr("Memo")
                 End While
 
@@ -602,18 +602,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check8 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check8 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName8_tb.Text = dr("payee")
-                    checkAmount8_lbl.Text = dr("check_amount")
-                    writtenAmount8_tb.Text = dr("written_amount")
+                    checkAmount8_lbl.Text = dr("checkAmount")
+                    writtenAmount8_tb.Text = dr("writtenAmount")
                     Memo8_tb.Text = dr("Memo")
                 End While
 
@@ -634,18 +634,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check9 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check9 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName9_tb.Text = dr("payee")
-                    checkAmount9_lbl.Text = dr("check_amount")
-                    writtenAmount9_tb.Text = dr("written_amount")
+                    checkAmount9_lbl.Text = dr("checkAmount")
+                    writtenAmount9_tb.Text = dr("writtenAmount")
                     Memo9_tb.Text = dr("Memo")
                 End While
 
@@ -666,18 +666,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check10 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check10 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName10_tb.Text = dr("payee")
-                    checkAmount10_lbl.Text = dr("check_amount")
-                    writtenAmount10_tb.Text = dr("written_amount")
+                    checkAmount10_lbl.Text = dr("checkAmount")
+                    writtenAmount10_tb.Text = dr("writtenAmount")
                     Memo10_tb.Text = dr("Memo")
                 End While
 
@@ -698,18 +698,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check11 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check11 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName11_tb.Text = dr("payee")
-                    checkAmount11_lbl.Text = dr("check_amount")
-                    writtenAmount11_tb.Text = dr("written_amount")
+                    checkAmount11_lbl.Text = dr("checkAmount")
+                    writtenAmount11_tb.Text = dr("writtenAmount")
                     Memo11_tb.Text = dr("Memo")
                 End While
 
@@ -730,18 +730,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check12 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check12 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName12_tb.Text = dr("payee")
-                    checkAmount12_lbl.Text = dr("check_amount")
-                    writtenAmount12_tb.Text = dr("written_amount")
+                    checkAmount12_lbl.Text = dr("checkAmount")
+                    writtenAmount12_tb.Text = dr("writtenAmount")
                     Memo12_tb.Text = dr("Memo")
                 End While
 
@@ -762,18 +762,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check13 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check13 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName13_tb.Text = dr("payee")
-                    checkAmount13_lbl.Text = dr("check_amount")
-                    writtenAmount13_tb.Text = dr("written_amount")
+                    checkAmount13_lbl.Text = dr("checkAmount")
+                    writtenAmount13_tb.Text = dr("writtenAmount")
                     Memo13_tb.Text = dr("Memo")
                 End While
 
@@ -794,18 +794,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check14 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check14 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName14_tb.Text = dr("payee")
-                    checkAmount14_lbl.Text = dr("check_amount")
-                    writtenAmount14_tb.Text = dr("written_amount")
+                    checkAmount14_lbl.Text = dr("checkAmount")
+                    writtenAmount14_tb.Text = dr("writtenAmount")
                     Memo14_tb.Text = dr("Memo")
                 End While
 
@@ -826,18 +826,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check15 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check15 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName15_tb.Text = dr("payee")
-                    checkAmount15_lbl.Text = dr("check_amount")
-                    writtenAmount15_tb.Text = dr("written_amount")
+                    checkAmount15_lbl.Text = dr("checkAmount")
+                    writtenAmount15_tb.Text = dr("writtenAmount")
                     Memo15_tb.Text = dr("Memo")
                 End While
 
@@ -858,18 +858,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check16 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check16 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName16_tb.Text = dr("payee")
-                    checkAmount16_lbl.Text = dr("check_amount")
-                    writtenAmount16_tb.Text = dr("written_amount")
+                    checkAmount16_lbl.Text = dr("checkAmount")
+                    writtenAmount16_tb.Text = dr("writtenAmount")
                     Memo16_tb.Text = dr("Memo")
                 End While
 
@@ -921,10 +921,10 @@ Public Class Print_Checks
 
             con.ConnectionString = connection_string
             con.Open()
-            cmd.CommandText = "SELECT c.id, c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee2, c.check_amount, c.written_amount, c.memo
+            cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
-                                            RIGHT JOIN studentInfo s ON s.employeenumber = c.payee
-                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND c.check_type = '0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")
+                                            RIGHT JOIN studentInfo s ON s.id = c.StudentID
+                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
                                             ORDER BY id ASC"
             cmd.Connection = con
             dr = cmd.ExecuteReader
@@ -1084,17 +1084,17 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.id, c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee2, c.check_amount, c.written_amount, c.memo
+                cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
-                                            RIGHT JOIN studentInfo s ON s.employeenumber = c.payee
-                                            WHERE c.id = '" & check1 & "' AND c.check_type = '0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+                                            RIGHT JOIN studentInfo s ON s.id = c.StudentID
+                                            WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName1_tb.Text = dr("payee2")
-                    checkAmount1_lbl.Text = dr("check_amount")
-                    writtenAmount1_tb.Text = dr("written_amount")
+                    checkAmount1_lbl.Text = dr("checkAmount")
+                    writtenAmount1_tb.Text = dr("writtenAmount")
                 End While
 
                 cmd.Dispose()
@@ -1114,18 +1114,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check2 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check2 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName2_tb.Text = dr("payee")
-                    checkAmount2_lbl.Text = dr("check_amount")
-                    writtenAmount2_tb.Text = dr("written_amount")
+                    checkAmount2_lbl.Text = dr("checkAmount")
+                    writtenAmount2_tb.Text = dr("writtenAmount")
                     Memo2_tb.Text = dr("Memo")
                 End While
 
@@ -1146,18 +1146,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check3 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check3 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName3_tb.Text = dr("payee")
-                    checkAmount3_lbl.Text = dr("check_amount")
-                    writtenAmount3_tb.Text = dr("written_amount")
+                    checkAmount3_lbl.Text = dr("checkAmount")
+                    writtenAmount3_tb.Text = dr("writtenAmount")
                     Memo3_tb.Text = dr("Memo")
                 End While
 
@@ -1178,18 +1178,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check4 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check4 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName4_tb.Text = dr("payee")
-                    checkAmount4_lbl.Text = dr("check_amount")
-                    writtenAmount4_tb.Text = dr("written_amount")
+                    checkAmount4_lbl.Text = dr("checkAmount")
+                    writtenAmount4_tb.Text = dr("writtenAmount")
                     Memo4_tb.Text = dr("Memo")
                 End While
 
@@ -1210,18 +1210,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check5 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check5 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName5_tb.Text = dr("payee")
-                    checkAmount5_lbl.Text = dr("check_amount")
-                    writtenAmount5_tb.Text = dr("written_amount")
+                    checkAmount5_lbl.Text = dr("checkAmount")
+                    writtenAmount5_tb.Text = dr("writtenAmount")
                     Memo5_tb.Text = dr("Memo")
                 End While
 
@@ -1242,18 +1242,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check6 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check6 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName6_tb.Text = dr("payee")
-                    checkAmount6_lbl.Text = dr("check_amount")
-                    writtenAmount6_tb.Text = dr("written_amount")
+                    checkAmount6_lbl.Text = dr("checkAmount")
+                    writtenAmount6_tb.Text = dr("writtenAmount")
                     Memo6_tb.Text = dr("Memo")
                 End While
 
@@ -1274,18 +1274,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check7 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check7 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName7_tb.Text = dr("payee")
-                    checkAmount7_lbl.Text = dr("check_amount")
-                    writtenAmount7_tb.Text = dr("written_amount")
+                    checkAmount7_lbl.Text = dr("checkAmount")
+                    writtenAmount7_tb.Text = dr("writtenAmount")
                     Memo7_tb.Text = dr("Memo")
                 End While
 
@@ -1306,18 +1306,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check8 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check8 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName8_tb.Text = dr("payee")
-                    checkAmount8_lbl.Text = dr("check_amount")
-                    writtenAmount8_tb.Text = dr("written_amount")
+                    checkAmount8_lbl.Text = dr("checkAmount")
+                    writtenAmount8_tb.Text = dr("writtenAmount")
                     Memo8_tb.Text = dr("Memo")
                 End While
 
@@ -1338,18 +1338,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check9 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check9 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName9_tb.Text = dr("payee")
-                    checkAmount9_lbl.Text = dr("check_amount")
-                    writtenAmount9_tb.Text = dr("written_amount")
+                    checkAmount9_lbl.Text = dr("checkAmount")
+                    writtenAmount9_tb.Text = dr("writtenAmount")
                     Memo9_tb.Text = dr("Memo")
                 End While
 
@@ -1370,18 +1370,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check10 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check10 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName10_tb.Text = dr("payee")
-                    checkAmount10_lbl.Text = dr("check_amount")
-                    writtenAmount10_tb.Text = dr("written_amount")
+                    checkAmount10_lbl.Text = dr("checkAmount")
+                    writtenAmount10_tb.Text = dr("writtenAmount")
                     Memo10_tb.Text = dr("Memo")
                 End While
 
@@ -1402,18 +1402,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check11 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check11 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName11_tb.Text = dr("payee")
-                    checkAmount11_lbl.Text = dr("check_amount")
-                    writtenAmount11_tb.Text = dr("written_amount")
+                    checkAmount11_lbl.Text = dr("checkAmount")
+                    writtenAmount11_tb.Text = dr("writtenAmount")
                     Memo11_tb.Text = dr("Memo")
                 End While
 
@@ -1434,18 +1434,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check12 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check12 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName12_tb.Text = dr("payee")
-                    checkAmount12_lbl.Text = dr("check_amount")
-                    writtenAmount12_tb.Text = dr("written_amount")
+                    checkAmount12_lbl.Text = dr("checkAmount")
+                    writtenAmount12_tb.Text = dr("writtenAmount")
                     Memo12_tb.Text = dr("Memo")
                 End While
 
@@ -1466,18 +1466,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check13 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check13 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName13_tb.Text = dr("payee")
-                    checkAmount13_lbl.Text = dr("check_amount")
-                    writtenAmount13_tb.Text = dr("written_amount")
+                    checkAmount13_lbl.Text = dr("checkAmount")
+                    writtenAmount13_tb.Text = dr("writtenAmount")
                     Memo13_tb.Text = dr("Memo")
                 End While
 
@@ -1498,18 +1498,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check14 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check14 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName14_tb.Text = dr("payee")
-                    checkAmount14_lbl.Text = dr("check_amount")
-                    writtenAmount14_tb.Text = dr("written_amount")
+                    checkAmount14_lbl.Text = dr("checkAmount")
+                    writtenAmount14_tb.Text = dr("writtenAmount")
                     Memo14_tb.Text = dr("Memo")
                 End While
 
@@ -1530,18 +1530,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check15 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check15 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName15_tb.Text = dr("payee")
-                    checkAmount15_lbl.Text = dr("check_amount")
-                    writtenAmount15_tb.Text = dr("written_amount")
+                    checkAmount15_lbl.Text = dr("checkAmount")
+                    writtenAmount15_tb.Text = dr("writtenAmount")
                     Memo15_tb.Text = dr("Memo")
                 End While
 
@@ -1562,18 +1562,18 @@ Public Class Print_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, CONCAT(s.Firstname,' ',s.lastname) as payee, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
         Inner join studentinfo s
-        ON c.payee = s.employeenumber
-        WHERE c.ID='" & check16 & "' AND c.check_type ='0' AND (c.visit_id='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.business_ID=" & businessID & ")"
+        ON c.StudentID = s.id
+        WHERE c.ID='" & check16 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     checkName16_tb.Text = dr("payee")
-                    checkAmount16_lbl.Text = dr("check_amount")
-                    writtenAmount16_tb.Text = dr("written_amount")
+                    checkAmount16_lbl.Text = dr("checkAmount")
+                    writtenAmount16_tb.Text = dr("writtenAmount")
                     Memo16_tb.Text = dr("Memo")
                 End While
 

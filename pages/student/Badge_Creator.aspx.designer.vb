@@ -176,13 +176,13 @@ Partial Public Class Badge_Creator
     Protected WithEvents uploadWarning_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''visitdate_hf control.
+    '''visitID_hf control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents visitdate_hf As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents visitID_hf As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''tablemaxRow_hf control.

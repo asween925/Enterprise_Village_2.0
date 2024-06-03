@@ -29,7 +29,7 @@
 
         <script>
             $(function () {
-                $("#nav-placeholder").load("../../nav.html");
+                $("#nav-placeholder").load("../nav.html");
             });
         </script>
 
@@ -51,10 +51,10 @@
             <asp:DropDownList ID="studentName_ddl" runat="server" AutoPostBack="true" CssClass="ddl"></asp:DropDownList>
             <br />
             <br />
-            <asp:Button ID="directDeposit_btn" runat="server" Text="Initiate Direct Deposit (Deposit #2)" CssClass="transfer_savings_btn" />
+            <asp:Button ID="directDeposit_btn" runat="server" Text="Initiate Direct Deposit (Deposit #3)" CssClass="transfer_savings_btn" />
             <br />
             <br />
-            <asp:Button ID="deposit3Enable_btn" runat="server" Text="Enable Deposit #3" CssClass="button3" />
+            <asp:Button ID="deposit2Enable_btn" runat="server" Text="Enable Deposit #2" CssClass="button3" />
             <br />
             <br />
 
@@ -203,7 +203,7 @@
 
         <asp:HiddenField ID="empnum_hf" runat="server" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="../../Scripts.js"></script>
+        <script src="../Scripts.js"></script>
         <script>
             /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
             $(".sub-menu ul").hide();

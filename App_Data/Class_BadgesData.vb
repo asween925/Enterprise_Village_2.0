@@ -14,8 +14,14 @@ Public Class Class_BadgesData
 
     'Loads a table of saved badges from a passed through visit ID. Optional where and order by clauses
     Function LoadExistingBadgesTable(VisitID As String, Optional SQLWhere As String = "", Optional SQLOrderBy As String = "")
-        Dim SQLStatement As String = "SELECT id, employeeNumber, employeeName, businessName, position, businessID, date, CONCAT('~/media/', photoPath) as photoPath, visitID
-                                        FROM badges
+        Dim SQLStatement As String = "SELECT b.id, s.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as employeeName, CONCAT('~/media/', b.photoPath) as photoPath, bi.businessName, j.jobTitle
+                                        FROM badges b
+                                        INNER JOIN studentInfo s
+                                        ON b.studentID = s.id
+                                        INNER JOIN businessInfo bi
+                                        ON bi.id = s.business
+                                        INNER JOIN jobs j
+                                        ON j.id = s.job
                                         WHERE visitID = '" & VisitID & "'"
 
         'Check if where clause and order by clause is not blank
@@ -46,10 +52,12 @@ Public Class Class_BadgesData
 
     'Populates a gridview with student names that have a badge saved in the DB
     Function LoadExistingBadgesNamesDDL(VisitID As String, StudentNamesDDL As DropDownList)
-        Dim SQLStatement As String = "SELECT CONCAT(employeeNumber, '.   ', + employeeName)
-                                        FROM badges
+        Dim SQLStatement As String = " SELECT CONCAT(s.employeeNumber, '. ', + s.firstName, ' ', s.lastName)
+                                        FROM badges b
+										INNER JOIN studentInfo s
+										ON b.studentID = s.id
                                         WHERE visitID='" & VisitID & "'
-                                        ORDER BY id DESC"
+                                        ORDER BY s.employeeNumber DESC"
 
         'Add student names who have a saved badge to DDL
         con.ConnectionString = connection_string
@@ -78,7 +86,7 @@ Public Class Class_BadgesData
         cmd.Connection = con
         con.ConnectionString = connection_string
         con.Open()
-        cmd.CommandText = "SELECT employeeNumber FROM badges WHERE visitID='" & VisitID & "' AND employeeNumber='" & AccountNumber & "'"
+        cmd.CommandText = "SELECT s.employeeNumber FROM badges b INNER JOIN studentInfo s ON b.studentID = s.id WHERE b.visitID='" + VisitID + "' AND s.employeeNumber='" + AccountNumber + "'"
         dr = cmd.ExecuteReader
 
         While dr.Read()
@@ -93,4 +101,20 @@ Public Class Class_BadgesData
 
         Return NumberCheck
     End Function
+
+
+    'Insert new badge into database
+    Sub CreateBadge(VisitID As Integer, StudentID As Integer, PhotoPath As String)
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd = New SqlCommand
+        cmd.Connection = con
+        cmd.CommandText = "INSERT INTO badges (visitID, studentID, photoPath) VALUES ('" & VisitID & "', '" & StudentID & "', '" & PhotoPath & "')"
+        cmd.ExecuteNonQuery()
+
+        cmd.Dispose()
+        con.Close()
+    End Sub
+
+
 End Class
