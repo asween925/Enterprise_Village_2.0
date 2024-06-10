@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <form id="Account_Summary_Form" runat="server" defaultbutton="Enter_btn">
+    <form autocomplete="off"  id="Account_Summary_Form" runat="server" defaultbutton="Enter_btn">
         <div id="site_wrap_ATM">
 
             <%--Screen 1--%>

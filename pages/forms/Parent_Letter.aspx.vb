@@ -10,9 +10,9 @@ Public Class Parent_Letter
 	Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
 	Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
 	Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-	Dim VisitData As New Class_VisitData
+	Dim Visits As New Class_VisitData
 	Dim SchoolData As New Class_SchoolData
-	Dim VisitID As Integer = VisitData.GetVisitID
+	Dim VisitID As Integer = Visits.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
@@ -40,11 +40,12 @@ Public Class Parent_Letter
 
 	Sub LoadData()
 		Dim VisitDate As String = Convert.ToDateTime(visitDate_tb.Text)
-		Dim vTrainingTime As String = VisitData.LoadVisitInfoFromDate(VisitDate, "vTrainingTime")
+		Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(VisitDate)
+		Dim vTrainingTime As String = Visits.LoadVisitInfoFromDate(VisitDate, "vTrainingTime")
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
 		Dim SchoolID As String = SchoolData.GetSchoolID(SchoolName)
-		Dim vMin As String = SchoolData.GetVolunteerRange(visitDate_tb.Text, SchoolID).VMin
-		Dim vMax As String = SchoolData.GetVolunteerRange(visitDate_tb.Text, SchoolID).VMax
+		Dim vMin As String = SchoolData.GetVolunteerRange(VIDOfDate, SchoolID).VMin
+		Dim vMax As String = SchoolData.GetVolunteerRange(VIDOfDate, SchoolID).VMax
 
 		'Reveal divs
 		letter_div.Visible = True

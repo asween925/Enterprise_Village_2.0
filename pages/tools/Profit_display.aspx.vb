@@ -72,8 +72,8 @@ Public Class Profit_display
         cmd = New SqlCommand
         cmd.Connection = con
         cmd.CommandText = "  SELECT o.visitID, o.openStatus, o.profit, b.businessName 
-  FROM onlineBanking o inner join businessinfo b ON b.ID = o.businessID 
-  WHERE visitID ='" & visitID & "'AND openstatus='1' AND NOT b.id='20' AND NOT b.id='14' AND NOT b.id='13' AND NOT b.id='12' AND NOT b.id='24' AND NOT b.id='15' ORDER BY businessName"
+                              FROM businessVisitInfo o inner join businessinfo b ON b.ID = o.businessID 
+                              WHERE o.visitID ='" & visitID & "'AND o.openstatus='1' AND NOT b.id='20' AND NOT b.id='14' AND NOT b.id='13' AND NOT b.id='12' AND NOT b.id='24' AND NOT b.id='15' ORDER BY businessName"
 
         da.SelectCommand = cmd
         da.Fill(dt)

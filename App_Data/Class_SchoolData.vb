@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Net.Mail
 
 Public Class Class_SchoolData
 	Dim VisitID As New Class_VisitData
@@ -190,7 +191,7 @@ Public Class Class_SchoolData
                                             LEFT JOIN schoolInfo s3 ON s3.ID = v.school3
                                             LEFT JOIN schoolInfo s4 ON s4.ID = v.school4
                                             LEFT JOIN schoolInfo s5 ON s5.ID = v.school5
-											 WHERE v.visitDate='" & VisitDate & "' AND NOT v.school=1 ORDER BY v.visitDate DESC"
+											 WHERE v.visitDate='" & VisitDate & "' ORDER BY v.visitDate DESC"
 
 		con.ConnectionString = connection_string
 		con.Open()
@@ -246,7 +247,7 @@ Public Class Class_SchoolData
                                             LEFT JOIN schoolInfo s3 ON s3.ID = v.school3
                                             LEFT JOIN schoolInfo s4 ON s4.ID = v.school4
                                             LEFT JOIN schoolInfo s5 ON s5.ID = v.school5
-											 WHERE v.visitDate='" & VisitDate & "' AND NOT v.school=1 ORDER BY v.visitDate DESC"
+											 WHERE v.visitDate='" & VisitDate & "' ORDER BY v.visitDate DESC"
 
 		con.ConnectionString = connection_string
 		con.Open()
@@ -331,15 +332,15 @@ Public Class Class_SchoolData
 	End Function
 
 	'Returns the minimum volunteer count and maximum volunteer count of a school
-	Function GetVolunteerRange(VisitDate As String, Optional SchoolID As String = Nothing) As (VMin As String, VMax As String)
+	Function GetVolunteerRange(VisitID As Integer, Optional SchoolID As String = Nothing) As (VMin As String, VMax As String)
 		Dim Min As String = "0"
 		Dim Max As String = "0"
-		Dim SQLStatment As String = "SELECT SUM(o.businessVMinCount) as vMin, SUM(o.businessVMaxCount) as vMax FROM onlineBanking o"
+		Dim SQLStatment As String = "SELECT SUM(o.minVolCount) as vMin, SUM(o.maxVolCount) as vMax FROM businessVisitInfo o"
 
 		If SchoolID <> Nothing Then
-			SQLStatment += " WHERE o.visitDate='" & VisitDate & "' AND o.school='" & SchoolID & "' AND o.openstatus=1"
+			SQLStatment += " WHERE o.visitID='" & VisitID & "' AND o.schoolID='" & SchoolID & "' AND o.openstatus=1"
 		Else
-			SQLStatment += " WHERE o.visitDate='" & VisitDate & "' AND o.openstatus=1"
+			SQLStatment += " WHERE o.visitID='" & VisitID & "' AND o.openstatus=1"
 		End If
 
 		con.ConnectionString = connection_string
@@ -383,35 +384,140 @@ Public Class Class_SchoolData
 		Return returnSchoolName
 	End Function
 
-	'Moves current visit date to previous visit date
-	Sub UpdatePreviousVisitDate(SchoolID As String)
+	'Get workbooks numbers from schoolVisitChecklist
+	Function GetWorkbooks(VisitID As Integer, SchoolID As Integer)
+		Dim SQLStatement As String = "SELECT workbooks FROM schoolVisitChecklist WHERE visitDate = '" & VisitID & "' AND schoolName = '" & SchoolID & "'"
+		Dim Workbooks As Integer
 
-		Using con As New SqlConnection(connection_string)
-			Using cmd As New SqlCommand("UPDATE schoolInfo SET previousVisitDate=currentVisitDate WHERE id=@school")
-				cmd.Parameters.AddWithValue("@school", SchoolID)
-				cmd.Connection = con
-				con.Open()
-				cmd.ExecuteNonQuery()
-				con.Close()
-			End Using
-		End Using
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		dr = cmd.ExecuteReader
 
-	End Sub
+		While dr.Read()
+			If dr.HasRows = True Then
+				Workbooks = dr("workbooks").ToString
+			Else 'If workbooks have not been added, then replace with student count for school
+				Workbooks = 0
+			End If
+		End While
 
-	'Updates current visit date in school Info
-	Sub UpdateCurrentVisitDate(SchoolID As String, VisitDate As String)
+		Return Workbooks
 
-		Using con As New SqlConnection(connection_string)
-				Using cmd As New SqlCommand("UPDATE schoolInfo SET currentVisitDate=@VisitDate WHERE id=@school")
-					cmd.Parameters.AddWithValue("@school", SchoolID)
-					cmd.Parameters.AddWithValue("@VisitDate", VisitDate)
-					cmd.Connection = con
-					con.Open()
-					cmd.ExecuteNonQuery()
-					con.Close()
-				End Using
-			End Using
+	End Function
 
-	End Sub
+	'Returns all fields from schoolVisitChecklist of a passed through visit id and school id
+	Function GetSVCData(VisitID As Integer, SchoolID As Integer) As (SchoolType As String, SchoolStudentCount As Integer, StudentCountFormReceived As Date, InvoiceIssued As Boolean, DirectorSignature As Boolean, ContractReceivedDate As Date, InvoiceNum As Integer, DeliveryMethod As String, Notes As String, NumOfKits As Integer, Kit1 As String, Kit2 As String, Kit3 As String, Kit4 As String, Kit5 As String, Kit6 As String, Kit7 As String, Kit8 As String, Kit9 As String, Kit10 As String, Workbooks As Integer, DeliveryAccepted As String, Position As String, DateAccepted As Date, LasteditedStep1 As String, LastEditedStep2 As String, LastEditedStep3 As String, LastEditedStep4 As String, LastEditedStep5 As String)
+
+		'Step 1 variables
+
+		Dim LastEditedBy1 As String
+		Dim schoolType As String
+		Dim ContactTeacher As String
+		Dim schoolStudentCount As String
+		Dim AdminEmail As String
+		Dim studentCountFormReceived As Date
+
+		'Step 2 variables
+
+		Dim LastEditedBy2 As String
+		Dim invoiceIssued As Boolean
+		Dim directorsSignature As Boolean
+
+		'Step 3 Variables
+
+		Dim LastEditedBy3 As String
+		Dim contractRecieved As Date
+		Dim invoiceNum As String
+		Dim deliveryMethod As String
+		Dim notes As String
+
+		'Step 4 variables
+
+		Dim LastEditedBy4 As String
+		Dim numOfKits As String
+		Dim kit1 As String
+		Dim kit2 As String
+		Dim kit3 As String
+		Dim kit4 As String
+		Dim kit5 As String
+		Dim kit6 As String
+		Dim kit7 As String
+		Dim kit8 As String
+		Dim kit9 As String
+		Dim kit10 As String
+		Dim workbooks As String
+
+		'Step 5 variables
+
+		Dim LastEditedBy5 As String
+		Dim deliveryAccepted As String
+		Dim position As String
+		Dim dateAccepted As Date
+
+		'Load the data and assign to variables
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = "SELECT DISTINCT * FROM schoolVisitChecklist WHERE schoolID='" & SchoolID & "' AND visitID = '" & VisitID & "'"
+		cmd.Connection = con
+		dr = cmd.ExecuteReader
+
+		While dr.Read()
+
+			'-----------STEP 1------------
+			schoolType = dr("schoolType").ToString
+			schoolStudentCount = dr("schoolStudentCount").ToString
+			studentCountFormReceived = dr("studentCountFormReceived").ToString
+
+
+			'-----------STEP 2------------
+			invoiceIssued = dr("invoiceIssued").ToString
+			directorsSignature = dr("directorSignature").ToString
+
+
+			'-----------STEP 3------------
+			contractRecieved = dr("contractReceivedDate").ToString
+			invoiceNum = dr("invoiceNum").ToString
+			deliveryMethod = dr("deliveryMethod").ToString
+			notes = dr("notes").ToString
+
+
+			'-----------STEP 4------------
+			numOfKits = dr("numberOfKits").ToString
+			kit1 = dr("kit1").ToString
+			kit2 = dr("kit2").ToString
+			kit3 = dr("kit3").ToString
+			kit4 = dr("kit4").ToString
+			kit5 = dr("kit5").ToString
+			kit6 = dr("kit6").ToString
+			kit7 = dr("kit7").ToString
+			kit8 = dr("kit8").ToString
+			kit9 = dr("kit9").ToString
+			kit10 = dr("kit10").ToString
+			workbooks = dr("workbooks").ToString
+
+
+			'-----------STEP 5------------
+			deliveryAccepted = dr("deliveryAccepted").ToString
+			position = dr("position").ToString
+			dateAccepted = dr("dateAccepted").ToString
+
+
+			'-----------LAST EDITED BY ------------
+			LastEditedBy1 = dr("lastEditedStep1").ToString
+			LastEditedBy2 = dr("lastEditedStep2").ToString
+			LastEditedBy3 = dr("lastEditedStep3").ToString
+			LastEditedBy4 = dr("lastEditedStep4").ToString
+			LastEditedBy5 = dr("lastEditedStep5").ToString
+
+		End While
+
+		cmd.Dispose()
+		con.Close()
+
+		Return (schoolType, schoolStudentCount, studentCountFormReceived, invoiceIssued, directorsSignature, contractRecieved, invoiceNum, deliveryMethod, notes, numOfKits, kit1, kit2, kit3, kit4, kit5, kit6, kit7, kit8, kit9, kit10, workbooks, deliveryAccepted, position, dateAccepted, LastEditedBy1, LastEditedBy2, LastEditedBy3, LastEditedBy4, LastEditedBy5)
+	End Function
+
 
 End Class

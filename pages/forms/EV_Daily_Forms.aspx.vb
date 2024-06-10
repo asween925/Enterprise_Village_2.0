@@ -10,8 +10,11 @@ Public Class EV_Daily_Forms
 	Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 	Dim DBConnection As New DatabaseConection
 	Dim dr As SqlDataReader
-	Dim VisitID As New Class_VisitData
-	Dim Visit As Integer = VisitID.GetVisitID
+	Dim Visits As New Class_VisitData
+	Dim Schools As New Class_SchoolData
+	Dim Students As New Class_StudentData
+	Dim SH As Class_SchoolHeader
+	Dim VisitID As Integer = Visits.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -20,53 +23,26 @@ Public Class EV_Daily_Forms
 		End If
 
 		If Not (IsPostBack) Then
-			If Visit <> 0 Then
-				visitdate_hf.Value = Visit
-			End If
 
 			'Populating school header
-			Dim header As New Class_SchoolHeader
-			headerSchoolName_lbl.Text = header.GetSchoolHeader()
+			headerSchoolName_lbl.Text = SH.GetSchoolHeader()
+
 		End If
 
 	End Sub
 
 	Sub LoadSchools()
-		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-		Dim con As New SqlConnection
-		Dim cmd As New SqlCommand
-		Dim dr As SqlDataReader
-		Dim sql As String = "SELECT s.schoolName as 'schoolName'
-											  FROM schoolInfo s 
-											  JOIN visitInfo v ON v.school = s.id OR v.school2 = s.id OR v.school3 = s.id OR v.school4 = s.id OR v.school5 = s.id
-											  WHERE v.visitDate='" & visitDate_tb.Text & "' AND NOT s.id=505 
-											  ORDER BY schoolName"
+		Dim VisitDate As String = visitDate_tb.Text
 
 		'Clear out DDL
 		schoolName_ddl.Items.Clear()
 
 		'Load schools into DDL
 		Try
-			con.ConnectionString = connection_string
-			con.Open()
-			cmd.CommandText = sql
-			cmd.Connection = con
-			dr = cmd.ExecuteReader
-
-			While dr.Read()
-				schoolName_ddl.Items.Add(dr(0).ToString)
-			End While
-
-			schoolName_ddl.Items.Insert(0, "")
-
-			cmd.Dispose()
-			con.Close()
+			Schools.LoadVisitDateSchoolsDDL(VisitDate, schoolName_ddl)
 		Catch
 			error_lbl.Text = "Error in LoadSchools(). Could not get school names."
 			Exit Sub
-		Finally
-			cmd.Dispose()
-			con.Close()
 		End Try
 
 		'Make schools DDL visible
@@ -76,14 +52,12 @@ Public Class EV_Daily_Forms
 	End Sub
 
 	Sub LoadData()
-		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-		Dim con As New SqlConnection
-		Dim cmd As New SqlCommand
-		Dim dr As SqlDataReader
-		Dim visitDate As Date = visitDate_tb.Text
-		Dim schoolName As String = schoolName_ddl.SelectedValue
-		Dim sql As String = "SELECT schoolType FROM schoolInfo WHERE schoolName = '" & schoolName & "'"
-		Dim sql2 As String = "SELECT workbooks FROM schoolVisitChecklist WHERE visitDate = '" & visitDate & "' AND schoolName = '" & schoolName & "'"
+		Dim VisitDate As Date = visitDate_tb.Text
+		Dim SchoolName As String = schoolName_ddl.SelectedValue
+		Dim SchoolID As Integer = Schools.GetSchoolID(SchoolName)
+		Dim SchoolType As String
+		Dim Workbooks As String
+		Dim StudentCount As String
 		Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
                                 INNER JOIN jobs j ON j.id=s.job
@@ -103,97 +77,52 @@ Public Class EV_Daily_Forms
 
 		'Check if school is Pinellas county or not
 		Try
-			con.ConnectionString = connection_string
-			con.Open()
-			cmd.CommandText = sql
-			cmd.Connection = con
-			dr = cmd.ExecuteReader
+			SchoolType = Schools.LoadSchoolInfoFromSchool(schoolName, "schoolType")
 
-			'Make Pinellas schools divs visible
-			While dr.Read()
-				If dr("schoolType").ToString = "Public" Or dr("schoolType").ToString = "PC Charter" Then
-					lunchPCSB_div.Visible = True
-					workbooksOOC_div.Visible = False
-					questionsOOC_div.Visible = False
-					PCSBForms_lbl.Text = "Pinellas County Schools Form"
-				Else
-					lunchPCSB_div.Visible = False
-					workbooksOOC_div.Visible = True
-					questionsOOC_div.Visible = True
-					PCSBForms_lbl.Text = "Private/Out of County Schools Form"
-				End If
-			End While
-
-			cmd.Dispose()
-			con.Close()
-
+			If SchoolType = "Public" Or SchoolType = "PC Charter" Then
+				lunchPCSB_div.Visible = True
+				workbooksOOC_div.Visible = False
+				questionsOOC_div.Visible = False
+				PCSBForms_lbl.Text = "Pinellas County Schools Form"
+			Else
+				lunchPCSB_div.Visible = False
+				workbooksOOC_div.Visible = True
+				questionsOOC_div.Visible = True
+				PCSBForms_lbl.Text = "Private/Out of County Schools Form"
+			End If
 		Catch
-			error_lbl.Text = "Error in LoadData(). Could not check if school county."
+			error_lbl.Text = "Error in LoadData(). Could not check school county."
 			Exit Sub
 		End Try
-
-		cmd.Dispose()
-		con.Close()
 
 		'Load workbooks data from schoolVisitChecklist table in DB
 		Try
-			con.ConnectionString = connection_string
-			con.Open()
-			cmd.CommandText = sql2
-			cmd.Connection = con
-			dr = cmd.ExecuteReader
-
-			While dr.Read()
-				If dr.HasRows = False Then
-					'If workbooks have not been added, then replace with student count for school
-					Exit Try
-				Else
-					workbooks_lbl.Text = dr("workbooks").ToString
-					cmd.Dispose()
-					con.Close()
-					Exit Sub
-				End If
-			End While
-
+			Workbooks = Schools.GetWorkbooks(VisitID, SchoolID)
 		Catch
 			error_lbl.Text = "Error in LoadData(). Could not load workbooks data."
 			Exit Sub
 		End Try
-
-		cmd.Dispose()
-		con.Close()
 
 		'Load student count data to replace workbooks number
 		Try
-			con.ConnectionString = connection_string
-			con.Open()
-			cmd.CommandText = studentCountSQL
-			cmd.Connection = con
-			dr = cmd.ExecuteReader
+			StudentCount = Students.GetStudentCountOfSchool(VisitDate, SchoolName)
 
-			While dr.Read()
-				workbooks_lbl.Text = dr("studentCount").ToString
+			If Workbooks <> 0 Then
+				workbooks_lbl.Text = Workbooks
+			Else
+				workbooks_lbl.Text = StudentCount
+			End If
 
-				If workbooksOOC_div.Visible = True Then
-					error_lbl.Text = "Workbooks number is student count of school selected. If you need to add or remove workbooks, finish the school visit checklist for this school."
-				Else
-					error_lbl.Text = ""
-				End If
-
-			End While
-
-			cmd.Dispose()
-			con.Close()
+			If workbooksOOC_div.Visible = True Then
+				error_lbl.Text = "Workbooks number is student count of school selected. If you need to add or remove workbooks, finish the school visit checklist for this school."
+			Else
+				error_lbl.Text = ""
+			End If
 
 		Catch
 			error_lbl.Text = "Error in LoadData(). Could not load workbooks data."
 			Exit Sub
 		End Try
-
-		cmd.Dispose()
-		con.Close()
-
-
 
 	End Sub
 

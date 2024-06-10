@@ -6,38 +6,32 @@ Public Class Edit_Visit
     Dim sqldatabase As String = System.Configuration.ConfigurationManager.AppSettings("EV_DB").ToString
     Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
+    Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
     Dim DBConnection As New DatabaseConection
     Dim dr As SqlDataReader
-    Dim SchoolData As New Class_SchoolData
-    Dim VisitID As New Class_VisitData
-    Dim Visit As Integer = VisitID.GetVisitID
-    Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
+    Dim Schools As New Class_SchoolData
+    Dim Visits As New Class_VisitData
+    Dim Students As New Class_StudentData
+    Dim SH As New Class_SchoolHeader
+    Dim VisitID As Integer = Visits.GetVisitID
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         'Checks if the user is logged in and if not it redirects to the login page
         If Session("LoggedIn") <> "1" Then
             Response.Redirect("../../default.aspx")
         End If
 
         If Not (IsPostBack) Then
-            Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
-            Dim dr As SqlDataReader
-            Dim sql As String = "SELECT FORMAT(visitDate,'MM/dd/yyyy') as visitDate FROM visitinfo ORDER BY visitDate DESC"
-
-            If Visit <> 0 Then
-                visitdate_hf.Value = Visit
-            End If
 
             'Populating school header
-            Dim header As New Class_SchoolHeader
-            headerSchoolName_lbl.Text = header.GetSchoolHeader()
+            headerSchoolName_lbl.Text = SH.GetSchoolHeader()
 
         End If
     End Sub
 
-    Sub loadData()
+    Sub LoadData()
+        Dim VisitDate As String = date_tb.Text
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -57,19 +51,14 @@ Public Class Edit_Visit
         'Clear error label
         error_lbl.Text = ""
 
-        'Fill visit table
+        'Load edit visit table
         Try
-            con.ConnectionString = connection_string
-            con.Open()
-            Review_sds.ConnectionString = connection_string
-            Review_sds.SelectCommand = sql
-            visit_dgv.DataSource = Review_sds
+            visit_dgv.DataSource = Visits.LoadEditVisitTable(VisitDate)
             visit_dgv.DataBind()
 
         Catch
             error_lbl.Text = "Error in LoadData(). Could not fill table."
-            cmd.Dispose()
-            con.Close()
+            Exit Sub
         End Try
 
         'Highlight row being edited
@@ -81,22 +70,16 @@ Public Class Edit_Visit
             End If
         Next
 
-        cmd.Dispose()
-        con.Close()
-
     End Sub
 
     Protected Sub date_tb_TextChanged(sender As Object, e As EventArgs) Handles date_tb.TextChanged
         If date_tb.Text <> Nothing Then
             gridview_div.Visible = True
-            loadData()
+            LoadData()
         End If
     End Sub
+
     Private Sub visit_dgv_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles visit_dgv.RowUpdating
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim cond As New SqlConnection
-        Dim cmdd As New SqlCommand
-        Dim dr As SqlDataReader
         Dim row As GridViewRow = visit_dgv.Rows(0) 'Code is used to enable the editing prodecure
         Dim ID As Integer = Convert.ToInt32(visit_dgv.DataKeys(e.RowIndex).Values(0)) 'Gets id number
         Dim visitDate As String = TryCast(visit_dgv.Rows(e.RowIndex).FindControl("visitDate_tb"), TextBox).Text
@@ -111,8 +94,20 @@ Public Class Edit_Visit
         Dim vMaxCount As String = TryCast(visit_dgv.Rows(e.RowIndex).FindControl("vMaxCount_tb"), TextBox).Text
         Dim replyBy As String = TryCast(visit_dgv.Rows(e.RowIndex).FindControl("replyBy_tb"), TextBox).Text
         Dim studentCount As String = TryCast(visit_dgv.Rows(e.RowIndex).FindControl("studentCount_tb"), TextBox).Text
-        Dim CurrentVisitDate As String
+        Dim CurrentVisitDate As String = FormatDateTime(Schools.LoadSchoolInfoFromSchool(Schools.GetSchoolNameFromID(school1), "currentVisitDate"), DateFormat.ShortDate)
+        Dim School1Name As String = Schools.GetSchoolNameFromID(school1)
+        Dim School2Name As String = Schools.GetSchoolNameFromID(school2)
+        Dim School3Name As String = Schools.GetSchoolNameFromID(school3)
+        Dim School4Name As String = Schools.GetSchoolNameFromID(school4)
+        Dim School5Name As String = Schools.GetSchoolNameFromID(school5)
 
+        'If updating the visit date, check to make sure that there is already not a visit date scheduled for that day
+        If Visits.GetVisitIDFromDate(visitDate) <> Nothing Then
+            error_lbl.Text = "Cannot move visit to that date as there is already a visit created for that date."
+            Exit Sub
+        End If
+
+        'Update visitInfo table
         Try
             Using con As New SqlConnection(connection_string)
                 Using cmd As New SqlCommand("UPDATE visitInfo SET school=@school, vTrainingTime=@vTrainingTime, vMinCount=@vMinCount, vMaxCount=@vMaxCount, replyBy=@replyBy, visitDate=@visitDate, studentCount=@studentCount, school2=@school2, school3=@school3, school4=@school4, visitTime=@visitTime, school5=@school5 WHERE ID=@ID")
@@ -136,343 +131,58 @@ Public Class Edit_Visit
                     con.Close()
                 End Using
             End Using
-            visit_dgv.EditIndex = -1       'reset the grid after editing
-            loadData()
         Catch ex As Exception
             error_lbl.Text = "Error in updating visitInfo."
             Exit Sub
         End Try
 
-        'Update onlineBanking visitDate
+        'Update business visit info with the new school ids (if any)
         Try
-            Using con As New SqlConnection(connection_string)
-                Using cmd As New SqlCommand("UPDATE onlineBanking SET visitDate=@visitDate WHERE visitID=@ID")
-                    cmd.Parameters.AddWithValue("@ID", ID)
-                    cmd.Parameters.AddWithValue("@visitDate", visitDate)
-                    cmd.Connection = con
-                    con.Open()
-                    cmd.ExecuteNonQuery()
-                    con.Close()
-                End Using
-            End Using
-            visit_dgv.EditIndex = -1       'reset the grid after editing
-            loadData()
+            Visits.UpdateBusinessVisitInfo(school1, school2, school3, school4, school5, ID)
         Catch ex As Exception
-            error_lbl.Text = "Error in updating onlineBanking."
+            error_lbl.Text = "Error in Updating(). Cannot update business visit info."
             Exit Sub
         End Try
 
-        'Update onlineBanking school 1
+        'Update studentInfo with new school ID
         Try
-            cond.ConnectionString = connection_string
-            cond.Open()
-            cmdd.CommandText = "SELECT school
-                                  FROM onlineBanking
-                                  WHERE school = '" & school1 & "' AND visitDate = '11-16-2022'"
-            cmdd.Connection = cond
-            dr = cmdd.ExecuteReader
-
-            If Not dr.HasRows() Then
-                Using con As New SqlConnection(connection_string)
-                    Using cmd As New SqlCommand("UPDATE onlineBanking SET school=@school WHERE visitID=@ID AND NOT (school = '" & school2 & "' OR school = '" & school3 & "' OR school = '" & school4 & "' OR school = '" & school5 & "')")
-                        cmd.Parameters.AddWithValue("@ID", ID)
-                        cmd.Parameters.AddWithValue("@school", school1)
-                        cmd.Connection = con
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
-                    End Using
-                End Using
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            End If
-            'error_lbl.Text = "Does have rows"
-            cmdd.Dispose()
-            cond.Close()
-
-        Catch
-            error_lbl.Text = "Error in updating onlineBanking school1"
-            Exit Sub
-        End Try
-
-        'Update onlineBanking school 2
-        Try
-            cond.ConnectionString = connection_string
-            cond.Open()
-            cmdd.CommandText = "SELECT school
-                                  FROM onlineBanking
-                                  WHERE school = '" & school2 & "' AND visitDate = '11-16-2022'"
-            cmdd.Connection = cond
-            dr = cmdd.ExecuteReader
-
-            If Not dr.HasRows() Then
-                Using con As New SqlConnection(connection_string)
-                    Using cmd As New SqlCommand("UPDATE onlineBanking SET school=@school WHERE visitID=@ID AND NOT (school = '" & school1 & "' OR school = '" & school3 & "' OR school = '" & school4 & "' OR school = '" & school5 & "')")
-                        cmd.Parameters.AddWithValue("@ID", ID)
-                        cmd.Parameters.AddWithValue("@school", school2)
-                        cmd.Connection = con
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
-                    End Using
-                End Using
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            End If
-            'error_lbl.Text = "Does have rows"
-            cmdd.Dispose()
-            cond.Close()
-
-        Catch
-            error_lbl.Text = "Error in updating onlineBanking school2"
-            Exit Sub
-        End Try
-
-        'Update onlineBanking school 3
-        Try
-            cond.ConnectionString = connection_string
-            cond.Open()
-            cmdd.CommandText = "SELECT school
-                                  FROM onlineBanking
-                                  WHERE school = '" & school3 & "' AND visitDate = '11-16-2022'"
-            cmdd.Connection = cond
-            dr = cmdd.ExecuteReader
-
-            If Not dr.HasRows() Then
-                Using con As New SqlConnection(connection_string)
-                    Using cmd As New SqlCommand("UPDATE onlineBanking SET school=@school WHERE visitID=@ID AND NOT (school = '" & school1 & "' OR school = '" & school2 & "' OR school = '" & school4 & "' OR school = '" & school5 & "')")
-                        cmd.Parameters.AddWithValue("@ID", ID)
-                        cmd.Parameters.AddWithValue("@school", school3)
-                        cmd.Connection = con
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
-                    End Using
-                End Using
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            End If
-            'error_lbl.Text = school3
-            cmdd.Dispose()
-            cond.Close()
-
-        Catch
-            error_lbl.Text = "Error in updating onlineBanking school3"
-            Exit Sub
-        End Try
-
-        'Update onlineBanking school 4
-        Try
-            cond.ConnectionString = connection_string
-            cond.Open()
-            cmdd.CommandText = "SELECT school
-                                  FROM onlineBanking
-                                  WHERE school = '" & school4 & "' AND visitDate = '11-16-2022'"
-            cmdd.Connection = cond
-            dr = cmdd.ExecuteReader
-
-            If Not dr.HasRows() Then
-                Using con As New SqlConnection(connection_string)
-                    Using cmd As New SqlCommand("UPDATE onlineBanking SET school=@school WHERE visitID=@ID AND NOT (school = '" & school1 & "' OR school = '" & school2 & "' OR school = '" & school3 & "' OR school = '" & school5 & "')")
-                        cmd.Parameters.AddWithValue("@ID", ID)
-                        cmd.Parameters.AddWithValue("@school", school4)
-                        cmd.Connection = con
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
-                    End Using
-                End Using
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            End If
-            'error_lbl.Text = "Does have rows"
-            cmdd.Dispose()
-            cond.Close()
-
-        Catch
-            error_lbl.Text = "Error in updating onlineBanking school4"
-            Exit Sub
-        End Try
-
-        'Update onlineBanking school 5
-        Try
-            cond.ConnectionString = connection_string
-            cond.Open()
-            cmdd.CommandText = "SELECT school
-                                  FROM onlineBanking
-                                  WHERE school = '" & school5 & "' AND visitDate = '11-16-2022'"
-            cmdd.Connection = cond
-            dr = cmdd.ExecuteReader
-
-            If Not dr.HasRows() Then
-                Using con As New SqlConnection(connection_string)
-                    Using cmd As New SqlCommand("UPDATE onlineBanking SET school=@school WHERE visitID=@ID AND NOT (school = '" & school1 & "' OR school = '" & school2 & "' OR school = '" & school3 & "' OR school = '" & school4 & "')")
-                        cmd.Parameters.AddWithValue("@ID", ID)
-                        cmd.Parameters.AddWithValue("@school", school5)
-                        cmd.Connection = con
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
-                    End Using
-                End Using
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            End If
-            'error_lbl.Text = "Does have rows"
-            cmdd.Dispose()
-            cond.Close()
-
-        Catch
-            error_lbl.Text = "Error in updating onlineBanking school5"
-            Exit Sub
-        End Try
-
-        'Update studentInfo
-        Try
-            Using con As New SqlConnection(connection_string)
-                Using cmd As New SqlCommand("UPDATE studentInfo SET visit=@ID, school=@school WHERE visit=@ID")
-                    cmd.Parameters.AddWithValue("@ID", ID)
-                    cmd.Parameters.AddWithValue("@school", school1)
-                    cmd.Connection = con
-                    con.Open()
-                    cmd.ExecuteNonQuery()
-                    con.Close()
-                End Using
-            End Using
-            visit_dgv.EditIndex = -1       'reset the grid after editing
-            loadData()
+            Students.UpdateSchoolID(ID, school1)
         Catch ex As Exception
-            error_lbl.Text = "Error in updating studentInfo."
+            error_lbl.Text = "Error in Updating(). Cannot update studentInfo."
+            Exit Sub
         End Try
 
-        'Check if current visit date in school info is the same as the date being updated here
-        CurrentVisitDate = FormatDateTime(SchoolData.LoadSchoolInfoFromSchool(SchoolData.GetSchoolNameFromID(school1), "currentVisitDate"), DateFormat.ShortDate)
-
+        'Move update currentVisitDate in school info if visitdate has change
         If CurrentVisitDate <> visitDate Then
-
-            'Update schoolInfo
             Try
-                'Using con As New SqlConnection(connection_string)
-                '    Using cmd As New SqlCommand("UPDATE schoolInfo SET currentVisitDate=@currentVisitDate WHERE id=@school AND id=@school2 AND id=@school3 AND id=@schoo4 AND id=@school5")
-                '        cmd.Parameters.AddWithValue("@ID", ID)
-                '        cmd.Parameters.AddWithValue("@school", school1)
-                '        cmd.Parameters.AddWithValue("@school2", school2)
-                '        cmd.Parameters.AddWithValue("@school3", school3)
-                '        cmd.Parameters.AddWithValue("@school4", school4)
-                '        cmd.Parameters.AddWithValue("@school5", school5)
-                '        cmd.Connection = con
-                '        con.Open()
-                '        cmd.ExecuteNonQuery()
-                '        con.Close()
-                '    End Using
-                'End Using
-                SchoolData.UpdatePreviousVisitDate(school1)
-                SchoolData.UpdateCurrentVisitDate(school1, visitDate)
-
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
+                Visits.MoveVisitDate(School1Name, School2Name, School3Name, School4Name, School5Name, visitDate)
             Catch ex As Exception
-                error_lbl.Text = "Error in updating studentInfo."
+                error_lbl.Text = "Error in Updating(). Cannot move visit date."
                 Exit Sub
             End Try
-
         End If
-
-        'Check if current visit date in school info is the same as the date being updated here
-        CurrentVisitDate = FormatDateTime(SchoolData.LoadSchoolInfoFromSchool(SchoolData.GetSchoolNameFromID(school2), "currentVisitDate"), DateFormat.ShortDate)
-
-        If CurrentVisitDate <> visitDate Then
-
-            'Update schoolInfo
-            Try
-                SchoolData.UpdatePreviousVisitDate(school2)
-                SchoolData.UpdateCurrentVisitDate(school2, visitDate)
-
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            Catch ex As Exception
-                error_lbl.Text = "Error in updating studentInfo."
-                Exit Sub
-            End Try
-
-        End If
-
-        'Check if current visit date in school info is the same as the date being updated here
-        CurrentVisitDate = FormatDateTime(SchoolData.LoadSchoolInfoFromSchool(SchoolData.GetSchoolNameFromID(school3), "currentVisitDate"), DateFormat.ShortDate)
-
-        If CurrentVisitDate <> visitDate Then
-
-            'Update schoolInfo
-            Try
-                SchoolData.UpdatePreviousVisitDate(school3)
-                SchoolData.UpdateCurrentVisitDate(school3, visitDate)
-
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            Catch ex As Exception
-                error_lbl.Text = "Error in updating studentInfo."
-                Exit Sub
-            End Try
-
-        End If
-
-        'Check if current visit date in school info is the same as the date being updated here
-        CurrentVisitDate = FormatDateTime(SchoolData.LoadSchoolInfoFromSchool(SchoolData.GetSchoolNameFromID(school4), "currentVisitDate"), DateFormat.ShortDate)
-
-        If CurrentVisitDate <> visitDate Then
-
-            'Update schoolInfo
-            Try
-                SchoolData.UpdatePreviousVisitDate(school4)
-                SchoolData.UpdateCurrentVisitDate(school4, visitDate)
-
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            Catch ex As Exception
-                error_lbl.Text = "Error in updating studentInfo."
-                Exit Sub
-            End Try
-
-        End If
-
-        'Check if current visit date in school info is the same as the date being updated here
-        CurrentVisitDate = FormatDateTime(SchoolData.LoadSchoolInfoFromSchool(SchoolData.GetSchoolNameFromID(school5), "currentVisitDate"), DateFormat.ShortDate)
-
-        If CurrentVisitDate <> visitDate Then
-
-            'Update schoolInfo
-            Try
-                SchoolData.UpdatePreviousVisitDate(school5)
-                SchoolData.UpdateCurrentVisitDate(school5, visitDate)
-
-                visit_dgv.EditIndex = -1       'reset the grid after editing
-                loadData()
-            Catch ex As Exception
-                error_lbl.Text = "Error in updating studentInfo."
-                Exit Sub
-            End Try
-
-        End If
-
 
         'Message to let staff know if visit date has changed, move articles if needed
         error_lbl.Text = "If you have changed the visit date, please go to Upload / Move Articles to move the newspaper articles to the updated visit date."
 
+        'Reset gridview and loaddata
+        visit_dgv.EditIndex = -1
+        LoadData()
     End Sub
 
     Private Sub visit_dgv_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles visit_dgv.RowEditing
         visit_dgv.EditIndex = e.NewEditIndex
-        loadData()
+        LoadData()
     End Sub
 
     Private Sub visit_dgv_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) Handles visit_dgv.RowCancelingEdit
         visit_dgv.EditIndex = -1
-        loadData()
+        LoadData()
     End Sub
 
     Private Sub visit_dgv_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles visit_dgv.PageIndexChanging
         visit_dgv.PageIndex = e.NewPageIndex
-        loadData()
+        LoadData()
     End Sub
 
     Private Sub visit_dgv_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles visit_dgv.RowDataBound

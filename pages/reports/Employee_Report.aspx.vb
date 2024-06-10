@@ -97,6 +97,7 @@ Public Class Employee_Report
 
     Sub LoadData()
         Dim VisitDate As String
+        Dim VIDOfDate As Integer
         Dim StudentCount As String
         Dim ClosedBusinessess As String
         Dim WhereStart As String
@@ -123,9 +124,12 @@ Public Class Employee_Report
             WhereStart = " WHERE v.visitDate='" & VisitDate & "'"
         End If
 
+        'Get visit ID of selected visit date
+        VIDOfDate = VisitData.GetVisitIDFromDate(VisitDate)
+
         'Get closed businesses
         Try
-            ClosedBusinessess = BusinessData.GetClosedBusinesses(VisitDate)
+            ClosedBusinessess = BusinessData.GetClosedBusinesses(VIDOfDate)
         Catch
             error_lbl.Text = "Error in loaddata(). Could not get closed businesses."
             Exit Sub

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <form id="EMS_Form" runat="server">
+    <form autocomplete="off"  id="EMS_Form" runat="server">
 
         <%--Header information--%>
         <header class="headerTop no-print"><a style="float: left; padding-top: 2px;">Enterprise Village 2.0</a><a style="float: right; padding-right: 30px; padding-top: 2px;"><asp:Label ID="headerSchoolName_lbl" Text="School Name Here" runat="server"></asp:Label></a></header>
@@ -38,21 +38,21 @@
         <div class="content">
             <h2 class="h2">Profit Report</h2>
             <h3 class="no-print">Enter a date below to view the current profits, loan amounts, and staring amount for each business on that date.
-
             </h3>
+            <p>Visit Date:</p>
             <asp:TextBox ID="visitDate_tb" runat="server" TextMode="Date" AutoPostBack="true" CssClass="textbox"></asp:TextBox>&emsp;<asp:Label runat="server" ID="error_lbl" Font-Size="X-Large" ForeColor="Red"></asp:Label>
             <br /><br />
-            <asp:Button ID="print_btn" runat="server" CssClass="button3 button3 no-print" Text="Print" />
+            <asp:Button ID="print_btn" runat="server" Visible="false" CssClass="button3 button3 no-print" Text="Print" />
             <br />
-            <p>School Name(s):</p>
             <asp:Label ID="Schools_lbl" runat="server" Font-Size="XX-Large" Font-Underline="false" ></asp:Label>
             <br /><br />
             <asp:GridView ID="businessProfit_dgv" runat="server" AutoGenerateColumns="False" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                 <Columns>
+                    <asp:BoundField DataField="id" HeaderText="ID" Visible="false" ReadOnly="true" />
                     <asp:BoundField DataField="businessName" HeaderText="Business" ReadOnly="true" Visible="true" />
-                    <asp:BoundField DataField="Profits" HeaderText="Profits" ReadOnly="true" Visible="true" />
+                    <asp:BoundField DataField="profits" HeaderText="Profits" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="loan" HeaderText="Loan Amount" ReadOnly="true" Visible="true" />
-                    <asp:BoundField DataField="startingAmount" HeaderText="Starting Amount" ReadOnly="true" Visible="true" />
+                    <asp:BoundField DataField="startingBalance" HeaderText="Starting Amount" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="deposit4" HeaderText="Misc Deposit" ReadOnly="true" Visible="true" />
                 </Columns>
             </asp:GridView>

@@ -167,15 +167,6 @@ Partial Public Class Online_Banking
     Protected WithEvents Loan_Amount_tb As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Update_loan_amount control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Update_loan_amount As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''Label6 control.
     '''</summary>
     '''<remarks>
@@ -192,15 +183,6 @@ Partial Public Class Online_Banking
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Deposit1_tb As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Update_deposit1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Update_deposit1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''deposit2_tr control.
@@ -230,15 +212,6 @@ Partial Public Class Online_Banking
     Protected WithEvents Deposit2_tb As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Update_deposit2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Update_deposit2 As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''deposit3_tr control.
     '''</summary>
     '''<remarks>
@@ -266,13 +239,13 @@ Partial Public Class Online_Banking
     Protected WithEvents Deposit3_tb As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Update_deposit3 control.
+    '''update_btn control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Update_deposit3 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents update_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''error_lbl control.

@@ -101,26 +101,28 @@ Public Class Teacher_Letter
 	Sub LoadStudentCount()
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
 		Dim VisitDate As String = visitDate_tb.Text
+		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(VisitDate)
+		Dim SchoolID As Integer = SchoolData.GetSchoolID(SchoolName)
 
 		'Check if teacher DDL has something selected
 		If teacherName_ddl.SelectedIndex <> 0 Then
 
 			'Get student count
-			'Try
-			studentCount_lbl.Text = StudentData.GetSVCStudentCount(VisitDate, SchoolName)
+			Try
+				studentCount_lbl.Text = StudentData.GetSVCStudentCount(VIDOfDate, SchoolID)
 
 				If studentCount_lbl.Text = "" Or studentCount_lbl.Text = Nothing Or studentCount_lbl.Text = "0" Then
-				'Exit Try
-			Else
+					Exit Try
+				Else
 					'Load all data
 					LoadData()
 					Exit Sub
 				End If
 
-			'Catch
-			'	error_lbl.Text = "Error in LoadStudentCount. Could not get school's student count."
-			'	Exit Sub
-			'End Try
+			Catch
+				error_lbl.Text = "Error in LoadStudentCount. Could not get school's student count."
+				Exit Sub
+			End Try
 
 			'If student count is blank or null, run this SQL
 			Try
@@ -150,6 +152,7 @@ Public Class Teacher_Letter
 		Dim sharingSchoolsString As String
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
 		Dim VisitDate As String = visitDate_tb.Text
+		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(VisitDate)
 		Dim TeacherName As String = teacherName_ddl.SelectedValue
 		Dim VisitTime As String
 		Dim DismissalTime As Date
@@ -209,9 +212,9 @@ Public Class Teacher_Letter
 		Try
 			con.ConnectionString = connection_string
 			con.Open()
-			cmd.CommandText = "SELECT SUM(o.businessVMinCount) as vMin, SUM(o.businessVMaxCount) as vMax
-								FROM onlineBanking o
-								WHERE o.visitDate='" & visitDate_tb.Text & "' AND o.school='" & schoolID_hf.Value & "' AND o.openstatus=1"
+			cmd.CommandText = "SELECT SUM(o.minVolCount) as vMin, SUM(o.maxVolCount) as vMax
+								FROM businessVisitInfo o
+								WHERE o.visitID='" & VIDOfDate & "' AND o.schoolID='" & schoolID_hf.Value & "' AND o.openstatus=1"
 			cmd.Connection = con
 			dr = cmd.ExecuteReader
 
@@ -300,10 +303,10 @@ Public Class Teacher_Letter
 					con.ConnectionString = connection_string
 					con.Open()
 					cmd.CommandText = "SELECT o.businessID, o.openstatus
-								FROM onlineBanking o
+								FROM businessVisitInfo o
 								INNER JOIN schoolInfo s
-								ON s.id = o.school
-								WHERE o.visitDate='" & visitDate_lbl.Text & "' AND o.businessID='" & count & "' 
+								ON s.id = o.schoolID
+								WHERE o.visitID='" & VIDOfDate & "' AND o.businessID='" & count & "' 
 								AND s.schoolName = '" & schoolName_ddl.SelectedValue & "' AND o.openstatus=1
 								ORDER BY o.businessID"
 					cmd.Connection = con

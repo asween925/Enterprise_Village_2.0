@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <form id="EMS_Form" runat="server">
+    <form autocomplete="off"  id="EMS_Form" runat="server">
 
         <%--Header information--%>
         <header class="headerTop no-print"><a style="float: left; padding-top: 2px;">Enterprise Village 2.0</a><a style="float: right; padding-right: 30px; padding-top: 2px;"><asp:Label ID="headerSchoolName_lbl" Text="School Name Here" runat="server"></asp:Label></a></header>
@@ -83,7 +83,7 @@
                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
                         <asp:TemplateField HeaderText="School Name">
                             <ItemTemplate>
-                                <asp:Label ID="schoolNameDGV_lbl" runat="server" Text='<%#Bind("schoolName") %>' Visible="false"></asp:Label>
+                                <asp:Label ID="schoolNameDGV_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="false"></asp:Label>
                                 <asp:DropDownList CssClass="ddl" ID="schoolNameDGV_ddl" runat="server" AutoPostBack="true" readonly="false"></asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>

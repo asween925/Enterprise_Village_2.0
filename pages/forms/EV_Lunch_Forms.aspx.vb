@@ -10,8 +10,8 @@ Public Class EV_Lunch_Forms
 	Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
 	Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
 	Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-	Dim VisitID As New Class_VisitData
-	Dim Visit As Integer = VisitID.GetVisitID
+	Dim Visits As New Class_VisitData
+	Dim VisitID As Integer = Visits.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
@@ -25,8 +25,8 @@ Public Class EV_Lunch_Forms
 		If Not (IsPostBack) Then
 
 			'Assign current visit ID to hidden field
-			If Visit <> 0 Then
-				currentVisitID_hf.Value = Visit
+			If VisitID <> 0 Then
+				currentVisitID_hf.Value = VisitID
 			End If
 
 			'Populating school header
@@ -151,6 +151,7 @@ Public Class EV_Lunch_Forms
 		Dim st As New Class_StudentData
 		Dim sc As New Class_SchoolData
 		Dim visitDate As String = visitDate_tb.Text
+		Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(visitDate)
 		Dim pickupTimeSQL As String = "SELECT (CASE
 										WHEN visitTime = '07:25' THEN '10:15'
 										WHEN visitTime = '07:45' THEN '10:40'
@@ -181,8 +182,8 @@ Public Class EV_Lunch_Forms
 		studentCount_lbl.Text = studentCount
 
 		'Get volunteer count
-		vMin = sc.GetVolunteerRange(visitDate_tb.Text).VMin
-		vMax = sc.GetVolunteerRange(visitDate_tb.Text).VMax
+		vMin = sc.GetVolunteerRange(VIDOfDate).VMin
+		vMax = sc.GetVolunteerRange(VIDOfDate).VMax
 		volunteerCount_lbl.Text = vMin & "-" & vMax
 
 		'Get pick up time

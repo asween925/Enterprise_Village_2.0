@@ -1,35 +1,29 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Drawing
 Public Class Operating_Check_Writing_System
     Inherits System.Web.UI.Page
     Dim sqlserver As String = System.Configuration.ConfigurationManager.AppSettings("EV_sfp").ToString
     Dim sqldatabase As String = System.Configuration.ConfigurationManager.AppSettings("EV_DB").ToString
     Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
+    Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
     Dim DBConnection As New DatabaseConection
     Dim dr As SqlDataReader
     Dim logoRoot As String = "~/media/Logos/"
+    Dim Visits As New Class_VisitData
+    Dim Students As New Class_StudentData
+    Dim Businesses As New Class_BusinessData
+    Dim Checks As New Class_CheckData
+    Dim VisitID As Integer = Visits.GetVisitID
+    Dim BusinessID As Integer = 0
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Label_date.Text = DateTime.Now.ToString("MM/dd/yyyy")
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim dr As SqlDataReader
+
         If Not (IsPostBack) Then
 
-            Dim businessID1 As String = Request.QueryString("b")
-            businessID_hf.Value = businessID1
-            Dim sql2 As String = "SELECT operating1, operating2, operating3, operating4, operating5, operating6, operating7, operating8, operating9, operating10, operating11, operating12, operating13 FROM businessinfo WHERE ID='" & businessID1 & "'"
-            Dim sql As String = "SELECT Businessname FROM businessinfo WHERE NOT id='" & businessID1 & "' AND active='1' OR id='15' OR id='20' OR id='23' ORDER BY Businessname"
-
-            If businessID_hf.Value = 12 Or businessID_hf.Value = 13 Or businessID_hf.Value = 14 Then
-                F2URL.Visible = False
-            End If
-
-            Dim VisitID As New Class_VisitData
-            Dim Visit As Integer = VisitID.GetVisitID
-            If Visit <> 0 Then
-                visitID_hf.Value = Visit
+            'Check for current visit
+            If VisitID <> 0 Then
+                visitID_hf.Value = VisitID
             Else
                 Label2.Text = "No visit date, please go to 'Database Creator' on the 'Tools / Reports' page and create a new school visit date."
                 Check_que_lbl.Text = ""
@@ -49,104 +43,68 @@ Public Class Operating_Check_Writing_System
                 Exit Sub
             End If
 
-            'Try
-            '    con.ConnectionString = connection_string
-            '    con.Open()
-            '    cmd.CommandText = sql
-            '    cmd.Connection = con
-            '    dr = cmd.ExecuteReader
+            'Assign business ID
+            BusinessID = Request.QueryString("b")
 
-            '    While dr.Read()
-            '        business_tb.Items.Add(dr(0).ToString)
-            '    End While
+            'Check if business ID is not 0
+            If BusinessID = 0 Or BusinessID = Nothing Then
+                error_lbl.Text = "No business ID found. Please load in the check writing system from the Business Directory to get started."
+                Exit Sub
+            End If
 
-            '    business_tb.Items.Insert(0, "")
-            '    cmd.Dispose()
-            '    con.Close()
-
-            '    'Check if the business is City Hall, so it can have the UPS business in the DDL
-            '    If businessID1 = 14 Then
-            '        business_tb.Items.Add("UPS")
-            '        checkAmount_tb.Items.Add("$50.00")
-            '    End If
-
-            'Catch
-            '    MsgBox("Select a valid business name")
-            'Finally
-            '    cmd.Dispose()
-            '    con.Close()
-
-            'End Try
-
-        End If
-
-        If Not (IsPostBack) Then
-            Dim businessID1 As String = Request.QueryString("b")
-            Dim sql2 As String = "SELECT businessName, address, operating1, operating2, operating3, operating4, operating5, operating6, operating7, operating8, operating9, operating10, operating11,
-                                  operating12, operating13, printChecks FROM businessinfo WHERE ID='" & businessID1 & "'"
-
+            'Assign operating text to side bar
             Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = sql2
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
+                Dim Operating = Checks.GetOperatingText(BusinessID)
+                operating1_lbl.Text = Operating.O1
+                operating2_lbl.Text = Operating.O2
+                operating3_lbl.Text = Operating.O3
+                operating4_lbl.Text = Operating.O4
+                operating5_lbl.Text = Operating.O5
+                operating6_lbl.Text = Operating.O6
+                operating7_lbl.Text = Operating.O7
+                operating8_lbl.Text = Operating.O8
+                operating9_lbl.Text = Operating.O9
+                operating10_lbl.Text = Operating.O10
+                operating11_lbl.Text = Operating.O11
+                operating12_lbl.Text = Operating.O12
+                'operating13_lbl.Text = Operating.O13
 
-                While dr.Read()
-                    business_name_lbl.Text = dr("businessName")
-                    address_lbl.Text = dr("address")
-                    operating1_lbl.Text = dr("operating1")
-                    operating2_lbl.Text = dr("operating2")
-                    operating3_lbl.Text = dr("operating3")
-                    operating4_lbl.Text = dr("operating4")
-                    operating5_lbl.Text = dr("operating5")
-                    operating6_lbl.Text = dr("operating6")
-                    operating7_lbl.Text = dr("operating7")
-                    operating8_lbl.Text = dr("operating8")
+                'Checking if step 9, 10, 11, or 12 is not blank
+                If Operating.O9 = Nothing Then
+                    row9.Visible = False
+                    rowstop1.Visible = False
+                Else
+                    row9.Visible = True
+                    operating9_lbl.Text = Operating.O9
+                End If
 
-                    If dr("operating9").ToString = Nothing Then
-                        row9.Visible = False
-                        rowstop1.Visible = False
-                    Else
-                        row9.Visible = True
-                        operating9_lbl.Text = dr("operating9").ToString
-                    End If
+                If Operating.O10 = Nothing Then
+                    row10.Visible = False
+                Else
+                    row10.Visible = True
+                    operating10_lbl.Text = Operating.O10
+                End If
 
-                    If dr("operating10").ToString = Nothing Then
-                        row10.Visible = False
-                    Else
-                        row10.Visible = True
-                        operating10_lbl.Text = dr("operating10").ToString
-                    End If
+                If Operating.O11 = Nothing Then
+                    row11.Visible = False
+                Else
+                    row11.Visible = True
+                    operating11_lbl.Text = Operating.O11
+                End If
 
-                    If dr("operating11").ToString = Nothing Then
-                        row11.Visible = False
-                    Else
-                        row11.Visible = True
-                        operating11_lbl.Text = dr("operating11").ToString
-                    End If
-
-                    If dr("operating12").ToString = Nothing Then
-                        row12.Visible = False
-                    Else
-                        row12.Visible = True
-                        operating12_lbl.Text = dr("operating12").ToString
-                    End If
-
-                    'printChecks_lbl.Text = dr("printChecks").ToString
-
-                End While
-                'business_tb.Items.Insert(0, "")
-                cmd.Dispose()
-                con.Close()
+                If Operating.O12 = Nothing Then
+                    row12.Visible = False
+                Else
+                    row12.Visible = True
+                    operating12_lbl.Text = Operating.O12
+                End If
 
             Catch
-                error_lbl.Text = "Error in page load"
-                cmd.Dispose()
-                con.Close()
-
+                error_lbl.Text = "Error in PageLoad(). Could not assign operating text."
+                Exit Sub
             End Try
 
+            'Checking if the operating group selector ddl is blank
             If operating_selector_ddl.SelectedIndex = 0 Then
                 error_lbl.Text = "Please select an Operating Group from the drop down list at the top before continuing."
                 business_tb.Enabled = False
@@ -172,10 +130,8 @@ Public Class Operating_Check_Writing_System
                 Delete_Current_btn.Enabled = True
             End If
 
-            cmd.Dispose()
-            con.Close()
-
-            Select Case businessID1
+            'Load background colors and apply unique settings for businesses
+            Select Case BusinessID
                 Case 1
                     check_system.Attributes("class") = "main_bucs"
                 Case 2
@@ -198,10 +154,13 @@ Public Class Operating_Check_Writing_System
                     check_system.Attributes("class") = "main_ditek"
                 Case 12
                     check_system.Attributes("class") = "main_boa"
+                    F2URL.Visible = False
                 Case 13
                     check_system.Attributes("class") = "main_baycare"
+                    F2URL.Visible = False
                 Case 14
                     check_system.Attributes("class") = "main_city"
+                    F2URL.Visible = False
                 Case 16
                     check_system.Attributes("class") = "main_duke"
                 Case 17
@@ -218,10 +177,37 @@ Public Class Operating_Check_Writing_System
                     check_system.Attributes("class") = "main_united"
             End Select
 
+            'Assign links to buttons
+            F1URL.NavigateUrl = "Check_writing_system.aspx?B=" & BusinessID
+            F2URL.NavigateUrl = "Online_Banking.aspx?B=" & BusinessID
+
+            'Get business name, logo, and address Assign to labels
+            Try
+                Dim Biz = Businesses.GetBusinessLogos(BusinessID)
+                business_name_lbl.Text = Biz.BusinessName.ToString()
+                BusLogo_img.ImageUrl = Biz.ImagePath
+
+                address_lbl.Text = Businesses.GetBusinessAddress(business_name_lbl.Text)
+
+            Catch ex As Exception
+                error_lbl.Text = "Error in PageLoad. Could not get business name, logo, or address."
+                Exit Sub
+            End Try
+
+            'Assign date to label
+            Label_date.Text = DateTime.Now.ToString("MM/dd/yyyy")
+
+            'Update title of web tab
+            Me.Title = business_name_lbl.Text & " Payroll Checks"
+
+            'Load gridview with existing checks
             LoadData()
+
+            'Get and assign groups for checks
             CheckGroups()
-            tablemaxRow_hf.Value = existingChecks_dgv.Rows.Count
-            Check_que_lbl.Text = tablemaxRow_hf.Value
+
+            'Get updated total count for checks
+            Check_que_lbl.Text = existingChecks_dgv.Rows.Count
 
             'Clear out the check after saving
             business_tb.Text = Nothing
@@ -230,111 +216,44 @@ Public Class Operating_Check_Writing_System
             Memo_tb.Text = ""
         End If
 
-        Dim businessID As String = Request.QueryString("b")
-        If businessID = Nothing Then
-            businessID = 0
-        End If
-
-        F1URL.NavigateUrl = "Check_writing_system.aspx?B=" & businessID
-        F2URL.NavigateUrl = "Online_Banking.aspx?B=" & businessID
-
-        Dim businessSQL As String = "SELECT logoPath, businessColor, businessName FROM businessinfo WHERE ID='" & businessID & "'"
-        Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = businessSQL
-            cmd.Connection = con
-            dr = cmd.ExecuteReader
-
-            While dr.Read()
-                Dim imagePath As String = logoRoot & dr(0).ToString
-                Dim bColor As String = dr(1).ToString
-                BusLogo_img.ImageUrl = imagePath
-
-                'this code below has been turned into a comment to test functioning prior to utilizing
-                'Dim htmlColor As Drawing.Color = Drawing.ColorTranslator.FromHtml(bColor)
-                'Me.ev_lbl.ForeColor = htmlColor
-                'end here
-
-                Me.Title = dr(2).ToString & " Operating Checks"
-
-            End While
-
-            cmd.Dispose()
-            con.Close()
-
-        Catch
-            error_lbl.Text = "Error in Page_load(). Cannot get image path and bcolor"
-            cmd.Dispose()
-            con.Close()
-            Exit Sub
-        Finally
-            cmd.Dispose()
-            con.Close()
-        End Try
-
-        cmd.Dispose()
-        con.Close()
-
     End Sub
 
     Sub LoadData()
-        Dim operGroup As String = Nothing
+        Dim OperGroup As String = Nothing
+        BusinessID = Request.QueryString("b")
+
+        'Clear out gridview
         existingChecks_dgv.DataSource = Nothing
         existingChecks_dgv.DataBind()
+
+        'Reset index value
         tablerowIndex_hf.Value = 0
+
+        'Name buttons to their default
         Print_checks_btn.Text = "Review"
         save_check_btn.Text = "Save Check"
 
-        'May need to add code to reset the check values'
-
+        'Assign operating group number
         Select Case operating_selector_ddl.SelectedIndex
             Case 0
                 Exit Sub
             Case 1
-                operGroup = "1"
+                OperGroup = "1"
             Case 2
-                operGroup = "2"
+                OperGroup = "2"
             Case 3
-                operGroup = "3"
+                OperGroup = "3"
         End Select
 
-        Dim sql As String = "SELECT c.id, c.payee,c.check_amount,c.written_amount,c.memo,c.time_written,c.visit_ID,c.oper_bus_name,c.oper_group,b.businessName,b.address
-            From checksinfo c
-            FULL Join businessinfo b
-            On b.id = c.business_ID      
-            WHERE c.oper_group = @operGroup AND c.check_type ='0' AND c.business_ID = @businessID AND visit_ID=@visitID"
+        'Load existing operating checks gridview
+        Try
+            Checks.LoadExistingOperatingChecksTable(existingChecks_dgv, BusinessID, VisitID, OperGroup)
+        Catch ex As Exception
+            error_lbl.Text = "Error in LoadData. Cannot load existing checks table."
+            Exit Sub
+        End Try
 
-        'Testing if the sql query is passing through the correct values (it is)
-        'text_tb.Text = sql & " : PayPeriod :" & payperiod & "  : BID:" & businessID_hf.Value.ToString & "  : VID:" & visitID_hf.Value.ToString
-
-
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-
-        con.ConnectionString = connection_string
-        con.Open()
-
-        cmd.Connection = con
-        cmd.CommandText = sql
-        cmd.Parameters.AddWithValue("@operGroup", operGroup)
-        cmd.Parameters.AddWithValue("@businessID", businessID_hf.Value.ToString)
-        cmd.Parameters.AddWithValue("@visitID", visitID_hf.Value.ToString)
-
-        Dim da As New SqlDataAdapter
-        da.SelectCommand = cmd
-        Dim dt As New DataTable
-        da.Fill(dt)
-
-        existingChecks_dgv.DataSource = dt
-        existingChecks_dgv.DataBind()
-
-        da.Dispose()
-        cmd.Dispose()
-        con.Close()
-
-        'Errors
+        'Checking if there is no checks saved
         If existingChecks_dgv.Rows.Count = 0 Then
             'May need to show message that there are no existing saved Checks.
             Next_btn.Enabled = False
@@ -352,12 +271,16 @@ Public Class Operating_Check_Writing_System
             F1URL.Visible = True
             F2URL.Visible = True
             Exit Sub
+
+            'If checks saved equals 4 for the operating group
         ElseIf existingChecks_dgv.Rows.Count = 4 Then
             save_check_btn.Enabled = False
             error_lbl.Text = "You cannot save anymore checks to this operating group. Please click 'Review' to see your saved checks and print them out."
             Next_btn.Enabled = False
             Previous_btn.Enabled = False
             Delete_Current_btn.Enabled = False
+
+            'If checks saved is not 0 or 4
         Else
             tablemaxRow_hf.Value = existingChecks_dgv.Rows.Count
             Check_que_lbl.Text = tablemaxRow_hf.Value
@@ -370,49 +293,110 @@ Public Class Operating_Check_Writing_System
             business_tb.Enabled = True
             checkAmount_tb.Enabled = True
             Memo_tb.Enabled = True
-            'New_check_btn.Enabled = True
             save_check_btn.Enabled = True
             F1URL.Visible = True
             F2URL.Visible = True
         End If
 
+        'Assign data to textboxes in check
         Dim row As GridViewRow = existingChecks_dgv.Rows(0)
-        business_tb.Text = row.Cells(7).Text
+        business_tb.Text = row.Cells(6).Text
         checkAmount_tb.Text = "$" & row.Cells(2).Text
         writtenAmount_tb.Text = row.Cells(3).Text
         Memo_tb.Text = row.Cells(4).Text
 
-        tablemaxRow_hf.Value = existingChecks_dgv.Rows.Count
-        Check_que_lbl.Text = tablemaxRow_hf.Value
+        'Updated check que with total number checks saved
+        Check_que_lbl.Text = existingChecks_dgv.Rows.Count
 
+        'If only 1 check is saved, disable next and previous buttons
         If tablemaxRow_hf.Value = 1 Then
             Next_btn.Enabled = False
             Previous_btn.Enabled = False
         End If
 
     End Sub
-    Protected Sub Next_btn_Click(sender As Object, e As EventArgs) Handles Next_btn.Click
-        Dim maxRows As Integer = tablemaxRow_hf.Value
+
+    Sub CheckGroups()
+        Dim BusinessID As Integer = Request.QueryString("b")
+        Dim OperGroup As String = operating_selector_ddl.SelectedValue.ToString
+        Dim CheckIds As New List(Of String)
+        Dim chunks As List(Of List(Of String))
+        Dim valueString As String = Nothing
+        Dim textString As String = Nothing
+        Dim group As New ListItem
+
+        'Clear check groups
+        checkgroup_ddl.Items.Clear()
+
+        'Assign check IDs to list
+        Try
+            Checks.GetCheckIDs(CheckIds, BusinessID, VisitID, OperGroup)
+        Catch
+            error_lbl.Text = "Error in CheckGroups(). Cannot get Check IDs."
+            Exit Sub
+        End Try
+
+        'Assign list of checkIDs to another list
+        chunks = SplitIntoChunks(CheckIds, 4)
+
+        'Assign check IDs from list into the checkgroup DDL, used to put the check IDs into the URL for printing
+        For n As Integer = 0 To chunks.Count - 1
+
+            For Each ID As String In chunks(n)
+                'Build value string
+                valueString += ID & ","
+            Next
+
+            'Remove the comma
+            valueString = valueString.TrimEnd(CChar(","))
+
+            group.Text = "Checks 1 - " & tablemaxRow_hf.Value
+            group.Value = valueString
+            checkgroup_ddl.Items.Add(group)
+
+        Next
+
+    End Sub
+
+    Sub LoadChecks(ByVal rowIndex As Integer)
+        Try
+            Dim row As GridViewRow = existingChecks_dgv.Rows(rowIndex)
+            business_tb.Text = row.Cells(6).Text
+            checkAmount_tb.Text = "$" & row.Cells(2).Text
+            writtenAmount_tb.Text = row.Cells(3).Text
+            Memo_tb.Text = row.Cells(4).Text
+
+        Catch
+        End Try
+    End Sub
+
+    Sub NextCheck()
+        Dim maxRows As Integer = existingChecks_dgv.Rows.Count
         Dim rowIndex As Integer = Val(tablerowIndex_hf.Value)
+
         maxRows = maxRows - 1
+
         tablerowIndex_hf.Value = tablerowIndex_hf.Value + 1
+
         If tablerowIndex_hf.Value = maxRows Then
             Next_btn.Enabled = False
             Previous_btn.Enabled = True
             LoadChecks(tablerowIndex_hf.Value)
             Exit Sub
         Else
-
             Next_btn.Enabled = True
             Previous_btn.Enabled = True
             LoadChecks(tablerowIndex_hf.Value)
         End If
 
     End Sub
-    Protected Sub Previous_btn_Click(sender As Object, e As EventArgs) Handles Previous_btn.Click
-        Dim maxRows As Integer = tablemaxRow_hf.Value
+
+    Sub PreviousCheck()
+        Dim maxRows As Integer = existingChecks_dgv.Rows.Count
         Dim rowIndex As Integer = Val(tablerowIndex_hf.Value)
+
         maxRows = maxRows - 1
+
         tablerowIndex_hf.Value = tablerowIndex_hf.Value - 1
         If tablerowIndex_hf.Value = 0 Then
             Previous_btn.Enabled = False
@@ -427,52 +411,31 @@ Public Class Operating_Check_Writing_System
         End If
 
     End Sub
-    Protected Sub Delete_Current_btn_Click(sender As Object, e As EventArgs) Handles Delete_Current_btn.Click
-        Dim checkID As Integer
-        Dim row As GridViewRow = existingChecks_dgv.Rows(Val(tablerowIndex_hf.Value))
-        checkID = row.Cells(0).Text
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 
-        If business_tb.Text = Nothing Or checkAmount_tb.Text = Nothing Or writtenAmount_tb.Text = Nothing Or Memo_tb.Text = Nothing Then
-            error_lbl.Text = "Cannot delete. Please click 'Review' to see your saved checks before deleting them."
-            Exit Sub
-        End If
-
-        Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("DELETE FROM checksinfo WHERE id='" & checkID & "'")
-
-                cmd.Connection = con
-                con.Open()
-                cmd.ExecuteNonQuery()
-                con.Close()
-            End Using
-        End Using
-
-        LoadData()
-        CheckGroups()
-        tablemaxRow_hf.Value = existingChecks_dgv.Rows.Count
-        Check_que_lbl.Text = tablemaxRow_hf.Value
-        Print_checks_btn_Click(sender, e)
-
-    End Sub
-    Private Sub Print_checks_btn_Click(sender As Object, e As EventArgs) Handles Print_checks_btn.Click
+    Sub ReviewChecks()
         Dim checkIDS() As String = checkgroup_ddl.SelectedValue.ToString.Split(",")
         Dim URLEnd As String = Nothing
-        Dim business As String = Request.QueryString("b")
 
+        'If button is labeled 'Review'
         If Print_checks_btn.Text = "Review" Then
+
+            'Reload data
             LoadData()
+
+            'Reassign check groups
             CheckGroups()
-            tablemaxRow_hf.Value = existingChecks_dgv.Rows.Count
-            Check_que_lbl.Text = tablemaxRow_hf.Value
 
-            'error2_lbl.Text = tablerowIndex_hf.Value
+            'Update existing count of total checks saved
+            Check_que_lbl.Text = existingChecks_dgv.Rows.Count
 
+            'If total checks equals 4, its time to print
             If existingChecks_dgv.Rows.Count = 4 Then
                 save_check_btn.Enabled = False
                 error_lbl.Text = "You cannot save anymore checks to this operating group. Please click 'Print' before moving on to the next group."
                 Delete_Current_btn.Enabled = True
                 Next_btn.Enabled = True
+
+                'If total checks is neither 0 or 4
             ElseIf existingChecks_dgv.Rows.Count < 4 And existingChecks_dgv.Rows.Count >= 1 Then
                 save_check_btn.Enabled = True
                 Delete_Current_btn.Enabled = True
@@ -491,9 +454,13 @@ Public Class Operating_Check_Writing_System
                 End If
             End If
 
+            'Change button text to Print
             Print_checks_btn.Text = "Print"
 
+            'If button is labeled print
         ElseIf Print_checks_btn.Text = "Print" Then
+
+            'Get the check ID for redirection to print page
             Select Case checkIDS.Length
                 Case 1
                     URLEnd = "&c1=" & checkIDS(0).ToString
@@ -505,34 +472,59 @@ Public Class Operating_Check_Writing_System
                     URLEnd = "&c1=" & checkIDS(0).ToString & "&C2=" & checkIDS(1).ToString & "&c3=" & checkIDS(2).ToString & "&C4=" & checkIDS(3).ToString
             End Select
 
+            'Change text to Review
             Print_checks_btn.Text = "Review"
 
-            Response.Redirect("/pages/print/Print_Operating_Checks.aspx?b=" & business & URLEnd)
+            'Go to print page
+            Response.Redirect("/pages/print/Print_Operating_Checks.aspx?b=" & BusinessID & URLEnd)
 
         End If
 
-        'If checkgroup_ddl.SelectedIndex = 0 Then
-        '    error_lbl.Text = "Please select a group of checks before printing."
-        '    Exit Sub
-        'End If
-
-
-        'Needs code to print, then reset the screen to checking_writing
-
     End Sub
-    Sub LoadChecks(ByVal rowIndex As Integer)
+
+    Sub DeleteCheck()
+        Dim row As GridViewRow = existingChecks_dgv.Rows(Val(tablerowIndex_hf.Value))
+        Dim CheckID As Integer = row.Cells(0).Text
+
+        'Check if the check has everything in it
+        If business_tb.Text = Nothing Or checkAmount_tb.Text = Nothing Or writtenAmount_tb.Text = Nothing Or Memo_tb.Text = Nothing Then
+            error_lbl.Text = "Cannot delete. Please click 'Review' to see your saved checks before deleting them."
+            Exit Sub
+        End If
+
+        'Delete check
         Try
-            Dim row As GridViewRow = existingChecks_dgv.Rows(rowIndex)
-            business_tb.Text = row.Cells(7).Text
-            checkAmount_tb.Text = "$" & row.Cells(2).Text
-            writtenAmount_tb.Text = row.Cells(3).Text
-            Memo_tb.Text = row.Cells(4).Text
-
-        Catch
+            Checks.DeleteCheck(CheckID)
+        Catch ex As Exception
+            error_lbl.Text = "Error in DeleteCheck(). Could not delete check."
+            Exit Sub
         End Try
-    End Sub
-    Protected Sub save_check_btn_Click(sender As Object, e As EventArgs) Handles save_check_btn.Click
 
+        'Load data
+        LoadData()
+
+        'Get check groups
+        CheckGroups()
+
+        'Update existing check count
+        Check_que_lbl.Text = existingChecks_dgv.Rows.Count
+
+        'Load existing checks into main check
+        ReviewChecks()
+    End Sub
+
+    Sub SaveCheck()
+        Dim timestamp As DateTime = DateTime.Now
+        Dim timestampSTR As String = timestamp.ToString("yyyy-MM-dd HH:mm:ss")
+        Dim writtenamount As String = writtenAmount_tb.Text
+        Dim memo As String = Memo_tb.Text
+        Dim numericCheck As Boolean
+        Dim businessName As String = business_tb.Text
+        Dim checkGroup As String = operating_selector_ddl.SelectedValue.ToString
+        Dim checkamount As String = checkAmount_tb.Text
+        BusinessID = Request.QueryString("b")
+
+        'Clear out check if the button is labeled Add Check
         If save_check_btn.Text = "Add Check" Then
             business_tb.Text = ""
             checkAmount_tb.Text = ""
@@ -543,9 +535,12 @@ Public Class Operating_Check_Writing_System
             Delete_Current_btn.Enabled = False
             Next_btn.Enabled = False
 
+            'Rename button to Save Check
             save_check_btn.Text = "Save Check"
 
         ElseIf save_check_btn.Text = "Save Check" Then
+
+            'Checking for blanks in the check
             If business_tb.Text = Nothing And checkAmount_tb.Text = Nothing And Memo_tb.Text = Nothing And writtenAmount_tb.Text = Nothing Then
                 error_lbl.Text = "Operation failed. No business name, memo, written amount, or payment inputed."
                 Exit Sub
@@ -581,75 +576,42 @@ Public Class Operating_Check_Writing_System
                 Exit Sub
             End If
 
-            Dim numericCheck As Boolean
-            numericCheck = IsNumeric(checkAmount_tb.Text)
-
+            'If the operating group selector is blank, show error
             If operating_selector_ddl.SelectedIndex = 0 Then
                 error_lbl.Text = "Please select the correct Operating Group from the drop down menu in the 'Set Selector' area."
                 Exit Sub
             End If
 
+            'Checking if the check amount is a valid number
+            numericCheck = IsNumeric(checkAmount_tb.Text)
+
+            'If check amount is nto a number, show error
             If numericCheck = False Then
                 error_lbl.Text = "Operation failed. Please enter a number in the check amount box."
                 Exit Sub
             End If
 
-            Dim checkType As String = 0
-            Dim businessName As String = business_tb.Text
-            Dim checkGroup As String = operating_selector_ddl.SelectedValue.ToString
-            Dim checkamount As String = checkAmount_tb.Text
-
+            'If the check amount has a dollar sign, remove the dollar sign
             If checkAmount_tb.Text.Contains("$") Then
                 checkamount = checkamount.Remove(0, 1)
             End If
 
-            'checkamount = checkamount.Remove(0, 1)
-            Dim timestamp As DateTime = DateTime.Now
-            Dim timestampSTR As String = timestamp.ToString("yyyy-MM-dd HH:mm:ss")
-            Dim writtenamount As String = writtenAmount_tb.Text
-            Dim memo As String = Memo_tb.Text
-            Dim visitID As String = visitID_hf.Value
-            Dim cmd As New SqlCommand
-            Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-            Dim con As New SqlConnection
-
-            con.ConnectionString = connection_string
-
-            'Check if selected has already been saved
+            'Insert new check into database
             Try
-                con.Open()
-                cmd = New SqlCommand
-                cmd.Connection = con
-                cmd.CommandText = "SELECT oper_bus_name FROM checksInfo WHERE visit_ID ='" & visitID & "' AND business_ID='" & businessID_hf.Value & "' AND oper_bus_name='" & businessName & "'"
-                dr = cmd.ExecuteReader
-
-                If dr.HasRows = True Then
-                    error_lbl.Text = "A check with that business name has already been saved."
-                    Exit Sub
-                End If
-
-                cmd.Dispose()
-                con.Close()
-            Catch
-                error_lbl.Text = "Error in save_check_btn_click. Business name check has failed."
+                Checks.InsertNewOperatingCheck(BusinessID, checkamount, writtenamount, VisitID, timestampSTR, Memo, businessName, checkGroup)
+            Catch ex As Exception
+                error_lbl.Text = "Error in SaveCheck(). Could not insert new check into database."
                 Exit Sub
             End Try
 
-            con.Open()
-            cmd = New SqlCommand
-            cmd.Connection = con
-            cmd.CommandText = "INSERT INTO checksinfo (business_ID, check_type, check_amount, written_amount, memo, visit_ID, time_written, oper_bus_name, oper_group ) VALUES ('" & businessID_hf.Value & "', '" & checkType & "', '" & checkamount & "', '" & writtenamount & "', '" & memo & "', '" & visitID & "', '" & timestampSTR & "', '" & businessName & "', '" & checkGroup & "')"
-            cmd.ExecuteNonQuery()
-            dr.Close()
-            cmd.Dispose()
-            con.Close()
-
+            'Load data
             LoadData()
+
+            'Get check groups
             CheckGroups()
-            tablemaxRow_hf.Value = existingChecks_dgv.Rows.Count
-            Check_que_lbl.Text = tablemaxRow_hf.Value
 
-
+            'Update number of existing checks
+            Check_que_lbl.Text = existingChecks_dgv.Rows.Count
 
             'Clear out the check after saving
             business_tb.Text = Nothing
@@ -657,67 +619,8 @@ Public Class Operating_Check_Writing_System
             writtenAmount_tb.Text = Nothing
             Memo_tb.Text = Nothing
         End If
-
     End Sub
 
-    Sub CheckGroups()
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim dr As SqlDataReader
-        Dim CheckIds As New List(Of String)
-        checkgroup_ddl.Items.Clear()
-        Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = "SELECT ID FROM checksInfo
-                    WHERE business_id ='" & Request.QueryString("b") & "' AND visit_id='" & visitID_hf.Value & "' and oper_group='" & operating_selector_ddl.SelectedValue.ToString & "' and check_type='0'"
-            cmd.Connection = con
-            dr = cmd.ExecuteReader
-
-            While dr.Read()
-                CheckIds.Add(dr("ID"))
-            End While
-
-            cmd.Dispose()
-            con.Close()
-
-        Catch
-            cmd.Dispose()
-            con.Close()
-        Finally
-            cmd.Dispose()
-            con.Close()
-        End Try
-
-        Dim chunks As List(Of List(Of String)) = SplitIntoChunks(CheckIds, 4)
-        Dim valueString As String = Nothing
-        Dim textString As String = Nothing
-
-        For n As Integer = 0 To chunks.Count - 1
-            valueString = Nothing
-            textString = Nothing
-
-            For Each ID As String In chunks(n)
-                'Build value string
-                valueString += ID & ","
-            Next
-            valueString = valueString.TrimEnd(CChar(","))
-
-            Dim group As New ListItem
-            'error2_lbl.Text = "Checks 1 - " & CType(existingChecks_dgv.DataSource, DataTable).Rows.Count
-            'group.Text = "Checks " & chunks(n).Min & " - " & chunks(n).Max
-            group.Text = "Checks 1 - " & tablemaxRow_hf.Value
-            group.Value = valueString
-            checkgroup_ddl.Items.Add(group)
-
-        Next
-        'Dim blankGroup As New ListItem
-        'blankGroup.Text = ""
-        'blankGroup.Value = ""
-        'checkgroup_ddl.Items.Insert(0, blankGroup)
-
-    End Sub
     Private Function SplitIntoChunks(keys As List(Of String), chunkSize As Integer) As List(Of List(Of String))
         Return keys.
         Select(Function(x, i) New With {Key .Index = i, Key .Value = x}).
@@ -725,6 +628,38 @@ Public Class Operating_Check_Writing_System
         Select(Function(x) x.Select(Function(v) v.Value).ToList()).
         ToList()
     End Function
+
+
+
+    Protected Sub Next_btn_Click(sender As Object, e As EventArgs) Handles Next_btn.Click
+        NextCheck()
+    End Sub
+
+    Protected Sub Previous_btn_Click(sender As Object, e As EventArgs) Handles Previous_btn.Click
+        PreviousCheck()
+    End Sub
+
+    Protected Sub Delete_Current_btn_Click(sender As Object, e As EventArgs) Handles Delete_Current_btn.Click
+        DeleteCheck()
+    End Sub
+
+    Private Sub Print_checks_btn_Click(sender As Object, e As EventArgs) Handles Print_checks_btn.Click
+        ReviewChecks()
+    End Sub
+
+    Protected Sub save_check_btn_Click(sender As Object, e As EventArgs) Handles save_check_btn.Click
+        SaveCheck()
+    End Sub
+
+    Protected Sub help_btn_Click(sender As Object, e As EventArgs) Handles help_btn.Click
+        help_div.Visible = True
+    End Sub
+
+    Protected Sub close_btn_Click(sender As Object, e As EventArgs) Handles close_btn.Click
+        help_div.Visible = False
+    End Sub
+
+
 
     Protected Sub operating_selector_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles operating_selector_ddl.SelectedIndexChanged
 
@@ -752,7 +687,7 @@ Public Class Operating_Check_Writing_System
             Check_que_lbl.Text = tablemaxRow_hf.Value
 
             If existingChecks_dgv.Rows.Count = 4 Then
-                Print_checks_btn_Click(sender, e)
+                ReviewChecks()
                 Exit Sub
             Else
                 save_check_btn.Enabled = True
@@ -764,26 +699,11 @@ Public Class Operating_Check_Writing_System
                 Previous_btn.Enabled = False
                 Next_btn.Enabled = False
                 Delete_Current_btn.Enabled = False
-
-                'If tablerowIndex_hf.Value = 0 Then
-                '    Previous_btn.Enabled = False
-                'End If
-
-                'If tablemaxRow_hf.Value = 1 Then
-                '    Next_btn.Enabled = False
-                '    Previous_btn.Enabled = False
-                'End If
             End If
         End If
     End Sub
 
-    Protected Sub help_btn_Click(sender As Object, e As EventArgs) Handles help_btn.Click
-        help_div.Visible = True
-    End Sub
 
-    Protected Sub close_btn_Click(sender As Object, e As EventArgs) Handles close_btn.Click
-        help_div.Visible = False
-    End Sub
 
     'Protected Sub checkgroup_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles checkgroup_ddl.SelectedIndexChanged
     '    LoadChecks(tablerowIndex_hf.Value)

@@ -12,6 +12,7 @@ Public Class Kit_Inventory
 	Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
 	Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 	Dim VisitID As New Class_VisitData
+	Dim Schools As New Class_SchoolData
 	Dim Visit As Integer = VisitID.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -48,7 +49,7 @@ Public Class Kit_Inventory
 		Dim orderSort As String = "ASC"
 		Dim searchTerm As String = search_tb.Text
 		Dim searchBy As String = "id"
-		Dim sql As String = "SELECT id, kitNumber, schoolName, category, FORMAT(dateIn, 'MM/dd/yyyy') as dateIn, FORMAT(dateOut, 'MM/dd/yyyy') as dateOut, gsiStaff, notes
+		Dim sql As String = "SELECT id, kitNumber, schoolID, category, FORMAT(dateIn, 'MM/dd/yyyy') as dateIn, FORMAT(dateOut, 'MM/dd/yyyy') as dateOut, gsiStaff, notes
 							  FROM kitInventory"
 		Dim load As New Class_SQLCommands
 
@@ -66,7 +67,7 @@ Public Class Kit_Inventory
 			Case 1
 				columnSort = "kitNumber"
 			Case 2
-				columnSort = "schoolName"
+				columnSort = "schoolID"
 			Case 3
 				columnSort = "category"
 			Case 4
@@ -92,7 +93,7 @@ Public Class Kit_Inventory
 			Case 1
 				searchBy = "kitNumber"
 			Case 2
-				searchBy = "schoolName"
+				searchBy = "schoolID"
 			Case 3
 				searchBy = "category"
 			Case 4
@@ -125,7 +126,7 @@ Public Class Kit_Inventory
 
 	Sub DataEntrySubmit()
 		Dim kitNumber As String = kitNumber_tb.Text
-		Dim schoolName As String = schoolName_ddl.SelectedValue
+		Dim schoolID As String = Schools.GetSchoolID(schoolName_ddl.SelectedValue)
 		Dim category As String = category_ddl.SelectedValue
 		Dim dateOut As String = dateOut_tb.Text
 		Dim notes As String = notes_tb.Text
@@ -133,7 +134,7 @@ Public Class Kit_Inventory
 		Dim insert As New Class_SQLCommands
 
 		'Submit data and assign return string to error label to confirm if it passed or failed
-		confirm = insert.InsertIntoKitInventory(kitNumber, schoolName, category, dateOut, notes)
+		confirm = insert.InsertIntoKitInventory(kitNumber, schoolID, category, dateOut, notes)
 
 		If confirm = "Submission successful!" Then
 			Page.ClientScript.RegisterStartupScript(Me.GetType(), "SubmitSucessText", "SubmitSucessText();", True)
@@ -147,7 +148,7 @@ Public Class Kit_Inventory
 		Dim ID As Integer = Convert.ToInt32(kits_dgv.DataKeys(e.RowIndex).Values(0)) 'Gets id number
 
 		Dim kitNumber As String = TryCast(kits_dgv.Rows(e.RowIndex).FindControl("kitNumberDGV_tb"), TextBox).Text
-		Dim schoolName As String = TryCast(kits_dgv.Rows(e.RowIndex).FindControl("schoolNameDGV_ddl"), DropDownList).SelectedValue.ToString
+		Dim schoolID As String = TryCast(kits_dgv.Rows(e.RowIndex).FindControl("schoolNameDGV_ddl"), DropDownList).SelectedValue.ToString
 		Dim category As String = TryCast(kits_dgv.Rows(e.RowIndex).FindControl("categoryDGV_ddl"), DropDownList).SelectedValue.ToString
 		Dim dateIn As String = TryCast(kits_dgv.Rows(e.RowIndex).FindControl("dateInDGV_tb"), TextBox).Text
 		Dim dateOut As String = TryCast(kits_dgv.Rows(e.RowIndex).FindControl("dateOutDGV_tb"), TextBox).Text
@@ -160,10 +161,10 @@ Public Class Kit_Inventory
 			'Updating rows with entered data (UPDATES DATE IN)
 			Try
 				Using con As New SqlConnection(connection_string)
-					Using cmd As New SqlCommand("UPDATE kitInventory SET kitNumber=@kitNumber, schoolName=@schoolName, category=@category, dateIn=@dateIn, dateOut=@dateOut, gsiStaff=@gsiStaff, notes=@notes WHERE ID=@Id")
+					Using cmd As New SqlCommand("UPDATE kitInventory SET kitNumber=@kitNumber, schoolID=@schoolID, category=@category, dateIn=@dateIn, dateOut=@dateOut, gsiStaff=@gsiStaff, notes=@notes WHERE ID=@Id")
 						cmd.Parameters.AddWithValue("@ID", ID)
 						cmd.Parameters.AddWithValue("@kitNumber", kitNumber)
-						cmd.Parameters.AddWithValue("@schoolName", schoolName)
+						cmd.Parameters.AddWithValue("@schoolID", schoolID)
 						cmd.Parameters.AddWithValue("@category", category)
 						cmd.Parameters.AddWithValue("@dateIn", dateIn)
 						cmd.Parameters.AddWithValue("@dateOut", dateOut)
@@ -187,10 +188,10 @@ Public Class Kit_Inventory
 			'Updating rows with entered data (DOES NOT UPDATE DATE IN)
 			Try
 				Using con As New SqlConnection(connection_string)
-					Using cmd As New SqlCommand("UPDATE kitInventory SET kitNumber=@kitNumber, schoolName=@schoolName, category=@category, dateOut=@dateOut, gsiStaff=@gsiStaff, notes=@notes WHERE ID=@Id")
+					Using cmd As New SqlCommand("UPDATE kitInventory SET kitNumber=@kitNumber, schoolID=@schoolID, category=@category, dateOut=@dateOut, gsiStaff=@gsiStaff, notes=@notes WHERE ID=@Id")
 						cmd.Parameters.AddWithValue("@ID", ID)
 						cmd.Parameters.AddWithValue("@kitNumber", kitNumber)
-						cmd.Parameters.AddWithValue("@schoolName", schoolName)
+						cmd.Parameters.AddWithValue("@schoolID", schoolID)
 						cmd.Parameters.AddWithValue("@category", category)
 						cmd.Parameters.AddWithValue("@dateOut", dateOut)
 						cmd.Parameters.AddWithValue("@gsiStaff", gsiStaff)
@@ -254,9 +255,9 @@ Public Class Kit_Inventory
 
 			'School Name Dropdown
 			Dim ddlSchool As DropDownList = CType(e.Row.FindControl("schoolNameDGV_ddl"), DropDownList)
-			ddlSchool.DataSource = GetData("SELECT schoolname FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
+			ddlSchool.DataSource = GetData("SELECT id, schoolname FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
 			ddlSchool.DataTextField = "schoolName"
-			'ddlSchool.DataValueField = "Businessid"
+			ddlSchool.DataValueField = "id"
 			ddlSchool.DataBind()
 			Dim lblSchool As String = CType(e.Row.FindControl("schoolNameDGV_lbl"), Label).Text
 

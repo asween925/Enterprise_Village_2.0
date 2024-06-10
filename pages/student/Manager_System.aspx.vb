@@ -12,9 +12,9 @@ Public Class Manager_System
     Dim con As New SqlConnection
     Dim cmd As New SqlCommand
     Dim dr As SqlDataReader
-    Dim BusinessData As New Class_BusinessData
-    Dim VisitData As New Class_VisitData
-    Dim VisitID As Integer = VisitData.GetVisitID
+    Dim Businesses As New Class_BusinessData
+    Dim Visits As New Class_VisitData
+    Dim VisitID As Integer = Visits.GetVisitID
     Dim logoRoot As String = "~/media/Logos/"
     Dim BusinessID As String
 
@@ -31,8 +31,8 @@ Public Class Manager_System
             UpdateLogoAndTitle()
 
             'Load businesses into ddl
-            BusinessData.LoadBusinessNamesDDL(ditekBusinessDDL_ddl)
-            BusinessData.LoadBusinessNamesDDL(dukeBusiness_ddl)
+            Businesses.LoadBusinessNamesDDL(ditekBusinessDDL_ddl)
+            Businesses.LoadBusinessNamesDDL(dukeBusiness_ddl)
 
             'Remove Duke, UPS, Dali, PCW, and PCSW from DDL
             dukeBusiness_ddl.Items.Remove("Duke Energy")
@@ -48,7 +48,7 @@ Public Class Manager_System
         Dim DitekBusinessID As String
 
         'Get business ID of ditek
-        DitekBusinessID = BusinessData.GetBusinessID(BusinessName)
+        DitekBusinessID = Businesses.GetBusinessID(BusinessName)
 
         'Invisible pricing key
         ditekPricingKey_div.Visible = False
@@ -85,8 +85,8 @@ Public Class Manager_System
             cmd.CommandText = "SELECT i.id, i.itemName, i.usedDaily, i.businessUsed, i.merchCode
                                 FROM EV_Inventory i
                                 INNER JOIN businessInfo b
-                                ON businessUsed = b.businessName
-                                WHERE b.businessName = '" & BusinessName & "'"
+                                ON businessUsed = b.businessID
+                                WHERE b.businessID = '" & BusinessID & "'"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -180,7 +180,7 @@ Public Class Manager_System
     End Sub
 
     Sub UpdateLogoAndTitle()
-        Dim Logos = BusinessData.GetBusinessLogos(BusinessID)
+        Dim Logos = Businesses.GetBusinessLogos(BusinessID)
         Dim ImagePath As String = Logos.ImagePath
         Dim BColor As String = Logos.BColor
 
@@ -274,9 +274,8 @@ Public Class Manager_System
         Dim Yesterday As String = yesterday_tb.Text
         Dim Today As String = today_tb.Text
         Dim EnergyUsed As String = dukeEnergy_tb.Text
-        Dim VisitDate As String = DateTime.Now.ToShortDateString()
-        Dim BusinessName As String = dukeBusiness_ddl.SelectedValue
         Dim SQLStatement As String
+        Dim BusinessID As String = Businesses.GetBusinessID(dukeBusiness_ddl.SelectedValue)
 
         'Check if business is selected
         If dukeBusiness_ddl.SelectedIndex = 0 Then
@@ -289,15 +288,15 @@ Public Class Manager_System
             con.ConnectionString = connection_string
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "SELECT visitID, businessName
+            cmd.CommandText = "SELECT visitID, businessID
                                 FROM dukeManager
-                                WHERE visitID = '" & VisitID & "' AND businessName = '" & BusinessName & "'"
+                                WHERE visitID = '" & VisitID & "' AND businessID = '" & BusinessID & "'"
             dr = cmd.ExecuteReader
 
             If dr.HasRows = True Then
-                SQLStatement = "UPDATE dukeManager SET accountNum = '" & AcctNum & "', meterNum = '" & MeterNum & "', yesterday = '" & Yesterday & "', today = '" & Today & "', energyUsed = '" & EnergyUsed & "' WHERE visitID = '" & VisitID & "' AND businessName = '" & BusinessName & "'"
+                SQLStatement = "UPDATE dukeManager SET accountNum = '" & AcctNum & "', meterNum = '" & MeterNum & "', yesterday = '" & Yesterday & "', today = '" & Today & "', energyUsed = '" & EnergyUsed & "' WHERE visitID = '" & VisitID & "' AND businessID = '" & BusinessID & "'"
             Else
-                SQLStatement = "INSERT INTO dukeManager (visitID, visitDate, businessName, accountNum, meterNum, yesterday, today, energyUsed) VALUES ('" & VisitID & "', '" & VisitDate & "', '" & BusinessName & "', '" & AcctNum & "', '" & MeterNum & "', '" & Yesterday & "', '" & Today & "', '" & EnergyUsed & "')"
+                SQLStatement = "INSERT INTO dukeManager (visitID, businessID, accountNum, meterNum, yesterday, today, energyUsed) VALUES ('" & VisitID & "', '" & BusinessID & "', '" & AcctNum & "', '" & MeterNum & "', '" & Yesterday & "', '" & Today & "', '" & EnergyUsed & "')"
             End If
 
             cmd.Dispose()
@@ -325,6 +324,8 @@ Public Class Manager_System
     End Sub
 
     Sub DukeBusinessChange()
+        Dim BusinessID As String = Businesses.GetBusinessID(dukeBusiness_ddl.SelectedValue)
+
         'Change business header name
         dukeBottomBusiness_lbl.Text = dukeBusiness_ddl.SelectedValue
 
@@ -349,7 +350,7 @@ Public Class Manager_System
             cmd.Connection = con
             cmd.CommandText = "SELECT accountNum, meterNum, yesterday, today, energyUsed
                                 FROM dukeManager
-                                WHERE visitID = '" & VisitID & "' AND businessName = '" & dukeBusiness_ddl.SelectedValue & "'"
+                                WHERE visitID = '" & VisitID & "' AND businessID = '" & BusinessID & "'"
             dr = cmd.ExecuteReader
 
             While dr.Read()

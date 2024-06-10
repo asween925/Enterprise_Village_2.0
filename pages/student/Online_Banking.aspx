@@ -11,14 +11,15 @@
     <title>Online Banking</title>
 
     <link href="~/css/Styles.Utility.css" rel="stylesheet" type="text/css">
+    <link href="../../css/Styles.updated.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 </head>
 
 <body>
-    <form id="Online_Banking_Form" runat="server">
+    <form autocomplete="off"  id="Online_Banking_Form" runat="server">
         <div id="site_wrap2">
             <div class="header1">
-                <img class="EV" alt="Enterprise Village" src="../../../../Images/EV2.0_PCSB.png">
+                <img class="EV" alt="Enterprise Village" src="../../Images/EV2.0_PCSB.png">
             </div>
 
             <div class="header2">
@@ -36,8 +37,10 @@
                 <asp:HyperLink ID="F2URL" runat="server" Text="Operating Checks" CssClass="ditek_print_button Bold"></asp:HyperLink>
                 <asp:HyperLink ID="F3URL" runat="server" Text="Sales History" CssClass="ditek_print_button Bold"></asp:HyperLink>
                 <br />
+
+                <%--Summary--%>
                 <div class="Check_edits">
-                    <h3>Summary</h3>
+                    <h3>Financial Summary</h3>
                     <table style="background-color: rgba(255, 255, 255, 0.0);">
                         <tr>
                             <td style="float: left;">
@@ -72,8 +75,9 @@
                     </table>
                 </div>
 
+                <%--Updates--%>
                 <div class="Check_edits">
-                    <h3>Updates</h3>
+                    <h3>Enter Check Amounts:</h3>
                     <table style="background-color: rgba(255, 255, 255, 0.0);">
                         <tr>
                             <td>
@@ -81,8 +85,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label100" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Loan_Amount_tb" runat="server" Width="50px" Style="text-align: center"></asp:TextBox>
-                                <asp:Button CssClass="button3_banking" ID="Update_loan_amount" runat="server" Text="Update" />
+                                <asp:TextBox ID="Loan_Amount_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center"></asp:TextBox>                            
                             </td>
                         </tr>
                         <tr>
@@ -91,8 +94,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label6" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Deposit1_tb" runat="server" Width="50px" Style="text-align: center"></asp:TextBox>
-                                <asp:Button CssClass="button3_banking" ID="Update_deposit1" runat="server" Text="Update" />
+                                <asp:TextBox ID="Deposit1_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="deposit2_tr" runat="server">
@@ -101,8 +103,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label7" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Deposit2_tb" runat="server" Width="50px" Style="text-align: center"></asp:TextBox>
-                                <asp:Button CssClass="button3_banking" ID="Update_deposit2" runat="server" Text="Update" />
+                                <asp:TextBox ID="Deposit2_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="deposit3_tr" runat="server">
@@ -111,11 +112,12 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label8" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Deposit3_tb" runat="server" Width="50px" Style="text-align: center"></asp:TextBox>
-                                <asp:Button CssClass="button3_banking" ID="Update_deposit3" runat="server" Text="Update" />
+                                <asp:TextBox ID="Deposit3_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
+                    <br />
+                    <asp:Button CssClass="button3_banking" ID="update_btn" runat="server" Text="Submit" />
                 </div>
                 <br />
                 <asp:Label ID="error_lbl" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Red"></asp:Label>

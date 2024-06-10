@@ -102,9 +102,9 @@ Public Class Input_Student_Information
 
             'Populate the business name DDL
             Dim businessDDLSQL As String = "SELECT DISTINCT b.Businessname FROM businessinfo b 
-                                          INNER JOIN onlineBanking o
+                                          INNER JOIN businessVisitInfo o
                                           ON o.businessID = b.id
-                                          WHERE o.openstatus='1' AND o.visitID = '" & visitID_hf.Value & "' AND o.school = '" & schoolID & "'
+                                          WHERE o.openstatus='1' AND o.visitID = '" & visitID_hf.Value & "' AND o.schoolID = '" & schoolID & "'
                                           ORDER BY b.Businessname"
             Try
                 con.ConnectionString = connection_string

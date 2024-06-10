@@ -60,7 +60,7 @@
 </head>
 
 <body onload="PrintFromURL();">
-    <form id="Online_Banking_Form" runat="server">
+    <form autocomplete="off"  id="Online_Banking_Form" runat="server">
         <div style="font-size: x-large;">
             <%--<img src="Images/Bank_of_America.png" alt="Bank of America logo" height="150" />--%>
             <p style="text-align: center; font-weight: bold; text-decoration: underline;">Achieva Credit Union</p>

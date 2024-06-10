@@ -713,6 +713,7 @@
     <Content Include="pages\student\Newspaper_Hub.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Class_CheckData.vb" />
     <Compile Include="App_Data\Class_SchoolSchedule.vb" />
     <Compile Include="pages\forms\Parent_Letter.aspx.designer.vb">
       <DependentUpon>Parent_Letter.aspx</DependentUpon>

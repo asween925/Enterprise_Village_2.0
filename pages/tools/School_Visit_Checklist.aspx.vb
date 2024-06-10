@@ -13,13 +13,16 @@ Public Class School_Visit_Checklist
     Dim con As New SqlConnection
     Dim cmd As New SqlCommand
     Dim dr As SqlDataReader
-    Dim TeacherData As New Class_TeacherData
-    Dim StudentData As New Class_StudentData
-    Dim SchoolData As New Class_SchoolData
-    Dim VisitData As New Class_VisitData
-    Dim VisitID As Integer = VisitData.GetVisitID
+    Dim Teachers As New Class_TeacherData
+    Dim Students As New Class_StudentData
+    Dim Schools As New Class_SchoolData
+    Dim Visits As New Class_VisitData
+    Dim SH As New Class_SchoolHeader
+    Dim VisitID As Integer = Visits.GetVisitID
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'If logged out, redirects to log in page
         If Session("LoggedIn") <> "1" Then
             Response.Redirect("../../default.aspx")
         End If
@@ -32,29 +35,46 @@ Public Class School_Visit_Checklist
             End If
 
             'Populating school header
-            Dim header As New Class_SchoolHeader
-            headerSchoolName_lbl.Text = header.GetSchoolHeader()
+            headerSchoolName_lbl.Text = SH.GetSchoolHeader()
 
         End If
     End Sub
 
     Sub LoadData()
-        Dim username As String = Session("username")                 'Step 1 variables
-        Dim schoolType As String
+        Dim username As String = Session("username")
         Dim visitDate As Date = visitDate_tb.Text
+        Dim VIDofDate As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim schoolName As String = schoolName_ddl.SelectedValue
+        Dim SchoolID As Integer = Schools.GetSchoolID(schoolName)
+        Dim SVC = Schools.GetSVCData(VIDofDate, SchoolID)
+
+        'Step 1 variables
+
+        Dim LastEditedBy1 As String
+        Dim schoolType As String
         Dim ContactTeacher As String
         Dim schoolStudentCount As String
         Dim AdminEmail As String
-        Dim StudentCountTotal As String
         Dim studentCountFormReceived As Date
-        Dim invoiceIssued As Boolean                                 'Step 2 variables
+
+        'Step 2 variables
+
+        Dim LastEditedBy2 As String
+        Dim invoiceIssued As Boolean
         Dim directorsSignature As Boolean
-        Dim contractRecieved As Date                                 'Step 3 variables
+
+        'Step 3 Variables
+
+        Dim LastEditedBy3 As String
+        Dim contractRecieved As Date
         Dim invoiceNum As String
         Dim deliveryMethod As String = delivery_ddl.SelectedValue
         Dim notes As String
-        Dim numOfKits As String = numOfKits_ddl.SelectedValue        'Step 4 variables
+
+        'Step 4 variables
+
+        Dim LastEditedBy4 As String
+        Dim numOfKits As String = numOfKits_ddl.SelectedValue
         Dim kit1 As String
         Dim kit2 As String
         Dim kit3 As String
@@ -66,16 +86,16 @@ Public Class School_Visit_Checklist
         Dim kit9 As String
         Dim kit10 As String
         Dim workbooks As String
-        Dim deliveryAccepted As String                               'Step 5 variables
+
+        'Step 5 variables
+
+        Dim LastEditedBy5 As String
+        Dim deliveryAccepted As String
         Dim position As String
         Dim dateAccepted As Date
-        Dim LastEditedBy1 As String
-        Dim LastEditedBy2 As String
-        Dim LastEditedBy3 As String
-        Dim LastEditedBy4 As String
-        Dim LastEditedBy5 As String
 
         'Make all divs visible
+
         step1_div.Visible = True
         step2_div.Visible = True
         step3_div.Visible = True
@@ -83,6 +103,7 @@ Public Class School_Visit_Checklist
         step5_div.Visible = True
 
         'Clear out data
+
         schoolType_ddl.SelectedIndex = 0
         schoolName_lbl.Text = ""
         visitDate_lbl.Text = ""
@@ -120,7 +141,7 @@ Public Class School_Visit_Checklist
 
         'Get school ID
         Try
-            schoolID = SchoolData.GetSchoolID(schoolName)
+            schoolID = Schools.GetSchoolID(schoolName)
         Catch
             error_lbl.Text = "Error in loaddata(). Cannot retrieve school ID."
             Exit Sub
@@ -128,8 +149,7 @@ Public Class School_Visit_Checklist
 
         'Get admin email (futureRequestsEmail)
         Try
-            AdminEmail = SchoolData.LoadSchoolInfoFromSchool(schoolName, "futureRequestsEmail")
-            adminEmail_lbl.Text = AdminEmail
+            AdminEmail = Schools.LoadSchoolInfoFromSchool(schoolName, "futureRequestsEmail")
         Catch
             error_lbl.Text = "Error in loaddata(). Could not get admin email."
             Exit Sub
@@ -137,7 +157,7 @@ Public Class School_Visit_Checklist
 
         'Get student count of school
         Try
-            StudentCountTotal = VisitData.LoadVisitInfoFromDate(visitDate, "studentCount")
+            'StudentCountTotal = Visits.LoadVisitInfoFromDate(visitDate, "studentCount")
         Catch
             error_lbl.Text = "Error in loaddata(). Cannot retrieve student count."
             Exit Sub
@@ -145,7 +165,7 @@ Public Class School_Visit_Checklist
 
         'Get for contact teacher
         Try
-            ContactTeacher = TeacherData.GetContactTeacher(schoolName)
+            ContactTeacher = Teachers.GetContactTeacher(schoolName)
             If ContactTeacher = Nothing Or ContactTeacher = "" Then
                 ContactTeacher = "N/A"
             End If
@@ -154,207 +174,191 @@ Public Class School_Visit_Checklist
             Exit Sub
         End Try
 
-        'Assign labels
-        visitDate_lbl.Text = visitDate.ToShortDateString
-        schoolName_lbl.Text = schoolName
-        adminEmail_lbl.Text = AdminEmail
-        contactTeacher_lbl.Text = ContactTeacher
-        studentCountTotal_lbl.Text = StudentCountTotal
-
-        'Check if school and visit date have been entered into the SVC
+        'Assign variables 
         Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = "SELECT DISTINCT * FROM schoolVisitChecklist WHERE schoolName='" & schoolName & "' AND visitDate = '" & visitDate & "'"
-            cmd.Connection = con
-            dr = cmd.ExecuteReader
+            'Step 1
 
-            While dr.Read()
-                '-----------STEP 1------------
-                Try
-                    If dr("schoolType").ToString = Nothing Then
-                        schoolType = Nothing
-                        schoolType_ddl.SelectedValue = schoolType
-                        schoolType_ddl.Items(0).Enabled = True      'If nothing has been entered yet for the school type, it means the teacher has not started the SVC for the selected school, meaning they have to manually select what the school type is before submitting.
-                    Else
-                        schoolType = dr("schoolType").ToString
-                        schoolType_ddl.SelectedValue = schoolType
-                        schoolType_ddl.Items(0).Enabled = False     'Disables selecting the first option (which is blank) on the school type DDL. This is so the teacher cannot select a blank value when updating the section
-                    End If
+            LastEditedBy1 = SVC.LasteditedStep1
+            schoolType = SVC.SchoolType
+            schoolStudentCount = SVC.SchoolStudentCount
+            studentCountFormReceived = SVC.StudentCountFormReceived
 
-                    If dr("schoolStudentCount").ToString = Nothing Then
-                        schoolStudentCount = Nothing
-                        schoolStudentCount_tb.Text = studentCountTotal_lbl.Text
-                    Else
-                        schoolStudentCount = dr("schoolStudentCount").ToString
-                        schoolStudentCount_tb.Text = schoolStudentCount
-                    End If
+            'Step 2
 
-                    If dr("studentCountFormReceived").ToString = Nothing Then
-                        studentCountFormReceived = Nothing
-                    Else
-                        studentCountFormReceived = dr("studentCountFormReceived").ToString
-                        studentCountFormReceived_tb.Text = studentCountFormReceived.ToString("yyyy-MM-dd")
-                    End If
-                Catch
-                    error_lbl.Text = "Error in loaddata(). Error in loading data for step 1."
-                    Exit Sub
-                End Try
+            LastEditedBy2 = SVC.LastEditedStep2
+            invoiceIssued = SVC.InvoiceIssued
+            directorsSignature = SVC.DirectorSignature
 
+            'Step 3
 
-                '-----------STEP 2------------
-                Try
-                    If dr("invoiceIssued").ToString = Nothing Then
-                        invoiceIssued = False
-                        invoice_chk.Checked = invoiceIssued
-                    Else
-                        invoiceIssued = dr("invoiceIssued").ToString
-                        invoice_chk.Checked = invoiceIssued
-                    End If
+            LastEditedBy3 = SVC.LastEditedStep3
+            contractRecieved = SVC.ContractReceivedDate
+            invoiceNum = SVC.InvoiceNum
+            deliveryMethod = SVC.DeliveryMethod
+            notes = SVC.Notes
 
-                    If dr("directorSignature").ToString = Nothing Then
-                        directorsSignature = False
-                        director_chk.Checked = directorsSignature
-                    Else
-                        directorsSignature = dr("directorSignature").ToString
-                        director_chk.Checked = directorsSignature
-                    End If
-                Catch
-                    error_lbl.Text = "Error in loaddata(). Error in loading data for step 2."
-                    Exit Sub
-                End Try
+            'Step 4
 
+            LastEditedBy4 = SVC.LastEditedStep4
+            numOfKits = SVC.NumOfKits
+            kit1 = SVC.Kit1
+            kit2 = SVC.Kit2
+            kit3 = SVC.Kit3
+            kit4 = SVC.Kit4
+            kit5 = SVC.Kit5
+            kit6 = SVC.Kit6
+            kit7 = SVC.Kit7
+            kit8 = SVC.Kit8
+            kit9 = SVC.Kit9
+            kit10 = SVC.Kit10
+            workbooks = SVC.Workbooks
 
-                '-----------STEP 3------------
-                Try
-                    If dr("contractReceivedDate").ToString = Nothing Then
-                        contractRecieved_tb.Text = Nothing
-                    Else
-                        contractRecieved = dr("contractReceivedDate").ToString
-                        contractRecieved_tb.Text = contractRecieved.ToString("yyyy-MM-dd")
-                    End If
+            'Step 5
 
-                    If dr("invoiceNum").ToString = Nothing Then
-                        invoiceNum_tb.Text = Nothing
-                    Else
-                        invoiceNum = dr("invoiceNum").ToString
-                        invoiceNum_tb.Text = invoiceNum
-                    End If
+            LastEditedBy5 = SVC.LastEditedStep5
+            deliveryAccepted = SVC.DeliveryAccepted
+            position = SVC.Position
+            dateAccepted = SVC.DateAccepted
 
-                    If dr("deliveryMethod").ToString = Nothing Then
-                        delivery_ddl.SelectedIndex = 0
-                    Else
-                        deliveryMethod = dr("deliveryMethod").ToString
-                        delivery_ddl.SelectedValue = deliveryMethod
-                    End If
+        Catch
+            error_lbl.Text = "Error in LoadData(). Cannot get SVC data to variables."
+            Exit Sub
+        End Try
 
-                    If dr("notes").ToString = Nothing Then
-                        notes_tb.Text = Nothing
-                    Else
-                        notes = dr("notes").ToString
-                        notes_tb.Text = notes
-                    End If
-                Catch
-                    error_lbl.Text = "Error in loaddata(). Error in loading data for step 3."
-                    Exit Sub
-                End Try
+        'Assign labels, textboxes, DDL values, etc
 
+        '-----------STEP 1------------
 
-                '-----------STEP 4------------
-                Try
-                    If dr("numberOfKits").ToString = Nothing Then
-                        numOfKits_ddl.SelectedIndex = 0
-                    Else
-                        numOfKits = dr("numberOfKits").ToString
-                        numOfKits_ddl.SelectedValue = numOfKits
-                        KitTextboxes()
-                        numOfKits_ddl.SelectedIndex = numOfKits_ddl.Items.IndexOf(numOfKits_ddl.Items.FindByValue(numOfKits))
-                    End If
+        lastEdited1_lbl.Text = LastEditedBy1
+        schoolName_lbl.Text = schoolName
+        visitDate_lbl.Text = visitDate
+        contactTeacher_lbl.Text = ContactTeacher
+        adminEmail_lbl.Text = AdminEmail
+        studentCountFormReceived_tb.Text = studentCountFormReceived.ToString("yyyy-MM-dd")
 
-                    If dr("kit1").ToString = Nothing Then
-                        kit1_tb.Text = Nothing
-                    Else
-                        kit1 = dr("kit1").ToString
-                        kit1_tb.Text = kit1
-                    End If
+        If schoolType = Nothing Then
+            schoolType_ddl.SelectedIndex = 0
+            schoolType_ddl.Items(0).Enabled = True      'If nothing has been entered yet for the school type, it means the teacher has not started the SVC for the selected school, meaning they have to manually select what the school type is before submitting.
+        Else
+            schoolType_ddl.SelectedValue = schoolType
+            schoolType_ddl.Items(0).Enabled = False     'Disables selecting the first option (which is blank) on the school type DDL. This is so the teacher cannot select a blank value when updating the section
+        End If
 
-                    If dr("kit2").ToString = Nothing Then
-                        kit2_tb.Text = Nothing
-                    Else
-                        kit2 = dr("kit2").ToString
-                        kit2_tb.Text = kit2
-                    End If
+        If schoolStudentCount = Nothing Then
+            schoolStudentCount_tb.Text = studentCountTotal_lbl.Text
+        Else
+            schoolStudentCount_tb.Text = schoolStudentCount
+        End If
 
-                    If dr("kit3").ToString = Nothing Then
-                        kit3_tb.Text = Nothing
-                    Else
-                        kit3 = dr("kit3").ToString
-                        kit3_tb.Text = kit3
-                    End If
+        '-----------STEP 2------------
 
-                    If dr("kit4").ToString = Nothing Then
-                        kit4_tb.Text = Nothing
-                    Else
-                        kit4 = dr("kit4").ToString
-                        kit4_tb.Text = kit4
-                    End If
+        lastEdited2_lbl.Text = LastEditedBy2
+        invoice_chk.Checked = invoiceIssued
+        director_chk.Checked = directorsSignature
 
-                    If dr("kit5").ToString = Nothing Then
-                        kit5_tb.Text = Nothing
-                    Else
-                        kit5 = dr("kit5").ToString
-                        kit5_tb.Text = kit5
-                    End If
+        '-----------STEP 3------------
 
-                    If dr("kit6").ToString = Nothing Then
-                        kit6_tb.Text = Nothing
-                    Else
-                        kit6 = dr("kit6").ToString
-                        kit6_tb.Text = kit6
-                    End If
+        lastEdited3_lbl.Text = LastEditedBy3
+        contractRecieved_tb.Text = contractRecieved.ToString("yyyy-MM-dd")
+        invoiceNum_tb.Text = invoiceNum
+        notes_tb.Text = notes
 
-                    If dr("kit7").ToString = Nothing Then
-                        kit7_tb.Text = Nothing
-                    Else
-                        kit7 = dr("kit7").ToString
-                        kit7_tb.Text = kit7
-                    End If
+        If deliveryMethod = Nothing Then
+            delivery_ddl.SelectedIndex = 0
+        Else
+            delivery_ddl.SelectedValue = deliveryMethod
+        End If
 
-                    If dr("kit8").ToString = Nothing Then
-                        kit8_tb.Text = Nothing
-                    Else
-                        kit8 = dr("kit8").ToString
-                        kit8_tb.Text = kit8
-                    End If
+        '-----------STEP 4------------
+        If dr("numberOfKits").ToString = Nothing Then
+            numOfKits_ddl.SelectedIndex = 0
+        Else
+            numOfKits = dr("numberOfKits").ToString
+            numOfKits_ddl.SelectedValue = numOfKits
+            KitTextboxes()
+            numOfKits_ddl.SelectedIndex = numOfKits_ddl.Items.IndexOf(numOfKits_ddl.Items.FindByValue(numOfKits))
+        End If
 
-                    If dr("kit9").ToString = Nothing Then
-                        kit9_tb.Text = Nothing
-                    Else
-                        kit9 = dr("kit9").ToString
-                        kit9_tb.Text = kit9
-                    End If
+        If dr("kit1").ToString = Nothing Then
+            kit1_tb.Text = Nothing
+        Else
+            kit1 = dr("kit1").ToString
+            kit1_tb.Text = kit1
+        End If
 
-                    If dr("kit10").ToString = Nothing Then
-                        kit10_tb.Text = Nothing
-                    Else
-                        kit10 = dr("kit10").ToString
-                        kit10_tb.Text = kit10
-                    End If
+        If dr("kit2").ToString = Nothing Then
+            kit2_tb.Text = Nothing
+        Else
+            kit2 = dr("kit2").ToString
+            kit2_tb.Text = kit2
+        End If
 
-                    If dr("workbooks").ToString = Nothing Then
-                        workbooks_lbl.Text = studentCountTotal_lbl.Text
-                    Else
-                        workbooks = dr("workbooks").ToString
-                        workbooks_lbl.Text = workbooks
-                    End If
-                Catch ex As Exception
-                    error_lbl.Text = "Error in loaddata(). Error in loading data for step 4."
-                    Exit Sub
-                End Try
+        If dr("kit3").ToString = Nothing Then
+            kit3_tb.Text = Nothing
+        Else
+            kit3 = dr("kit3").ToString
+            kit3_tb.Text = kit3
+        End If
+
+        If dr("kit4").ToString = Nothing Then
+            kit4_tb.Text = Nothing
+        Else
+            kit4 = dr("kit4").ToString
+            kit4_tb.Text = kit4
+        End If
+
+        If dr("kit5").ToString = Nothing Then
+            kit5_tb.Text = Nothing
+        Else
+            kit5 = dr("kit5").ToString
+            kit5_tb.Text = kit5
+        End If
+
+        If dr("kit6").ToString = Nothing Then
+            kit6_tb.Text = Nothing
+        Else
+            kit6 = dr("kit6").ToString
+            kit6_tb.Text = kit6
+        End If
+
+        If dr("kit7").ToString = Nothing Then
+            kit7_tb.Text = Nothing
+        Else
+            kit7 = dr("kit7").ToString
+            kit7_tb.Text = kit7
+        End If
+
+        If dr("kit8").ToString = Nothing Then
+            kit8_tb.Text = Nothing
+        Else
+            kit8 = dr("kit8").ToString
+            kit8_tb.Text = kit8
+        End If
+
+        If dr("kit9").ToString = Nothing Then
+            kit9_tb.Text = Nothing
+        Else
+            kit9 = dr("kit9").ToString
+            kit9_tb.Text = kit9
+        End If
+
+        If dr("kit10").ToString = Nothing Then
+            kit10_tb.Text = Nothing
+        Else
+            kit10 = dr("kit10").ToString
+            kit10_tb.Text = kit10
+        End If
+
+        If dr("workbooks").ToString = Nothing Then
+            workbooks_lbl.Text = studentCountTotal_lbl.Text
+        Else
+            workbooks = dr("workbooks").ToString
+            workbooks_lbl.Text = workbooks
+        End If
 
 
-                '-----------STEP 5------------
-                Try
+        '-----------STEP 5------------
+        Try
                     If dr("deliveryAccepted").ToString = Nothing Then
                         deliveryAccepted_tb.Text = Nothing
                     Else
@@ -381,54 +385,44 @@ Public Class School_Visit_Checklist
                 End Try
 
 
-                '-----------LAST EDITED BY ------------
-                Try
-                    If dr("lastEditedStep1").ToString = Nothing Then
-                        lastEdited1_lbl.Text = Nothing
-                    Else
-                        LastEditedBy1 = dr("lastEditedStep1").ToString
-                        lastEdited1_lbl.Text = LastEditedBy1.ToString
-                    End If
+        '-----------LAST EDITED BY ------------
+        Try
+            If dr("lastEditedStep1").ToString = Nothing Then
+                lastEdited1_lbl.Text = Nothing
+            Else
+                LastEditedBy1 = dr("lastEditedStep1").ToString
+                lastEdited1_lbl.Text = LastEditedBy1.ToString
+            End If
 
-                    If dr("lastEditedStep2").ToString = Nothing Then
-                        lastEdited2_lbl.Text = Nothing
-                    Else
-                        LastEditedBy2 = dr("lastEditedStep2").ToString
-                        lastEdited2_lbl.Text = LastEditedBy2.ToString
-                    End If
+            If dr("lastEditedStep2").ToString = Nothing Then
+                lastEdited2_lbl.Text = Nothing
+            Else
+                LastEditedBy2 = dr("lastEditedStep2").ToString
+                lastEdited2_lbl.Text = LastEditedBy2.ToString
+            End If
 
-                    If dr("lastEditedStep3").ToString = Nothing Then
-                        lastEdited3_lbl.Text = Nothing
-                    Else
-                        LastEditedBy3 = dr("lastEditedStep3").ToString
-                        lastEdited3_lbl.Text = LastEditedBy3.ToString
-                    End If
+            If dr("lastEditedStep3").ToString = Nothing Then
+                lastEdited3_lbl.Text = Nothing
+            Else
+                LastEditedBy3 = dr("lastEditedStep3").ToString
+                lastEdited3_lbl.Text = LastEditedBy3.ToString
+            End If
 
-                    If dr("lastEditedStep4").ToString = Nothing Then
-                        lastEdited4_lbl.Text = Nothing
-                    Else
-                        LastEditedBy4 = dr("lastEditedStep4").ToString
-                        lastEdited4_lbl.Text = LastEditedBy4.ToString
-                    End If
+            If dr("lastEditedStep4").ToString = Nothing Then
+                lastEdited4_lbl.Text = Nothing
+            Else
+                LastEditedBy4 = dr("lastEditedStep4").ToString
+                lastEdited4_lbl.Text = LastEditedBy4.ToString
+            End If
 
-                    If dr("lastEditedStep5").ToString = Nothing Then
-                        lastEdited5_lbl.Text = Nothing
-                    Else
-                        LastEditedBy5 = dr("lastEditedStep5").ToString
-                        lastEdited5_lbl.Text = LastEditedBy5.ToString
-                    End If
-                Catch
-                    error_lbl.Text = "Error in loaddata(). Error in loading data for last edited by."
-                    Exit Sub
-                End Try
-
-            End While
-
-            cmd.Dispose()
-            con.Close()
-
-        Catch ex As Exception
-            error_lbl.Text = "Error in LoadData(). Could not load data."
+            If dr("lastEditedStep5").ToString = Nothing Then
+                lastEdited5_lbl.Text = Nothing
+            Else
+                LastEditedBy5 = dr("lastEditedStep5").ToString
+                lastEdited5_lbl.Text = LastEditedBy5.ToString
+            End If
+        Catch
+            error_lbl.Text = "Error in loaddata(). Error in loading data for last edited by."
             Exit Sub
         End Try
 
@@ -654,8 +648,15 @@ Public Class School_Visit_Checklist
             I4.Visible = True
         End If
 
-        cmd.Dispose()
-        con.Close()
+        'Assign labels
+
+        visitDate_lbl.Text = visitDate.ToShortDateString
+        schoolName_lbl.Text = schoolName
+        adminEmail_lbl.Text = AdminEmail
+        contactTeacher_lbl.Text = ContactTeacher
+        'studentCountTotal_lbl.Text = StudentCountTotal
+
+
 
     End Sub
 
@@ -770,7 +771,7 @@ Public Class School_Visit_Checklist
 
             'Populate school name DDL
             Try
-                SchoolData.LoadVisitingSchoolsDDL(VisitDate, schoolName_ddl)
+                Schools.LoadVisitingSchoolsDDL(VisitDate, schoolName_ddl)
             Catch
                 error_lbl.Text = "Error in VisitDateTextboxLoad(). Could not populate schoolName DDL."
                 Exit Sub
@@ -782,7 +783,7 @@ Public Class School_Visit_Checklist
 
     Sub Step1()
         Dim visitDate As String = visitDate_lbl.Text
-        Dim visitID As Integer = VisitData.GetVisitIDFromDate(visitDate)
+        Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim schoolID As String = schoolID_hf.Value
         Dim schoolName As String = schoolName_ddl.SelectedValue
         Dim schoolType As String
@@ -838,7 +839,7 @@ Public Class School_Visit_Checklist
 
     Sub Step2()
         Dim visitDate As String = visitDate_tb.Text
-        Dim visitID As Integer = VisitData.GetVisitIDFromDate(visitDate)
+        Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -890,7 +891,7 @@ Public Class School_Visit_Checklist
 
     Sub Step3()
         Dim visitDate As String = visitDate_tb.Text
-        Dim visitID As Integer = VisitData.GetVisitIDFromDate(visitDate)
+        Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -949,7 +950,7 @@ Public Class School_Visit_Checklist
 
     Sub Step4()
         Dim visitDate As String = visitDate_tb.Text
-        Dim visitID As Integer = VisitData.GetVisitIDFromDate(visitDate)
+        Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -1094,7 +1095,7 @@ Public Class School_Visit_Checklist
 
     Sub Step5()
         Dim visitDate As String = visitDate_tb.Text
-        Dim visitID As Integer = VisitData.GetVisitIDFromDate(visitDate)
+        Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand

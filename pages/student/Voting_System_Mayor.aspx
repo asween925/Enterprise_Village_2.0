@@ -15,7 +15,7 @@
 </head>
 
 <body class="Voting_System_Body">
-    <form id="Voting_System_Mayor" runat="server">
+    <form autocomplete="off"  id="Voting_System_Mayor" runat="server">
         <div id="Site_Wrap_Fullscreen">
 
             <h3 style="text-decoration: none; font-style: italic;" class="Voting_System_H3_Print">Enterprise Village Voting System</h3>

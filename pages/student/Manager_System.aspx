@@ -9,7 +9,7 @@
 
     <title>Manager System</title>
 
-    <link href="~/~/css/Styles.StudentPages.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="~/css/Styles.StudentPages.css" rel="stylesheet" type="text/css" media="screen">
     <link href="~/css/Styles.print.css" rel="stylesheet" type="text/css" media="print">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 
@@ -36,7 +36,7 @@
 
 </head>
 <body onafterprint="javascript:ResetPage();">
-    <form id="form1" runat="server">
+    <form autocomplete="off"  id="form1" runat="server">
         <div id="Site_Wrap_Header" style="overflow: hidden;">
 
             <%--Header--%>

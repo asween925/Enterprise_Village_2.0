@@ -653,6 +653,7 @@ Public Class Volunteer_Database
 
 	Sub Textboxes()
 		Dim count As Integer = 1
+		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(visitDate_tb.Text)
 
 		'Clear text boxes
 		bucs_tb.Text = ""
@@ -713,10 +714,10 @@ Public Class Volunteer_Database
 					con.ConnectionString = connection_string
 					con.Open()
 					cmd.CommandText = "SELECT o.businessID, o.openstatus, s.schoolName
-								FROM onlineBanking o
+								FROM businessVisitInfo o
 								INNER JOIN schoolInfo s
-								ON s.id = o.school
-								WHERE o.visitDate='" & visitDate_tb.Text & "' AND o.businessID='" & count & "' 
+								ON s.id = o.schoolID
+								WHERE o.visitID='" & VIDOfDate & "' AND o.businessID='" & count & "' 
 								AND o.openstatus=1
 								ORDER BY o.businessID"
 					cmd.Connection = con

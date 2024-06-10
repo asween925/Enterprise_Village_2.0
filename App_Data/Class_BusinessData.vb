@@ -35,34 +35,34 @@ Public Class Class_BusinessData
 		Return returnBusinessID
 	End Function
 
-	Function LoadBusinessNamesDDL(businessNameDDL As DropDownList)
-		Dim errorString As String
-		'Dim businessNameDDL As DropDownList
+	Function LoadBusinessNamesDDL(businessNameDDL As DropDownList, Optional Open As Boolean = False, Optional VisitID As Integer = 0)
+		Dim SQLStatement As String = "SELECT b.businessName FROM businessInfo b"
+		Dim SQLOpenClause As String = " JOIN businessVisitInfo o ON b.id = o.businessID WHERE o.openstatus=1 AND o.visitID='" & VisitID & "' AND NOT b.id=28 AND NOT b.id=29 ORDER BY b.businessName"
 
 		'Clear out teacher and school DDLs
 		businessNameDDL.Items.Clear()
 
+		'If Open is true, add a where clause to only load business names if they are open on the passed through visit ID
+		If Open = True Then
+			SQLStatement = SQLStatement & SQLOpenClause
+		Else
+			SQLStatement = SQLStatement & " WHERE NOT b.id=28 AND NOT b.id=29 ORDER BY b.businessName"
+		End If
+
 		'Populate school DDL from entered visit date
-		Try
-			con.ConnectionString = connection_string
-			con.Open()
-			cmd.CommandText = "SELECT businessName FROM businessInfo WHERE NOT id=28 AND NOT id=29 ORDER BY businessName"
-			cmd.Connection = con
-			dr = cmd.ExecuteReader
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		dr = cmd.ExecuteReader
 
-			While dr.Read()
-				businessNameDDL.Items.Add(dr(0).ToString)
-			End While
-			businessNameDDL.Items.Insert(0, "")
+		While dr.Read()
+			businessNameDDL.Items.Add(dr(0).ToString)
+		End While
+		businessNameDDL.Items.Insert(0, "")
 
-			cmd.Dispose()
-			con.Close()
-
-		Catch
-			errorString = "Error in visitDate. Could not get school names."
-			Return errorString
-			Exit Function
-		End Try
+		cmd.Dispose()
+		con.Close()
 
 		Return businessNameDDL.Items
 	End Function
@@ -140,7 +140,7 @@ Public Class Class_BusinessData
 	End Function
 
 	'Gets a string of the closed businesses in EV
-	Function GetClosedBusinesses(VisitDate As String)
+	Function GetClosedBusinesses(VisitID As Integer)
 		Dim ClosedBusinesses As String
 
 		con.ConnectionString = connection_string
@@ -148,9 +148,9 @@ Public Class Class_BusinessData
 		cmd.CommandText = "Declare @val varchar(MAX)
                                SELECT @val = COALESCE(@val + ', ' + b.businessName, b.businessName)
 	                                FROM businessInfo b
-                                INNER JOIN onlineBanking o
+                                INNER JOIN businessVisitInfo o
                                 ON b.id = o.businessID
-                                WHERE o.openstatus=0 AND o.visitDate='" & VisitDate & "'
+                                WHERE o.openstatus=0 AND o.visitID='" & VisitID & "'
                                 ORDER BY b.businessName
 	                                SELECT @val as names"
 		cmd.Connection = con
@@ -164,6 +164,105 @@ Public Class Class_BusinessData
 		con.Close()
 
 		Return ClosedBusinesses
+	End Function
+
+	'Returns a table filled with profit and deposit information from a passed through visit id
+	Function GetBusinessProfitsTable(VisitID As Integer, Table As GridView)
+		Dim da As New SqlDataAdapter
+		Dim dt As New DataTable
+		Dim SQLStatement As String = "SELECT b.id, b.businessName, 
+								CASE WHEN profit IS NULL THEN '0.00' ELSE profit END AS profits, 
+								CASE WHEN loanamount IS NULL THEN '0.00' ELSE loanamount END AS loan, 
+								CASE WHEN deposit4 IS NULL THEN '0.00' ELSE deposit4 END AS deposit4,
+								b.startingBalance
+                                  FROM businessVisitInfo o
+                                  INNER JOIN businessInfo b
+                                  ON o.businessID = b.id
+                                  WHERE o.visitID = '" & VisitID & "'
+                                  ORDER BY b.businessName"
+
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		da.SelectCommand = cmd
+		da.Fill(dt)
+
+		Table.DataSource = dt
+		Table.DataBind()
+
+		Return Table
+
+	End Function
+
+	'Returns deposit, profits, and loan amount information from businessVisitInfo
+	Function GetBusinessFinancials(VisitID As Integer, BusinessID As Integer) As (Deposit1 As String, Deposit2 As String, Deposit3 As String, Deposit4 As String, Profit As String, LoanAmount As String, StartingBalance As String)
+		Dim SQLStatement As String = "SELECT o.loanAmount, o.deposit1, o.deposit2, o.deposit3, o.deposit4, o.profit, b.startingBalance FROM businessVisitInfo o JOIN businessInfo b ON b.id = o.businessID WHERE o.visitID='" & VisitID & "' AND o.businessID='" & BusinessID & "'"
+		Dim D1 As String
+		Dim D2 As String
+		Dim D3 As String
+		Dim D4 As String
+		Dim L As String
+		Dim P As String
+		Dim S As String
+
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		dr = cmd.ExecuteReader()
+
+		While dr.Read()
+			D1 = dr("deposit1").ToString()
+			D2 = dr("deposit2").ToString()
+			D3 = dr("deposit3").ToString()
+			D4 = dr("deposit4").ToString()
+			L = dr("loanAmount").ToString()
+			P = dr("profit").ToString()
+			S = dr("startingBalance").ToString()
+		End While
+
+		cmd.Dispose()
+		con.Close()
+
+		Return (D1, D2, D3, D4, P, L, S)
+	End Function
+
+	'Update online banking entries
+	Sub UpdateOnlineBanking(VisitID As Integer, BusinessID As Integer, Deposit1 As String, Deposit2 As String, Deposit3 As String, Deposit4 As String, LoanAmount As String, Profit As String)
+		Dim SQLStatement As String = "UPDATE businessVisitInfo SET loanAmount='" & LoanAmount & "', deposit1='" & Deposit1 & "', deposit2='" & Deposit2 & "', deposit3='" & Deposit3 & "', deposit4='" & Deposit4 & "', profit='" & Profit & "' WHERE visitID ='" & VisitID & "' AND businessID='" & BusinessID & "'"
+
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		cmd.ExecuteNonQuery()
+		con.Close()
+	End Sub
+
+	Function LoadOpenClosedStatus(VisitID As Integer, Table As GridView)
+		Dim da As New SqlDataAdapter
+		Dim dt As New DataTable
+		Dim SQLStatement As String = " SELECT DISTINCT o.businessID, o.openstatus, s.id as 'schoolID', o.schoolID, b.businessName, o.minVolCount, o.maxVolCount
+								  FROM businessVisitInfo o
+								  INNER JOIN businessInfo b
+								  ON o.businessID = b.ID
+								  INNER JOIN schoolInfo s ON s.id = o.school
+								  WHERE o.visitID='" & VisitID & "'
+								  ORDER BY b.businessname"
+
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		da.SelectCommand = cmd
+		da.Fill(dt)
+
+		Table.DataSource = dt
+		Table.DataBind()
+
+		Return Table
+
 	End Function
 
 End Class

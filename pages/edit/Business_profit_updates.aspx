@@ -12,66 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 
-    <style type="text/css">
-        .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-            margin: 0px auto;
-        }
-
-            .tg td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 14px;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-            }
-
-            .tg th {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 14px;
-                font-weight: normal;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-            }
-
-            .tg .tg-2bn0 {
-                font-size: 26px;
-                text-align: center;
-                vertical-align: top
-            }
-
-            .tg .tg-hqh2 {
-                font-size: 20px;
-                text-align: left;
-                text-decoration: underline;
-                vertical-align: top
-            }
-
-            .tg .tg-0lax {
-                text-align: left;
-                vertical-align: top
-            }
-
-        .deposit4table {
-            position: absolute;
-            top: -844px;
-            left: 640px;
-        }
-    </style>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 </head>
 
 <body>
-    <form id="EMS_Form" runat="server">
+    <form autocomplete="off"  id="EMS_Form" runat="server">
 
         <%--Header information--%>
         <header class="headerTop"><a style="float: left; padding-top: 2px;">Enterprise Village 2.0</a><a style="float: right; padding-right: 30px; padding-top: 2px;"><asp:Label ID="headerSchoolName_lbl" Text="School Name Here" runat="server"></asp:Label></a></header>
@@ -113,78 +59,10 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="loan" HeaderText="Loan Amount" ReadOnly="true" Visible="true" />
-                    <asp:BoundField DataField="startingAmount" HeaderText="Starting Amount" ReadOnly="true" Visible="true" />
+                    <asp:BoundField DataField="startingBalance" HeaderText="Starting Amount" ReadOnly="true" Visible="true" />
                 </Columns>
             </asp:GridView>
             <br />
-            <div style="position: relative;">
-                <table class="tg deposit4table">
-                    <thead>
-                        <tr>
-                            <th class="tg-2bn0" colspan="2"><span style="font-weight: bold; text-decoration: underline">Misc. Deposits (Starting Amount) Amounts</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="tg-hqh2">Dollar Amount</td>
-                            <td class="tg-hqh2">Business Name</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">60</td>
-                            <td class="tg-0lax">Koozie</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">40</td>
-                            <td class="tg-0lax">Buc's</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">60</td>
-                            <td class="tg-0lax">CVS</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">60</td>
-                            <td class="tg-0lax">Ditek</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">75</td>
-                            <td class="tg-0lax">HSN</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">100</td>
-                            <td class="tg-0lax">Mix</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">60</td>
-                            <td class="tg-0lax">KnowBe4</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">60</td>
-                            <td class="tg-0lax">Ray's</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">100</td>
-                            <td class="tg-0lax">Times</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">50</td>
-                            <td class="tg-0lax">TD SYNNEX</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">40</td>
-                            <td class="tg-0lax">Astro</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">100</td>
-                            <td class="tg-0lax">McDonalds</td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0lax">100</td>
-                            <td class="tg-0lax">BBB</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
         </div>
 
         <asp:HiddenField ID="visitdate_hf" runat="server" />

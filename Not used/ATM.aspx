@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <form id="Profit_display_Form" runat="server">
+    <form autocomplete="off"  id="Profit_display_Form" runat="server">
     <div id="site_wrap">
 
         

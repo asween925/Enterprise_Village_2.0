@@ -14,7 +14,7 @@
 </head>
 
 <body onload="delayfunction4()" class="main_boa">
-    <form id="Profit_display_Form" runat="server">
+    <form autocomplete="off"  id="Profit_display_Form" runat="server">
         
         <div>
             <asp:GridView ID="profit_dgv" runat="server" AutoGenerateColumns="False" CellPadding="5" CellSpacing="1" PageSize="100" Font-Size="Medium" Visible="false">

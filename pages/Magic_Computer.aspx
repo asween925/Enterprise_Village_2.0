@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form id="Account_Summary_Form" runat="server" defaultbutton="Enter_btn">
+    <form autocomplete="off"  id="Account_Summary_Form" runat="server" defaultbutton="Enter_btn">
 
         <%--Header information--%>
         <header class="headerTop no-print"><a style="float: left; padding-top: 2px;">Enterprise Village 2.0</a><a style="float: right; padding-right: 30px; padding-top: 2px;"><asp:Label ID="headerSchoolName_lbl" Text="School Name Here" runat="server"></asp:Label></a></header>

@@ -62,7 +62,7 @@
 </head>
 
 <body onload="PrintFromURL();">
-    <form id="Online_Banking_Form" runat="server">
+    <form autocomplete="off"  id="Online_Banking_Form" runat="server">
         <div style="font-size: x-large;">
 
             <%--<asp:Image ID="Image1" runat="server" Height="100px" ImageUrl="~/media/Logos/BOA/Bank_of_America.png" Width="123px" />--%>

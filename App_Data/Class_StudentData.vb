@@ -68,7 +68,7 @@ Public Class Class_StudentData
     End Function
 
 
-    '
+    'gets the student count of businesses
     Function GetStudentCountOfBusiness(VisitDate As String, BusinessName As String)
         Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
@@ -96,8 +96,8 @@ Public Class Class_StudentData
 
 
     'Gets the manually entered student count (from step 1, the teachers only section) from the school visit checklist
-    Function GetSVCStudentCount(VisitDate As String, SchoolName As String)
-        Dim studentCountSQL As String = "SELECT schoolStudentCount FROM schoolVisitChecklist WHERE visitDate='" & VisitDate & "' AND schoolName = '" & SchoolName & "'"
+    Function GetSVCStudentCount(VisitID As String, SchoolID As String)
+        Dim studentCountSQL As String = "SELECT schoolStudentCount FROM schoolVisitChecklist WHERE visitID='" & VisitID & "' AND schoolID = '" & SchoolID & "'"
 
         con.ConnectionString = connection_string
         con.Open()
@@ -318,4 +318,82 @@ Public Class Class_StudentData
 
         Return StudentName
     End Function
+
+
+    'Loads student names in DDL with with account number and first and last name
+    Function LoadStudentWithIDValueDDL(Students As DropDownList, BusinessID As Integer, VisitID As Integer)
+        Dim SQL As String
+        Dim ds As New DataSet
+        Dim da As New SqlDataAdapter
+
+        'Check if business is city hall, if so, Adding UPS, Dali, PCU (water) to city hall FO students
+        If BusinessID = 14 Then
+            SQL = "SELECT CONCAT(firstname,' ',lastname) as StudentName, id FROM studentinfo WHERE business IN ('14', '15', '23', '20') AND visit='" & VisitID & "' AND NOT firstName=' '"
+        Else
+            SQL = "SELECT CONCAT(firstname,' ',lastname) as StudentName, id FROM studentinfo WHERE business='" & BusinessID & "' AND visit='" & VisitID & "' AND NOT firstName=' '"
+        End If
+
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.CommandText = SQL
+        cmd.Connection = con
+
+        da.SelectCommand = cmd
+        da.Fill(ds)
+
+        Students.DataSource = ds
+        Students.DataTextField = "StudentName"
+        Students.DataValueField = "id"
+        Students.DataBind()
+        Students.Items.Insert(0, "")
+
+        cmd.Dispose()
+        con.Close()
+
+        Return Students
+    End Function
+
+
+    'Updates studentInfo with new schoolID (used in edit visit)
+    Sub UpdateSchoolID(VisitID As String, SchoolID As String)
+        Using con As New SqlConnection(connection_string)
+            Using cmd As New SqlCommand("UPDATE studentInfo SET visit=@ID, school=@school WHERE visit=@ID")
+                cmd.Parameters.AddWithValue("@ID", VisitID)
+                cmd.Parameters.AddWithValue("@school", SchoolID)
+                cmd.Connection = con
+                con.Open()
+                cmd.ExecuteNonQuery()
+                con.Close()
+            End Using
+        End Using
+    End Sub
+
+
+    'Returns the studentinfo table with all students visiting for a selected visit date
+    Function LoadEMSTable(VisitID As Integer, Table As GridView, Optional BusinessID As Integer = 0)
+        Dim da As New SqlDataAdapter
+        Dim dt As New DataTable
+        Dim SQLStatement As String = "Select s.id, s.firstName, s.lastName, s.employeenumber, b.id as BusinessID,j.id as JobID, s.school as 'schoolID'
+                                    from studentInfo s
+                                    inner join businessInfo b 
+	                                    on b.id=s.business
+                                    inner join jobs j
+	                                    on j.id=s.job
+                                    inner join visitInfo v
+	                                    on v.id=s.visit
+                                    where v.id='" & VisitID & "' and b.ID='" & BusinessID & "'"
+
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.CommandText = SQLStatement
+        cmd.Connection = con
+        da.SelectCommand = cmd
+        da.Fill(dt)
+
+        Table.DataSource = dt
+        Table.DataBind()
+
+        Return Table
+    End Function
+
 End Class

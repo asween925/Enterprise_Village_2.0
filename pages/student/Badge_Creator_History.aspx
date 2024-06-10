@@ -45,7 +45,7 @@
 </head>
 
 <body>
-    <form id="Profit_display_Form" runat="server">
+    <form autocomplete="off"  id="Profit_display_Form" runat="server">
         <div id="site_wrap">
             <div class="main_mix">
                 <asp:Label ID="Label19" runat="server" Text="Badge History" Font-Size="70px" CssClass="no-print"></asp:Label>

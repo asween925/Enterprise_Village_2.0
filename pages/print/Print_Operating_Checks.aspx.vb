@@ -74,16 +74,16 @@ Public Class Print_Operating_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, c.oper_bus_name, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID, c.operBizName, c.checkAmount, c.writtenAmount, c.memo 
   FROM checksinfo c 
-  WHERE c.ID='" & check1 & "' AND c.check_type ='0' AND visit_id='" & visitdate_hf.Value & "'"
+  WHERE c.ID='" & check1 & "' AND visitID='" & visitdate_hf.Value & "'"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
-                    checkName1_tb.Text = dr("oper_bus_name")
-                    checkAmount1_lbl.Text = dr("check_amount")
-                    writtenAmount1_tb.Text = dr("written_amount")
+                    checkName1_tb.Text = dr("operBizName")
+                    checkAmount1_lbl.Text = dr("checkAmount")
+                    writtenAmount1_tb.Text = dr("writtenAmount")
                     Memo1_tb.Text = dr("Memo")
                 End While
 
@@ -103,16 +103,16 @@ Public Class Print_Operating_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, c.oper_bus_name, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID, c.operBizName, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
-        WHERE c.ID='" & check2 & "' AND c.check_type ='0' AND visit_id='" & visitdate_hf.Value & "'"
+        WHERE c.ID='" & check2 & "' AND visitID='" & visitdate_hf.Value & "'"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
-                    checkName2_tb.Text = dr("oper_bus_name")
-                    checkAmount2_lbl.Text = dr("check_amount")
-                    writtenAmount2_tb.Text = dr("written_amount")
+                    checkName2_tb.Text = dr("operBizName")
+                    checkAmount2_lbl.Text = dr("checkAmount")
+                    writtenAmount2_tb.Text = dr("writtenAmount")
                     Memo2_tb.Text = dr("Memo")
                 End While
 
@@ -132,16 +132,16 @@ Public Class Print_Operating_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, c.oper_bus_name, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID, c.operBizName, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
-        WHERE c.ID='" & check3 & "' AND c.check_type ='0' AND visit_id='" & visitdate_hf.Value & "'"
+        WHERE c.ID='" & check3 & "' AND visitID='" & visitdate_hf.Value & "'"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
-                    checkName3_tb.Text = dr("oper_bus_name")
-                    checkAmount3_lbl.Text = dr("check_amount")
-                    writtenAmount3_tb.Text = dr("written_amount")
+                    checkName3_tb.Text = dr("operBizName")
+                    checkAmount3_lbl.Text = dr("checkAmount")
+                    writtenAmount3_tb.Text = dr("writtenAmount")
                     Memo3_tb.Text = dr("Memo")
                 End While
 
@@ -161,16 +161,16 @@ Public Class Print_Operating_Checks
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT c.business_ID, c.check_type, c.oper_bus_name, c.check_amount, c.written_amount, c.memo 
+                cmd.CommandText = "SELECT c.businessID, c.operBizName, c.checkAmount, c.writtenAmount, c.memo 
         FROM checksinfo c 
-        WHERE c.ID='" & check4 & "' AND c.check_type ='0' AND visit_id='" & visitdate_hf.Value & "'"
+        WHERE c.ID='" & check4 & "' AND visitID='" & visitdate_hf.Value & "'"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
-                    checkName4_tb.Text = dr("oper_bus_name")
-                    checkAmount4_lbl.Text = dr("check_amount")
-                    writtenAmount4_tb.Text = dr("written_amount")
+                    checkName4_tb.Text = dr("operBizName")
+                    checkAmount4_lbl.Text = dr("checkAmount")
+                    writtenAmount4_tb.Text = dr("writtenAmount")
                     Memo4_tb.Text = dr("Memo")
                 End While
 

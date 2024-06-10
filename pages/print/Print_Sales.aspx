@@ -50,7 +50,7 @@
 </head>
 
 <body onload="PrintFromURL();">
-    <form id="Online_Banking_Form" runat="server">
+    <form autocomplete="off"  id="Online_Banking_Form" runat="server">
         <div style="font-size: x-large;">
             <p style="text-align:center; font-weight: bold; text-decoration: underline;">McDonald's</p>
             <p>Name: <asp:Label ID="name_lbl" runat="server"></asp:Label></p>

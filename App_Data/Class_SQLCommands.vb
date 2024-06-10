@@ -10,18 +10,18 @@ Public Class Class_SQLCommands
 	Dim cmd As New SqlCommand
 	Dim dr As SqlDataReader
 
-	Function InsertIntoKitInventory(kitNumber As String, schoolName As String, category As String, dateOut As String, notes As String)
+	Function InsertIntoKitInventory(kitNumber As String, schoolID As String, category As String, dateOut As String, notes As String)
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 		Dim errorReturn As String
 		Dim successReturn As String = "Submission successful!"
 		Dim sqlStatement As String = "INSERT INTO kitInventory (
 													 kitNumber
-													,schoolName
+													,schoolID
 													,category
 													,dateOut
 													,notes)
 												VALUES(@kitNumber
-													,@schoolName
+													,@schoolID
 													,@category
 													,@dateOut
 													,@notes);"
@@ -31,7 +31,7 @@ Public Class Class_SQLCommands
 			Return errorReturn
 		End If
 
-		If schoolName = Nothing Or schoolName = "" Then
+		If schoolID = Nothing Or schoolID = "" Then
 			errorReturn = "Please select a school before submitting."
 			Return errorReturn
 		End If
@@ -56,7 +56,7 @@ Public Class Class_SQLCommands
 			Using con As New SqlConnection(connection_string)
 				Using cmd As New SqlCommand(sqlStatement)
 					cmd.Parameters.Add("@kitNumber", SqlDbType.VarChar).Value = kitNumber
-					cmd.Parameters.Add("@schoolName", SqlDbType.VarChar).Value = schoolName
+					cmd.Parameters.Add("@schoolID", SqlDbType.Int).Value = schoolID
 					cmd.Parameters.Add("@category", SqlDbType.VarChar).Value = category
 					'cmd.Parameters.Add("@teacherFirstName", SqlDbType.VarChar).Value = teacherFirstName
 					'cmd.Parameters.Add("@teacherLastName", SqlDbType.VarChar).Value = teacherLastName
@@ -83,11 +83,35 @@ Public Class Class_SQLCommands
 		Dim con As New SqlConnection
 		Dim cmd As New SqlCommand
 		Dim errorReturn As String = ""
-		Dim sqlStatement As String = "SELECT id, kitNumber, schoolName, category, FORMAT(dateIn, 'MM/dd/yyyy') as dateIn, FORMAT(dateOut, 'MM/dd/yyyy') as dateOut, gsiStaff, notes 
+		Dim sqlStatement As String = "SELECT id, kitNumber, schoolID, category, FORMAT(dateIn, 'MM/dd/yyyy') as dateIn, FORMAT(dateOut, 'MM/dd/yyyy') as dateOut, gsiStaff, notes 
 										FROM kitInventory"
-		Dim sqlSearchStatement As String = " WHERE " & searchBy & " LIKE '%" & searchTerm & "%'"
-		Dim sqlSortStatement As String = " ORDER BY " & columnSort & " " & orderSort & ""
+		Dim sqlSearchStatement As String
+		Dim sqlSortStatement As String
 
+		'If searching by school name, get the school ID from the search term, then change the search term to the ID
+		If searchBy = "schoolID" Then
+
+			'Get school id
+			con.ConnectionString = connection_string
+			con.Open()
+			cmd.CommandText = "SELECT id FROM schoolInfo WHERE schoolName LIKE '%" & searchTerm & "%'"
+			cmd.Connection = con
+			dr = cmd.ExecuteReader()
+
+			While dr.Read()
+				searchTerm = dr("id").ToString()
+			End While
+
+			cmd.Dispose()
+			con.Close()
+
+		End If
+
+		'Add search statement
+		sqlSearchStatement = " WHERE " & searchBy & " LIKE '%" & searchTerm & "%'"
+		sqlSortStatement = " ORDER BY " & columnSort & " " & orderSort & ""
+
+		'Add search statement and sort statement to sqlstatement
 		If searchTerm = "" And searchBy = "id" Then
 			sqlStatement = sqlStatement & sqlSortStatement
 		Else
@@ -114,13 +138,13 @@ Public Class Class_SQLCommands
 
 	End Function
 
-	Function LoadSchoolNotes(schoolName As String, Optional columnSort As String = "id", Optional orderSort As String = "DESC")
+	Function LoadSchoolNotes(schoolID As String, Optional columnSort As String = "id", Optional orderSort As String = "DESC")
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 		Dim con As New SqlConnection
 		Dim cmd As New SqlCommand
 		Dim errorReturn As String = ""
-		Dim sqlStatement As String = "SELECT id, schoolName, note, noteUser, noteTimestamp
-										FROM schoolNotes WHERE schoolName = '" & schoolName & "'"
+		Dim sqlStatement As String = "SELECT id, schoolID, note, noteUser, noteTimestamp
+										FROM schoolNotes WHERE schoolID = '" & schoolID & "'"
 		Dim sqlSortStatement As String = " ORDER BY " & columnSort & " " & orderSort & ""
 
 		sqlStatement &= sqlSortStatement

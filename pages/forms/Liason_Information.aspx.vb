@@ -12,8 +12,8 @@ Public Class Liason_Information
 	Dim cmd As New SqlCommand
 	Dim dr As SqlDataReader
 	Dim DBConnection As New DatabaseConection
-	Dim VisitData As New Class_VisitData
-	Dim VisitID As Integer = VisitData.GetVisitID
+	Dim Visits As New Class_VisitData
+	Dim VisitID As Integer = Visits.GetVisitID
 	Dim SchoolData As New Class_SchoolData
 	Dim SchoolScheduleData As New Class_SchoolSchedule
 
@@ -38,6 +38,7 @@ Public Class Liason_Information
 
 	Sub LoadData()
 		Dim VisitDate As Date = visitDate_tb.Text
+		Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(VisitDate)
 		Dim VTrainingTime As Date
 		Dim ReplyBy As Date
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
@@ -51,12 +52,12 @@ Public Class Liason_Information
 		print_btn.Visible = True
 
 		'Get volunteer count, training time, and reply by
-		VMin = SchoolData.GetVolunteerRange(VisitDate, SchoolID).VMin
-		VMax = SchoolData.GetVolunteerRange(VisitDate, SchoolID).VMax
+		VMin = SchoolData.GetVolunteerRange(VIDOfDate, SchoolID).VMin
+		VMax = SchoolData.GetVolunteerRange(VIDOfDate, SchoolID).VMax
 		'VMin = VisitData.LoadVisitInfoFromDate(VisitDate, "vMinCount")
 		'VMax = VisitData.LoadVisitInfoFromDate(VisitDate, "vMaxCount")
-		VTrainingTime = VisitData.LoadVisitInfoFromDate(VisitDate, "vTrainingTime")
-		ReplyBy = VisitData.LoadVisitInfoFromDate(VisitDate, "replyBy")
+		VTrainingTime = Visits.LoadVisitInfoFromDate(VisitDate, "vTrainingTime")
+		ReplyBy = Visits.LoadVisitInfoFromDate(VisitDate, "replyBy")
 		DismissalTime = SchoolScheduleData.GetDismissalTime(VTrainingTime)
 
 		'Get liaison information

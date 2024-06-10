@@ -48,6 +48,7 @@ Public Class School_Notes
 		Dim con As New SqlConnection
 		Dim cmd As New SqlCommand
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
+		Dim SchoolID As Integer = SchoolData.GetSchoolID(SchoolName)
 		Dim note As String = note_tb.Text
 		Dim Username As String = Session("username")
 
@@ -62,7 +63,7 @@ Public Class School_Notes
 			con.ConnectionString = connection_string
 			con.Open()
 			cmd.Connection = con
-			cmd.CommandText = "INSERT INTO schoolNotes (schoolName, note, noteUser, noteTimestamp) VALUES ('" & SchoolName & "', '" & note & "', '" & Username & "', '" & Date.Now() & "')"
+			cmd.CommandText = "INSERT INTO schoolNotes (schoolID, note, noteUser, noteTimestamp) VALUES ('" & SchoolID & "', '" & note & "', '" & Username & "', '" & Date.Now() & "')"
 			cmd.ExecuteNonQuery()
 			cmd.Dispose()
 			con.Close()
@@ -77,6 +78,7 @@ Public Class School_Notes
 
 	Sub LoadData()
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
+		Dim SchoolID As Integer = SchoolData.GetSchoolID(SchoolName)
 		Dim columnSort As String = "id"
 		Dim orderSort As String = "DESC"
 		Dim Address As String = SchoolData.LoadSchoolInfoFromSchool(SchoolName, "address")
@@ -109,7 +111,7 @@ Public Class School_Notes
 
 		'Load school notes table
 		Try
-			notes_dgv.DataSource = SQLCommand.LoadSchoolNotes(SchoolName, "noteTimestamp", "DESC")
+			notes_dgv.DataSource = SQLCommand.LoadSchoolNotes(SchoolID, "noteTimestamp", "DESC")
 			notes_dgv.DataBind()
 		Catch
 			error_lbl.Text = "Error in LoadData(). Could not load school notes."
@@ -141,16 +143,16 @@ Public Class School_Notes
         Dim row As GridViewRow = notes_dgv.Rows(0)                           'Code is used to enable the editing prodecure
         Dim ID As Integer = Convert.ToInt32(notes_dgv.DataKeys(e.RowIndex).Values(0)) 'Gets id number
 
-		Dim SchoolName As String = TryCast(notes_dgv.Rows(e.RowIndex).FindControl("schoolNameDGV_ddl"), DropDownList).SelectedValue.ToString
+		Dim SchoolID As String = TryCast(notes_dgv.Rows(e.RowIndex).FindControl("schoolNameDGV_ddl"), DropDownList).SelectedValue.ToString
 		Dim Note As String = TryCast(notes_dgv.Rows(e.RowIndex).FindControl("noteDGV_tb"), TextBox).Text
 		Dim NoteUser As String = TryCast(notes_dgv.Rows(e.RowIndex).FindControl("noteUserDGV_lbl"), Label).Text
 		Dim NoteTimestamp As String = TryCast(notes_dgv.Rows(e.RowIndex).FindControl("noteTimestampDGV_lbl"), Label).Text
 
 		Try
             Using con As New SqlConnection(connection_string)
-				Using cmd As New SqlCommand("UPDATE schoolNotes SET schoolName=@schoolName, note=@note, noteUser=@noteUser, noteTimestamp=@noteTimestamp WHERE ID=@Id")
+				Using cmd As New SqlCommand("UPDATE schoolNotes SET schoolID=@schoolID, note=@note, noteUser=@noteUser, noteTimestamp=@noteTimestamp WHERE ID=@Id")
 					cmd.Parameters.AddWithValue("@ID", ID)
-					cmd.Parameters.AddWithValue("@schoolName", SchoolName)
+					cmd.Parameters.AddWithValue("@schoolID", SchoolID)
 					cmd.Parameters.AddWithValue("@note", Note)
 					cmd.Parameters.AddWithValue("@noteUser", NoteUser)
 					cmd.Parameters.AddWithValue("@noteTimestamp", NoteTimestamp)
@@ -216,10 +218,10 @@ Public Class School_Notes
 
             'School name DGV Dropdown
             Dim ddlSchoolName As DropDownList = CType(e.Row.FindControl("schoolNameDGV_ddl"), DropDownList)
-            ddlSchoolName.DataSource = GetData("SELECT schoolname FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
-            ddlSchoolName.DataTextField = "schoolName"
-            'ddlSchool.DataValueField = "Businessid"
-            ddlSchoolName.DataBind()
+			ddlSchoolName.DataSource = GetData("SELECT id, schoolname FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
+			ddlSchoolName.DataTextField = "schoolName"
+			ddlSchoolName.DataValueField = "id"
+			ddlSchoolName.DataBind()
             Dim lblSchoolName As String = CType(e.Row.FindControl("schoolNameDGV_lbl"), Label).Text
 
             ddlSchoolName.Items.FindByValue(lblSchoolName).Selected = True

@@ -12,32 +12,28 @@ Public Class Database
 	Dim cmd As New SqlCommand
 	Dim dr As SqlDataReader
 	Dim SchoolScheduleData As New Class_SchoolSchedule
-	Dim SchoolData As New Class_SchoolData
-	Dim VisitID As New Class_VisitData
-	Dim Visit As Integer = VisitID.GetVisitID
+	Dim Schools As New Class_SchoolData
+	Dim Visits As New Class_VisitData
+	Dim SH As New Class_SchoolHeader
+	Dim VisitID As Integer = Visits.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
 		If Session("LoggedIn") <> "1" Then
 			Response.Redirect("../../default.aspx")
 		End If
 
 		If Not (IsPostBack) Then
 
-			'Check if visit date exitsts for today
-			If Visit <> 0 Then
-				visitdate_hf.Value = Visit
-			End If
-
 			'Populating school header
-			Dim header As New Class_SchoolHeader
-			headerSchoolName_lbl.Text = header.GetSchoolHeader()
+			headerSchoolName_lbl.Text = SH.GetSchoolHeader()
 
 			'Populate schools 1-5 DDL
-			SchoolData.LoadSchoolsDDL(schools_ddl)
-			SchoolData.LoadSchoolsDDL(schools2_ddl)
-			SchoolData.LoadSchoolsDDL(schools3_ddl)
-			SchoolData.LoadSchoolsDDL(schools4_ddl)
-			SchoolData.LoadSchoolsDDL(schools5_ddl)
+			Schools.LoadSchoolsDDL(schools_ddl)
+			Schools.LoadSchoolsDDL(schools2_ddl)
+			Schools.LoadSchoolsDDL(schools3_ddl)
+			Schools.LoadSchoolsDDL(schools4_ddl)
+			Schools.LoadSchoolsDDL(schools5_ddl)
 
 			'Populate visit time DDL
 			SchoolScheduleData.LoadVisitTimeDDL(visitTime_ddl)
@@ -86,150 +82,37 @@ Public Class Database
 
 		'Check if visit date has already been created
 		Try
-			con.ConnectionString = connection_string
-			con.Open()
-			cmd.CommandText = "SELECT visitDate FROM visitInfo WHERE visitDate = '" & VisitDate & "'"
-			cmd.Connection = con
-			dr = cmd.ExecuteReader
-
-			While dr.Read()
-				If dr.HasRows = True Then
-					error_lbl.Text = "A visit date has already been created for that day, please go to the 'Edit Visit' page to edit the visit for your inputted date."
-					con.Close()
-					cmd.Dispose()
-					Exit Sub
-				End If
-			End While
-
-			con.Close()
-			cmd.Dispose()
+			If Visits.GetVisitIDFromDate(VisitDate) <> 0 Then
+				error_lbl.Text = "A visit date has already been created for that day, please go to the 'Edit Visit' page to edit the visit for your inputted date."
+				Exit Sub
+			End If
 		Catch
 			error_lbl.Text = "Error in Submit(). Could not check if visit date has been created."
 			Exit Sub
 		End Try
 
-		'Inserting new visit date into DB
-		'Try
-		Using con As New SqlConnection(connection_string)
-				Using cmd As New SqlCommand("INSERT INTO visitInfo(
-											school, vTrainingTime, replyBy, visitDate, studentCount, school2, school3, school4, visitTime, school5, teacherCompleted, deposit2Enable, deposit3Enable)
-										SELECT (SELECT ID FROM schoolInfo WHERE schoolname = @schoolname), 
-											@vTrainingTime, @replyBy, @visitdate, @studentcount, (SELECT ID FROM schoolInfo WHERE schoolname = @schoolname2), (SELECT ID FROM schoolInfo WHERE schoolname = @schoolname3), (SELECT ID FROM schoolInfo WHERE schoolname = @schoolname4), @visittime, (SELECT ID FROM schoolInfo WHERE schoolname = @schoolname5), teacherCompleted=0, deposit2Enable=0, deposit3Enable=0
+		'Insert visit data into visitInfo, studentInfo, businessVisitInfo
+		Try
+			Visits.CreateVisit(VisitDate, ReplyBy, School1, School2, School3, School4, School5, VisitTime, VTrainingStart, StudentCount)
+		Catch ex As Exception
+			error_lbl.Text = "Error in Submit(). Could not create visit."
+			Exit Sub
+		End Try
 
-										INSERT INTO onlineBanking(
-											 visitID
-											,visitDate
-											,businessID
-											,openstatus
-											,startingAmount
-											,loanAmount
-											,deposit1
-											,deposit2
-											,deposit3
-											,deposit4
-											,profit
-											,sales
-											,school
-											,businessVMinCount
-											,businessVMaxCount
-										)
-										SELECT 
-											 (SELECT ID FROM visitInfo WHERE visitDate = @visitdate)
-											,@visitdate
-											,businessID
-											,1
-											,startingAmount
-											,loanAmount
-											,deposit1
-											,deposit2
-											,deposit3
-											,deposit4
-											,profit
-											,sales
-											,(SELECT ID FROM schoolInfo WHERE schoolName = @schoolname)
-											,0
-											,0
-										FROM onlineBanking_template t
+		'Move current visit date to previous visit date
+		Try
+			Visits.MoveVisitDate(School1, School2, School3, School4, School5, VisitDate)
+		Catch ex As Exception
+			error_lbl.Text = "Error in Submit(). Could not move visit date."
+			Exit Sub
+		End Try
 
-										INSERT INTO studentInfo (
-											 employeeNumber
-											,firstName
-											,lastName
-											,school
-											,business
-											,job
-											,visit
-											,netDeposit1
-											,netDeposit2
-										)
-										SELECT 
-											 employeeNumber
-											,firstName
-											,lastName
-											,(SELECT ID FROM schoolInfo WHERE schoolName = @schoolname)
-											,business
-											,job
-											,(SELECT ID FROM visitInfo WHERE visitDate = @visitdate)
-											,netDeposit1
-											,netDeposit2
-										FROM studentInfo_template t ")
-
-					'Date that is inputed in the textbox
-					cmd.Parameters.Add("@visitdate", SqlDbType.Date).Value = VisitDate
-					cmd.Parameters.Add("@replyBy", SqlDbType.VarChar).Value = ReplyBy
-					cmd.Parameters.Add("@schoolname", SqlDbType.VarChar).Value = School1
-					cmd.Parameters.Add("@schoolname2", SqlDbType.VarChar).Value = School2
-					cmd.Parameters.Add("@schoolname3", SqlDbType.VarChar).Value = School3
-					cmd.Parameters.Add("@schoolname4", SqlDbType.VarChar).Value = School4
-					cmd.Parameters.Add("@schoolname5", SqlDbType.VarChar).Value = School5
-					cmd.Parameters.Add("@visittime", SqlDbType.Time).Value = VisitTime
-					cmd.Parameters.Add("@vTrainingTime", SqlDbType.Time).Value = VTrainingStart
-					cmd.Parameters.Add("@studentcount", SqlDbType.Int).Value = StudentCount
-					'cmd.Parameters.Add("@invoice", SqlDbType.Int).Value = invoiceNum_tb.Text
-					cmd.Connection = con
-					con.Open()
-					cmd.ExecuteNonQuery()
-					con.Close()
-				End Using
-
-				'Move current visit date to previous visit date
-				Using cmd As New SqlCommand("UPDATE schoolInfo SET previousVisitDate=currentVisitDate WHERE schoolName=@schoolName OR schoolName=@schoolName2 OR schoolName=@schoolName3 OR schoolName=@schoolName4 OR schoolName=@schoolName5")
-					cmd.Parameters.Add("@schoolname", SqlDbType.VarChar).Value = School1
-					cmd.Parameters.Add("@schoolname2", SqlDbType.VarChar).Value = School2
-					cmd.Parameters.Add("@schoolname3", SqlDbType.VarChar).Value = School3
-					cmd.Parameters.Add("@schoolname4", SqlDbType.VarChar).Value = School4
-					cmd.Parameters.Add("@schoolname5", SqlDbType.VarChar).Value = School5
-					cmd.Connection = con
-					con.Open()
-					cmd.ExecuteNonQuery()
-					con.Close()
-				End Using
-
-				'Update schoolinfo current visit dates
-				Using cmd As New SqlCommand("UPDATE schoolInfo SET currentVisitDate=@currentVisitDate WHERE schoolName=@schoolName OR schoolName=@schoolName2 OR schoolName=@schoolName3 OR schoolName=@schoolName4 OR schoolName=@schoolName5")
-					cmd.Parameters.Add("@schoolname", SqlDbType.VarChar).Value = School1
-					cmd.Parameters.Add("@schoolname2", SqlDbType.VarChar).Value = School2
-					cmd.Parameters.Add("@schoolname3", SqlDbType.VarChar).Value = School3
-					cmd.Parameters.Add("@schoolname4", SqlDbType.VarChar).Value = School4
-					cmd.Parameters.Add("@schoolname5", SqlDbType.VarChar).Value = School5
-					cmd.Parameters.Add("@currentVisitDate", SqlDbType.Date).Value = VisitDate
-					cmd.Connection = con
-					con.Open()
-					cmd.ExecuteNonQuery()
-					con.Close()
-
-					'Refresh page
-					Dim meta As New HtmlMeta()
-					meta.HttpEquiv = "Refresh"
-					meta.Content = "4;url=database.aspx"
-					Me.Page.Controls.Add(meta)
-					error_lbl.Text = "Submission Successful!"
-				End Using
-			End Using
-		'Catch
-		'	error_lbl.Text = "Error in Submit(). Could not execute SQL query."  'Code 1: Could be a visit date has already been made, or error in SQL cmd
-		'	Exit Sub
-		'End Try
+		'Refresh page after 4 seconds
+		Dim meta As New HtmlMeta()
+		meta.HttpEquiv = "Refresh"
+		meta.Content = "4;url=database.aspx"
+		Me.Page.Controls.Add(meta)
+		error_lbl.Text = "Submission Successful!"
 
 	End Sub
 

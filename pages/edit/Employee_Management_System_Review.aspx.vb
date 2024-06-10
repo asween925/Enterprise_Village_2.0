@@ -10,63 +10,36 @@ Public Class Employee_Management_System_Review
     Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-    Dim VisitID As New Class_VisitData
-    Dim Visit As Integer = VisitID.GetVisitID
-    Dim BusinessData As New Class_BusinessData
-    Dim SchoolData As New Class_SchoolData
+    Dim Visits As New Class_VisitData
+    Dim Businesses As New Class_BusinessData
+    Dim Schools As New Class_SchoolData
+    Dim Students As New Class_StudentData
+    Dim SH As New Class_SchoolHeader
+    Dim VisitID As Integer = Visits.GetVisitID
 
     Private Sub Employee_Management_System_Review_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        'Redirects to log in page if not logged in
         If Session("LoggedIn") <> "1" Then
             Response.Redirect("../../default.aspx")
         End If
 
         If Not (IsPostBack) Then
-            Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
-            Dim dr As SqlDataReader
-            Dim sql As String = "SELECT TOP 20 FORMAT(visitDate,'MM/dd/yyyy') as visitDate FROM visitinfo ORDER BY visitDate DESC"
-            Dim sql2 As String = "SELECT b.businessName
-                                    FROM businessinfo b
-                                    INNER JOIN onlineBanking o
-                                    ON b.id = o.businessID
-                                    WHERE o.openstatus=1 AND o.visitDate='" & date_tb.Text & "'
-                                    ORDER BY b.businessName"
-
-            If Visit <> 0 Then
-                visitdate_hf.Value = Visit
-            End If
 
             'Populating school header
-            Dim header As New Class_SchoolHeader
-            headerSchoolName_lbl.Text = header.GetSchoolHeader()
+            headerSchoolName_lbl.Text = SH.GetSchoolHeader()
 
         End If
     End Sub
 
     Sub LoadData()
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim dr As SqlDataReader
         Dim visitDate As String = date_tb.Text
-        Dim businessID As String = business_ddl.SelectedItem.ToString
-        Dim sql As String = "Select s.id, s.firstName, s.lastName, s.employeenumber, b.id as BusinessID,j.id as JobID, s.school as 'schoolID'
-                                from studentInfo s
-                                inner join businessInfo b 
-	                                on b.id=s.business
-                                inner join jobs j
-	                                on j.id=s.job
-                                inner join visitInfo v
-	                                on v.id=s.visit
-                                        where v.visitDate ='" & visitDate & "' and b.businessName='" & businessID & "'"
+        Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(date_tb.Text)
+        Dim businessID As Integer = Businesses.GetBusinessID(business_ddl.SelectedItem.ToString())
 
         'Load table
         Try
-            Review_sds.ConnectionString = connection_string
-            Review_sds.SelectCommand = sql
-            Review_dgv.DataSource = Review_sds
-            Review_dgv.DataBind()
+            Students.LoadEMSTable(VIDOfDate, Review_dgv, businessID)
         Catch
             error_lbl.Text = "Error in loaddata(). Cannot load data."
             Exit Sub
@@ -74,14 +47,14 @@ Public Class Employee_Management_System_Review
 
         'Get closed businesses
         Try
-            closedBiz_lbl.Text = BusinessData.GetClosedBusinesses(visitDate)
+            closedBiz_lbl.Text = Businesses.GetClosedBusinesses(VIDOfDate)
         Catch
             error_lbl.Text = "Error in loaddata(). Could not get closed businesses."
             Exit Sub
         End Try
 
         'Populate change schools DDL
-        SchoolData.LoadVisitDateSchoolsDDL(visitDate, changeSchool_ddl)
+        Schools.LoadVisitDateSchoolsDDL(visitDate, changeSchool_ddl)
 
         'Highlight row being edited
         For Each row As GridViewRow In Review_dgv.Rows
@@ -92,25 +65,11 @@ Public Class Employee_Management_System_Review
             End If
         Next
 
-        con.Dispose()
-        con.Close()
-        cmd.Dispose()
-
     End Sub
 
     Sub LoadBusinessDDL()
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim dr As SqlDataReader
         Dim visitDate As Date = date_tb.Text
-        Dim sql As String = "SELECT s.SchoolName FROM Schoolinfo s INNER JOIN visitInfo v on s.ID = v.School WHERE v.visitDate='" & visitDate & "'"
-        Dim sql2 As String = "SELECT b.businessName
-                                FROM businessinfo b
-                                INNER JOIN onlineBanking o
-                                ON b.id = o.businessID
-                                WHERE o.openstatus=1 AND o.visitDate='" & date_tb.Text & "'
-                                ORDER BY b.businessName"
+        Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(visitDate)
 
         'Make business div visible
         selectBiz_div.Visible = True
@@ -119,37 +78,23 @@ Public Class Employee_Management_System_Review
         'Clear out business DDL
         business_ddl.Items.Clear()
 
+        'Load business names into ddl (if they are open for selected visit date)
         Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = sql2
-            cmd.Connection = con
-            dr = cmd.ExecuteReader
-
-            While dr.Read()
-                business_ddl.Items.Add(dr(0).ToString)
-            End While
-            business_ddl.Items.Insert(0, "")
-            cmd.Dispose()
-            con.Close()
-
+            Businesses.LoadBusinessNamesDDL(business_ddl, True, VIDOfDate)
         Catch
             error_lbl.Text = "Error in date_ddl. Cannot obtain business names."
             Exit Sub
-        Finally
-            cmd.Dispose()
-            con.Close()
-
         End Try
+
     End Sub
 
     Sub ChangeSchool()
         Dim businessName As String = business_ddl.SelectedValue
         Dim visitDate As String = date_tb.Text
         Dim schoolName As String = changeSchool_ddl.SelectedValue
-        Dim schoolID As String = SchoolData.GetSchoolID(schoolName)
-        Dim businessID As String = BusinessData.GetBusinessID(businessName)
-        Dim selectedVisitID As String = VisitID.GetVisitIDFromDate(visitDate)
+        Dim schoolID As String = Schools.GetSchoolID(schoolName)
+        Dim businessID As String = Businesses.GetBusinessID(businessName)
+        Dim selectedVisitID As String = Visits.GetVisitIDFromDate(visitDate)
 
         Using con As New SqlConnection(connection_string)
             Using cmd As New SqlCommand("UPDATE studentInfo SET school='" & schoolID & "' WHERE business='" & businessID & "' AND visit='" & selectedVisitID & "'")
@@ -163,6 +108,115 @@ Public Class Employee_Management_System_Review
         LoadData()
 
     End Sub
+
+    Private Function GetData(query As String) As DataSet
+        Dim cmd As New SqlCommand(query)
+        Using con As New SqlConnection(connection_string)
+            Using sda As New SqlDataAdapter()
+                cmd.Connection = con
+                sda.SelectCommand = cmd
+                Using ds As New DataSet()
+                    sda.Fill(ds)
+                    Return ds
+                End Using
+            End Using
+        End Using
+    End Function
+
+    Protected Sub BusinessSelectedIndexChanged(sender As Object, e As EventArgs)
+
+        Dim ddlBusiness As DropDownList = CType(sender, DropDownList)
+
+        Dim row As GridViewRow = ddlBusiness.NamingContainer
+
+        If row.RowState = DataControlRowState.Edit Then
+            Dim ddlJobs As DropDownList = CType(row.FindControl("job_ddl"), DropDownList)
+
+            Dim businessID As String = ddlBusiness.SelectedValue.ToString
+
+            ddlJobs.DataSource = GetData("SELECT j.ID AS JobID,j.JobTitle
+                                            FROM Jobs j
+                                            JOIN businessinfo b
+	                                            ON j.id = b.position1
+	                                            OR j.id = b.position2
+	                                            OR j.id = b.position3
+	                                            OR j.id = b.position4
+	                                            OR j.id = b.position5
+	                                            OR j.id = b.position6
+	                                            OR j.id = b.position7
+	                                            OR j.id = b.position8
+	                                            OR j.id = b.position9
+	                                            OR j.id = b.position10
+                                            WHERE b.Id='" & businessID & "'")
+            ddlJobs.DataTextField = "JobTitle"
+            ddlJobs.DataValueField = "Jobid"
+            ddlJobs.DataBind()
+
+            Try
+                Dim lblJobs As String = CType(row.FindControl("job_lbl"), Label).Text
+
+                If ddlJobs.Items.Contains(ddlJobs.Items.FindByText(lblJobs)) Then
+                    ddlJobs.Items.FindByValue(lblJobs).Selected = True
+                Else
+                    ddlJobs.Items.FindByValue(ddlJobs.Items(0).Value).Selected = True
+                End If
+            Catch
+                ddlJobs.Items.Clear()
+            End Try
+        End If
+    End Sub
+
+    Function GetEmptNum(ByVal Business As String, ByVal position As String) As Integer
+        Dim empID As Integer = 0
+
+        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
+        Dim con As New SqlConnection
+        Dim cmd As New SqlCommand
+        Dim dr As SqlDataReader
+        Dim sql As String = "SELECT employeeNumber From studentInfo_template WHERE business='" & Business & "' and job='" & position & "'"
+        Try
+            con.ConnectionString = connection_string
+            con.Open()
+            cmd.CommandText = sql
+            cmd.Connection = con
+            dr = cmd.ExecuteReader
+
+            While dr.Read()
+                empID = CType(dr(0).ToString, Integer)
+            End While
+
+            cmd.Dispose()
+            con.Close()
+        Catch
+            error_lbl.Text = "Error in GetEmptNum."
+        Finally
+            cmd.Dispose()
+            con.Close()
+        End Try
+
+        Return empID
+    End Function
+
+    Protected Sub OnRowDeleting(sender As Object, e As GridViewDeleteEventArgs)
+        Dim index As Integer = Convert.ToInt32(e.RowIndex)
+        Dim dt As DataTable = TryCast(ViewState("dt"), DataTable)
+        dt.Rows(index).Delete()
+        ViewState("dt") = dt
+        Review_dgv.DataSource = TryCast(ViewState("dt"), DataTable)
+        Review_dgv.DataBind()
+    End Sub
+
+    Protected Sub OnSelectedIndexChanged(sender As Object, e As EventArgs)
+        For Each row As GridViewRow In Review_dgv.Rows
+            If row.RowIndex = Review_dgv.SelectedIndex Then
+                row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
+            Else
+                row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
+            End If
+        Next
+    End Sub
+
+
 
     Private Sub Review_dgv_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles Review_dgv.RowUpdating
         Dim row As GridViewRow = Review_dgv.Rows(0)                           'Code is used to enable the editing prodecure
@@ -280,60 +334,14 @@ Public Class Employee_Management_System_Review
         End If
     End Sub
 
-    Private Function GetData(query As String) As DataSet
-        Dim cmd As New SqlCommand(query)
-        Using con As New SqlConnection(connection_string)
-            Using sda As New SqlDataAdapter()
-                cmd.Connection = con
-                sda.SelectCommand = cmd
-                Using ds As New DataSet()
-                    sda.Fill(ds)
-                    Return ds
-                End Using
-            End Using
-        End Using
-    End Function
 
-    Protected Sub BusinessSelectedIndexChanged(sender As Object, e As EventArgs)
 
-        Dim ddlBusiness As DropDownList = CType(sender, DropDownList)
-
-        Dim row As GridViewRow = ddlBusiness.NamingContainer
-
-        If row.RowState = DataControlRowState.Edit Then
-            Dim ddlJobs As DropDownList = CType(row.FindControl("job_ddl"), DropDownList)
-
-            Dim businessID As String = ddlBusiness.SelectedValue.ToString
-
-            ddlJobs.DataSource = GetData("SELECT j.ID AS JobID,j.JobTitle
-                                            FROM Jobs j
-                                            JOIN businessinfo b
-	                                            ON j.id = b.position1
-	                                            OR j.id = b.position2
-	                                            OR j.id = b.position3
-	                                            OR j.id = b.position4
-	                                            OR j.id = b.position5
-	                                            OR j.id = b.position6
-	                                            OR j.id = b.position7
-	                                            OR j.id = b.position8
-	                                            OR j.id = b.position9
-	                                            OR j.id = b.position10
-                                            WHERE b.Id='" & businessID & "'")
-            ddlJobs.DataTextField = "JobTitle"
-            ddlJobs.DataValueField = "Jobid"
-            ddlJobs.DataBind()
-
-            Try
-                Dim lblJobs As String = CType(row.FindControl("job_lbl"), Label).Text
-
-                If ddlJobs.Items.Contains(ddlJobs.Items.FindByText(lblJobs)) Then
-                    ddlJobs.Items.FindByValue(lblJobs).Selected = True
-                Else
-                    ddlJobs.Items.FindByValue(ddlJobs.Items(0).Value).Selected = True
-                End If
-            Catch
-                ddlJobs.Items.Clear()
-            End Try
+    Protected Sub changeSchool_btn_Click(sender As Object, e As EventArgs) Handles changeSchool_btn.Click
+        If changeSchool_ddl.SelectedIndex <> 0 Then
+            ChangeSchool()
+        Else
+            error_lbl.Text = "Please select a school to assign to business."
+            Exit Sub
         End If
     End Sub
 
@@ -343,36 +351,7 @@ Public Class Employee_Management_System_Review
         End If
     End Sub
 
-    Function GetEmptNum(ByVal Business As String, ByVal position As String) As Integer
-        Dim empID As Integer = 0
 
-        Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        Dim dr As SqlDataReader
-        Dim sql As String = "SELECT employeeNumber From studentInfo_template WHERE business='" & Business & "' and job='" & position & "'"
-        Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = sql
-            cmd.Connection = con
-            dr = cmd.ExecuteReader
-
-            While dr.Read()
-                empID = CType(dr(0).ToString, Integer)
-            End While
-
-            cmd.Dispose()
-            con.Close()
-        Catch
-            error_lbl.Text = "Error in GetEmptNum."
-        Finally
-            cmd.Dispose()
-            con.Close()
-        End Try
-
-        Return empID
-    End Function
 
     Private Sub business_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles business_ddl.SelectedIndexChanged
         If business_ddl.SelectedIndex <> 0 Then
@@ -383,31 +362,4 @@ Public Class Employee_Management_System_Review
         End If
     End Sub
 
-    Protected Sub OnRowDeleting(sender As Object, e As GridViewDeleteEventArgs)
-        Dim index As Integer = Convert.ToInt32(e.RowIndex)
-        Dim dt As DataTable = TryCast(ViewState("dt"), DataTable)
-        dt.Rows(index).Delete()
-        ViewState("dt") = dt
-        Review_dgv.DataSource = TryCast(ViewState("dt"), DataTable)
-        Review_dgv.DataBind()
-    End Sub
-
-    Protected Sub OnSelectedIndexChanged(sender As Object, e As EventArgs)
-        For Each row As GridViewRow In Review_dgv.Rows
-            If row.RowIndex = Review_dgv.SelectedIndex Then
-                row.BackColor = ColorTranslator.FromHtml("#A1DCF2")
-            Else
-                row.BackColor = ColorTranslator.FromHtml("#FFFFFF")
-            End If
-        Next
-    End Sub
-
-    Protected Sub changeSchool_btn_Click(sender As Object, e As EventArgs) Handles changeSchool_btn.Click
-        If changeSchool_ddl.SelectedIndex <> 0 Then
-            ChangeSchool()
-        Else
-            error_lbl.Text = "Please select a school to assign to business."
-            Exit Sub
-        End If
-    End Sub
 End Class
