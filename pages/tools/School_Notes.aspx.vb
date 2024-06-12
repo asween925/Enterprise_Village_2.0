@@ -104,7 +104,7 @@ Public Class School_Notes
 		'Populate labels
 		schoolName_lbl.Text = SchoolData.LoadSchoolInfoFromSchool(SchoolName, "schoolName") 'in this function, we pass in the school name as the schoolName varible, as well as a string of the column name we want from the DB
 		schoolPhone_lbl.Text = SchoolData.LoadSchoolInfoFromSchool(SchoolName, "phone")
-		contactTeacher_lbl.Text = TeacherData.GetContactTeacher(SchoolName)
+		contactTeacher_lbl.Text = TeacherData.GetContactTeacher(SchoolID)
 		schoolType_lbl.Text = SchoolData.LoadSchoolInfoFromSchool(SchoolName, "schoolType")
 		schoolNumber_lbl.Text = SchoolData.LoadSchoolInfoFromSchool(SchoolName, "schoolNum")
 		schoolAddress_lbl.Text = Address & ", " & City & ", " & State & " " & Zip

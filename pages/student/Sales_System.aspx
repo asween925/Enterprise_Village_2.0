@@ -10,7 +10,7 @@
     <title>Sales System</title>
 
     <link href="~/css/Styles.print.css" rel="stylesheet" media="print" type="text/css">
-    <link href="css/Styles.SalesSystem.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.SalesSystem.css" rel="stylesheet" media="screen" type="text/css">
 
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 </head>

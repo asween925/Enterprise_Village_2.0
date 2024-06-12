@@ -50,7 +50,7 @@
                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
                         <asp:TemplateField HeaderText="School Name">
                             <ItemTemplate>
-                                <asp:Label id="schoolName_lbl" runat="server" Text='<%#Bind("schoolName") %>' Visible="false"></asp:Label>
+                                <asp:Label id="schoolName_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="false"></asp:Label>
                                 <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" AutoPostBack="true" ReadOnly="false">
                                 </asp:DropDownList>
                             </ItemTemplate>                         

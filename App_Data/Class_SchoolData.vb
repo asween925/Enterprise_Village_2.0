@@ -386,7 +386,7 @@ Public Class Class_SchoolData
 
 	'Get workbooks numbers from schoolVisitChecklist
 	Function GetWorkbooks(VisitID As Integer, SchoolID As Integer)
-		Dim SQLStatement As String = "SELECT workbooks FROM schoolVisitChecklist WHERE visitDate = '" & VisitID & "' AND schoolName = '" & SchoolID & "'"
+		Dim SQLStatement As String = "SELECT workbooks FROM schoolVisitChecklist WHERE visitID = '" & VisitID & "' AND schoolID = '" & SchoolID & "'"
 		Dim Workbooks As Integer
 
 		con.ConnectionString = connection_string
@@ -408,7 +408,7 @@ Public Class Class_SchoolData
 	End Function
 
 	'Returns all fields from schoolVisitChecklist of a passed through visit id and school id
-	Function GetSVCData(VisitID As Integer, SchoolID As Integer) As (SchoolType As String, SchoolStudentCount As Integer, StudentCountFormReceived As Date, InvoiceIssued As Boolean, DirectorSignature As Boolean, ContractReceivedDate As Date, InvoiceNum As Integer, DeliveryMethod As String, Notes As String, NumOfKits As Integer, Kit1 As String, Kit2 As String, Kit3 As String, Kit4 As String, Kit5 As String, Kit6 As String, Kit7 As String, Kit8 As String, Kit9 As String, Kit10 As String, Workbooks As Integer, DeliveryAccepted As String, Position As String, DateAccepted As Date, LasteditedStep1 As String, LastEditedStep2 As String, LastEditedStep3 As String, LastEditedStep4 As String, LastEditedStep5 As String)
+	Function GetSVCData(VisitID As Integer, SchoolID As Integer) As (SchoolType As String, SchoolStudentCount As String, StudentCountFormReceived As String, InvoiceIssued As String, DirectorSignature As String, ContractReceivedDate As String, InvoiceNum As String, DeliveryMethod As String, Notes As String, NumOfKits As String, Kit1 As String, Kit2 As String, Kit3 As String, Kit4 As String, Kit5 As String, Kit6 As String, Kit7 As String, Kit8 As String, Kit9 As String, Kit10 As String, Workbooks As String, DeliveryAccepted As String, Position As String, DateAccepted As String, LasteditedStep1 As String, LastEditedStep2 As String, LastEditedStep3 As String, LastEditedStep4 As String, LastEditedStep5 As String)
 
 		'Step 1 variables
 
@@ -417,18 +417,18 @@ Public Class Class_SchoolData
 		Dim ContactTeacher As String
 		Dim schoolStudentCount As String
 		Dim AdminEmail As String
-		Dim studentCountFormReceived As Date
+		Dim studentCountFormReceived As String
 
 		'Step 2 variables
 
 		Dim LastEditedBy2 As String
-		Dim invoiceIssued As Boolean
-		Dim directorsSignature As Boolean
+		Dim invoiceIssued As String
+		Dim directorsSignature As String
 
 		'Step 3 Variables
 
 		Dim LastEditedBy3 As String
-		Dim contractRecieved As Date
+		Dim contractRecieved As String
 		Dim invoiceNum As String
 		Dim deliveryMethod As String
 		Dim notes As String
@@ -454,7 +454,7 @@ Public Class Class_SchoolData
 		Dim LastEditedBy5 As String
 		Dim deliveryAccepted As String
 		Dim position As String
-		Dim dateAccepted As Date
+		Dim dateAccepted As String
 
 		'Load the data and assign to variables
 		con.ConnectionString = connection_string

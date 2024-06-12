@@ -1,6 +1,7 @@
 ﻿Imports System.Configuration
 Imports System.Data.SqlClient
 Imports System.Drawing
+Imports System.Web.Http.Tracing
 
 Public Class Edit_Teacher
     Inherits System.Web.UI.Page
@@ -14,6 +15,7 @@ Public Class Edit_Teacher
     Dim dr As SqlDataReader
     Dim SchoolData As New Class_SchoolData
     Dim VisitID As New Class_VisitData
+    Dim Teachers As New Class_TeacherData
     Dim Visit As Integer = VisitID.GetVisitID
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -43,8 +45,9 @@ Public Class Edit_Teacher
     Sub LoadData()
         Dim SearchTerm As String
         Dim SchoolName As String
-        Dim SQLStatement As String = "SELECT DISTINCT id, isContact, studentCount, password, county, schoolName, futureRequestsEmail, firstName, lastName
-                                        FROM teacherInfo"
+        Dim SchoolID As String
+        Dim SQLStatement As String = "SELECT DISTINCT t.id, t.isContact, t.studentCount, t.password, t.county, t.schoolID, t.futureRequestsEmail, t.firstName, t.lastName
+                                        FROM teacherInfo t JOIN schoolInfo s ON s.id = t.schoolID"
 
         'Clear teacher table
         teachers_dgv.DataSource = Nothing
@@ -53,6 +56,8 @@ Public Class Edit_Teacher
         'Clear error label
         error_lbl.Text = ""
 
+
+
         'Check if school name is selected
         If schoolName_ddl.SelectedIndex <> 0 Then
 
@@ -60,7 +65,8 @@ Public Class Edit_Teacher
             search_tb.Text = ""
 
             SchoolName = schoolName_ddl.SelectedValue
-            SQLStatement &= " WHERE schoolName='" & SchoolName & "'"
+            'SchoolID = SchoolData.GetSchoolID(SchoolName)
+            SQLStatement &= " WHERE s.schoolName='" & SchoolName & "'"
         End If
 
         'Check if search field is entered
@@ -70,11 +76,11 @@ Public Class Edit_Teacher
             schoolName_ddl.SelectedIndex = schoolName_ddl.Items.IndexOf(schoolName_ddl.Items.FindByValue(0))
 
             SearchTerm = search_tb.Text
-            SQLStatement &= " Where schoolName Like '%" & search_tb.Text & "%' 
-                                Or firstName Like '%" & search_tb.Text & "%' 
-                                Or lastName Like '%" & search_tb.Text & "%'
-                                Or futureRequestsEmail Like '%" & search_tb.Text & "%'
-                                ORDER BY firstName ASC"
+            SQLStatement &= " Where s.schoolName Like '%" & search_tb.Text & "%' 
+                                Or t.firstName Like '%" & search_tb.Text & "%' 
+                                Or t.lastName Like '%" & search_tb.Text & "%'
+                                Or t.futureRequestsEmail Like '%" & search_tb.Text & "%'
+                                ORDER BY t.firstName ASC"
         End If
 
         'Load data
@@ -117,7 +123,7 @@ Public Class Edit_Teacher
         Dim studentCount As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("studentCount_tb"), TextBox).Text
         Dim password As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("password_tb"), TextBox).Text
         Dim county As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("county_tb"), TextBox).Text
-        Dim schoolName As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("schoolName_ddl"), DropDownList).SelectedValue.ToString   'Try cast is used to try to convert - gets item from ddl
+        Dim schoolID As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("schoolName_ddl"), DropDownList).SelectedValue.ToString   'Try cast is used to try to convert - gets item from ddl
         Dim firstName As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("firstName_tb"), TextBox).Text
         Dim lastName As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("lastName_tb"), TextBox).Text
         Dim futureRequestsEmail As String = TryCast(teachers_dgv.Rows(e.RowIndex).FindControl("futureRequestsEmail_tb"), TextBox).Text
@@ -144,12 +150,12 @@ Public Class Edit_Teacher
 
         Try
             Using con As New SqlConnection(connection_string)
-                Using cmd As New SqlCommand("UPDATE teacherInfo SET isContact=@isContact, studentCount=@studentCount, password=@password, county=@county, schoolName=@schoolName, firstName=@firstName, lastName=@lastName, futureRequestsEmail=@future WHERE ID=@Id")
+                Using cmd As New SqlCommand("UPDATE teacherInfo SET isContact=@isContact, studentCount=@studentCount, password=@password, county=@county, schoolID=@schoolID, firstName=@firstName, lastName=@lastName, futureRequestsEmail=@future WHERE ID=@Id")
                     cmd.Parameters.AddWithValue("@ID", ID)
                     cmd.Parameters.AddWithValue("@studentCount", studentCount)
                     cmd.Parameters.AddWithValue("@password", password)
                     cmd.Parameters.AddWithValue("@county", county)
-                    cmd.Parameters.AddWithValue("@schoolName", schoolName)
+                    cmd.Parameters.AddWithValue("@schoolID", schoolID)
                     cmd.Parameters.AddWithValue("@firstName", firstName)
                     cmd.Parameters.AddWithValue("@lastName", lastName)
                     cmd.Parameters.AddWithValue("@future", futureRequestsEmail)
@@ -161,7 +167,7 @@ Public Class Edit_Teacher
                 End Using
             End Using
             teachers_dgv.EditIndex = -1       'reset the grid after editing
-            loadData()
+            LoadData()
         Catch ex As Exception
             error_lbl.Text = "Error in rowUpdating. Cannot update row."
             Exit Sub
@@ -174,26 +180,24 @@ Public Class Edit_Teacher
         Dim ID As Integer = Convert.ToInt32(teachers_dgv.DataKeys(e.RowIndex).Values(0)) 'Gets id number
 
         Try
-                Using con As New SqlConnection(connection_string)
-                    Using cmd As New SqlCommand("DELETE FROM teacherInfo WHERE id=@ID")
-                        cmd.Parameters.AddWithValue("@ID", ID)
-                        cmd.Connection = con
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
-                    End Using
+            Using con As New SqlConnection(connection_string)
+                Using cmd As New SqlCommand("DELETE FROM teacherInfo WHERE id=@ID")
+                    cmd.Parameters.AddWithValue("@ID", ID)
+                    cmd.Connection = con
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                    con.Close()
                 End Using
-                teachers_dgv.EditIndex = -1       'reset the grid after editing
-            loadData()
+            End Using
+            teachers_dgv.EditIndex = -1       'reset the grid after editing
+            LoadData()
 
             'Refresh page
             Response.Redirect(".\edit_teacher.aspx")
         Catch ex As Exception
-                error_lbl.Text = "Error in rowDeleting. Cannot delete row."
-                Exit Sub
-            End Try
-
-
+            error_lbl.Text = "Error in rowDeleting. Cannot delete row."
+            Exit Sub
+        End Try
     End Sub
     Private Sub teachers_dgv_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles teachers_dgv.RowEditing
         teachers_dgv.EditIndex = e.NewEditIndex
@@ -215,9 +219,9 @@ Public Class Edit_Teacher
 
             'School Dropdown
             Dim ddlSchool As DropDownList = CType(e.Row.FindControl("schoolName_ddl"), DropDownList)
-            ddlSchool.DataSource = GetData("SELECT schoolname FROM schoolInfo WHERE NOT id='505' AND NOT schoolName='A1 No School Scheduled' ORDER BY schoolName")
+            ddlSchool.DataSource = GetData("SELECT id, schoolname FROM schoolInfo WHERE NOT id='505' AND NOT schoolName='A1 No School Scheduled' ORDER BY schoolName")
             ddlSchool.DataTextField = "schoolName"
-            'ddlSchool.DataValueField = "Businessid"
+            ddlSchool.DataValueField = "id"
             ddlSchool.DataBind()
             Dim lblSchool As String = CType(e.Row.FindControl("schoolName_lbl"), Label).Text
 

@@ -69,12 +69,12 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Volunteer </br> Minimum Count">
                         <ItemTemplate>
-                            <asp:TextBox ID="vMinCount_tb" runat="server" Width="100px" Text='<%#Bind("businessVMinCount") %>' CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="vMinCount_tb" runat="server" Width="100px" Text='<%#Bind("minVolCount") %>' CssClass="textbox"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Volunteer </br> Maximum Count">
                         <ItemTemplate>
-                            <asp:TextBox ID="vMaxCount_tb" runat="server" Width="100px" Text='<%#Bind("businessVMaxCount") %>' CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="vMaxCount_tb" runat="server" Width="100px" Text='<%#Bind("maxVolCount") %>' CssClass="textbox"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

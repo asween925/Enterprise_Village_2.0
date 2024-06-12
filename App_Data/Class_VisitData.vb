@@ -272,9 +272,9 @@ Public Class Class_VisitData
                                         loanAmount, deposit1, deposit2, deposit3, deposit4, profit 
                                         FROM businessVisitInfo_template t"
 
-        Dim SQLStudentInfo As String = "INSERT INTO studentInfo (employeeNumber, firstName, lastName, school, business, job, visit, netDeposit1, netDeposit2)
-										SELECT employeeNumber, firstName, lastName, 
-                                        (SELECT ID FROM schoolInfo WHERE schoolName = '" & SchoolName1 & "'), business, job, 
+        Dim SQLStudentInfo As String = "INSERT INTO studentInfo (accountNumber, firstName, lastName, schoolID, businessID, jobID, visitID, netDeposit1, netDeposit2)
+										SELECT accountNumber, firstName, lastName, 
+                                        (SELECT ID FROM schoolInfo WHERE schoolName = '" & SchoolName1 & "'), businessID, jobID, 
                                         (SELECT ID FROM visitInfo WHERE visitDate = '" & VisitDate & "'), netDeposit1, netDeposit2
 										FROM studentInfo_template t "
 

@@ -54,7 +54,7 @@
                 <asp:GridView ID="teachers_dgv" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="false" DataKeyNames="ID" CellPadding="5" Height="50" AllowPaging="True" ShowHeaderWhenEmpty="True" Font-Size="Medium" Visible="true" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                     <Columns>
                         <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" Visible="true" />
-                        <asp:BoundField DataField="schoolName" HeaderText="School Name" Visible="true" />
+                        <asp:BoundField DataField="schoolname" HeaderText="School Name" Visible="true" />
                         <asp:BoundField DataField="futureRequestsEmail" HeaderText="Email" Visible="true" />
                         <asp:BoundField DataField="firstName" HeaderText="First Name" Visible="true" />
                         <asp:BoundField DataField="lastName" HeaderText="Last Name" Visible="true" />

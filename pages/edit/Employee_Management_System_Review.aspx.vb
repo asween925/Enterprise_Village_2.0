@@ -97,7 +97,7 @@ Public Class Employee_Management_System_Review
         Dim selectedVisitID As String = Visits.GetVisitIDFromDate(visitDate)
 
         Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("UPDATE studentInfo SET school='" & schoolID & "' WHERE business='" & businessID & "' AND visit='" & selectedVisitID & "'")
+            Using cmd As New SqlCommand("UPDATE studentInfo SET schoolID='" & schoolID & "' WHERE businessID='" & businessID & "' AND visitID='" & selectedVisitID & "'")
                 cmd.Connection = con
                 con.Open()
                 cmd.ExecuteNonQuery()
@@ -235,7 +235,7 @@ Public Class Employee_Management_System_Review
         Dim empNum As Integer = GetEmptNum(businessName, employeePosition)
 
         Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("UPDATE studentInfo SET business=@business, employeeNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, school =@school, job=@employeePosition WHERE ID=@Id")
+            Using cmd As New SqlCommand("UPDATE studentInfo SET businessID=@business, accountNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, schoolID =@school, jobID=@employeePosition WHERE ID=@Id")
                 cmd.Parameters.AddWithValue("@ID", ID)
                 cmd.Parameters.AddWithValue("@business", businessName)
                 cmd.Parameters.AddWithValue("@employeeID", employeeNumber)

@@ -87,14 +87,14 @@ Public Class Business_sales_report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT CONCAT (s.firstname, ' ',s.lastName) as studentname, t.saleAmount, t.business, s.visit, t.visitdate, b.businessName, s.employeenumber
+            cmd.CommandText = "SELECT CONCAT (s.firstname, ' ',s.lastName) as studentname, t.saleAmount, t.businessID, s.visitID, b.businessName, s.accountnumber
                 , t.transactionTimeStamp, t.saleAmount2, t.saleAmount3, t.saleAmount4, t.transactionTimeStamp2, t.transactionTimeStamp3, t.transactionTimeStamp4
                 FROM studentInfo s
                 INNER JOIN transactions t
-                ON t.employeeNumber = s.employeeNumber
+                ON t.accountNumber = s.accountNumber
                 inner JOIN businessinfo b
-                ON t.business = b.ID
-                WHERE t.visitdate ='" & VisitID & "' AND businessName='" & BusinessName & "' AND s.visit='" & VisitID & "'"
+                ON t.businessID = b.ID
+                WHERE t.visitID ='" & VisitID & "' AND s.visitID='" & VisitID & "' AND businessName='" & BusinessName & "'"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -116,18 +116,18 @@ Public Class Business_sales_report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as saleTotal FROM transactions WHERE visitdate ='" & VisitID & "' AND business='" & BusinessID & "'"
+            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as saleTotal FROM transactions WHERE visitID ='" & VisitID & "' AND businessID='" & BusinessID & "'"
             dr = cmd.ExecuteReader
 
             While dr.Read
                 If dr("saleTotal").ToString = Nothing Then
-                    sales = 0.00
+                    Sales = 0.00
                 Else
-                    sales = dr("saleTotal").ToString
+                    Sales = dr("saleTotal").ToString
                 End If
             End While
 
-            total_sales_lbl.Text = sales.ToString("C")
+            total_sales_lbl.Text = Sales.ToString("C")
 
             cmd.Dispose()
             con.Close()

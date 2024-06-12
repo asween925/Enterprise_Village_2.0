@@ -11,6 +11,7 @@ Public Class School_Workbook_Inv
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
     Dim VisitID As New Class_VisitData
+    Dim Schools As New Class_SchoolData
     Dim Visit As Integer = VisitID.GetVisitID
     'Dim schoolHeader1 As New SchoolHeader
 
@@ -63,6 +64,7 @@ Public Class School_Workbook_Inv
 
     Sub AddRequest()
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
+        Dim SchoolID As Integer = Schools.GetSchoolID(schoolNameSearch_ddl.SelectedValue)
 
         'Check if fields are populated
         If dateRequest_tb.Text = Nothing Or dateRequest_tb.Text = "" Then
@@ -78,14 +80,14 @@ Public Class School_Workbook_Inv
         'Insert data from request fields into DB
         Using con As New SqlConnection(connection_string)
             Using cmd As New SqlCommand("INSERT INTO workbooksInventory (
-													 schoolName
+													 schoolID
 													,dateRequested
 													,workbooksRequested)													
 												VALUES ( 
-													@schoolName
+													@schoolID
 													,@dateRequested
 													,@workbooksRequested);")
-                cmd.Parameters.Add("@schoolName", SqlDbType.VarChar).Value = schoolNameSearch_ddl.SelectedValue
+                cmd.Parameters.Add("@schoolID", SqlDbType.Int).Value = SchoolID
                 cmd.Parameters.Add("@dateRequested", SqlDbType.VarChar).Value = dateRequest_tb.Text
                 cmd.Parameters.Add("@workbooksRequested", SqlDbType.VarChar).Value = numRequest_tb.Text
                 cmd.Connection = con
@@ -110,10 +112,11 @@ Public Class School_Workbook_Inv
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
         Dim dr As SqlDataReader
+        Dim SchoolID As Integer = Schools.GetSchoolID(schoolNameSearch_ddl.SelectedValue)
         Dim schoolSQL As String = "SELECT schoolName, phone, schoolType, county FROM schoolInfo WHERE schoolName = '" & schoolNameSearch_ddl.SelectedValue & "'"
         Dim teacherSQL As String = "SELECT TRIM(firstName) + ' ' + TRIM(lastName) as teacherName FROM teacherInfo WHERE isContact=1 AND schoolName = '" & schoolNameSearch_ddl.SelectedValue & "'"
         Dim visitSQL As String = "SELECT FORMAT(v.visitDate, 'MM/dd/yy') as visitDate, v.studentCount FROM visitInfo v LEFT JOIN schoolInfo s ON s.ID = v.school LEFT JOIN schoolInfo s2 ON s2.ID = v.school2 LEFT JOIN schoolInfo s3 ON s3.ID = v.school3 LEFT JOIN schoolInfo s4 ON s4.ID = v.school4 LEFT JOIN schoolInfo s5 ON s5.ID = v.school5 WHERE s.schoolName='" & schoolNameSearch_ddl.SelectedValue & "' OR s2.schoolName='" & schoolNameSearch_ddl.SelectedValue & "' OR s3.schoolName='" & schoolNameSearch_ddl.SelectedValue & "'  OR s4.schoolName='" & schoolNameSearch_ddl.SelectedValue & "' OR s5.schoolName='" & schoolNameSearch_ddl.SelectedValue & "' AND NOT v.school=1 ORDER BY v.visitDate ASC"
-        Dim workbooksSQL As String = "SELECT id, schoolName, dateRequested, dateDelivered, workbooksRequested, workbooksDelivered FROM workbooksInventory WHERE schoolName = '" & schoolNameSearch_ddl.SelectedValue & "' AND dateDelivered IS NULL AND workbooksDelivered IS NULL"
+        Dim workbooksSQL As String = "SELECT id, schoolID, dateRequested, dateDelivered, workbooksRequested, workbooksDelivered FROM workbooksInventory WHERE schoolID = '" & SchoolID & "' AND dateDelivered IS NULL AND workbooksDelivered IS NULL"
 
         'Clear out error
         error_lbl.Text = ""
@@ -200,9 +203,9 @@ Public Class School_Workbook_Inv
             con.ConnectionString = connection_string
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "SELECT id, schoolName, dateRequested, workbooksRequested, dateDelivered, workbooksDelivered
+            cmd.CommandText = "SELECT id, schoolID, dateRequested, workbooksRequested, dateDelivered, workbooksDelivered
                                 FROM workbooksInventory
-                                WHERE schoolName = '" & schoolNameSearch_ddl.SelectedValue & "'
+                                WHERE schoolID = '" & SchoolID & "'
                                 ORDER BY dateRequested DESC"
 
             Dim da As New SqlDataAdapter

@@ -698,7 +698,7 @@
     <Content Include="pages\create\Create_School.aspx" />
     <Content Include="pages\edit\Edit_School.aspx" />
     <Content Include="pages\edit\Edit_Teacher.aspx" />
-    <Content Include="pages\student\Open_Closed_Status.aspx" />
+    <Content Include="pages\edit\Open_Closed_Status.aspx" />
     <Content Include="pages\reports\Student_Spending_Report.aspx" />
     <Content Include="pages\print\Print_Teller.aspx" />
     <Content Include="pages\print\Print_Sales.aspx" />
@@ -1547,10 +1547,10 @@
       <DependentUpon>Edit_Teacher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\student\Open_Closed_Status.aspx.designer.vb">
+    <Compile Include="pages\edit\Open_Closed_Status.aspx.designer.vb">
       <DependentUpon>Open_Closed_Status.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\student\Open_Closed_Status.aspx.vb">
+    <Compile Include="pages\edit\Open_Closed_Status.aspx.vb">
       <DependentUpon>Open_Closed_Status.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

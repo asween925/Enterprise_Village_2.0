@@ -56,7 +56,7 @@ Public Class Print_Checks
                                FROM checksInfo c
                                RIGHT JOIN studentInfo s ON s.id = c.studentID
                                WHERE c.memo='" & payrollGroup_lbl.Text & "' AND 
-                               (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID='" & businessID & "')"
+                               (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID='" & businessID & "')"
             cmd.Connection = con
             dr = cmd.ExecuteReader()
             'error_lbl.Text = payroll & " " & rowCount & " " & visitdate_hf.Value
@@ -327,7 +327,7 @@ Public Class Print_Checks
             cmd.CommandText = "SELECT c.id, c.businessID, CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
                                             RIGHT JOIN studentInfo s ON s.id = c.studentID
-                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
+                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
                                             ORDER BY id ASC"
             cmd.Connection = con
             dr = cmd.ExecuteReader
@@ -382,7 +382,7 @@ Public Class Print_Checks
                 cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
                                             RIGHT JOIN studentInfo s ON s.id = c.StudentID
-                                            WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+                                            WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -924,7 +924,7 @@ Public Class Print_Checks
             cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
                                             RIGHT JOIN studentInfo s ON s.id = c.StudentID
-                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
+                                            WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
                                             ORDER BY id ASC"
             cmd.Connection = con
             dr = cmd.ExecuteReader
@@ -1087,7 +1087,7 @@ Public Class Print_Checks
                 cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
                                             FROM checksInfo c
                                             RIGHT JOIN studentInfo s ON s.id = c.StudentID
-                                            WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+                                            WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 

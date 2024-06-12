@@ -108,13 +108,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=10 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=10 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -146,13 +146,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=9 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=9 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -184,13 +184,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=6 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=6 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -212,7 +212,7 @@ Public Class Student_Spending_Report
 
         Catch
             error_lbl.Text = "Error in loaddata(). Cannot load data for bic."
-            Exit Sub
+        Exit Sub
 
         End Try
 
@@ -222,13 +222,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=3 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=3 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -260,13 +260,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=11 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=11 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -298,13 +298,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=8 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=8 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -336,13 +336,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=5 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=5 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -374,13 +374,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=17 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=17 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -412,13 +412,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=1 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=1 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -450,13 +450,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=2 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=2 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -487,13 +487,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=22 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=22 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -525,13 +525,13 @@ Public Class Student_Spending_Report
             con.Open()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = " SELECT t.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
+            cmd.CommandText = " SELECT t.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName, SUM(ISNULL(saleAmount,0) + ISNULL(saleAmount2,0)
                                     + ISNULL(saleAmount3,0) + ISNULL(saleAmount4,0)) as saleTotal 
                                   FROM transactions t
                                   INNER JOIN studentInfo s
-                                  ON t.employeeNumber = s.employeeNumber
-                                  WHERE t.visitDate='" & visitDate & "' AND s.visit='" & visitDate & "' AND t.business=7 AND s.school='" & schoolID & "'
-                                  GROUP BY t.employeeNumber, s.firstName, s.lastName"
+                                  ON t.accountNumber = s.accountNumber
+                                  WHERE t.visitID='" & visitDate & "' AND s.visitID='" & visitDate & "' AND t.businessID=7 AND s.schoolID='" & schoolID & "'
+                                  GROUP BY t.accountNumber, s.firstName, s.lastName"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -566,24 +566,24 @@ Public Class Student_Spending_Report
             cmd.CommandText = "IF (OBJECT_ID('tempdb..#netdeposits') IS NOT NULL) DROP TABLE #netdeposits
        -- Total Deposits
        SELECT 
-              s.employeeNumber
+              s.accountNumber
               ,s.firstName
               ,s.lastName
 			  ,s.cbw1, s.cbw2, s.cbw3, s.cbw4
-			  ,s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4, s.savings, s.school
+			  ,s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4, s.savings, s.schoolID
 			  ,SUM(ISNULL(s.cbw1,0) + ISNULL(s.cbw2,0) + ISNULL(s.cbw3,0) + ISNULL(s.cbw4,0)) as cbwTotal
               ,SUM(ISNULL(s.initialDeposit1,0) + ISNULL(s.initialDeposit2,0) + ISNULL(s.initialDeposit3,0) + ISNULL(s.initialDeposit4,0)) 
 			  - SUM(ISNULL(s.cbw1,0) + ISNULL(s.cbw2,0) + ISNULL(s.cbw3,0) + ISNULL(s.cbw4,0)) - ISNULL(s.savings,0) totalDeposits
        INTO #netdeposits
        FROM dbo.studentInfo s
-       WHERE s.visit = '" & visitDate & "' AND s.school='" & schoolID & "'
-       GROUP BY s.employeeNumber, s.firstName, s.lastName, s.cbw1, s.cbw2, s.cbw3, s.cbw4, s.savings
-	   , s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4, s.school
+       WHERE s.visitID = '" & visitDate & "' AND s.schoolID='" & schoolID & "'
+       GROUP BY s.accountNumber, s.firstName, s.lastName, s.cbw1, s.cbw2, s.cbw3, s.cbw4, s.savings
+	   , s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4, s.schoolID
 	   
 
        -- Total Purchases and with JOIN to #netdeposits temp table
        SELECT 
-               t.employeeNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
+               t.accountNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
 			   ,ISNULL(s.initialDeposit1,0) as initialDeposit1, ISNULL(s.initialDeposit2,0) as initialDeposit2, ISNULL(s.initialDeposit3,0) as initialDeposit3
 			   , ISNULL(s.initialDeposit4,0) as initialDeposit4
 			   ,s.cbwTotal, ISNULL(s.savings,0) as savings
@@ -591,11 +591,11 @@ Public Class Student_Spending_Report
               ,SUM(ISNULL(saleamount,0) + ISNULL(saleamount2,0)+ ISNULL(saleamount3,0)+ ISNULL(saleamount4,0)) as TotalPurchases
               ,MAX(s.totalDeposits) - sum(ISNULL(saleamount,0)+ ISNULL(saleamount2,0)+ ISNULL(saleamount3,0)+ ISNULL(saleamount4,0)) as Balance
        FROM transactions t
-       INNER JOIN #netdeposits s ON t.employeeNumber = s.employeeNumber
-       WHERE t.visitdate = '" & visitDate & "' AND s.school='" & schoolID & "'
-       GROUP BY t.employeeNumber, s.initialDeposit1,s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4
-	   ,s.cbwTotal, s.savings, s.school
-       ORDER BY employeeNumber"
+       INNER JOIN #netdeposits s ON t.accountNumber = s.accountNumber
+       WHERE t.visitID = '" & visitDate & "' AND s.schoolID='" & schoolID & "'
+       GROUP BY t.accountNumber, s.initialDeposit1,s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4
+	   ,s.cbwTotal, s.savings, s.schoolID
+       ORDER BY accountNumber"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -700,7 +700,7 @@ Public Class Student_Spending_Report
 
     'Old code may not need anymore 
     '
-    '"SELECT s.employeeNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName
+    '"SELECT s.accountNumber, CONCAT(s.firstName, ' ', s.lastName) as studentName
     '                        , s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4
     '                        , SUM(ISNULL(s.initialDeposit1,0) + ISNULL(s.initialDeposit2,0) + ISNULL(s.initialDeposit3,0) + ISNULL(s.initialDeposit4,0)) as depositTotal
     '                        , s.savings, b.businessName
@@ -712,11 +712,11 @@ Public Class Student_Spending_Report
     '                        - s.savings as balance
     '                        FROM studentInfo s
     '                        INNER JOIN transactions t
-    '                        ON t.employeeNumber = s.employeeNumber
+    '                        ON t.accountNumber = s.accountNumber
     '                        INNER JOIN businessInfo b
-    '                        ON b.id = t.business
-    '                        WHERE s.visit='" & visitDate & "' AND t.visitDate='" & visitDate & "'
-    '                        GROUP BY s.employeeNumber, s.firstName, s.lastName
+    '                        ON b.id = t.businessID
+    '                        WHERE s.visitID='" & visitDate & "' AND t.visitID='" & visitDate & "'
+    '                        GROUP BY s.accountNumber, s.firstName, s.lastName
     '                        , s.initialDeposit1, s.initialDeposit2, s.initialDeposit3, s.initialDeposit4, s.savings,
     '                        b.businessName, t.saleAmount, t.saleAmount2, t.saleAmount3, t.saleAmount4, s.cbw1, s.cbw2, s.cbw3, s.cbw4"
 End Class

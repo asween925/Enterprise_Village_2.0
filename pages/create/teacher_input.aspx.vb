@@ -8,6 +8,7 @@ Public Class teacher_input
 	Dim DBConnection As New DatabaseConection
 	Dim dr As SqlDataReader
 	Dim VisitID As New Class_VisitData
+	Dim Schools As New Class_SchoolData
 	Dim Visit As Integer = VisitID.GetVisitID
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 		If Session("LoggedIn") <> "1" Then
@@ -59,7 +60,8 @@ Public Class teacher_input
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 		Dim dr As SqlDataReader
 		Dim email As String = email_tb.Text
-		Dim checkSQL As String = "SELECT lastname, schoolName, futureRequestsEmail FROM teacherInfo WHERE  lastName = '" & lastName_tb.Text & "' AND schoolName = '" & school_ddl.SelectedValue & "' AND futureRequestsEmail = '" & email_tb.Text & "'"
+		Dim SchoolID As String = Schools.GetSchoolID(school_ddl.SelectedValue)
+		'Dim checkSQL As String = "SELECT lastname, schoolName, futureRequestsEmail FROM teacherInfo WHERE  lastName = '" & lastName_tb.Text & "' AND schoolName = '" & school_ddl.SelectedValue & "' AND futureRequestsEmail = '" & email_tb.Text & "'"
 
 		'Checks what spots are empty and replaces select ones
 		If firstName_tb.Text = Nothing And lastName_tb.Text = Nothing And school_ddl.SelectedIndex = 0 And email_tb.Text = Nothing And county_tb.Text = Nothing And count_tb.Text = Nothing Then
@@ -98,7 +100,7 @@ Public Class teacher_input
 
 		Using con As New SqlConnection(connection_string)
 			'Checks if there is already a name, email, and school name with the entered information in the DB
-			Using cmd As New SqlCommand("SELECT lastname, schoolName, futureRequestsEmail FROM teacherInfo WHERE lastName = '" & lastName_tb.Text & "' AND schoolName = '" & school_ddl.SelectedValue & "' AND futureRequestsEmail = '" & email_tb.Text & "'")
+			Using cmd As New SqlCommand("SELECT lastname, schoolID, futureRequestsEmail FROM teacherInfo WHERE lastName = '" & lastName_tb.Text & "' AND schoolID = '" & SchoolID & "' AND futureRequestsEmail = '" & email_tb.Text & "'")
 				cmd.Connection = con
 				con.Open()
 				dr = cmd.ExecuteReader
@@ -143,7 +145,7 @@ Public Class teacher_input
 													 firstName
 													,lastName
 													,isContact
-													,schoolName
+													,schoolID
 													,futureRequestsEmail
 													,county
 													,studentCount)
@@ -151,14 +153,14 @@ Public Class teacher_input
 													 @firstName
 													,@lastName
 													,@isContact
-													,@schoolName
+													,@schoolID
 													,@futureRequestsEmail
 													,@county
 													,@studentCount);")
 
 				cmd.Parameters.Add("@firstName", SqlDbType.VarChar).Value = firstName_tb.Text
 				cmd.Parameters.Add("@lastName", SqlDbType.VarChar).Value = lastName_tb.Text
-				cmd.Parameters.Add("@schoolName", SqlDbType.VarChar).Value = school_ddl.SelectedValue
+				cmd.Parameters.Add("@schoolID", SqlDbType.VarChar).Value = SchoolID
 				cmd.Parameters.Add("@futureRequestsEmail", SqlDbType.VarChar).Value = email_tb.Text
 				cmd.Parameters.Add("@county", SqlDbType.VarChar).Value = county_tb.Text
 				cmd.Parameters.Add("@studentCount", SqlDbType.VarChar).Value = count_tb.Text

@@ -243,11 +243,11 @@ Public Class Class_BusinessData
 	Function LoadOpenClosedStatus(VisitID As Integer, Table As GridView)
 		Dim da As New SqlDataAdapter
 		Dim dt As New DataTable
-		Dim SQLStatement As String = " SELECT DISTINCT o.businessID, o.openstatus, s.id as 'schoolID', o.schoolID, b.businessName, o.minVolCount, o.maxVolCount
+		Dim SQLStatement As String = " SELECT DISTINCT o.businessID, o.openstatus, o.schoolID, b.businessName, o.minVolCount, o.maxVolCount
 								  FROM businessVisitInfo o
 								  INNER JOIN businessInfo b
 								  ON o.businessID = b.ID
-								  INNER JOIN schoolInfo s ON s.id = o.school
+								  INNER JOIN schoolInfo s ON s.id = o.schoolID
 								  WHERE o.visitID='" & VisitID & "'
 								  ORDER BY b.businessname"
 

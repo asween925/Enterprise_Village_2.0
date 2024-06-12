@@ -14,14 +14,14 @@ Public Class Class_StudentData
     Dim studentCount As String
     Dim errorStr As String
 
-    'Gets the number of students in EV 2.0 from a passed through visit date (this is the correct number of students, not the student count number that the staff enters when the visit is created)
+    'Gets the number of students in EV 2.0 from a passed through visitID date (this is the correct number of students, not the student count number that the staff enters when the visitID is created)
     Function GetStudentCount(visitDate As String)
-        Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
+        Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.accountNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
-                                INNER JOIN jobs j ON j.id=s.job
-                                INNER JOIN businessInfo b ON b.id=s.business
-                                INNER JOIN visitInfo v ON v.id=s.visit
-                                INNER JOIN schoolInfo sc ON s.school = sc.id
+                                INNER JOIN jobs j ON j.id=s.jobID
+                                INNER JOIN businessInfo b ON b.id=s.businessID
+                                INNER JOIN visitInfo v ON v.id=s.visitID
+                                INNER JOIN schoolInfo sc ON s.schoolID = sc.id
                                 WHERE v.visitDate='" & visitDate & "' AND NOT businessName='Training Business' AND NOT firstName='NULL' AND NOT lastName='NULL' AND NOT firstName = ' ' AND NOT lastName=' ' ) t"
 
         con.ConnectionString = connection_string
@@ -41,14 +41,14 @@ Public Class Class_StudentData
     End Function
 
 
-    'Gets the number of students of ONE school in EV 2.0 from a passed through visit date and school name (this is the correct number of students, not the student count number that the staff enters when the visit is created)
+    'Gets the number of students of ONE schoolID in EV 2.0 from a passed through visitID date and schoolID name (this is the correct number of students, not the student count number that the staff enters when the visitID is created)
     Function GetStudentCountOfSchool(VisitDate As String, SchoolName As String)
-        Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
+        Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.accountNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
-                                INNER JOIN jobs j ON j.id=s.job
-                                INNER JOIN businessInfo b ON b.id=s.business
-                                INNER JOIN visitInfo v ON v.id=s.visit
-                                INNER JOIN schoolInfo sc ON s.school = sc.id
+                                INNER JOIN jobs j ON j.id=s.jobID
+                                INNER JOIN businessInfo b ON b.id=s.businessID
+                                INNER JOIN visitInfo v ON v.id=s.visitID
+                                INNER JOIN schoolInfo sc ON s.schoolID = sc.id
                                 WHERE v.visitDate='" & VisitDate & "' AND sc.schoolName = '" & SchoolName & "' AND NOT businessName='Training Business' AND NOT firstName='NULL' AND NOT lastName='NULL' AND NOT firstName = ' ' AND NOT lastName=' ' ) t"
 
         con.ConnectionString = connection_string
@@ -70,12 +70,12 @@ Public Class Class_StudentData
 
     'gets the student count of businesses
     Function GetStudentCountOfBusiness(VisitDate As String, BusinessName As String)
-        Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
+        Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.accountNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
-                                INNER JOIN jobs j ON j.id=s.job
-                                INNER JOIN businessInfo b ON b.id=s.business
-                                INNER JOIN visitInfo v ON v.id=s.visit
-                                INNER JOIN schoolInfo sc ON s.school = sc.id
+                                INNER JOIN jobs j ON j.id=s.jobID
+                                INNER JOIN businessInfo b ON b.id=s.businessID
+                                INNER JOIN visitInfo v ON v.id=s.visitID
+                                INNER JOIN schoolInfo sc ON s.schoolID = sc.id
                                 WHERE v.visitDate='" & VisitDate & "' AND b.businessName = '" & BusinessName & "' AND NOT businessName='Training Business' AND NOT firstName='NULL' AND NOT lastName='NULL' AND NOT firstName = ' ' AND NOT lastName=' ' ) t"
 
         con.ConnectionString = connection_string
@@ -95,7 +95,7 @@ Public Class Class_StudentData
     End Function
 
 
-    'Gets the manually entered student count (from step 1, the teachers only section) from the school visit checklist
+    'Gets the manually entered student count (from step 1, the teachers only section) from the schoolID visitID checklist
     Function GetSVCStudentCount(VisitID As String, SchoolID As String)
         Dim studentCountSQL As String = "SELECT schoolStudentCount FROM schoolVisitChecklist WHERE visitID='" & VisitID & "' AND schoolID = '" & SchoolID & "'"
 
@@ -116,13 +116,13 @@ Public Class Class_StudentData
     End Function
 
 
-    'Populates a DDL with the account number and name of a student in a passed through visit ID
+    'Populates a DDL with the account number and name of a student in a passed through visitID ID
     Function LoadStudentNameWithNumDDL(studentName_ddl As DropDownList, visitID As String)
 
         'Populates a DDL with student names and their account numbers at the beginning of the name
         con.ConnectionString = connection_string
         con.Open()
-        cmd.CommandText = "SELECT CONCAT(employeeNumber, '.     ', firstName, ' ', lastName) as 'Account # and Name' FROM studentInfo WHERE visit='" & visitID & "'  AND NOT lastName IS NULL"
+        cmd.CommandText = "SELECT CONCAT(accountNumber, '.     ', firstName, ' ', lastName) as 'Account # and Name' FROM studentInfo WHERE visitID='" & visitID & "'  AND NOT lastName IS NULL"
         cmd.Connection = con
         dr = cmd.ExecuteReader
 
@@ -147,25 +147,25 @@ Public Class Class_StudentData
         cmd.CommandText = "IF (OBJECT_ID('tempdb..#netdeposits') IS NOT NULL) DROP TABLE #netdeposits
        -- Total Deposits
        SELECT 
-              s.employeeNumber
+              s.accountNumber
               ,s.firstName
               ,s.lastName
               ,SUM(ISNULL(s.netdeposit1,0) + ISNULL(s.netdeposit2,0) + ISNULL(s.netdeposit3,0) + ISNULL(s.netdeposit4,0) - ISNULL(s.savings,0)) totalDeposits
        INTO #netdeposits
        FROM dbo.studentInfo s
-       WHERE s.visit = '" & VisitID & "'
-       GROUP BY s.employeeNumber, s.firstName, s.lastName
+       WHERE s.visitID = '" & VisitID & "'
+       GROUP BY s.accountNumber, s.firstName, s.lastName
 
        -- Total Purchases and with JOIN to #netdeposits temp table
        SELECT 
-               t.employeeNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
+               t.accountNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
               ,MAX(s.totalDeposits) TotalDeposits
               ,SUM(ISNULL(saleamount,0)) as TotalPurchases
               ,MAX(s.totalDeposits) - sum(ISNULL(saleamount,0)) as Balance
        FROM transactions t
-       INNER JOIN #netdeposits s ON t.employeeNumber = s.employeeNumber
-       WHERE t.visitdate = '" & VisitID & "'
-       GROUP BY t.employeeNumber
+       INNER JOIN #netdeposits s ON t.accountNumber = s.accountNumber
+       WHERE t.visitID = '" & VisitID & "'
+       GROUP BY t.accountNumber
        HAVING MAX(s.totalDeposits) - sum(ISNULL(saleamount,0)) < 0
        ORDER BY Balance"
 
@@ -194,22 +194,22 @@ Public Class Class_StudentData
         Dim B As String = ""
         Dim J As String = ""
         Dim Sa As String = ""
-        Dim SQLStatement = "SELECT s.employeeNumber, s.id as studentID, s.firstName, s.lastName, v.id as visitID, sc.schoolName as schoolName, v.VisitDate,
+        Dim SQLStatement = "SELECT s.accountNumber, s.id as studentID, s.firstName, s.lastName, v.id as visitID, sc.schoolName as schoolName, v.VisitDate,
                     b.businessName, j.jobTitle, sa.tierSalary
                     FROM studentInfo s
                     INNER JOIN visitInfo v
-	                    ON v.id = s.visit
+	                    ON v.id = s.visitID
                     FULL JOIN schoolinfo sc
-	                    ON sc.ID = s.school
+	                    ON sc.ID = s.schoolID
                     FULL JOIN teacherinfo t
-	                    ON t.Id = s.teacher
+	                    ON t.Id = s.teacherID
                     INNER JOIN businessInfo b
-	                    ON b.ID = s.business
+	                    ON b.ID = s.businessID
                     INNER JOIN jobs j
-	                    ON j.ID = s.job
+	                    ON j.ID = s.jobID
                     INNER JOIN salary sa
 	                    ON sa.payTier = j.jobSalary
-                    WHERE s.employeeNumber ='" & AccNum & "' AND v.id = '" & VID & "'"
+                    WHERE s.accountNumber ='" & AccNum & "' AND v.id = '" & VID & "'"
 
         cmd.Connection = con
         con.ConnectionString = connection_string
@@ -218,7 +218,7 @@ Public Class Class_StudentData
         dr = cmd.ExecuteReader
 
         While dr.Read()
-            A = dr("employeeNumber").ToString
+            A = dr("accountNumber").ToString
             S = dr("studentID").ToString
             F = dr("firstName").ToString
             L = dr("lastName").ToString
@@ -246,7 +246,7 @@ Public Class Class_StudentData
         cmd.Connection = con
         cmd.CommandText = "SELECT id, cbw1, cbw2, cbw3, cbw4, initialDeposit1, initialDeposit2, initialDeposit3, initialDeposit4 
                               FROM studentInfo 
-                              WHERE visit='" & VisitID & "' AND employeeNumber ='" & AccountNumber & "'"
+                              WHERE visitID='" & VisitID & "' AND accountNumber ='" & AccountNumber & "'"
 
         Dim da As New SqlDataAdapter
         da.SelectCommand = cmd
@@ -262,7 +262,7 @@ Public Class Class_StudentData
 
     'Check savings
     Function CheckSavings(VisitID As String)
-        Dim studentCountSQL As String = "SELECT savings FROM studentInfo WHERE visit='" & VisitID & "'"
+        Dim studentCountSQL As String = "SELECT savings FROM studentInfo WHERE visitID='" & VisitID & "'"
         Dim Savings As Boolean = False
 
         con.ConnectionString = connection_string
@@ -290,7 +290,7 @@ Public Class Class_StudentData
     Sub TransferToSavings(VisitID As String, SavingsAmount As String)
         con.ConnectionString = connection_string
         con.Open()
-        cmd.CommandText = "UPDATE studentInfo SET savings='" & SavingsAmount & "' WHERE visit='" & VisitID & "'"
+        cmd.CommandText = "UPDATE studentInfo SET savings='" & SavingsAmount & "' WHERE visitID='" & VisitID & "'"
         cmd.Connection = con
         cmd.ExecuteNonQuery()
 
@@ -326,11 +326,11 @@ Public Class Class_StudentData
         Dim ds As New DataSet
         Dim da As New SqlDataAdapter
 
-        'Check if business is city hall, if so, Adding UPS, Dali, PCU (water) to city hall FO students
+        'Check if businessID is city hall, if so, Adding UPS, Dali, PCU (water) to city hall FO students
         If BusinessID = 14 Then
-            SQL = "SELECT CONCAT(firstname,' ',lastname) as StudentName, id FROM studentinfo WHERE business IN ('14', '15', '23', '20') AND visit='" & VisitID & "' AND NOT firstName=' '"
+            SQL = "SELECT CONCAT(firstname,' ',lastname) as StudentName, id FROM studentinfo WHERE businessID IN ('14', '15', '23', '20') AND visitID='" & VisitID & "' AND NOT firstName=' '"
         Else
-            SQL = "SELECT CONCAT(firstname,' ',lastname) as StudentName, id FROM studentinfo WHERE business='" & BusinessID & "' AND visit='" & VisitID & "' AND NOT firstName=' '"
+            SQL = "SELECT CONCAT(firstname,' ',lastname) as StudentName, id FROM studentinfo WHERE businessID='" & BusinessID & "' AND visitID='" & VisitID & "' AND NOT firstName=' '"
         End If
 
         con.ConnectionString = connection_string
@@ -354,12 +354,12 @@ Public Class Class_StudentData
     End Function
 
 
-    'Updates studentInfo with new schoolID (used in edit visit)
+    'Updates studentInfo with new schoolID (used in edit visitID)
     Sub UpdateSchoolID(VisitID As String, SchoolID As String)
         Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("UPDATE studentInfo SET visit=@ID, school=@school WHERE visit=@ID")
+            Using cmd As New SqlCommand("UPDATE studentInfo SET visitID=@ID, schoolID=@schoolID WHERE visitID=@ID")
                 cmd.Parameters.AddWithValue("@ID", VisitID)
-                cmd.Parameters.AddWithValue("@school", SchoolID)
+                cmd.Parameters.AddWithValue("@schoolID", SchoolID)
                 cmd.Connection = con
                 con.Open()
                 cmd.ExecuteNonQuery()
@@ -369,18 +369,18 @@ Public Class Class_StudentData
     End Sub
 
 
-    'Returns the studentinfo table with all students visiting for a selected visit date
+    'Returns the studentinfo table with all students visiting for a selected visitID date
     Function LoadEMSTable(VisitID As Integer, Table As GridView, Optional BusinessID As Integer = 0)
         Dim da As New SqlDataAdapter
         Dim dt As New DataTable
-        Dim SQLStatement As String = "Select s.id, s.firstName, s.lastName, s.employeenumber, b.id as BusinessID,j.id as JobID, s.school as 'schoolID'
+        Dim SQLStatement As String = "Select s.id, s.firstName, s.lastName, s.accountNumber, b.id as BusinessID,j.id as JobID, s.schoolID as 'schoolID'
                                     from studentInfo s
                                     inner join businessInfo b 
-	                                    on b.id=s.business
+	                                    on b.id=s.businessID
                                     inner join jobs j
-	                                    on j.id=s.job
+	                                    on j.id=s.jobID
                                     inner join visitInfo v
-	                                    on v.id=s.visit
+	                                    on v.id=s.visitID
                                     where v.id='" & VisitID & "' and b.ID='" & BusinessID & "'"
 
         con.ConnectionString = connection_string

@@ -155,7 +155,7 @@ Public Class Sales_System
             Try
                 customer_name_lbl.Text = studentInfo.FirstName & " " & studentInfo.LastName
                 employee_number_lbl.Text = studentInfo.AccountNumber
-                cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4 FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & employee_number_lbl.Text & "'"
+                cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4 FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & employee_number_lbl.Text & "'"
                 dr = cmd.ExecuteReader
                 While dr.Read
                     If dr("netDeposit1").ToString = Nothing Then
@@ -184,7 +184,7 @@ Public Class Sales_System
                 netDeposit = netDeposit1 + netDeposit2 + netDeposit3 + netDeposit4
                 cmd = New SqlCommand
                 cmd.Connection = con
-                cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitdate ='" & visitID & "' AND employeeNumber ='" & employee_number_lbl.Text & "'"
+                cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitID ='" & visitID & "' AND accountNumber ='" & employee_number_lbl.Text & "'"
                 dr = cmd.ExecuteReader
                 While dr.Read
                     If dr("transactions").ToString = Nothing Then
@@ -195,7 +195,7 @@ Public Class Sales_System
 
                 End While
                 dr.Close()
-                cmd.CommandText = "SELECT (savings) as savings FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & employee_number_lbl.Text & "'"
+                cmd.CommandText = "SELECT (savings) as savings FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & employee_number_lbl.Text & "'"
                 dr = cmd.ExecuteReader
                 While dr.Read()
                     If dr("savings").ToString = Nothing Then
@@ -368,7 +368,7 @@ Public Class Sales_System
             'Try
 
             'THIS SECTION ONLY WORKS IF THERE ARE VALUES FOR EACH DEPOSIT AND AT LEAST 1 TRANSACTION
-            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4 FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4 FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read
                 If dr("netDeposit1").ToString = Nothing Then
@@ -397,7 +397,7 @@ Public Class Sales_System
             netDeposit = netDeposit1 + netDeposit2 + netDeposit3 + netDeposit4
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitdate ='" & visitID & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitID ='" & visitID & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read
                 If dr("transactions").ToString = Nothing Then
@@ -408,7 +408,7 @@ Public Class Sales_System
 
             End While
             dr.Close()
-            cmd.CommandText = "SELECT (savings) as savings FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT (savings) as savings FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read()
                 If dr("savings").ToString = Nothing Then
@@ -440,13 +440,13 @@ Public Class Sales_System
                     Try
                         cmd = New SqlCommand
                         cmd.Connection = con
-                        cmd.CommandText = "SELECT saleAmount FROM transactions WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                        cmd.CommandText = "SELECT saleAmount FROM transactions WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
 
                         dr = cmd.ExecuteReader
                         If dr.HasRows Then
                             Exit Try
                         Else
-                            sql_lbl.Text = "INSERT INTO transactions (employeeNumber, business, transactionTimestamp, saleAmount, visitdate, item1, item2, item3, item4, saleAmount2, saleAmount3, saleAmount4) VALUES ('" & employee_number_lbl.Text & "', '" & businessID & "', '" & timestampSTR & "', '" & totalSale & "', '" & visitdate_hf.Value & "', '" & item1_tb.Text & "', '" & item2_tb.Text & "', '" & item3_tb.Text & "', '" & item4_tb.Text & "', 0.00, 0.00, 0.00)"
+                            sql_lbl.Text = "INSERT INTO transactions (accountNumber, businessID, transactionTimestamp, saleAmount, visitID, item1, item2, item3, item4, saleAmount2, saleAmount3, saleAmount4) VALUES ('" & employee_number_lbl.Text & "', '" & businessID & "', '" & timestampSTR & "', '" & totalSale & "', '" & visitdate_hf.Value & "', '" & item1_tb.Text & "', '" & item2_tb.Text & "', '" & item3_tb.Text & "', '" & item4_tb.Text & "', 0.00, 0.00, 0.00)"
                         End If
 
                         dr.Close()
@@ -470,12 +470,12 @@ Public Class Sales_System
                     Try
                         cmd = New SqlCommand
                         cmd.Connection = con
-                        cmd.CommandText = "SELECT saleAmount2, transactionTimeStamp2 FROM transactions WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                        cmd.CommandText = "SELECT saleAmount2, transactionTimeStamp2 FROM transactions WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
 
                         dr = cmd.ExecuteReader
                         While dr.Read()
                             If dr("saleAmount2").ToString = "0.00" And dr("transactionTimeStamp2").ToString = Nothing Then
-                                sql_lbl.Text = "UPDATE transactions SET saleAmount2='" & totalSale & "', transactionTimeStamp2='" & timestampSTR & "', item1='" & item1_tb.Text & "', item2='" & item2_tb.Text & "', item3='" & item3_tb.Text & "', item4='" & item4_tb.Text & "' WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                                sql_lbl.Text = "UPDATE transactions SET saleAmount2='" & totalSale & "', transactionTimeStamp2='" & timestampSTR & "', item1='" & item1_tb.Text & "', item2='" & item2_tb.Text & "', item3='" & item3_tb.Text & "', item4='" & item4_tb.Text & "' WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
                                 Exit While
                             Else
                                 Exit Try
@@ -502,12 +502,12 @@ Public Class Sales_System
                     Try
                         cmd = New SqlCommand
                         cmd.Connection = con
-                        cmd.CommandText = "SELECT saleAmount3, transactionTimeStamp3 FROM transactions WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                        cmd.CommandText = "SELECT saleAmount3, transactionTimeStamp3 FROM transactions WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
 
                         dr = cmd.ExecuteReader
                         While dr.Read()
                             If dr("saleAmount3").ToString = "0.00" And dr("transactionTimeStamp3").ToString = Nothing Then
-                                sql_lbl.Text = "UPDATE transactions SET saleAmount3='" & totalSale & "', transactionTimeStamp3='" & timestampSTR & "', item1='" & item1_tb.Text & "', item2='" & item2_tb.Text & "', item3='" & item3_tb.Text & "', item4='" & item4_tb.Text & "' WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                                sql_lbl.Text = "UPDATE transactions SET saleAmount3='" & totalSale & "', transactionTimeStamp3='" & timestampSTR & "', item1='" & item1_tb.Text & "', item2='" & item2_tb.Text & "', item3='" & item3_tb.Text & "', item4='" & item4_tb.Text & "' WHERE visitDate='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
                                 Exit While
                             Else
                                 Exit Try
@@ -534,12 +534,12 @@ Public Class Sales_System
                     Try
                         cmd = New SqlCommand
                         cmd.Connection = con
-                        cmd.CommandText = "SELECT saleAmount4, transactionTimeStamp4 FROM transactions WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                        cmd.CommandText = "SELECT saleAmount4, transactionTimeStamp4 FROM transactions WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
 
                         dr = cmd.ExecuteReader
                         While dr.Read()
                             If dr("saleAmount4").ToString = "0.00" And dr("transactionTimeStamp4").ToString = Nothing Then
-                                sql_lbl.Text = "UPDATE transactions SET saleAmount4='" & totalSale & "', transactionTimeStamp4='" & timestampSTR & "', item1='" & item1_tb.Text & "', item2='" & item2_tb.Text & "', item3='" & item3_tb.Text & "', item4='" & item4_tb.Text & "' WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                                sql_lbl.Text = "UPDATE transactions SET saleAmount4='" & totalSale & "', transactionTimeStamp4='" & timestampSTR & "', item1='" & item1_tb.Text & "', item2='" & item2_tb.Text & "', item3='" & item3_tb.Text & "', item4='" & item4_tb.Text & "' WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
                                 Exit While
                             Else
                                 Exit Try
@@ -566,7 +566,7 @@ Public Class Sales_System
                     Try
                         cmd = New SqlCommand
                         cmd.Connection = con
-                        cmd.CommandText = "SELECT saleAmount4, transactionTimeStamp4 FROM transactions WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & employee_number_lbl.Text & "' AND business='" & businessID & "'"
+                        cmd.CommandText = "SELECT saleAmount4, transactionTimeStamp4 FROM transactions WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & employee_number_lbl.Text & "' AND businessID='" & businessID & "'"
 
                         dr = cmd.ExecuteReader
                         While dr.Read()
@@ -606,7 +606,7 @@ Public Class Sales_System
 
                 cmd = New SqlCommand
                 cmd.Connection = con
-                cmd.CommandText = "SELECT COUNT(*) FROM transactions WHERE visitdate ='" & visitdate_hf.Value & "' AND employeeNumber = '" & employee_number_lbl.Text & "' AND business = '" & businessID & "' AND transactionTimeStamp ='" & timestampSTR & "' AND saleAmount ='" & totalSale & "'"
+                cmd.CommandText = "SELECT COUNT(*) FROM transactions WHERE visitID ='" & visitdate_hf.Value & "' AND accountNumber = '" & employee_number_lbl.Text & "' AND businessID = '" & businessID & "' AND transactionTimeStamp ='" & timestampSTR & "' AND saleAmount ='" & totalSale & "'"
 
                 dr = cmd.ExecuteReader
                 If dr.HasRows Then

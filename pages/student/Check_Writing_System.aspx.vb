@@ -597,7 +597,7 @@ Public Class Check_Writing_System
                                           INNER JOIN studentInfo s
                                           ON c.studentID = s.id
                                         WHERE c.businessID ='" & Request.QueryString("b") & "' 
-                                        AND s.visit='" & visitID_hf.Value & "' and c.memo='" & Check_selector_ddl.SelectedValue.ToString & "' AND c.visitID='" & visitID_hf.Value & "'
+                                        AND s.visitID='" & visitID_hf.Value & "' and c.memo='" & Check_selector_ddl.SelectedValue.ToString & "' AND c.visitID='" & visitID_hf.Value & "'
                                         ORDER BY c.id ASC"
             cmd.Connection = con
             dr = cmd.ExecuteReader

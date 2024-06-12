@@ -10,7 +10,7 @@
 
 
     <link href="~/css/Styles.print.css" rel="stylesheet" media="print" type="text/css">
-    <link href="css/Styles.SalesSystem.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.SalesSystem.css" rel="stylesheet" media="screen" type="text/css">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 </head>
 
@@ -43,8 +43,8 @@
                 <asp:GridView ID="Transactions_dgv" runat="server" AutoGenerateColumns="False" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium" Width="30px">
                     <AlternatingRowStyle BackColor="#99CCFF" />
                     <Columns>
-                        <asp:BoundField DataField="employeeNumber" HeaderText="Account <br /> Number" ReadOnly="true" Visible="true" HtmlEncode="false"/>
-                        <asp:BoundField DataField="business" HeaderText="Business" ReadOnly="true" Visible="false" />
+                        <asp:BoundField DataField="accountNumber" HeaderText="Account <br /> Number" ReadOnly="true" Visible="true" HtmlEncode="false"/>
+                        <asp:BoundField DataField="businessID" HeaderText="Business" ReadOnly="true" Visible="false" />
                         <asp:BoundField DataField="transactiontimestamp" HeaderText="Timestamp" ReadOnly="true" Visible="true" />
                         <asp:BoundField DataField="saleAmount" HeaderText="Sale <br /> Amount" ReadOnly="true" Visible="true" HtmlEncode="false"/>
                         <asp:BoundField DataField="transactiontimestamp2" HeaderText="Timestamp 2" ReadOnly="true" Visible="true" />
@@ -53,7 +53,7 @@
                         <asp:BoundField DataField="saleAmount3" HeaderText="Sale <br /> Amount 3" ReadOnly="true" Visible="true" HtmlEncode="false"/>
                         <asp:BoundField DataField="transactiontimestamp4" HeaderText="Timestamp 4" ReadOnly="true" Visible="true" />
                         <asp:BoundField DataField="saleAmount4" HeaderText="Sale <br /> Amount 4" ReadOnly="true" Visible="true" HtmlEncode="false" />
-                        <asp:BoundField DataField="visit" HeaderText="Visit" ReadOnly="true" Visible="false" />
+                        <asp:BoundField DataField="visitID" HeaderText="Visit" ReadOnly="true" Visible="false" />
                     </Columns>
                 </asp:GridView>
                 <br />

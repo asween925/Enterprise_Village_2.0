@@ -50,10 +50,10 @@ Public Class Duplicate_numbers_report
 
         cmd = New SqlCommand
         cmd.Connection = con
-        cmd.CommandText = "SELECT employeeNumber, COUNT(*)
+        cmd.CommandText = "SELECT accountNumber, COUNT(*)
                             From studentInfo s
-							Where visit ='" & visitID & "'
-                            GROUP BY employeeNumber
+							Where visitID ='" & visitID & "'
+                            GROUP BY accountNumber
 							HAVING COUNT(*) > 1"
 
 

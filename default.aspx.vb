@@ -136,7 +136,7 @@ Public Class login
                         Try
                             con.ConnectionString = connection_string
                             con.Open()
-                            cmd.CommandText = "SELECT DISTINCT t.schoolName FROM teacherInfo t LEFT JOIN schoolInfo s ON s.schoolName = t.schoolName WHERE t.futureRequestsEmail = '" & email & "' OR s.futureRequestsEmail = '" & email & "'"
+                            cmd.CommandText = "SELECT DISTINCT t.schoolName FROM teacherInfo t LEFT JOIN schoolInfo s ON s.id = t.schoolID WHERE t.futureRequestsEmail = '" & email & "' OR s.futureRequestsEmail = '" & email & "'"
                             cmd.Connection = con
                             dr = cmd.ExecuteReader
 
@@ -270,7 +270,7 @@ Public Class login
                 Try
                     con.ConnectionString = connection_string
                     con.Open()
-                    cmd.CommandText = "SELECT DISTINCT id, schoolName FROM teacherInfo WHERE futureRequestsEmail = '" & email & "'"
+                    cmd.CommandText = "SELECT DISTINCT t.id, s.schoolName FROM teacherInfo t JOIN schoolInfo s ON s.id = t.schoolID WHERE t.futureRequestsEmail = '" & email & "'"
                     cmd.Connection = con
                     dr = cmd.ExecuteReader
 

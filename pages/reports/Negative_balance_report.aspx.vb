@@ -52,25 +52,25 @@ Public Class Negative_balance_report
             cmd.CommandText = "IF (OBJECT_ID('tempdb..#netdeposits') IS NOT NULL) DROP TABLE #netdeposits
        -- Total Deposits
        SELECT 
-              s.employeeNumber
+              s.accountNumber
               ,s.firstName
               ,s.lastName
               ,SUM(ISNULL(s.netdeposit1,0) + ISNULL(s.netdeposit2,0) + ISNULL(s.netdeposit3,0) + ISNULL(s.netdeposit4,0) - ISNULL(s.savings,0)) totalDeposits
        INTO #netdeposits
        FROM dbo.studentInfo s
-       WHERE s.visit = '" & visitID & "'
-       GROUP BY s.employeeNumber, s.firstName, s.lastName
+       WHERE s.visitID = '" & visitID & "'
+       GROUP BY s.accountNumber, s.firstName, s.lastName
 
        -- Total Purchases and with JOIN to #netdeposits temp table
        SELECT 
-               t.employeeNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
+               t.accountNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
               ,MAX(s.totalDeposits) TotalDeposits
               ,SUM(ISNULL(saleamount,0)) as TotalPurchases
               ,MAX(s.totalDeposits) - sum(ISNULL(saleamount,0)) as Balance
        FROM transactions t
-       INNER JOIN #netdeposits s ON t.employeeNumber = s.employeeNumber
-       WHERE t.visitdate = '" & visitID & "'
-       GROUP BY t.employeeNumber
+       INNER JOIN #netdeposits s ON t.accountNumber = s.accountNumber
+       WHERE t.visitID = '" & visitID & "'
+       GROUP BY t.accountNumber
        HAVING MAX(s.totalDeposits) - sum(ISNULL(saleamount,0)) < 0
        ORDER BY Balance"
 

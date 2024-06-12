@@ -42,12 +42,12 @@ Public Class Schedule_Request_Form_Checklist
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 		Dim con As New SqlConnection
 		Dim cmd As New SqlCommand
-		Dim sql As String = "SELECT s.id, t.schoolName, TRIM(t.firstName)+' '+TRIM(t.lastName) as teacherName, t.futureRequestsEmail,  s.spfReturned
+		Dim sql As String = "SELECT s.id, s.schoolName, TRIM(t.firstName)+' '+TRIM(t.lastName) as teacherName, t.futureRequestsEmail,  s.spfReturned
 								FROM teacherInfo t
 								INNER JOIN schoolInfo s
-								ON s.schoolName = t.schoolName
-								WHERE t.isContact=1 AND NOT t.schoolName IS NULL
-								ORDER BY t.schoolName ASC"
+								ON s.ID = t.schoolID
+								WHERE t.isContact=1 AND NOT t.schoolID IS NULL
+								ORDER BY s.schoolName ASC"
 
 		Try
 			con.ConnectionString = connection_string

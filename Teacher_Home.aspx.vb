@@ -71,7 +71,7 @@ Public Class Teacher_Home
 
             'Get teacher name
             Try
-                teacherName_lbl.Text = TeacherData.GetContactTeacher(schoolName_lbl.Text)
+                teacherName_lbl.Text = TeacherData.GetContactTeacher(schoolID)
             Catch
                 teacherName_lbl.Text = ""
             End Try

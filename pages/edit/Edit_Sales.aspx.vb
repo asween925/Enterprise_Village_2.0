@@ -52,8 +52,8 @@ Public Class Edit_Sales
         Dim sql As String = "SELECT t.id, b.businessName, t.saleAmount, t.saleAmount2, t.saleAmount3, t.saleAmount4 
                                FROM transactions t
                                INNER JOIN businessInfo b
-                               ON b.id = t.business
-                               WHERE visitDate='" & visitdate_hf.Value & "' AND employeeNumber='" & empID_hf.Value & "'"
+                               ON b.id = t.businessID
+                               WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber='" & empID_hf.Value & "'"
 
         error_lbl.Text = ""
 
@@ -91,7 +91,7 @@ Public Class Edit_Sales
             con.ConnectionString = connection_string
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4 FROM studentInfo WHERE visit='" & visitdate_hf.Value & "' AND employeeNumber ='" & empID_hf.Value & "'"
+            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4 FROM studentInfo WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber ='" & empID_hf.Value & "'"
             dr = cmd.ExecuteReader
             While dr.Read
                 If dr("netDeposit1").ToString = Nothing Then
@@ -122,7 +122,7 @@ Public Class Edit_Sales
             'Get total of all transactions for the day
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitdate ='" & visitdate_hf.Value & "' AND employeeNumber ='" & empID_hf.Value & "'"
+            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitID ='" & visitdate_hf.Value & "' AND accountNumber ='" & empID_hf.Value & "'"
             dr = cmd.ExecuteReader
             While dr.Read
                 If dr("transactions").ToString = Nothing Then
@@ -135,7 +135,7 @@ Public Class Edit_Sales
             dr.Close()
 
             'Get savings
-            cmd.CommandText = "SELECT (savings) as savings FROM studentInfo WHERE visit='" & visitdate_hf.Value & "' AND employeeNumber ='" & empID_hf.Value & "'"
+            cmd.CommandText = "SELECT (savings) as savings FROM studentInfo WHERE visitID='" & visitdate_hf.Value & "' AND accountNumber ='" & empID_hf.Value & "'"
             dr = cmd.ExecuteReader
             While dr.Read()
                 If dr("savings").ToString = Nothing Then
@@ -278,7 +278,7 @@ Public Class Edit_Sales
 
             'Populating student name ddl
 
-            Dim studentName As String = "SELECT CONCAT(employeeNumber, '.     ', firstName, ' ', lastName) as 'Account # and Name' FROM studentInfo WHERE visit='" & visitdate_hf.Value & "'  AND NOT lastName IS NULL"
+            Dim studentName As String = "SELECT CONCAT(accountNumber, '.     ', firstName, ' ', lastName) as 'Account # and Name' FROM studentInfo WHERE visitID='" & visitdate_hf.Value & "'  AND NOT lastName IS NULL"
             studentName_ddl.Items.Clear()
 
             Try

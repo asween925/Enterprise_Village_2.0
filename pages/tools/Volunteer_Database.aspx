@@ -190,13 +190,13 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Business">
                                     <ItemTemplate>
-                                        <asp:Label id="businessNameDGV_lbl" runat="server" Text='<%#Bind("businessName") %>' Visible="false"></asp:Label>
+                                        <asp:Label id="businessNameDGV_lbl" runat="server" Text='<%#Bind("businessID") %>' Visible="false"></asp:Label>
                                         <asp:DropDownList CssClass="ddl" ID="businessNameDGV_ddl" runat="server" Width="200px" ReadOnly="false"></asp:DropDownList>
                                     </ItemTemplate>                         
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="School Name">
                                     <ItemTemplate>
-                                        <asp:Label id="schoolNameDGV_lbl" runat="server" Text='<%#Bind("schoolName") %>' Visible="false"></asp:Label>
+                                        <asp:Label id="schoolNameDGV_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="true"></asp:Label>
                                         <asp:DropDownList CssClass="ddl" ID="schoolNameDGV_ddl" runat="server" Width="200px" ReadOnly="false"></asp:DropDownList>
                                     </ItemTemplate>                         
                                 </asp:TemplateField>

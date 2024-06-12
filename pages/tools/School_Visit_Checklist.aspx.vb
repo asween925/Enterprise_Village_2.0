@@ -18,6 +18,7 @@ Public Class School_Visit_Checklist
     Dim Schools As New Class_SchoolData
     Dim Visits As New Class_VisitData
     Dim SH As New Class_SchoolHeader
+    Dim Commands As New Class_SQLCommands
     Dim VisitID As Integer = Visits.GetVisitID
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -42,6 +43,7 @@ Public Class School_Visit_Checklist
 
     Sub LoadData()
         Dim username As String = Session("username")
+        Dim UserJob As String
         Dim visitDate As Date = visitDate_tb.Text
         Dim VIDofDate As Integer = Visits.GetVisitIDFromDate(visitDate)
         Dim schoolName As String = schoolName_ddl.SelectedValue
@@ -55,18 +57,18 @@ Public Class School_Visit_Checklist
         Dim ContactTeacher As String
         Dim schoolStudentCount As String
         Dim AdminEmail As String
-        Dim studentCountFormReceived As Date
+        Dim studentCountFormReceived As String
 
         'Step 2 variables
 
         Dim LastEditedBy2 As String
-        Dim invoiceIssued As Boolean
-        Dim directorsSignature As Boolean
+        Dim invoiceIssued As String
+        Dim directorsSignature As String
 
         'Step 3 Variables
 
         Dim LastEditedBy3 As String
-        Dim contractRecieved As Date
+        Dim contractRecieved As String
         Dim invoiceNum As String
         Dim deliveryMethod As String = delivery_ddl.SelectedValue
         Dim notes As String
@@ -92,7 +94,7 @@ Public Class School_Visit_Checklist
         Dim LastEditedBy5 As String
         Dim deliveryAccepted As String
         Dim position As String
-        Dim dateAccepted As Date
+        Dim dateAccepted As String
 
         'Make all divs visible
 
@@ -156,16 +158,16 @@ Public Class School_Visit_Checklist
         End Try
 
         'Get student count of school
-        Try
-            'StudentCountTotal = Visits.LoadVisitInfoFromDate(visitDate, "studentCount")
-        Catch
-            error_lbl.Text = "Error in loaddata(). Cannot retrieve student count."
-            Exit Sub
-        End Try
+        'Try
+        '    StudentCountTotal = Visits.LoadVisitInfoFromDate(visitDate, "studentCount")
+        'Catch
+        '    error_lbl.Text = "Error in loaddata(). Cannot retrieve student count."
+        '    Exit Sub
+        'End Try
 
-        'Get for contact teacher
+        'Get contact teacher
         Try
-            ContactTeacher = Teachers.GetContactTeacher(schoolName)
+            ContactTeacher = Teachers.GetContactTeacher(SchoolID)
             If ContactTeacher = Nothing Or ContactTeacher = "" Then
                 ContactTeacher = "N/A"
             End If
@@ -174,23 +176,28 @@ Public Class School_Visit_Checklist
             Exit Sub
         End Try
 
-        'Assign variables 
+        'Get current user job
         Try
-            'Step 1
+            UserJob = Commands.GetUserJob(username)
+        Catch
+            error_lbl.Text = "Error in loaddata(). Cannot check who is logged in."
+            Exit Sub
+        End Try
 
-            LastEditedBy1 = SVC.LasteditedStep1
+        'Assign variables 
+        'Try
+        'Step 1
+        LastEditedBy1 = SVC.LasteditedStep1
             schoolType = SVC.SchoolType
             schoolStudentCount = SVC.SchoolStudentCount
             studentCountFormReceived = SVC.StudentCountFormReceived
 
             'Step 2
-
             LastEditedBy2 = SVC.LastEditedStep2
             invoiceIssued = SVC.InvoiceIssued
             directorsSignature = SVC.DirectorSignature
 
             'Step 3
-
             LastEditedBy3 = SVC.LastEditedStep3
             contractRecieved = SVC.ContractReceivedDate
             invoiceNum = SVC.InvoiceNum
@@ -198,7 +205,6 @@ Public Class School_Visit_Checklist
             notes = SVC.Notes
 
             'Step 4
-
             LastEditedBy4 = SVC.LastEditedStep4
             numOfKits = SVC.NumOfKits
             kit1 = SVC.Kit1
@@ -214,18 +220,18 @@ Public Class School_Visit_Checklist
             workbooks = SVC.Workbooks
 
             'Step 5
-
             LastEditedBy5 = SVC.LastEditedStep5
             deliveryAccepted = SVC.DeliveryAccepted
             position = SVC.Position
             dateAccepted = SVC.DateAccepted
 
-        Catch
-            error_lbl.Text = "Error in LoadData(). Cannot get SVC data to variables."
-            Exit Sub
-        End Try
+        'Catch
+        '    error_lbl.Text = "Error in LoadData(). Cannot get SVC data to variables."
+        '    Exit Sub
+        'End Try
 
         'Assign labels, textboxes, DDL values, etc
+
 
         '-----------STEP 1------------
 
@@ -234,7 +240,6 @@ Public Class School_Visit_Checklist
         visitDate_lbl.Text = visitDate
         contactTeacher_lbl.Text = ContactTeacher
         adminEmail_lbl.Text = AdminEmail
-        studentCountFormReceived_tb.Text = studentCountFormReceived.ToString("yyyy-MM-dd")
 
         If schoolType = Nothing Then
             schoolType_ddl.SelectedIndex = 0
@@ -250,18 +255,39 @@ Public Class School_Visit_Checklist
             schoolStudentCount_tb.Text = schoolStudentCount
         End If
 
+        If studentCountFormReceived = Nothing Then
+            studentCountFormReceived_tb = Nothing
+        Else
+            studentCountFormReceived_tb.Text = DateTime.Parse(studentCountFormReceived).ToString("yyyy-MM-dd")
+        End If
+
         '-----------STEP 2------------
 
-        lastEdited2_lbl.Text = LastEditedBy2
-        invoice_chk.Checked = invoiceIssued
-        director_chk.Checked = directorsSignature
+        lastEdited2_lbl.Text = LastEditedBy2 & " " & invoiceIssued
+
+        If invoiceIssued = Nothing Then
+            invoice_chk.Checked = False
+        Else
+            invoice_chk.Checked = invoiceIssued
+        End If
+
+        If directorsSignature = Nothing Then
+            director_chk.Checked = False
+        Else
+            director_chk.Checked = directorsSignature
+        End If
 
         '-----------STEP 3------------
 
         lastEdited3_lbl.Text = LastEditedBy3
-        contractRecieved_tb.Text = contractRecieved.ToString("yyyy-MM-dd")
         invoiceNum_tb.Text = invoiceNum
         notes_tb.Text = notes
+
+        If contractRecieved = Nothing Then
+            contractRecieved_tb.Text = ""
+        Else
+            contractRecieved_tb.Text = DateTime.Parse(contractRecieved).ToString("yyyy-mm-dd")
+        End If
 
         If deliveryMethod = Nothing Then
             delivery_ddl.SelectedIndex = 0
@@ -270,344 +296,196 @@ Public Class School_Visit_Checklist
         End If
 
         '-----------STEP 4------------
-        If dr("numberOfKits").ToString = Nothing Then
+
+        lastEdited4_lbl.Text = LastEditedBy4
+        kit1_tb.Text = kit1
+        kit2_tb.Text = kit2
+        kit3_tb.Text = kit3
+        kit4_tb.Text = kit4
+        kit5_tb.Text = kit5
+        kit6_tb.Text = kit6
+        kit7_tb.Text = kit7
+        kit8_tb.Text = kit8
+        kit9_tb.Text = kit9
+        kit10_tb.Text = kit10
+
+        If numOfKits = Nothing Then
             numOfKits_ddl.SelectedIndex = 0
         Else
-            numOfKits = dr("numberOfKits").ToString
             numOfKits_ddl.SelectedValue = numOfKits
-            KitTextboxes()
+            KitTextboxes() 'Makes kit textboxes visible based on number of kits needed from the ddl
             numOfKits_ddl.SelectedIndex = numOfKits_ddl.Items.IndexOf(numOfKits_ddl.Items.FindByValue(numOfKits))
         End If
 
-        If dr("kit1").ToString = Nothing Then
-            kit1_tb.Text = Nothing
-        Else
-            kit1 = dr("kit1").ToString
-            kit1_tb.Text = kit1
-        End If
-
-        If dr("kit2").ToString = Nothing Then
-            kit2_tb.Text = Nothing
-        Else
-            kit2 = dr("kit2").ToString
-            kit2_tb.Text = kit2
-        End If
-
-        If dr("kit3").ToString = Nothing Then
-            kit3_tb.Text = Nothing
-        Else
-            kit3 = dr("kit3").ToString
-            kit3_tb.Text = kit3
-        End If
-
-        If dr("kit4").ToString = Nothing Then
-            kit4_tb.Text = Nothing
-        Else
-            kit4 = dr("kit4").ToString
-            kit4_tb.Text = kit4
-        End If
-
-        If dr("kit5").ToString = Nothing Then
-            kit5_tb.Text = Nothing
-        Else
-            kit5 = dr("kit5").ToString
-            kit5_tb.Text = kit5
-        End If
-
-        If dr("kit6").ToString = Nothing Then
-            kit6_tb.Text = Nothing
-        Else
-            kit6 = dr("kit6").ToString
-            kit6_tb.Text = kit6
-        End If
-
-        If dr("kit7").ToString = Nothing Then
-            kit7_tb.Text = Nothing
-        Else
-            kit7 = dr("kit7").ToString
-            kit7_tb.Text = kit7
-        End If
-
-        If dr("kit8").ToString = Nothing Then
-            kit8_tb.Text = Nothing
-        Else
-            kit8 = dr("kit8").ToString
-            kit8_tb.Text = kit8
-        End If
-
-        If dr("kit9").ToString = Nothing Then
-            kit9_tb.Text = Nothing
-        Else
-            kit9 = dr("kit9").ToString
-            kit9_tb.Text = kit9
-        End If
-
-        If dr("kit10").ToString = Nothing Then
-            kit10_tb.Text = Nothing
-        Else
-            kit10 = dr("kit10").ToString
-            kit10_tb.Text = kit10
-        End If
-
-        If dr("workbooks").ToString = Nothing Then
+        If workbooks = Nothing Then
             workbooks_lbl.Text = studentCountTotal_lbl.Text
         Else
-            workbooks = dr("workbooks").ToString
             workbooks_lbl.Text = workbooks
         End If
 
-
         '-----------STEP 5------------
-        Try
-                    If dr("deliveryAccepted").ToString = Nothing Then
-                        deliveryAccepted_tb.Text = Nothing
-                    Else
-                        deliveryAccepted = dr("deliveryAccepted").ToString
-                        deliveryAccepted_tb.Text = deliveryAccepted
-                    End If
 
-                    If dr("position").ToString = Nothing Then
-                        position_tb.Text = Nothing
-                    Else
-                        position = dr("position").ToString
-                        position_tb.Text = position.ToString
-                    End If
+        lastEdited5_lbl.Text = LastEditedBy5
+        deliveryAccepted_tb.Text = deliveryAccepted
+        position_tb.Text = position
 
-                    If dr("dateAccepted").ToString = Nothing Then
-                        dateAccepted_tb.Text = Nothing
-                    Else
-                        dateAccepted = dr("dateAccepted").ToString
-                        dateAccepted_tb.Text = dateAccepted.ToString("yyyy-MM-dd")
-                    End If
-                Catch ex As Exception
-                    error_lbl.Text = "Error in loaddata(). Error in loading data for step 5."
-                    Exit Sub
-                End Try
+        If dateAccepted = Nothing Then
+            dateAccepted_tb.Text = ""
+        Else
+            dateAccepted_tb.Text = DateTime.Parse(dateAccepted).ToString("yyyy-mm-dd")
+        End If
 
-
-        '-----------LAST EDITED BY ------------
-        Try
-            If dr("lastEditedStep1").ToString = Nothing Then
-                lastEdited1_lbl.Text = Nothing
-            Else
-                LastEditedBy1 = dr("lastEditedStep1").ToString
-                lastEdited1_lbl.Text = LastEditedBy1.ToString
-            End If
-
-            If dr("lastEditedStep2").ToString = Nothing Then
-                lastEdited2_lbl.Text = Nothing
-            Else
-                LastEditedBy2 = dr("lastEditedStep2").ToString
-                lastEdited2_lbl.Text = LastEditedBy2.ToString
-            End If
-
-            If dr("lastEditedStep3").ToString = Nothing Then
-                lastEdited3_lbl.Text = Nothing
-            Else
-                LastEditedBy3 = dr("lastEditedStep3").ToString
-                lastEdited3_lbl.Text = LastEditedBy3.ToString
-            End If
-
-            If dr("lastEditedStep4").ToString = Nothing Then
-                lastEdited4_lbl.Text = Nothing
-            Else
-                LastEditedBy4 = dr("lastEditedStep4").ToString
-                lastEdited4_lbl.Text = LastEditedBy4.ToString
-            End If
-
-            If dr("lastEditedStep5").ToString = Nothing Then
-                lastEdited5_lbl.Text = Nothing
-            Else
-                LastEditedBy5 = dr("lastEditedStep5").ToString
-                lastEdited5_lbl.Text = LastEditedBy5.ToString
-            End If
-        Catch
-            error_lbl.Text = "Error in loaddata(). Error in loading data for last edited by."
-            Exit Sub
-        End Try
 
         'Check who is logged in and disable/enable fields based on job of the user logged in
-        Try
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = "SELECT job FROM adminInfo WHERE username='" & username & "'"
-            cmd.Connection = con
-            dr = cmd.ExecuteReader
-            While dr.Read()
 
-                'Check if user logged in is teacher: STEP 1
-                If dr("job").ToString = "Teacher" Then
+        'Check if user logged in is teacher: STEP 1
+        If UserJob = "Teacher" Then
 
-                    'Disabled / Hidden for Teachers
-                    contractRecieved_tb.Enabled = False
-                    invoiceNum_tb.Enabled = False
-                    delivery_ddl.Enabled = False
-                    notes_tb.Enabled = False
-                    numOfKits_ddl.Enabled = False
-                    'kitNumbers_tb.Enabled = False
-                    deliveryAccepted_tb.Enabled = False
-                    dateAccepted_tb.Enabled = False
-                    step2Submit_btn.Visible = False
-                    step3Submit_btn.Visible = False
-                    step4Submit_btn.Visible = False
-                    step5Submit_btn.Visible = False
-                    invoice_chk.Enabled = False
-                    director_chk.Enabled = False
-                    printTicket_btn.Visible = False
+            'Disabled / Hidden for Teachers
+            contractRecieved_tb.Enabled = False
+            invoiceNum_tb.Enabled = False
+            delivery_ddl.Enabled = False
+            notes_tb.Enabled = False
+            numOfKits_ddl.Enabled = False
+            deliveryAccepted_tb.Enabled = False
+            dateAccepted_tb.Enabled = False
+            step2Submit_btn.Visible = False
+            step3Submit_btn.Visible = False
+            step4Submit_btn.Visible = False
+            step5Submit_btn.Visible = False
+            invoice_chk.Enabled = False
+            director_chk.Enabled = False
+            printTicket_btn.Visible = False
 
-                    'Enabled / Visible for Teachers
-                    schoolType_ddl.Enabled = True
-                    step1Submit_btn.Visible = True
+            'Enabled / Visible for Teachers
+            schoolType_ddl.Enabled = True
+            step1Submit_btn.Visible = True
 
-                    'Check if bookkeeper is logged in: STEP 2
-                ElseIf dr("job").ToString = "Bookkeeper" Then
+            'Check if bookkeeper is logged in: STEP 2
+        ElseIf UserJob = "Bookkeeper" Then
 
-                    'Disabled / Hidden for Bookkeeper
-                    schoolType_ddl.Enabled = False
-                    contractRecieved_tb.Enabled = False
-                    invoiceNum_tb.Enabled = False
-                    delivery_ddl.Enabled = False
-                    notes_tb.Enabled = False
-                    numOfKits_ddl.Enabled = False
-                    'kitNumbers_tb.Enabled = False
-                    deliveryAccepted_tb.Enabled = False
-                    dateAccepted_tb.Enabled = False
-                    step1Submit_btn.Visible = False
-                    step3Submit_btn.Visible = False
-                    step4Submit_btn.Visible = False
-                    step5Submit_btn.Visible = False
-                    printTicket_btn.Visible = False
+            'Disabled / Hidden for Bookkeeper
+            schoolType_ddl.Enabled = False
+            contractRecieved_tb.Enabled = False
+            invoiceNum_tb.Enabled = False
+            delivery_ddl.Enabled = False
+            notes_tb.Enabled = False
+            numOfKits_ddl.Enabled = False
+            deliveryAccepted_tb.Enabled = False
+            dateAccepted_tb.Enabled = False
+            step1Submit_btn.Visible = False
+            step3Submit_btn.Visible = False
+            step4Submit_btn.Visible = False
+            step5Submit_btn.Visible = False
+            printTicket_btn.Visible = False
 
-                    'Enabled / Visible for Bookkeeper
-                    'Check if teacher selected school type and submitted
-                    If schoolType_ddl.SelectedIndex <> 0 Then
-                        step2Submit_btn.Visible = True
-                        invoice_chk.Enabled = True
-                        director_chk.Enabled = True
-                    End If
+            'Enabled / Visible for Bookkeeper
+            'Check if teacher selected school type and submitted
+            If schoolType_ddl.SelectedIndex <> 0 Then
+                step2Submit_btn.Visible = True
+                invoice_chk.Enabled = True
+                director_chk.Enabled = True
+            End If
 
 
-                    'Check if user logged in is front office: STEP 3 + 5
-                ElseIf dr("job").ToString = "Front Office" Or dr("job").ToString = "Bookkeeper" Then
+            'Check if user logged in is front office: STEP 3 + 5
+        ElseIf UserJob = "Front Office" Or UserJob = "Bookkeeper" Then
 
-                    'Disabled / hidden for Front Office
-                    schoolType_ddl.Enabled = False
-                    numOfKits_ddl.Enabled = False
-                    'kitNumbers_tb.Enabled = False
-                    step1Submit_btn.Visible = False
-                    step2Submit_btn.Visible = False
-                    step4Submit_btn.Visible = False
-                    invoice_chk.Enabled = False
-                    director_chk.Enabled = False
-                    printTicket_btn.Visible = True
+            'Disabled / hidden for Front Office
+            schoolType_ddl.Enabled = False
+            numOfKits_ddl.Enabled = False
+            step1Submit_btn.Visible = False
+            step2Submit_btn.Visible = False
+            step4Submit_btn.Visible = False
+            invoice_chk.Enabled = False
+            director_chk.Enabled = False
+            printTicket_btn.Visible = True
 
-                    'Enabled / Visable for Front Office
-                    'Check if bookkeeper info is filled out
-                    If invoice_chk.Checked = True And director_chk.Checked = True Then
-                        step3Submit_btn.Visible = True
-                        contractRecieved_tb.Enabled = True
-                        invoiceNum_tb.Enabled = True
-                        delivery_ddl.Enabled = True
-                        notes_tb.Enabled = True
-                    Else
-                        step3Submit_btn.Visible = False
-                        contractRecieved_tb.Enabled = False
-                        invoiceNum_tb.Enabled = False
-                        delivery_ddl.Enabled = False
-                        notes_tb.Enabled = False
-                    End If
+            'Enabled / Visable for Front Office
+            'Check if bookkeeper info is filled out
+            If invoice_chk.Checked = True And director_chk.Checked = True Then
+                step3Submit_btn.Visible = True
+                contractRecieved_tb.Enabled = True
+                invoiceNum_tb.Enabled = True
+                delivery_ddl.Enabled = True
+                notes_tb.Enabled = True
+            Else
+                step3Submit_btn.Visible = False
+                contractRecieved_tb.Enabled = False
+                invoiceNum_tb.Enabled = False
+                delivery_ddl.Enabled = False
+                notes_tb.Enabled = False
+            End If
 
-                    'Check if TA info is filled out
-                    If numOfKits_ddl.SelectedIndex <> 0 Then
-                        deliveryAccepted_tb.Enabled = True
-                        dateAccepted_tb.Enabled = True
-                        step5Submit_btn.Visible = True
-                        step3Submit_btn.Visible = True
-                        contractRecieved_tb.Enabled = True
-                        invoiceNum_tb.Enabled = True
-                        delivery_ddl.Enabled = True
-                        notes_tb.Enabled = True
-                    Else
-                        deliveryAccepted_tb.Enabled = False
-                        dateAccepted_tb.Enabled = False
-                    End If
+            'Check if TA info is filled out
+            If numOfKits_ddl.SelectedIndex <> 0 Then
+                deliveryAccepted_tb.Enabled = True
+                dateAccepted_tb.Enabled = True
+                step5Submit_btn.Visible = True
+                step3Submit_btn.Visible = True
+                contractRecieved_tb.Enabled = True
+                invoiceNum_tb.Enabled = True
+                delivery_ddl.Enabled = True
+                notes_tb.Enabled = True
+            Else
+                deliveryAccepted_tb.Enabled = False
+                dateAccepted_tb.Enabled = False
+            End If
 
+            'Check if user logged in is TA: STEP 4
+        ElseIf UserJob = "TA" Then
 
-                    'Check if user logged in is TA: STEP 4
-                ElseIf dr("job").ToString = "TA" Then
+            'Disabled / Hidden for TAs
+            schoolType_ddl.Enabled = False
+            contractRecieved_tb.Enabled = False
+            invoiceNum_tb.Enabled = False
+            delivery_ddl.Enabled = False
+            notes_tb.Enabled = False
+            deliveryAccepted_tb.Enabled = False
+            dateAccepted_tb.Enabled = False
+            step1Submit_btn.Visible = False
+            step2Submit_btn.Visible = False
+            step3Submit_btn.Visible = False
+            step5Submit_btn.Visible = False
+            invoice_chk.Enabled = False
+            director_chk.Enabled = False
 
-                    'Disabled / Hidden for TAs
-                    schoolType_ddl.Enabled = False
-                    contractRecieved_tb.Enabled = False
-                    invoiceNum_tb.Enabled = False
-                    delivery_ddl.Enabled = False
-                    notes_tb.Enabled = False
-                    deliveryAccepted_tb.Enabled = False
-                    dateAccepted_tb.Enabled = False
-                    step1Submit_btn.Visible = False
-                    step2Submit_btn.Visible = False
-                    step3Submit_btn.Visible = False
-                    step5Submit_btn.Visible = False
-                    invoice_chk.Enabled = False
-                    director_chk.Enabled = False
+            'Enabled / Visible for TAs
+            step4Submit_btn.Visible = True
+            numOfKits_ddl.Enabled = True
+            printTicket_btn.Visible = True
 
-                    'Enabled / Visible for TAs
-                    step4Submit_btn.Visible = True
-                    numOfKits_ddl.Enabled = True
-                    'kitNumbers_tb.Enabled = True
-                    printTicket_btn.Visible = True
+            'If steps 1, 2, or 3 is NOT completed
+            If schoolType_ddl.SelectedIndex = 0 Or invoice_chk.Checked = False Or director_chk.Checked = False Or contractRecieved_tb.Text = Nothing Or invoiceNum_tb.Text = Nothing Or delivery_ddl.SelectedIndex = 0 Then
+                step4Submit_btn.Visible = False
+                numOfKits_ddl.Enabled = False
+                printTicket_btn.Visible = False
+            End If
 
-                    'If steps 1, 2, or 3 is NOT completed
-                    If schoolType_ddl.SelectedIndex = 0 Or invoice_chk.Checked = False Or director_chk.Checked = False Or contractRecieved_tb.Text = Nothing Or invoiceNum_tb.Text = Nothing Or delivery_ddl.SelectedIndex = 0 Then
-                        step4Submit_btn.Visible = False
-                        numOfKits_ddl.Enabled = False
-                        'kitNumbers_tb.Enabled = False
-                        printTicket_btn.Visible = False
-                    End If
+            'Check if user logged in is Tech Tech
+        ElseIf UserJob = "Technology Technician" Then
 
-                    'If step 5 is completed
-                    'If deliveryAccepted_tb.Text <> Nothing And dateAccepted_tb.Text <> Nothing Then
-                    '    step4Submit_btn.Visible = False
-                    '    numOfKits_ddl.Enabled = False
-                    '    'kitNumbers_tb.Enabled = False
-                    '    printTicket_btn.Visible = False
-                    'End If
-
-
-                    'Check if user logged in is Tech Tech
-                ElseIf dr("job").ToString = "Technology Technician" Then
-
-                    'All sections are enabled for TT
-                    contractRecieved_tb.Enabled = True
-                    invoiceNum_tb.Enabled = True
-                    delivery_ddl.Enabled = True
-                    notes_tb.Enabled = True
-                    numOfKits_ddl.Enabled = True
-                    deliveryAccepted_tb.Enabled = True
-                    dateAccepted_tb.Enabled = True
-                    step2Submit_btn.Visible = True
-                    step3Submit_btn.Visible = True
-                    step4Submit_btn.Visible = True
-                    step5Submit_btn.Visible = True
-                    invoice_chk.Enabled = True
-                    director_chk.Enabled = True
-                    schoolType_ddl.Enabled = True
-                    step1Submit_btn.Visible = True
-                    'kitNumbers_tb.Enabled = True
-                    printTicket_btn.Visible = True
-                End If
-
-            End While
-
-            cmd.Dispose()
-            con.Close()
-
-        Catch
-            error_lbl.Text = "Error in loaddata(). Cannot check who is logged in."
-            Exit Sub
-        End Try
+            'All sections are enabled for TT
+            contractRecieved_tb.Enabled = True
+            invoiceNum_tb.Enabled = True
+            delivery_ddl.Enabled = True
+            notes_tb.Enabled = True
+            numOfKits_ddl.Enabled = True
+            deliveryAccepted_tb.Enabled = True
+            dateAccepted_tb.Enabled = True
+            step2Submit_btn.Visible = True
+            step3Submit_btn.Visible = True
+            step4Submit_btn.Visible = True
+            step5Submit_btn.Visible = True
+            invoice_chk.Enabled = True
+            director_chk.Enabled = True
+            schoolType_ddl.Enabled = True
+            step1Submit_btn.Visible = True
+            printTicket_btn.Visible = True
+        End If
 
         'Change button text from submit to update if data is loaded
+
         If schoolType_ddl.SelectedIndex = 0 Then
             step1Submit_btn.Text = "Submit"
             I0.Visible = False
@@ -647,16 +525,6 @@ Public Class School_Visit_Checklist
             step5Submit_btn.Text = "Update"
             I4.Visible = True
         End If
-
-        'Assign labels
-
-        visitDate_lbl.Text = visitDate.ToShortDateString
-        schoolName_lbl.Text = schoolName
-        adminEmail_lbl.Text = AdminEmail
-        contactTeacher_lbl.Text = ContactTeacher
-        'studentCountTotal_lbl.Text = StudentCountTotal
-
-
 
     End Sub
 
@@ -784,8 +652,8 @@ Public Class School_Visit_Checklist
     Sub Step1()
         Dim visitDate As String = visitDate_lbl.Text
         Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
-        Dim schoolID As String = schoolID_hf.Value
         Dim schoolName As String = schoolName_ddl.SelectedValue
+        Dim schoolID As String = Schools.GetSchoolID(schoolName)
         Dim schoolType As String
         Dim studentCountFormReceived As String
         Dim schoolStudentCount As String
@@ -794,6 +662,7 @@ Public Class School_Visit_Checklist
         Dim username As String = Session("username")
         Dim LastEditedBy As String
 
+        'Check if school type ddl is not blank, then start the insertion process
         If schoolType_ddl.SelectedIndex <> 0 Then
 
             'Assign variables
@@ -807,10 +676,10 @@ Public Class School_Visit_Checklist
 
             'Check if data was loaded in or not
             If schoolType_ddl.Items(0).Enabled = False Then
-                step1SQL = "UPDATE schoolVisitChecklist SET schoolType='" & schoolType & "', studentCountFormReceived='" & studentCountFormReceived & "', schoolStudentCount='" & schoolStudentCount & "', workbooks='" & studentCountTotal & "', lastEditedStep1='" & LastEditedBy & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                step1SQL = "UPDATE schoolVisitChecklist SET schoolType='" & schoolType & "', studentCountFormReceived='" & studentCountFormReceived & "', schoolStudentCount='" & schoolStudentCount & "', workbooks='" & studentCountTotal & "', lastEditedStep1='" & LastEditedBy & "' WHERE visitID='" & visitID & "' AND schoolID='" & schoolID & "'"
             Else
-                step1SQL = "INSERT INTO schoolVisitChecklist (schoolID, schoolName, schoolType, schoolStudentCount, visitID, visitDate, workbooks, lastEditedStep1) 
-                                    VALUES ('" & schoolID & "', '" & schoolName & "', '" & schoolType & "', '" & schoolStudentCount & "', '" & visitID & "', '" & visitDate & "', '" & studentCountTotal & "', '" & LastEditedBy & "')"
+                step1SQL = "INSERT INTO schoolVisitChecklist (schoolID, schoolType, schoolStudentCount, visitID, workbooks, lastEditedStep1) 
+                                    VALUES ('" & schoolID & "', '" & schoolType & "', '" & schoolStudentCount & "', '" & visitID & "', '" & studentCountTotal & "', '" & LastEditedBy & "')"
             End If
 
             'Inserting into DB with school type selected
@@ -840,6 +709,7 @@ Public Class School_Visit_Checklist
     Sub Step2()
         Dim visitDate As String = visitDate_tb.Text
         Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
+        Dim SchoolID As Integer = Schools.GetSchoolID(schoolName_ddl.SelectedValue)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -848,6 +718,7 @@ Public Class School_Visit_Checklist
         Dim username As String = Session("username")
         Dim LastEditedBy As String
 
+        'Check if invoice checkbox and director checkbox are selected
         If invoice_chk.Checked = True And director_chk.Checked = True Then
             invoiceIssued = 1
             directorSignature = 1
@@ -860,7 +731,7 @@ Public Class School_Visit_Checklist
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE schoolVisitChecklist SET invoiceIssued=@invoiceIssued, directorSignature=@directorSignature, lastEditedStep2=@lastEditedStep2 WHERE visitID='" & visitID & "' AND schoolName='" & schoolName_ddl.SelectedValue & "'"
+                cmd.CommandText = "UPDATE schoolVisitChecklist SET invoiceIssued=@invoiceIssued, directorSignature=@directorSignature, lastEditedStep2=@lastEditedStep2 WHERE visitID='" & visitID & "' AND schoolID='" & schoolID & "'"
                 cmd.Parameters.Add("@invoiceIssued", SqlDbType.Bit).Value = invoiceIssued
                 cmd.Parameters.Add("@directorSignature", SqlDbType.Bit).Value = directorSignature
                 cmd.Parameters.Add("@lastEditedStep2", SqlDbType.VarChar).Value = LastEditedBy
@@ -892,6 +763,7 @@ Public Class School_Visit_Checklist
     Sub Step3()
         Dim visitDate As String = visitDate_tb.Text
         Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
+        Dim SchoolID As Integer = Schools.GetSchoolID(schoolName_ddl.SelectedValue)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -916,7 +788,7 @@ Public Class School_Visit_Checklist
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE schoolVisitChecklist SET contractReceivedDate=@contractReceivedDate, invoiceNum=@invoiceNum, deliveryMethod=@deliveryMethod, notes=@notes, lastEditedStep3=@lastEditedStep3 WHERE visitID='" & visitID & "' AND schoolName='" & schoolName_ddl.SelectedValue & "'"
+                cmd.CommandText = "UPDATE schoolVisitChecklist SET contractReceivedDate=@contractReceivedDate, invoiceNum=@invoiceNum, deliveryMethod=@deliveryMethod, notes=@notes, lastEditedStep3=@lastEditedStep3 WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
 
                 cmd.Parameters.Add("@contractReceivedDate", SqlDbType.Date).Value = contractReceivedDate
                 cmd.Parameters.Add("@invoiceNum", SqlDbType.Int).Value = invoiceNum
@@ -934,7 +806,7 @@ Public Class School_Visit_Checklist
             'Open email
             step3Msg_lbl.Text = ""
             error_lbl.Text = "Submission Successful! Opening email and refreshing page..."
-            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:sweigartd@pcsb.org;duntonj@pcsb.org;mazurekb@pcsb.org ?subject=School Visit Checklist: Invoice Received&body=I have completed the submission of the invoice, delivery method, and date of contract received of " & schoolName_lbl.Text & " for " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
+            ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:duntonj@pcsb.org;mazurekb@pcsb.org ?subject=School Visit Checklist: Invoice Received&body=I have completed the submission of the invoice, delivery method, and date of contract received of " & schoolName_lbl.Text & " for " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
 
             'Refresh page
             Dim meta As New HtmlMeta()
@@ -951,10 +823,11 @@ Public Class School_Visit_Checklist
     Sub Step4()
         Dim visitDate As String = visitDate_tb.Text
         Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
+        Dim schoolName As String = schoolName_ddl.SelectedValue
+        Dim SchoolID As Integer = Schools.GetSchoolID(schoolName)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
-        Dim schoolName As String = schoolName_ddl.SelectedValue
         Dim numOfKits As String
         Dim workbooks As String = workbooks_tb.Text
         Dim kitNumbersSQL As String
@@ -1002,7 +875,7 @@ Public Class School_Visit_Checklist
 
             'Check if workbooks have been added or removed
             If workbooks = Nothing Or workbooks = "" Then
-                workbooks = studentCountTotal_lbl.Text
+                workbooks = schoolStudentCount_tb.Text
             End If
 
             'Updating number of kits to schoolVisitChecklist with school type selected
@@ -1010,7 +883,7 @@ Public Class School_Visit_Checklist
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE schoolVisitChecklist SET numberOfKits=@numberOfKits, lastEditedStep4=@lastEditedStep4 WHERE visitID='" & visitID & "'"
+                cmd.CommandText = "UPDATE schoolVisitChecklist SET numberOfKits=@numberOfKits, lastEditedStep4=@lastEditedStep4 WHERE visitID='" & visitID & "' and schoolID='" & SchoolID & "'"
 
                 cmd.Parameters.Add("@numberOfKits", SqlDbType.Int).Value = numOfKits
                 cmd.Parameters.Add("@lastEditedStep4", SqlDbType.VarChar).Value = LastEditedBy
@@ -1018,7 +891,7 @@ Public Class School_Visit_Checklist
                 con.Close()
 
             Catch
-                step4Msg_lbl.Text = "Error in step4Submit_btn. Cannot update number of kits."
+                step4Msg_lbl.Text = "Error in Step4(). Cannot update number of kits."
                 Exit Sub
             End Try
 
@@ -1027,41 +900,41 @@ Public Class School_Visit_Checklist
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE schoolVisitChecklist SET workbooks=@workbooks, lastEditedStep4=@lastEditedStep4 WHERE schoolName='" & schoolName & "' AND visitID='" & visitID & "'"
+                cmd.CommandText = "UPDATE schoolVisitChecklist SET workbooks=@workbooks, lastEditedStep4=@lastEditedStep4 WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
 
                 cmd.Parameters.Add("@workbooks", SqlDbType.Int).Value = workbooks
                 cmd.ExecuteNonQuery()
                 con.Close()
 
             Catch
-                step4Msg_lbl.Text = "Error in step4Submit_btn. Cannot update workbooks into DB."
+                step4Msg_lbl.Text = "Error in Step4(). Cannot update workbooks into DB."
                 Exit Sub
             End Try
 
             'Get how many kits to enter into the DB
             Select Case numOfKits
                 Case 0
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 1
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 2
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 3
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 4
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 5
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 6
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 7
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 8
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "', kit8='" & kit8_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "', kit8='" & kit8_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 9
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "', kit8='" & kit8_tb.Text & "', kit9='" & kit9_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "', kit8='" & kit8_tb.Text & "', kit9='" & kit9_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
                 Case 10
-                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "', kit8='" & kit8_tb.Text & "', kit9='" & kit9_tb.Text & "', kit10='" & kit10_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolName='" & schoolName & "'"
+                    kitNumbersSQL = "UPDATE schoolVisitChecklist SET kit1='" & kit1_tb.Text & "', kit2='" & kit2_tb.Text & "', kit3='" & kit3_tb.Text & "', kit4='" & kit4_tb.Text & "', kit5='" & kit5_tb.Text & "', kit6='" & kit6_tb.Text & "', kit7='" & kit7_tb.Text & "', kit8='" & kit8_tb.Text & "', kit9='" & kit9_tb.Text & "', kit10='" & kit10_tb.Text & "' WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
             End Select
 
             'Update kit numbers into kits table in DB
@@ -1096,6 +969,7 @@ Public Class School_Visit_Checklist
     Sub Step5()
         Dim visitDate As String = visitDate_tb.Text
         Dim visitID As Integer = Visits.GetVisitIDFromDate(visitDate)
+        Dim schoolID As Integer = Schools.GetSchoolID(schoolName_ddl.SelectedValue)
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
@@ -1118,7 +992,7 @@ Public Class School_Visit_Checklist
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE schoolVisitChecklist SET deliveryAccepted=@deliveryAccepted, position=@position, dateAccepted=@dateAccepted, lastEditedStep5=@lastEditedStep5 WHERE visitID='" & visitID & "' AND schoolName='" & schoolName_ddl.SelectedValue & "'"
+                cmd.CommandText = "UPDATE schoolVisitChecklist SET deliveryAccepted=@deliveryAccepted, position=@position, dateAccepted=@dateAccepted, lastEditedStep5=@lastEditedStep5 WHERE visitID='" & visitID & "' AND schoolID='" & schoolID & "'"
 
                 cmd.Parameters.Add("@deliveryAccepted", SqlDbType.VarChar).Value = deliveryAccepted
                 cmd.Parameters.Add("@position", SqlDbType.VarChar).Value = position
@@ -1185,6 +1059,8 @@ Public Class School_Visit_Checklist
         Page.ClientScript.RegisterStartupScript(Me.GetType(), "print", "PrintBadges();", True)
     End Sub
 
+
+
     Protected Sub schoolName_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles schoolName_ddl.SelectedIndexChanged
         If schoolName_ddl.SelectedIndex <> 0 Then
             LoadData()
@@ -1198,6 +1074,18 @@ Public Class School_Visit_Checklist
         End If
 
     End Sub
+
+    Protected Sub numOfKits_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles numOfKits_ddl.SelectedIndexChanged
+        KitTextboxes()
+    End Sub
+
+
+
+    Protected Sub visitDate_tb_TextChanged(sender As Object, e As EventArgs) Handles visitDate_tb.TextChanged
+        VisitDateTextboxLoad()
+    End Sub
+
+
 
     Protected Sub step1Submit_btn_Click(sender As Object, e As EventArgs) Handles step1Submit_btn.Click
         Step1()
@@ -1219,14 +1107,6 @@ Public Class School_Visit_Checklist
         Step5()
     End Sub
 
-    Public Sub wait(ByVal seconds As Single)
-        Static start As Single
-        start = VB.Timer()
-        Do While VB.Timer() < start + seconds
-            System.Windows.Forms.Application.DoEvents()
-        Loop
-    End Sub
-
     Protected Sub print_btn_Click(sender As Object, e As EventArgs) Handles print_btn.Click
 
         'Make lines invisible
@@ -1246,14 +1126,6 @@ Public Class School_Visit_Checklist
 
     Protected Sub printTicket2_btn_Click(sender As Object, e As EventArgs) Handles printTicket2_btn.Click
         PrintTicket()
-    End Sub
-
-    Protected Sub numOfKits_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles numOfKits_ddl.SelectedIndexChanged
-        KitTextboxes()
-    End Sub
-
-    Protected Sub visitDate_tb_TextChanged(sender As Object, e As EventArgs) Handles visitDate_tb.TextChanged
-        VisitDateTextboxLoad()
     End Sub
 
     Protected Sub refresh_btn_Click(sender As Object, e As EventArgs) Handles refresh_btn.Click

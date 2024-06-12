@@ -60,12 +60,12 @@ Public Class Print_Sales
             CASE WHEN netDeposit2 IS NULL THEN 0 ELSE 1 END as ND2, 
             CASE WHEN netDeposit3 IS NULL THEN 0 ELSE 1 END as ND3, 
             CASE WHEN netDeposit4 IS NULL THEN 0 ELSE 1 END as ND4 
-            FROM studentInfo WHERE visit='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "'"
+            FROM studentInfo WHERE visitID='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "'"
 
         'Get transaction information
         Try
             'Get net deposit and savings
-            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4, cbw1, cbw2, cbw3, cbw4, savings FROM studentInfo WHERE visit='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4, cbw1, cbw2, cbw3, cbw4, savings FROM studentInfo WHERE visitID='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read()
 
@@ -104,7 +104,7 @@ Public Class Print_Sales
             netDeposit = netDeposit1 + netDeposit2 + netDeposit3 + netDeposit4
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT CASE WHEN SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) IS NULL THEN '0.00' ELSE SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) END as Transactions FROM transactions WHERE visitdate ='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT CASE WHEN SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) IS NULL THEN '0.00' ELSE SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) END as Transactions FROM transactions WHERE visitID='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read
                 totalTransactions = dr("Transactions")
@@ -114,7 +114,7 @@ Public Class Print_Sales
             dr.Close()
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT TOP 1 item1, item2, item3, item4 FROM transactions WHERE visitdate ='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "' AND business=17 ORDER BY item1 DESC"
+            cmd.CommandText = "SELECT TOP 1 item1, item2, item3, item4 FROM transactions WHERE visitID='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "' AND businessID=17 ORDER BY item1 DESC"
             dr = cmd.ExecuteReader
             While dr.Read
 

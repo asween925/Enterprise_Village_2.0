@@ -54,7 +54,7 @@ Public Class Print_Teller
             CASE WHEN netDeposit2 IS NULL THEN 0 ELSE 1 END as ND2, 
             CASE WHEN netDeposit3 IS NULL THEN 0 ELSE 1 END as ND3, 
             CASE WHEN netDeposit4 IS NULL THEN 0 ELSE 1 END as ND4 
-            FROM studentInfo WHERE visit='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "'"
+            FROM studentInfo WHERE visitID='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "'"
 
         Check_amount_ddl.SelectedIndex = checkAmountIndex
         cash_recieved_ddl.SelectedIndex = cashIndex
@@ -62,7 +62,7 @@ Public Class Print_Teller
 
 
         Try
-            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4, cbw1, cbw2, cbw3, cbw4, savings FROM studentInfo WHERE visit='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4, cbw1, cbw2, cbw3, cbw4, savings FROM studentInfo WHERE visitID='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read()
 
@@ -120,7 +120,7 @@ Public Class Print_Teller
             netDeposit = netDeposit1 + netDeposit2 + netDeposit3 + netDeposit4
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitDate ='" & visitDate_hf.Value & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as Transactions FROM transactions WHERE visitID ='" & visitDate_hf.Value & "' AND accountNumber ='" & empID & "'"
             dr = cmd.ExecuteReader
             While dr.Read
                 If dr("transactions").ToString = Nothing Then

@@ -164,16 +164,16 @@ Public Class Input_Student_Information
             Try
                 Dim visitDate As String = visitDate_lbl.Text
                 con.ConnectionString = connection_string
-                Dim sql As String = "    Select s.id, s.firstName, s.lastName, s.employeenumber, b.businessName, sc.schoolName, j.jobTitle
+                Dim sql As String = "    Select s.id, s.firstName, s.lastName, s.accountNumber, b.businessName, sc.schoolName, j.jobTitle
                                 from studentInfo s
                                 inner join businessInfo b 
-	                                on b.id=s.business
+	                                on b.id=s.businessID
                                 inner join jobs j
-	                                on j.id=s.job
+	                                on j.id=s.jobID
                                 inner join visitInfo v
-	                                on v.id=s.visit
+	                                on v.id=s.visitID
 								inner join schoolInfo sc
-									on s.school = sc.id
+									on s.schoolID = sc.id
                                         where v.visitDate ='" & visitDate & "' and sc.id='" & schoolID & "' and not b.businessName='Training Business' and not s.firstName IS NULL and not s.lastName IS NULL"
 
                 Review_sds.ConnectionString = connection_string
@@ -219,14 +219,14 @@ Public Class Input_Student_Information
         Dim empNum As Integer = GetEmptNum(businessName, employeePosition)
 
         Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("UPDATE studentInfo SET business=@business, employeeNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, school=@school, job=@employeePosition WHERE ID=@Id")
+            Using cmd As New SqlCommand("UPDATE studentInfo SET businessID=@businessID, accountNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, schoolID=@schoolID, jobID=@employeePosition WHERE ID=@Id")
                 cmd.Parameters.AddWithValue("@ID", ID)
-                cmd.Parameters.AddWithValue("@business", businessName)
+                cmd.Parameters.AddWithValue("@businessID", businessName)
                 cmd.Parameters.AddWithValue("@employeeID", employeeNumber)
                 cmd.Parameters.AddWithValue("@employeeFirst", captialFirst)
                 cmd.Parameters.AddWithValue("@employeeLast", captialLast)
                 cmd.Parameters.AddWithValue("@employeePosition", employeePosition)
-                cmd.Parameters.AddWithValue("@school", school)
+                cmd.Parameters.AddWithValue("@schoolID", school)
                 cmd.Connection = con
                 con.Open()
                 cmd.ExecuteNonQuery()
@@ -418,14 +418,14 @@ Public Class Input_Student_Information
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         con.ConnectionString = connection_string
-        Dim sql As String = "Select s.id, s.firstName, s.lastName, s.employeenumber, b.id as BusinessID,j.id as JobID, b.businessName, s.school as 'schoolID'
+        Dim sql As String = "Select s.id, s.firstName, s.lastName, s.accountnumber, b.id as BusinessID,j.id as JobID, b.businessName, s.schoolID as 'schoolID'
                                 from studentInfo s
                                 inner join businessInfo b 
-	                                on b.id=s.business
+	                                on b.id=s.businessID
                                 inner join jobs j
-	                                on j.id=s.job
+	                                on j.id=s.jobID
                                 inner join visitInfo v
-	                                on v.id=s.visit
+	                                on v.id=s.visitID
                                         where v.visitDate ='" & visitDate & "' and b.businessName='" & businessID & "'"
 
         error_lbl.Text = ""

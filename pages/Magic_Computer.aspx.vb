@@ -19,7 +19,7 @@ Public Class Magic_Computer
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Dim dr As SqlDataReader
-        Dim savingsCheck As String = "SELECT savings FROM studentInfo WHERE visit='" & visitdate_hf.Value & "'"
+        Dim savingsCheck As String = "SELECT savings FROM studentInfo WHERE visitID='" & visitdate_hf.Value & "'"
         Dim savings As String
 
         'Asks if the session is still active, if not, then it will redirect to the login screen
@@ -143,7 +143,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE s SET s.initialDeposit3='7.00', s.netDeposit3='7.00', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.job WHERE j.jobSalary=1 AND s.visit='" & visitID & "'"
+                cmd.CommandText = "UPDATE s SET s.initialDeposit3='7.00', s.netDeposit3='7.00', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=1 AND s.visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -151,7 +151,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE s SET s.initialDeposit3='6.50', s.netDeposit3='6.50', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.job WHERE j.jobSalary=2 AND s.visit='" & visitID & "'"
+                cmd.CommandText = "UPDATE s SET s.initialDeposit3='6.50', s.netDeposit3='6.50', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=2 AND s.visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -159,7 +159,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE s SET s.initialDeposit3='6.00', s.netDeposit3='6.00', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.job WHERE j.jobSalary=3 AND s.visit='" & visitID & "'"
+                cmd.CommandText = "UPDATE s SET s.initialDeposit3='6.00', s.netDeposit3='6.00', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=3 AND s.visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -193,7 +193,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE studentInfo SET initialDeposit3='0.00', netDeposit3='0.00', cbw3='0.00' FROM studentInfo s WHERE visit='" & visitID & "'"
+                cmd.CommandText = "UPDATE studentInfo SET initialDeposit3='0.00', netDeposit3='0.00', cbw3='0.00' FROM studentInfo s WHERE visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -319,7 +319,7 @@ Public Class Magic_Computer
             con.ConnectionString = connection_string
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "UPDATE studentInfo SET " & depositNum & "=@deposit, " & cbwNum & "=@cbw, " & netDepositNumber & "=@netDeposit WHERE visit ='" & visitID & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "UPDATE studentInfo SET " & depositNum & "=@deposit, " & cbwNum & "=@cbw, " & netDepositNumber & "=@netDeposit WHERE visitID ='" & visitID & "' AND accountNumber ='" & empID & "'"
 
             cmd.Parameters.Add("@netDeposit", SqlDbType.Decimal).Value = netDepositAmount
             cmd.Parameters.Add("@deposit", SqlDbType.Decimal).Value = depositAmount
@@ -356,7 +356,7 @@ Public Class Magic_Computer
             con.ConnectionString = connection_string
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "UPDATE studentInfo SET savings=@savings WHERE visit ='" & visitID & "' AND employeeNumber ='" & empID & "'"
+            cmd.CommandText = "UPDATE studentInfo SET savings=@savings WHERE visitID ='" & visitID & "' AND accountNumber ='" & empID & "'"
 
             cmd.Parameters.Add("@savings", SqlDbType.Decimal).Value = savings
 

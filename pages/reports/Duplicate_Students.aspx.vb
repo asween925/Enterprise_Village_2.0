@@ -40,15 +40,15 @@ Public Class Duplicate_Students
 	Sub LoadData()
 		Dim VisitDate As String = visitDate_tb.Text
 		Dim VisitID As String = VisitData.GetVisitIDFromDate(VisitDate)
-		Dim SQLStatement As String = "SELECT a.id, a.employeeNumber, a.firstName, a.lastName
+		Dim SQLStatement As String = "SELECT a.id, a.accountNumber, a.firstName, a.lastName
 										FROM studentInfo a
 										JOIN (SELECT firstName, lastName 
 										FROM studentInfo 
-										WHERE visit='" & VisitID & "' AND NOT firstName IS NULL AND NOT firstName='' AND NOT lastName IS NULL AND NOT lastName=''  
+										WHERE visitID='" & VisitID & "' AND NOT firstName IS NULL AND NOT firstName='' AND NOT lastName IS NULL AND NOT lastName=''  
 										GROUP BY firstName, lastName HAVING COUNT(*) > 1) b
 										ON a.firstName = b.firstName
 										AND a.lastName = b.lastName
-										WHERE visit='" & VisitID & "'
+										WHERE visitID='" & VisitID & "'
 										ORDER BY a.id"
 
 		'Clear out table

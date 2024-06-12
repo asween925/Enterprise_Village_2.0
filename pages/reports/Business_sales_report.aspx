@@ -50,7 +50,7 @@
             
             <asp:GridView ID="businessSales_dgv" runat="server" AutoGenerateColumns="False" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                 <Columns>
-                    <asp:BoundField DataField="employeeNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
+                    <asp:BoundField DataField="accountNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="studentName" HeaderText="Student Name" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="saleAmount" HeaderText="Sale Amount" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="transactionTimeStamp" HeaderText="Time Stamp" ReadOnly="true" Visible="true" />

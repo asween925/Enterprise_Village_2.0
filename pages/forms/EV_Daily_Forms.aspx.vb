@@ -58,13 +58,13 @@ Public Class EV_Daily_Forms
 		Dim SchoolType As String
 		Dim Workbooks As String
 		Dim StudentCount As String
-		Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
+		Dim studentCountSQL As String = "SELECT COUNT(lastName) as studentCount FROM (SELECT s.id, s.accountNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                 FROM studentInfo s
-                                INNER JOIN jobs j ON j.id=s.job
-                                INNER JOIN businessInfo b ON b.id=s.business
-                                INNER JOIN visitInfo v ON v.id=s.visit
-                                INNER JOIN schoolInfo sc ON s.school = sc.id
-                                WHERE v.visitDate='" & visitDate & "' AND sc.schoolName = '" & schoolName & "' AND NOT businessName='Training Business' AND NOT firstName='NULL' AND NOT lastName='NULL' AND NOT firstName = ' ' AND NOT lastName=' ' ) t"
+                                INNER JOIN jobs j ON j.id=s.jobID
+                                INNER JOIN businessInfo b ON b.id=s.businessID
+                                INNER JOIN visitInfo v ON v.id=s.visitID
+                                INNER JOIN schoolInfo sc ON s.schoolID = sc.id
+                                WHERE v.visitDate='" & VisitDate & "' AND sc.schoolName = '" & SchoolName & "' AND NOT businessName='Training Business' AND NOT firstName='NULL' AND NOT lastName='NULL' AND NOT firstName = ' ' AND NOT lastName=' ' ) t"
 
 		'Load visit date and school name into labels
 		visitDate_lbl.Text = visitDate

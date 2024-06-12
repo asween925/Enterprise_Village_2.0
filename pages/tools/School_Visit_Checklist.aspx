@@ -63,7 +63,7 @@
 
                 <%--Step 1: Teacher Use--%>
                 <div id="step1_div" runat="server" visible="false">
-                    <h3>TEACHER ONLY <i id="I0" runat="server" visible="false">- COMPLETED</i></h3>
+                    <h3>STEP 1: TEACHER ONLY <i id="I0" runat="server" visible="false">- COMPLETED</i></h3>
                     <p class="no-print">Last Edited By: <asp:Label ID="lastEdited1_lbl" runat="server" CssClass="no-print"></asp:Label></p>
                     <p class="p" runat="server" id="schoolType_p">School Type</p>
                     <asp:DropDownList CssClass="ddl" ID="schoolType_ddl" runat="server" Width="130px">
@@ -86,7 +86,7 @@
 
                 <%--Step 2: Bookkeeper use--%>
                 <div id="step2_div" runat="server" visible="false" class="school_visit_section school_visit_section_print">
-                    <h3>BOOKKEEPER ONLY <i id="I1" runat="server" visible="false">- COMPLETED</i></h3>
+                    <h3>STEP 2: BOOKKEEPER ONLY <i id="I1" runat="server" visible="false">- COMPLETED</i></h3>
                     <p class="no-print">Last Edited By: <asp:Label ID="lastEdited2_lbl" runat="server" CssClass="no-print"></asp:Label></p>
                     <asp:CheckBox ID="invoice_chk" runat="server" Text="Invoice # Issued" />&emsp;<asp:CheckBox ID="director_chk" Text="Director's Signature" runat="server" />&emsp;<asp:Label ID="step2Msg_lbl" runat="server" Font-Size="X-Large" ForeColor="Red"></asp:Label>
                     <br class="no-print"/>
@@ -96,7 +96,7 @@
 
                 <%--Step 3: Front Office Use--%>
                 <div id="step3_div" visible="false" runat="server" class="school_visit_section school_visit_section_print">
-                    <h3>FRONT OFFICE ONLY <i id="I2" runat="server" visible="false">- COMPLETED</i></h3>
+                    <h3>STEP 3: FRONT OFFICE ONLY <i id="I2" runat="server" visible="false">- COMPLETED</i></h3>
                     <p class="no-print">Last Edited By: <asp:Label ID="lastEdited3_lbl" runat="server" CssClass="no-print"></asp:Label></p>
                     <p class="p" runat="server" id="contractReceived_p">Contract Received On:</p>
                     <asp:TextBox ID="contractRecieved_tb" TextMode="Date" runat="server" CssClass="textbox"></asp:TextBox><asp:Label ID="step3Msg_lbl" runat="server" Font-Size="X-Large" ForeColor="Red"></asp:Label>
@@ -119,7 +119,7 @@
 
                 <%--Step 4: TA Use--%>
                 <div id="step4_div" visible="false" runat="server" class="school_visit_section school_visit_section_print">
-                    <h3>TA'S ONLY <i id="I3" runat="server" visible="false">- COMPLETED</i></h3>
+                    <h3>STEP 4: TA'S ONLY <i id="I3" runat="server" visible="false">- COMPLETED</i></h3>
                     <p class="no-print">Last Edited By: <asp:Label ID="lastEdited4_lbl" runat="server" CssClass="no-print"></asp:Label></p>
                     <p class="p">Total Amount of Kits Being Sent Out:</p>
                     <asp:DropDownList CssClass="ddl" ID="numOfKits_ddl" runat="server" AutoPostBack="true">
@@ -153,7 +153,7 @@
             <div>
                 <%--Step 5: Front Office Use--%>
                 <div id="step5_div" visible="false" runat="server" class="school_visit_section school_visit_section_print">
-                    <h3>SCHOOL SIGNATURE REQUIRED <i id="I4" runat="server" visible="false">- COMPLETED</i></h3>
+                    <h3>STEP 5: FRONT OFFICE ONLY <i id="I4" runat="server" visible="false">- COMPLETED</i></h3>
                     <p class="no-print">Last Edited By: <asp:Label ID="lastEdited5_lbl" runat="server" CssClass="no-print"></asp:Label></p>
                     <p class="p">Delivery Accepted By:&nbsp;
                         <asp:Label ID="deliveryAcceptedLine_lbl" runat="server" Visible="false">_____________________________________________________________________</asp:Label>

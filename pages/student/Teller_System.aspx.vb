@@ -50,7 +50,7 @@ Public Class Teller_System
             CASE WHEN netDeposit2 IS NULL OR netDeposit2 = 0.00 THEN 0 ELSE 1 END as ND2, 
             CASE WHEN netDeposit3 IS NULL OR netDeposit3 = 0.00 THEN 0 ELSE 1 END as ND3, 
             CASE WHEN netDeposit4 IS NULL OR netDeposit4 = 0.00 THEN 0 ELSE 1 END as ND4 
-            FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+            FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
         Dim checkAmount As String = Check_amount_ddl.SelectedValue.ToString
         Dim cashRecieved As String = cash_recieved_ddl.SelectedValue.ToString
         Dim URLEnd As String = employee_number_tb.Text
@@ -138,13 +138,13 @@ Public Class Teller_System
         If dr.HasRows Then
             While dr.Read()
                 If dr("ND1").ToString = "0" Then
-                    sql = "UPDATE studentInfo SET netDeposit1 = @nDeposit, CBW1 = @CBW, initialDeposit1 = @initial, tellerTimestamp1 = @tellerTimestamp WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+                    sql = "UPDATE studentInfo SET netDeposit1 = @nDeposit, CBW1 = @CBW, initialDeposit1 = @initial, tellerTimestamp1 = @tellerTimestamp WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
                     NDNum = "netDeposit1"
                 ElseIf dr("ND2").ToString = "0" Then
-                    sql = "UPDATE studentInfo SET netDeposit2 = @nDeposit, CBW2 = @CBW, initialDeposit2 = @initial, tellerTimestamp2 = @tellerTimestamp WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+                    sql = "UPDATE studentInfo SET netDeposit2 = @nDeposit, CBW2 = @CBW, initialDeposit2 = @initial, tellerTimestamp2 = @tellerTimestamp WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
                     NDNum = "netDeposit2"
                 ElseIf dr("ND3").ToString = "0" Then
-                    sql = "UPDATE studentInfo SET netDeposit3 = @nDeposit, CBW3 = @CBW, initialDeposit3 = @initial, tellerTimestamp3 = @tellerTimestamp WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+                    sql = "UPDATE studentInfo SET netDeposit3 = @nDeposit, CBW3 = @CBW, initialDeposit3 = @initial, tellerTimestamp3 = @tellerTimestamp WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
                     NDNum = "netDeposit3"
                     'Below V   Commenting this out because the staff only wants 3 deposits for the teller system, not 4. Edited on 5/27/2022
                     'ElseIf dr("ND4").ToString = "0" Then
@@ -175,7 +175,7 @@ Public Class Teller_System
 
         cmd = New SqlCommand
         cmd.Connection = con
-        cmd.CommandText = "SELECT " & NDNum & " FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+        cmd.CommandText = "SELECT " & NDNum & " FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
         dr = cmd.ExecuteReader
 
         While dr.Read()
@@ -228,7 +228,7 @@ Public Class Teller_System
                 con.Open()
                 cmd = New SqlCommand
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE studentInfo SET savings = '" & savings & "', savingsTimestamp = '" & DateTime.Now() & "' WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+                cmd.CommandText = "UPDATE studentInfo SET savings = '" & savings & "', savingsTimestamp = '" & DateTime.Now() & "' WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
                 cmd.ExecuteNonQuery()
                 cmd.Dispose()
 

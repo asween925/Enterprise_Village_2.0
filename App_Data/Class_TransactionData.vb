@@ -26,7 +26,7 @@ Public Class Class_TransactionData
         cmd.CommandText = "SELECT CASE WHEN SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) IS NULL THEN '0.00' 
                                 ELSE SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) END as Transactions 
                                 FROM transactions 
-                                WHERE visitdate = '" & visitID & "' AND employeeNumber ='" & empID & "'"
+                                WHERE visitID = '" & visitID & "' AND accountNumber ='" & empID & "'"
         dr = cmd.ExecuteReader
 
         While dr.Read
@@ -82,7 +82,7 @@ Public Class Class_TransactionData
         cmd.Connection = con
         con.ConnectionString = connection_string
         con.Open()
-        cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4, cbw1, cbw2, cbw3, cbw4, savings, initialDeposit1, initialDeposit2, initialDeposit3, initialDeposit4 FROM studentInfo WHERE visit='" & visitID & "' AND employeeNumber ='" & empID & "'"
+        cmd.CommandText = "SELECT netDeposit1, netDeposit2, netDeposit3, netDeposit4, cbw1, cbw2, cbw3, cbw4, savings, initialDeposit1, initialDeposit2, initialDeposit3, initialDeposit4 FROM studentInfo WHERE visitID='" & visitID & "' AND accountNumber ='" & empID & "'"
         dr = cmd.ExecuteReader
 
         While dr.Read()
@@ -171,24 +171,24 @@ Public Class Class_TransactionData
         cmd.Connection = con
         cmd.CommandText = "IF (OBJECT_ID('tempdb..#netdeposits') IS NOT NULL) DROP TABLE #netdeposits   
                                    SELECT 
-                                          s.employeeNumber
+                                          s.accountNumber
                                           ,s.firstName
                                           ,s.lastName
                                           ,SUM(ISNULL(s.netdeposit1,0) + ISNULL(s.netdeposit2,0) + ISNULL(s.netdeposit3,0) + ISNULL(s.netdeposit4,0) - ISNULL(s.savings,0)) totalDeposits
                                    INTO #netdeposits
                                    FROM dbo.studentInfo s
-                                   WHERE visit = '" & VisitID & "'
-                                   GROUP BY s.employeeNumber, s.firstName, s.lastName
+                                   WHERE visitID = '" & VisitID & "'
+                                   GROUP BY s.accountNumber, s.firstName, s.lastName
 
                                    SELECT 
-                                           t.employeeNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
+                                           t.accountNumber, CONCAT (MAX(firstname), ' ',MAX(lastName)) as studentname
                                           ,MAX(s.totalDeposits) TotalDeposits
                                           ,SUM(ISNULL(saleamount + saleamount2 + saleamount3 + saleamount4,0)) as TotalPurchases
                                           ,MAX(s.totalDeposits) - sum(ISNULL(saleamount + saleamount2 + saleamount3 + saleamount4,0)) as Balance
                                    FROM transactions t
-                                   INNER JOIN #netdeposits s ON t.employeeNumber = s.employeeNumber
-                                   WHERE visitdate = '" & VisitID & "'
-                                   GROUP BY t.employeeNumber
+                                   INNER JOIN #netdeposits s ON t.accountNumber = s.accountNumber
+                                   WHERE visitID = '" & VisitID & "'
+                                   GROUP BY t.accountNumber
                                    ORDER BY TotalPurchases DESC"
 
         Dim da As New SqlDataAdapter
@@ -208,8 +208,8 @@ Public Class Class_TransactionData
         con.Open()
         cmd.CommandText = "SELECT t.ID, b.BusinessName as Business, t.transactiontimestamp, t.saleamount, t.transactiontimestamp2, t.saleamount2, t.transactiontimestamp3, t.saleamount3, t.transactiontimestamp4, t.saleamount4 
                                 FROM transactions t
-                                INNER JOIN BusinessInfo b ON b.id = t.business
-                                WHERE t.visitdate ='" & VisitID & "' AND t.employeeNumber ='" & AccountNumber & "'
+                                INNER JOIN BusinessInfo b ON b.id = t.businessID
+                                WHERE t.visitID ='" & VisitID & "' AND t.accountNumber ='" & AccountNumber & "'
                                 ORDER BY transactiontimestamp"
 
         Dim da As New SqlDataAdapter
@@ -228,7 +228,7 @@ Public Class Class_TransactionData
     Function InsertSale(VisitID As String, AccountNumber As String, BusinessID As String, SaleAmount As String, Item1 As String, Optional Item2 As String = "0.00", Optional Item3 As String = "0.00", Optional Item4 As String = "0.00")
         Dim ReturnStatement As String
         Dim Timestamp As String = DateTime.Now
-        Dim SQLStatement As String = "INSERT INTO transactions (employeeNumber, business, transactionTimestamp, saleAmount, visitdate, item1, item2, item3, item4, saleAmount2, saleAmount3, saleAmount4) 
+        Dim SQLStatement As String = "INSERT INTO transactions (accountNumber, businessID, transactionTimestamp, saleAmount, visitID, item1, item2, item3, item4, saleAmount2, saleAmount3, saleAmount4) 
                                 VALUES ('" & AccountNumber & "', '" & BusinessID & "', '" & Timestamp & "', '" & SaleAmount & "', '" & VisitID & "', '" & Item1 & "'
                                 , '" & Item2 & "', '" & Item3 & "', '" & Item4 & "', 0.00, 0.00, 0.00)"
 
@@ -236,7 +236,7 @@ Public Class Class_TransactionData
         cmd.Connection = con
         con.ConnectionString = connection_string
         con.Open()
-        cmd.CommandText = "SELECT saleAmount FROM transactions WHERE visitDate='" & VisitID & "' AND employeeNumber='" & AccountNumber & "' AND business='" & BusinessID & "'"
+        cmd.CommandText = "SELECT saleAmount FROM transactions WHERE visitID='" & VisitID & "' AND accountNumber='" & AccountNumber & "' AND businessID='" & BusinessID & "'"
         dr = cmd.ExecuteReader
 
         If dr.HasRows Then
@@ -261,8 +261,8 @@ Public Class Class_TransactionData
     Function Sale(SaleNumber As String, VisitID As String, AccountNumber As String, BusinessID As String, SaleAmount As String, Item1 As String, Optional Item2 As String = "0.00", Optional Item3 As String = "0.00", Optional Item4 As String = "0.00")
         Dim ReturnStatement As String
         Dim Timestamp As String = DateTime.Now
-        Dim SQLMainSelectStatment As String = "FROM transactions WHERE visitDate='" & VisitID & "' AND employeeNumber='" & AccountNumber & "' AND business='" & BusinessID & "'"
-        Dim SQLMainUpdateStatement As String = "item1='" & Item1 & "', item2='" & Item2 & "', item3='" & Item3 & "', item4='" & Item4 & "' WHERE visitDate='" & VisitID & "' AND employeeNumber='" & AccountNumber & "' AND business='" & BusinessID & "'"
+        Dim SQLMainSelectStatment As String = "FROM transactions WHERE visitID='" & VisitID & "' AND accountNumber='" & AccountNumber & "' AND businessID='" & BusinessID & "'"
+        Dim SQLMainUpdateStatement As String = "item1='" & Item1 & "', item2='" & Item2 & "', item3='" & Item3 & "', item4='" & Item4 & "' WHERE visitID='" & VisitID & "' AND accountNumber='" & AccountNumber & "' AND businessID='" & BusinessID & "'"
         Dim SQLUpdateString As String
         Dim SQLSelectString As String
 

@@ -102,13 +102,13 @@ Public Class Print_ISI
                 Dim sql As String = "Select s.id, s.firstName, s.lastName, s.employeenumber, b.businessName, sc.schoolName, j.jobTitle
                                 from studentInfo s
                                 inner join businessInfo b 
-	                                on b.id=s.business
+	                                on b.id=s.businessID
                                 inner join jobs j
-	                                on j.id=s.job
+	                                on j.id=s.jobID
                                 inner join visitInfo v
-	                                on v.id=s.visit
+	                                on v.id=s.visitID
 								inner join schoolInfo sc
-									on s.school = sc.id
+									on s.schoolID = sc.id
                                         where v.visitDate ='" & visitDate & "' and sc.id='" & schoolID & "' and not b.businessName='Training Business' and not s.firstName IS NULL and not s.lastName IS NULL"
 
                 Review_sds.ConnectionString = connection_string

@@ -93,8 +93,8 @@ Public Class Sales_History
 
             cmd = New SqlCommand
             cmd.Connection = con
-            cmd.CommandText = "  SELECT employeenumber, business, transactionTimeStamp, transactionTimeStamp2, transactionTimeStamp3, transactionTimeStamp4, CONCAT('$',saleamount) AS saleamount, CONCAT('$',saleAmount2) AS saleamount2, CONCAT('$',saleAmount3) AS saleamount3, CONCAT('$',saleAmount4) AS saleamount4, visitdate FROM transactions 
-            WHERE visitdate ='" & visitID & "' AND business='" & businessID & "' ORDER BY transactionTimeStamp"
+            cmd.CommandText = "  SELECT accountnumber, businessID, transactionTimeStamp, transactionTimeStamp2, transactionTimeStamp3, transactionTimeStamp4, CONCAT('$',saleamount) AS saleamount, CONCAT('$',saleAmount2) AS saleamount2, CONCAT('$',saleAmount3) AS saleamount3, CONCAT('$',saleAmount4) AS saleamount4, visitID FROM transactions 
+            WHERE visitID ='" & visitID & "' AND businessID='" & businessID & "' ORDER BY transactionTimeStamp"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
@@ -118,7 +118,7 @@ Public Class Sales_History
             con.Open()
             cmd.CommandText = " SELECT SUM(saleamount + saleAmount2 + saleAmount3 + saleAmount4) as saleTotal 
                                  FROM transactions 
-                                 WHERE visitdate ='" & visitdate_hf.Value & "' AND business='" & businessID & "'"
+                                 WHERE visitID ='" & visitdate_hf.Value & "' AND businessID='" & businessID & "'"
             cmd.Connection = con
             dr = cmd.ExecuteReader
 

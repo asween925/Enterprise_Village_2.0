@@ -104,12 +104,12 @@ Public Class Employee_Report
         Dim WhereSchool As String = " AND sc.schoolName = '" & schoolName_ddl.SelectedValue & "'"
         Dim WhereBusiness As String = " AND b.businessName = '" & business_ddl.SelectedValue & "'"
         Dim WhereFinish As String = " AND NOT businessName='Training Business' AND NOT firstName='NULL' AND NOT lastName='NULL' AND NOT firstName = ' ' AND NOT lastName=' ' "
-        Dim SQLStatement As String = "SELECT s.id, s.employeeNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
+        Dim SQLStatement As String = "SELECT s.id, s.accountNumber, s.firstName, s.lastName, j.jobTitle, b.businessName, sc.schoolName
                                         FROM studentInfo s
-                                        INNER JOIN jobs j ON j.id=s.job
-                                        INNER JOIN businessInfo b ON b.id=s.business
-                                        INNER JOIN visitInfo v ON v.id=s.visit
-                                        INNER JOIN schoolInfo sc ON s.school = sc.id"
+                                        INNER JOIN jobs j ON j.id=s.jobID
+                                        INNER JOIN businessInfo b ON b.id=s.businessID
+                                        INNER JOIN visitInfo v ON v.id=s.visitID
+                                        INNER JOIN schoolInfo sc ON s.schoolID = sc.id"
 
         'Clear out table
         employees_dgv.DataSource = Nothing

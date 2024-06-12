@@ -18,31 +18,20 @@ Public Class Volunteer_Database
 	Dim VisitData As New Class_VisitData
 	Dim BusinessData As New Class_BusinessData
 	Dim SchoolData As New Class_SchoolData
+	Dim SH As New Class_SchoolHeader
 	Dim VisitID As Integer = VisitData.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+		'If logged out, redirect to log in
 		If Session("LoggedIn") <> "1" Then
 			Response.Redirect("../../default.aspx")
 		End If
 
 		If Not (IsPostBack) Then
 
-			'Assign current visit ID to hidden field
-			If VisitID <> 0 Then
-				currentVisitID_hf.Value = VisitID
-			End If
-
 			'Populating school header
-			Dim header As New Class_SchoolHeader
-			headerSchoolName_lbl.Text = header.GetSchoolHeader()
-
-			'Populate DDLs
-			'BusinessData.LoadBusinessNamesDDL(businessName_ddl)
-
-			'Replace first list item in business DDL with DDL name
-			'businessName_ddl.Items.RemoveAt(0)
-			'businessName_ddl.Items.Insert(0, "Business Name")
-			'businessName_ddl.Items.Insert(1, " ")
+			headerSchoolName_lbl.Text = SH.GetSchoolHeader()
 
 			'Populate school data
 			SchoolData.LoadSchoolsDDL(schoolName_ddl)
@@ -56,14 +45,19 @@ Public Class Volunteer_Database
 	End Sub
 
 	Sub LoadData()
-		Dim SQLStatement As String = "SELECT id, firstName, lastName, businessName, schoolName, visitDate, pr, svHours, notes, regular FROM volunteers"
+		Dim VIDOfDate As Integer
+		Dim SchoolID As Integer
+		Dim SQLStatement As String = "SELECT vo.id, firstName, lastName, businessID, schoolID, v.visitDate, pr, svHours, notes, regular FROM volunteers vo JOIN visitInfo v ON v.id = vo.visitID"
 
 		'Clear error
 		error_lbl.Text = ""
 
 		'Check if visit date has been entered
 		If visitDate_tb.Text <> Nothing Or visitDate_tb.Text <> "" Then
-			SQLStatement = SQLStatement & " WHERE visitDate = '" & visitDate_tb.Text & "'"
+			VIDOfDate = VisitData.GetVisitIDFromDate(visitDate_tb.Text)
+			SQLStatement = SQLStatement & " WHERE vo.visitID = '" & VIDOfDate & "'"
+			'error_lbl.Text = SQLStatement
+			'Exit Sub
 
 			'Load total SV hours
 			TotalSVHours(visitDate_tb.Text)
@@ -71,9 +65,13 @@ Public Class Volunteer_Database
 			'Load volunteer check in information
 			LoadVolCheckIn(visitDate_tb.Text)
 
+			'Load schools scheduled to come on this 
+
 			'Check if a specific school of scheduled visit date have been selected
 			If visitDateSchools_ddl.SelectedIndex <> 0 Then
-				SQLStatement = SQLStatement & " AND schoolName = '" & visitDateSchools_ddl.SelectedValue & "'"
+				SchoolID = SchoolData.GetSchoolID(visitDateSchools_ddl.SelectedValue)
+				SQLStatement = SQLStatement & " AND vo.schoolID = '" & SchoolID & "'"
+
 
 				'Load total SV hours
 				TotalSVHours(visitDate_tb.Text, visitDateSchools_ddl.SelectedValue)
@@ -90,14 +88,16 @@ Public Class Volunteer_Database
 
 		'Check if school name has been selected
 		If schoolName_ddl.SelectedValue <> Nothing Or schoolName_ddl.SelectedValue <> "" Then
-			SQLStatement = SQLStatement & " WHERE schoolName = '" & schoolName_ddl.SelectedValue & "'"
+			SchoolID = SchoolData.GetSchoolID(schoolName_ddl.SelectedValue)
+			SQLStatement = SQLStatement & " WHERE vo.schoolID = '" & SchoolID & "'"
 
 			'Load total SV hours
 			TotalSVHours(Nothing, schoolName_ddl.SelectedValue)
 
 			'Check if specific visit date of selected school has been selected
 			If schoolVisitDate_ddl.SelectedIndex <> 0 Then
-				SQLStatement = SQLStatement & " AND visitDate = '" & schoolVisitDate_ddl.SelectedValue & "'"
+				VIDOfDate = VisitData.GetVisitIDFromDate(visitDate_tb.Text)
+				SQLStatement = SQLStatement & " AND vo.visitID = '" & VIDOfDate & "'"
 
 				'Load total SV hours
 				TotalSVHours(schoolVisitDate_ddl.SelectedValue, schoolName_ddl.SelectedValue)
@@ -114,7 +114,7 @@ Public Class Volunteer_Database
 
 		'Check if search bar is filled
 		If search_tb.Text <> Nothing Or search_tb.Text <> "" Then
-			SQLStatement = SQLStatement & " WHERE firstName LIKE '%" & search_tb.Text & "%' OR lastName LIKE '%" & search_tb.Text & "%'"
+			SQLStatement = SQLStatement & " WHERE vo.firstName LIKE '%" & search_tb.Text & "%' OR vo.lastName LIKE '%" & search_tb.Text & "%'"
 		Else
 			SQLStatement = SQLStatement
 		End If
@@ -127,23 +127,23 @@ Public Class Volunteer_Database
 
 			'Check sorting DDLs
 			If sortBy_ddl.SelectedValue = "Recently Added" Then
-				SQLStatement = SQLStatement & "id "
+				SQLStatement = SQLStatement & "vo.id "
 			ElseIf sortBy_ddl.SelectedValue = "First Name" Then
-				SQLStatement = SQLStatement & "firstName "
+				SQLStatement = SQLStatement & "vo.firstName "
 			ElseIf sortBy_ddl.SelectedValue = "Last Name" Then
-				SQLStatement = SQLStatement & "lastName "
+				SQLStatement = SQLStatement & "vo.lastName "
 			ElseIf sortBy_ddl.SelectedValue = "Business Name" Then
-				SQLStatement = SQLStatement & "businessName "
+				SQLStatement = SQLStatement & "vo.businessID "
 			ElseIf sortBy_ddl.SelectedValue = "School Name" Then
-				SQLStatement = SQLStatement & "schoolName "
+				SQLStatement = SQLStatement & "vo.schoolName "
 			ElseIf sortBy_ddl.SelectedValue = "Visit Date" Then
-				SQLStatement = SQLStatement & "visitDate "
+				SQLStatement = SQLStatement & "vo.visitDate "
 			ElseIf sortBy_ddl.SelectedValue = "PR" Then
-				SQLStatement = SQLStatement & "pr "
+				SQLStatement = SQLStatement & "vo.pr "
 			ElseIf sortBy_ddl.SelectedValue = "SV Hours" Then
-				SQLStatement = SQLStatement & "svHours "
+				SQLStatement = SQLStatement & "vo.svHours "
 			ElseIf sortBy_ddl.SelectedValue = "Regular Volunteer" Then
-				SQLStatement = SQLStatement & "regular "
+				SQLStatement = SQLStatement & "vo.regular "
 			End If
 
 			If ascDesc_ddl.SelectedValue = "Ascending" Then
@@ -190,9 +190,10 @@ Public Class Volunteer_Database
 	Sub SubmitVolunteer()
 		Dim FirstName As String
 		Dim LastName As String
-		Dim BusinessName As String = ""
 		Dim SchoolName As String
+		Dim SchoolID As Integer
 		Dim VisitDate As String
+		Dim VIDOfDate As Integer
 		Dim PR As String
 		Dim SVHours As String = "6"
 		Dim Regular As Boolean = False
@@ -206,12 +207,21 @@ Public Class Volunteer_Database
 
 		'Check if loading from visit date or school name
 		If visitDate_div.Visible = True Then
-			If visitDate_tb.Text = Nothing Or visitDateSchools_ddl.SelectedIndex = 0 Then
+			If visitDate_tb.Text = Nothing Then
 				error_lbl.Text = "Please enter a first name, last name, business, visit date, school name and regular volunteer status before submitting."
 				Exit Sub
 			Else
 				VisitDate = visitDate_tb.Text
-				SchoolName = visitDateSchools_ddl.SelectedValue
+				VIDOfDate = VisitData.GetVisitIDFromDate(VisitDate)
+
+				If visitDateSchools_ddl.SelectedIndex = 0 Then
+					SchoolID = 0
+				Else
+					SchoolName = visitDateSchools_ddl.SelectedValue
+					SchoolID = SchoolData.GetSchoolID(SchoolName)
+				End If
+
+
 			End If
 		ElseIf schoolName_div.Visible = True Then
 			If schoolName_ddl.SelectedIndex = 0 Or schoolVisitDate_ddl.SelectedIndex = 0 Then
@@ -220,6 +230,8 @@ Public Class Volunteer_Database
 			Else
 				VisitDate = schoolVisitDate_ddl.SelectedValue
 				SchoolName = schoolName_ddl.SelectedValue
+				SchoolID = SchoolData.GetSchoolID(SchoolName)
+
 			End If
 		End If
 
@@ -255,8 +267,8 @@ Public Class Volunteer_Database
 			con.ConnectionString = connection_string
 			con.Open()
 			cmd.Connection = con
-			cmd.CommandText = "INSERT INTO volunteers (firstName, lastName, businessName, schoolName, visitDate, pr, svHours, notes, regular)
-                                VALUES ('" & FirstName & "', '" & LastName & "', '" & BusinessName & "', '" & SchoolName & "', '" & VisitDate & "', '" & PR & "', '" & SVHours & "', '" & Notes & "', '" & Regular & "')"
+			cmd.CommandText = "INSERT INTO volunteers (visitID, schoolID, businessID, firstName, lastName, pr, svHours, notes, regular)
+                                VALUES ('" & VIDOfDate & "', '" & SchoolID & "', '0', '" & FirstName & "', '" & LastName & "', '" & PR & "', '" & SVHours & "', '" & Notes & "', '" & Regular & "')"
 
 			cmd.ExecuteNonQuery()
 			cmd.Dispose()
@@ -279,6 +291,7 @@ Public Class Volunteer_Database
 	Sub SubmitCheckIn()
 		Dim SQLStatement As String
 		Dim VisitDate As String = visitDate_tb.Text
+		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(VisitDate)
 		Dim AchVol, AchReg, AstVol, AstReg, BayVol, BayReg, BBBVol, BBBReg, BicVol, BicReg, CitVol, CitReg, MixVol, MixReg, UPSVol, UPSReg, CVSVol, CVSReg, DitVol,
 		DitReg, DukeVol, DukeReg, HSNVol, HSNReg, KanesVol, KanesReg, McDVol, McDReg, UWVol, UWReg, DaliVol, DaliReg, PCSWVol, PCSWReg, KnowVol,
 		KnowReg, BucsVol, BucsReg, RaysVol, RaysReg, TimesVol, TimesReg, TDVol, TDReg, PCUVol, PCUReg As String
@@ -588,7 +601,7 @@ Public Class Volunteer_Database
 		Try
 			con.ConnectionString = connection_string
 			con.Open()
-			cmd.CommandText = "SELECT visitDate FROM volunteersCheckIn WHERE visitDate='" & VisitDate & "'"
+			cmd.CommandText = "SELECT visitID FROM volunteersCheckIn WHERE visitID='" & VIDOfDate & "'"
 			cmd.Connection = con
 			dr = cmd.ExecuteReader
 
@@ -603,14 +616,14 @@ Public Class Volunteer_Database
 								, pcswVol='" & PCSWVol & "', pcswReg='" & PCSWReg & "', tbbucsVol='" & BucsVol & "', tbbucsReg='" & BucsReg & "', tbraysVol='" & RaysVol & "'
 								, tbraysReg='" & RaysReg & "', tbtimesVol='" & TimesVol & "', tbtimesReg='" & TimesReg & "', tdVol='" & TDVol & "', tdReg='" & TDReg & "'
 								, upsVol='" & UPSVol & "', upsReg='" & UPSReg & "', unitedVol='" & UWVol & "', unitedReg='" & UWReg & "', hsnVol='" & HSNVol & "', hsnReg='" & HSNReg & "'  
-								WHERE visitDate='" & VisitDate & "'"
+								WHERE visitID='" & VIDOfDate & "'"
 			Else
 				SQLStatement = "INSERT INTO volunteersCheckIn 
-								(visitDate, achVol, achReg, astroVol, astroReg, baycareVol, baycareReg, bbbVol, bbbReg, bicVol, bicReg, cityVol, cityReg,
+								(visitID, achVol, achReg, astroVol, astroReg, baycareVol, baycareReg, bbbVol, bbbReg, bicVol, bicReg, cityVol, cityReg,
 								cvsVol, cvsReg, ditekVol, ditekReg, dukeVol, dukeReg, kanesVol, kanesReg, knowVol, knowReg, daliVol, daliReg, mcdVol, 
 								mcdReg, mixVol, mixReg, pcuVol, pcuReg, pcswVol, pcswReg, tbbucsVol, tbbucsReg, tbraysVol, tbraysReg, tbtimesVol, 
 								tbtimesReg, tdVol, tdReg, upsVol, upsReg, unitedVol, unitedReg, hsnVol, hsnReg)
-                                VALUES ('" & VisitDate & "', '" & AchVol & "', '" & AchReg & "', '" & AstVol & "', '" & AstReg & "', '" & BayVol & "', '" & BayReg & "', '" & BBBVol & "', '" & BBBReg & "'
+                                VALUES ('" & VIDOfDate & "', '" & AchVol & "', '" & AchReg & "', '" & AstVol & "', '" & AstReg & "', '" & BayVol & "', '" & BayReg & "', '" & BBBVol & "', '" & BBBReg & "'
 								, '" & BicVol & "', '" & BicReg & "', '" & CitVol & "', '" & CitReg & "', '" & CVSVol & "', '" & CVSReg & "', '" & DitVol & "', '" & DitReg & "', '" & DukeVol & "'
 								, '" & DukeReg & "', '" & KanesVol & "', '" & KanesReg & "', '" & KnowVol & "', '" & KnowReg & "', '" & DaliVol & "', '" & DaliReg & "', '" & McDVol & "', '" & McDReg & "'
 								, '" & MixVol & "', '" & MixReg & "', '" & PCUVol & "', '" & PCUReg & "', '" & PCSWVol & "', '" & PCSWReg & "', '" & BucsVol & "', '" & BucsReg & "', '" & RaysVol & "'
@@ -1254,7 +1267,8 @@ Public Class Volunteer_Database
 	End Function
 
 	Sub LoadVolCheckIn(VisitDate As String)
-		Dim CheckInSQL As String = "SELECT * FROM volunteersCheckIn WHERE visitDate = '" & VisitDate & "'"
+		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(VisitDate)
+		Dim CheckInSQL As String = "SELECT * FROM volunteersCheckIn WHERE visitID = '" & VIDOfDate & "'"
 
 		'Clear text boxes
 		bucs_tb.Text = ""
@@ -1406,23 +1420,39 @@ Public Class Volunteer_Database
 		Dim ID As Integer = Convert.ToInt32(volunteers_dgv.DataKeys(e.RowIndex).Values(0)) 'Gets id number
 		Dim firstName As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("firstNameDGV_tb"), TextBox).Text 'Try cast is used to try to convert - gets item from ddl
 		Dim lastName As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("lastNameDGV_tb"), TextBox).Text
-		Dim businessName As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("businessNameDGV_ddl"), DropDownList).SelectedValue.ToString
-		Dim schoolName As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("schoolNameDGV_ddl"), DropDownList).SelectedValue.ToString
+		Dim businessID As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("businessNameDGV_ddl"), DropDownList).SelectedValue.ToString
+		Dim schoolID As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("schoolNameDGV_ddl"), DropDownList).SelectedValue.ToString
 		Dim visitDate As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("visitDateDGV_tb"), TextBox).Text
 		Dim pr As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("prDGV_ddl"), DropDownList).SelectedValue.ToString
 		Dim svHours As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("svHoursDGV_tb"), TextBox).Text
 		Dim notes As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("notesDGV_tb"), TextBox).Text
 		Dim regular As String = TryCast(volunteers_dgv.Rows(e.RowIndex).FindControl("regularDGV_chk"), CheckBox).Checked
+		Dim VIDOfDate As String
 
+		'Get visit ID of date
+		Try
+			VIDOfDate = VisitData.GetVisitIDFromDate(visitDate)
+		Catch ex As Exception
+			error_lbl.Text = "Error in Updating(). Could not get visit ID of date entered."
+			Exit Sub
+		End Try
+
+		'Check if visit date entered is an existing visit date
+		If VIDOfDate = Nothing Or VIDOfDate = "0" Then
+			error_lbl.Text = "No visit scheduled for entered visit date. Please create a visit for that date or enter a different date that has already been created."
+			Exit Sub
+		End If
+
+		'Update volunteers table
 		Try
 			Using con As New SqlConnection(connection_string)
-				Using cmd As New SqlCommand("UPDATE volunteers SET firstName=@firstName, lastName=@lastName, businessName=@businessName, schoolName=@schoolName, visitDate=@visitDate, pr=@pr, svHours=@svHours, notes=@notes, regular=@regular WHERE ID=@Id")
+				Using cmd As New SqlCommand("UPDATE volunteers SET firstName=@firstName, lastName=@lastName, businessID=@businessID, schoolID=@schoolID, visitID=@visitID, pr=@pr, svHours=@svHours, notes=@notes, regular=@regular WHERE ID=@Id")
 					cmd.Parameters.AddWithValue("@ID", ID)
 					cmd.Parameters.AddWithValue("@firstName", firstName)
 					cmd.Parameters.AddWithValue("@lastName", lastName)
-					cmd.Parameters.AddWithValue("@businessName", businessName)
-					cmd.Parameters.AddWithValue("@schoolName", schoolName)
-					cmd.Parameters.AddWithValue("@visitDate", visitDate)
+					cmd.Parameters.AddWithValue("@businessID", businessID)
+					cmd.Parameters.AddWithValue("@schoolID", schoolID)
+					cmd.Parameters.AddWithValue("@visitID", VIDOfDate)
 					cmd.Parameters.AddWithValue("@pr", pr)
 					cmd.Parameters.AddWithValue("@svHours", svHours)
 					cmd.Parameters.AddWithValue("@notes", notes)
@@ -1447,39 +1477,82 @@ Public Class Volunteer_Database
 
 			'School Dropdown
 			Dim ddlSchool As DropDownList = CType(e.Row.FindControl("schoolNameDGV_ddl"), DropDownList)
-			ddlSchool.DataSource = GetData("SELECT schoolName FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
+			ddlSchool.DataSource = GetData("SELECT id, schoolName FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
 			ddlSchool.DataTextField = "schoolName"
+			ddlSchool.DataValueField = "id"
 			ddlSchool.DataBind()
+			ddlSchool.Items.Insert(0, " ")
 			Dim lblSchool As String = CType(e.Row.FindControl("schoolNameDGV_lbl"), Label).Text
 
-			ddlSchool.Items.FindByValue(lblSchool).Selected = True
+			'Select index 0 if school ID is 0, otherwise, select the school name associated with the ID
+			If lblSchool = "0" Then
+				ddlSchool.Items.Item(0).Selected = True
+			Else
+				ddlSchool.Items.FindByValue(lblSchool).Selected = True
+			End If
 
+			'Assign different colors for visit dates
 			If visitDateSchools_ddl.Visible = True Then
-				'For Each row As GridViewRow In volunteers_dgv.Rows
-				If lblSchool = visitDateSchools_ddl.Items(1).Value Then
-					e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
-				ElseIf lblSchool = visitDateSchools_ddl.Items(2).Value Then
-					e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
-				ElseIf lblSchool = visitDateSchools_ddl.Items(3).Value Then
-					e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
-				ElseIf lblSchool = visitDateSchools_ddl.Items(4).Value Then
-					e.Row.BackColor = ColorTranslator.FromHtml("#afc3ff")
-				ElseIf lblSchool = visitDateSchools_ddl.Items(5).Value Then
-					e.Row.BackColor = ColorTranslator.FromHtml("#ffd8af")
-				End If
-				'Next
+				Select Case visitDateSchools_ddl.Items.Count
+					Case 2
+						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+						End If
+					Case 3
+						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(2).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+						End If
+					Case 4
+						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(2).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(3).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
+						End If
+					Case 5
+						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(2).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(3).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(4).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afc3ff")
+						End If
+					Case 6
+						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(2).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(3).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(4).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#afc3ff")
+						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(5).Value) Then
+							e.Row.BackColor = ColorTranslator.FromHtml("#ffd8af")
+						End If
+				End Select
 			End If
 
 			'Business Dropdown
 			Dim ddlBusiness As DropDownList = CType(e.Row.FindControl("businessNameDGV_ddl"), DropDownList)
-			ddlBusiness.DataSource = GetData("SELECT businessName FROM businessInfo ORDER BY BusinessName")
+			ddlBusiness.DataSource = GetData("SELECT id, businessName FROM businessInfo ORDER BY BusinessName")
 			ddlBusiness.DataTextField = "BusinessName"
+			ddlBusiness.DataValueField = "id"
 			ddlBusiness.DataBind()
 			Dim lblBusiness As String = CType(e.Row.FindControl("businessNameDGV_lbl"), Label).Text
 
 			ddlBusiness.Items.Insert(0, " ")
 
-			ddlBusiness.Items.FindByValue(lblBusiness).Selected = True
+			If lblBusiness <> "0" Then
+				ddlBusiness.Items.FindByValue(lblBusiness).Selected = True
+			Else
+				ddlBusiness.Items.Item(0).Selected = True
+			End If
+
 
 			'PR Dropdown
 			Dim ddlPR As DropDownList = CType(e.Row.FindControl("prDGV_ddl"), DropDownList)

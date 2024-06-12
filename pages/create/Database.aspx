@@ -39,7 +39,7 @@
                 Enter the information currently known below. You do not need to fill out all the information, the empty fields will be a default value in the database. You can change this later on the 'Edit Visit' page under 'Edit'.
             </h3>
 
-            <asp:Button ID="Button1" runat="server" Text="Open / Close Businesses" PostBackUrl="/pages/student/Open_Closed_Status.aspx" CssClass="button3" />&ensp;<asp:Button ID="Button2" runat="server" Text="School Visit Checklist" PostBackUrl="/pages/tools/school_visit_checklist.aspx" CssClass="button3" />&ensp;<asp:Label runat="server" ID="error_lbl" Font-Bold="true" Font-Size="X-Large" ForeColor="Red"></asp:Label>           
+            <asp:Button ID="Button1" runat="server" Text="Open / Close Businesses" PostBackUrl="/pages/edit/Open_Closed_Status.aspx" CssClass="button3" />&ensp;<asp:Button ID="Button2" runat="server" Text="School Visit Checklist" PostBackUrl="/pages/tools/school_visit_checklist.aspx" CssClass="button3" />&ensp;<asp:Label runat="server" ID="error_lbl" Font-Bold="true" Font-Size="X-Large" ForeColor="Red"></asp:Label>           
             <p>Enter Date Of Visit (Required)</p>
             <asp:TextBox placeholder="MM/DD/YYYY" ID="visit_tb" Width="100px" runat="server" TextMode="Date" CssClass="textbox"></asp:TextBox>
             <br />

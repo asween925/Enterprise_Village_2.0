@@ -50,15 +50,15 @@ Public Class Open_Closed_Status
 		OnlineBanking_dgv.DataSource = Nothing
 		OnlineBanking_dgv.DataBind()
 
-		Try
-			Businesses.LoadOpenClosedStatus(VIDOfDate, OnlineBanking_dgv)
-		Catch
-			error_lbl.Text = "Error in LoadData() SQL query. Check query or visitInfo / businessVisitInfo in DB."
-			Exit Sub
-		End Try
+		'Try
+		Businesses.LoadOpenClosedStatus(VIDOfDate, OnlineBanking_dgv)
+			'Catch
+			'	error_lbl.Text = "Error in LoadData() SQL query. Check query or visitInfo / businessVisitInfo in DB."
+			'	Exit Sub
+			'End Try
 
-		'Highlight row being edited
-		For Each row As GridViewRow In OnlineBanking_dgv.Rows
+			'Highlight row being edited
+			For Each row As GridViewRow In OnlineBanking_dgv.Rows
 			If row.RowIndex = OnlineBanking_dgv.EditIndex Then
 				row.BackColor = ColorTranslator.FromHtml("#ebe534")
 				'row.BorderColor = ColorTranslator.FromHtml("#ffffff")

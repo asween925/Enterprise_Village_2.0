@@ -60,6 +60,7 @@ Public Class Teacher_Letter
 
 	Sub LoadTeachersDDL()
 		Dim SchoolName As String
+		Dim SchoolID As String
 
 		'Check if school DDL has a selected school
 		If schoolName_ddl.SelectedIndex <> 0 Then
@@ -73,10 +74,11 @@ Public Class Teacher_Letter
 
 			'Assign varible
 			SchoolName = schoolName_ddl.SelectedValue
+			SchoolID = SchoolData.GetSchoolID(SchoolName)
 
 			'Populate teacher names DDL
 			Try
-				TeacherData.LoadTeacherNameDDL(SchoolName, teacherName_ddl)
+				TeacherData.LoadTeacherNameDDL(SchoolID, teacherName_ddl)
 			Catch
 				error_lbl.Text = "Error in LoadTeachersDDL. Could not get teacher names."
 				Exit Sub
