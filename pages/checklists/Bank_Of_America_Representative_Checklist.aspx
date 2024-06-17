@@ -9,7 +9,7 @@
     <title>Achieva Credit Union CSR</title>
 
 
-    <link href="~/~/css/Styles.Checklist.css" rel="stylesheet" type="text/css">
+    <link href="~/css/Styles.Checklist.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

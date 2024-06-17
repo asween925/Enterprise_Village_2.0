@@ -157,14 +157,6 @@ Public Class School_Visit_Checklist
             Exit Sub
         End Try
 
-        'Get student count of school
-        'Try
-        '    StudentCountTotal = Visits.LoadVisitInfoFromDate(visitDate, "studentCount")
-        'Catch
-        '    error_lbl.Text = "Error in loaddata(). Cannot retrieve student count."
-        '    Exit Sub
-        'End Try
-
         'Get contact teacher
         Try
             ContactTeacher = Teachers.GetContactTeacher(SchoolID)
@@ -185,9 +177,9 @@ Public Class School_Visit_Checklist
         End Try
 
         'Assign variables 
-        'Try
-        'Step 1
-        LastEditedBy1 = SVC.LasteditedStep1
+        Try
+            'Step 1
+            LastEditedBy1 = SVC.LasteditedStep1
             schoolType = SVC.SchoolType
             schoolStudentCount = SVC.SchoolStudentCount
             studentCountFormReceived = SVC.StudentCountFormReceived
@@ -225,10 +217,10 @@ Public Class School_Visit_Checklist
             position = SVC.Position
             dateAccepted = SVC.DateAccepted
 
-        'Catch
-        '    error_lbl.Text = "Error in LoadData(). Cannot get SVC data to variables."
-        '    Exit Sub
-        'End Try
+        Catch
+            error_lbl.Text = "Error in LoadData(). Cannot get SVC data to variables."
+            Exit Sub
+        End Try
 
         'Assign labels, textboxes, DDL values, etc
 
@@ -263,7 +255,7 @@ Public Class School_Visit_Checklist
 
         '-----------STEP 2------------
 
-        lastEdited2_lbl.Text = LastEditedBy2 & " " & invoiceIssued
+        lastEdited2_lbl.Text = LastEditedBy2
 
         If invoiceIssued = Nothing Then
             invoice_chk.Checked = False
@@ -279,14 +271,14 @@ Public Class School_Visit_Checklist
 
         '-----------STEP 3------------
 
-        lastEdited3_lbl.Text = LastEditedBy3
+        lastEdited3_lbl.Text = LastEditedBy3 & " " & DateTime.Parse(contractRecieved).ToString("yyyy-MM-dd")
         invoiceNum_tb.Text = invoiceNum
         notes_tb.Text = notes
 
         If contractRecieved = Nothing Then
             contractRecieved_tb.Text = ""
         Else
-            contractRecieved_tb.Text = DateTime.Parse(contractRecieved).ToString("yyyy-mm-dd")
+            contractRecieved_tb.Text = DateTime.Parse(contractRecieved).ToString("yyyy-MM-dd")
         End If
 
         If deliveryMethod = Nothing Then
@@ -318,7 +310,7 @@ Public Class School_Visit_Checklist
         End If
 
         If workbooks = Nothing Then
-            workbooks_lbl.Text = studentCountTotal_lbl.Text
+            workbooks_lbl.Text = schoolStudentCount_tb.Text 'Assigns the same number of students in the visit info, which is initially entered by a teacher during visit creation (this is not the actual student count that is calculated based on entered students)
         Else
             workbooks_lbl.Text = workbooks
         End If
@@ -332,7 +324,7 @@ Public Class School_Visit_Checklist
         If dateAccepted = Nothing Then
             dateAccepted_tb.Text = ""
         Else
-            dateAccepted_tb.Text = DateTime.Parse(dateAccepted).ToString("yyyy-mm-dd")
+            dateAccepted_tb.Text = DateTime.Parse(dateAccepted).ToString("yyyy-MM-dd")
         End If
 
 
@@ -696,9 +688,10 @@ Public Class School_Visit_Checklist
                 Exit Sub
             End Try
 
-            'Open email
-            error_lbl.Text = "Submission Successful! Opening email and refreshing page..."
+            'Open email and refresh
+            error_lbl.Text = "Submission Successful! Opening email..."
             ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:rushm@pcsb.org ?subject=School Visit Checklist: School Type Submitted&body=I have completed the submission of the school type of " & schoolName_lbl.Text & " for " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
+
 
         Else
             error_lbl.Text = "Please select a school type from the drop down menu."
@@ -745,7 +738,7 @@ Public Class School_Visit_Checklist
 
             'Open email
             step2Msg_lbl.Text = ""
-            error_lbl.Text = "Submission Successful! Opening email and refreshing page..."
+            error_lbl.Text = "Submission Successful! Opening email..."
             ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:rebelom@pcsb.org ?subject=School Visit Checklist: Invoice Number and Signature Received&cc=fritzs@pcsb.org&body=I have gotten the invoice number and directors signature for " & schoolName_lbl.Text & " visiting on " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
 
             'Refresh page
@@ -767,7 +760,7 @@ Public Class School_Visit_Checklist
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
-        Dim contractReceivedDate As Date
+        Dim contractReceivedDate As String
         Dim invoiceNum As String
         Dim deliveryMethod As String = delivery_ddl.SelectedValue
         Dim notes As String
@@ -790,7 +783,7 @@ Public Class School_Visit_Checklist
                 cmd.Connection = con
                 cmd.CommandText = "UPDATE schoolVisitChecklist SET contractReceivedDate=@contractReceivedDate, invoiceNum=@invoiceNum, deliveryMethod=@deliveryMethod, notes=@notes, lastEditedStep3=@lastEditedStep3 WHERE visitID='" & visitID & "' AND schoolID='" & SchoolID & "'"
 
-                cmd.Parameters.Add("@contractReceivedDate", SqlDbType.Date).Value = contractReceivedDate
+                cmd.Parameters.Add("@contractReceivedDate", SqlDbType.VarChar).Value = contractReceivedDate
                 cmd.Parameters.Add("@invoiceNum", SqlDbType.Int).Value = invoiceNum
                 cmd.Parameters.Add("@deliveryMethod", SqlDbType.VarChar).Value = deliveryMethod
                 cmd.Parameters.Add("@notes", SqlDbType.VarChar).Value = notes
@@ -805,7 +798,7 @@ Public Class School_Visit_Checklist
 
             'Open email
             step3Msg_lbl.Text = ""
-            error_lbl.Text = "Submission Successful! Opening email and refreshing page..."
+            error_lbl.Text = "Submission Successful! Opening email..."
             ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:duntonj@pcsb.org;mazurekb@pcsb.org ?subject=School Visit Checklist: Invoice Received&body=I have completed the submission of the invoice, delivery method, and date of contract received of " & schoolName_lbl.Text & " for " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
 
             'Refresh page
@@ -952,7 +945,7 @@ Public Class School_Visit_Checklist
 
             'Open Email
             step3Msg_lbl.Text = ""
-            error_lbl.Text = "Submission Successful! Opening email and refreshing page..."
+            error_lbl.Text = "Submission Successful! Opening email ..."
             ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:fritzs@pcsb.org ?subject=School Visit Checklist: Kit Numbers Submitted&cc=rebelom@pcsb.org&body=I have completed the submission of the amount of kits being sent out and the number each kit for " & schoolName_lbl.Text & " on " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
 
             'Refresh page
@@ -1010,7 +1003,7 @@ Public Class School_Visit_Checklist
 
             'Open email
             step5Msg_lbl.Text = ""
-            error_lbl.Text = "Submission Successful! Opening email and refreshing page..."
+            error_lbl.Text = "Submission Successful! Opening email ..."
             ScriptManager.RegisterStartupScript(Me.Page, Me.Page.[GetType](), "OpenEmail", "javascript:window.location.href='mailto:rushm@pcsb.org ?subject=School Visit Checklist: Delivery Date and Date Accepted Submitted&body=I have completed the submission of the delivery accepted by date and the date accepted for " & schoolName_lbl.Text & " on " & visitDate_lbl.Text & ". Time completed: " & DateTime.Now & " ';", True)
 
             'Refresh page

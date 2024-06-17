@@ -40,7 +40,7 @@
             <p>Visit Date:</p>
             <asp:TextBox ID="date_tb" runat="server" AutoPostBack="true" CssClass="textbox" TextMode="Date" ></asp:TextBox>&ensp;<asp:Label ID="error_lbl" runat="server" Font-Size="X-Large" ForeColor="Red" Font-Bold="true"></asp:Label>
             <br /><br />
-            <asp:LinkButton ID="LinkButton11" runat="server" PostBackUrl="/upload_move_articles.aspx" CssClass="button3">Upload / Move Articles</asp:LinkButton>
+            <asp:LinkButton ID="LinkButton11" runat="server" PostBackUrl="~/pages/tools/upload_move_articles.aspx" CssClass="button3">Upload / Move Articles</asp:LinkButton>
             <br /><br />
 
             <%--Edit Visit Table--%>             
@@ -50,12 +50,12 @@
                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
                         <asp:TemplateField HeaderText="Visit Date">
                             <ItemTemplate>
-                                <asp:TextBox ID="visitDate_tb" runat="server" Width="75px" Text='<%#Bind("visitDate", "{0:d}") %>' CssClass="textbox" ></asp:TextBox>
+                                <asp:TextBox ID="visitDate_tb" runat="server" Text='<%#Bind("visitDate", "{0:yyyy-MM-dd}") %>' TextMode="Date" CssClass="textbox" ></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Visit Time">
                             <ItemTemplate>
-                                <asp:TextBox ID="visitTime_tb" runat="server" Width="64px" Text='<%#Bind("visitTime") %>' CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="visitTime_tb" runat="server" Text='<%#Bind("visitTime") %>' TextMode="Time" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="School #1">
@@ -90,27 +90,27 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Training </br> Time Start">
                             <ItemTemplate>
-                                <asp:TextBox ID="vTrainingTime_tb" runat="server" Text='<%#Bind("vTrainingTime") %>' Width="75px" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="vTrainingTime_tb" runat="server" Text='<%#Bind("vTrainingTime") %>' TextMode="Time" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                          <asp:TemplateField HeaderText="Volunteer Min Count">
                             <ItemTemplate>
-                                <asp:TextBox ID="vMinCount_tb" runat="server" Text='<%#Bind("vMinCount") %>' Width="55px" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="vMinCount_tb" runat="server" Text='<%#Bind("vMinCount") %>' Width="55px" TextMode="Number" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                          <asp:TemplateField HeaderText="Volunteer Max Count">
                             <ItemTemplate>
-                                <asp:TextBox ID="vMaxCount_tb" runat="server" Text='<%#Bind("vMaxCount") %>' Width="55px" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="vMaxCount_tb" runat="server" Text='<%#Bind("vMaxCount") %>' Width="55px" TextMode="Number" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Reply By Date">
                             <ItemTemplate>
-                                <asp:TextBox ID="replyBy_tb" runat="server" Text='<%#Bind("replyBy", "{0:d}") %> ' Width="75px" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="replyBy_tb" runat="server" Text='<%#Bind("replyBy", "{0:yyyy-MM-dd}") %> ' TextMode="Date" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Student Count">
                             <ItemTemplate>
-                                <asp:TextBox ID="studentCount_tb" runat="server" Text='<%#Bind("studentCount") %>' Width="30px" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="studentCount_tb" runat="server" Text='<%#Bind("studentCount") %>' TextMode="Number" Width="30px" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>                        
                     </Columns>

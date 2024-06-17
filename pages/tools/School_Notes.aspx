@@ -89,7 +89,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Note">
                             <ItemTemplate>
-                               <asp:TextBox ID="noteDGV_tb" runat="server" Width="250px" ReadOnly="false" Text='<%#Bind("note") %>' CssClass="textbox"></asp:TextBox>
+                               <asp:TextBox ID="noteDGV_tb" runat="server" Width="250px" ReadOnly="false" Text='<%#Bind("note") %>' TextMode="MultiLine" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Edited By">

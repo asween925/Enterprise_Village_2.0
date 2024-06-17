@@ -160,6 +160,6 @@ Public Class Teacher_Home
 
     Protected Sub logOut_btn_Click(sender As Object, e As EventArgs) Handles logOut_btn.Click
         HttpContext.Current.Session.Abandon()
-        Response.Redirect("../../default.aspx")
+        Response.Redirect("default.aspx")
     End Sub
 End Class

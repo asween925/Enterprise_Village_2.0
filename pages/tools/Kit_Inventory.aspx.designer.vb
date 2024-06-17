@@ -149,6 +149,15 @@ Partial Public Class Kit_Inventory
     Protected WithEvents search_tb As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''searchSchoolName_ddl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents searchSchoolName_ddl As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''searchBy_ddl control.
     '''</summary>
     '''<remarks>

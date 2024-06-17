@@ -37,6 +37,9 @@ Public Class Employee_Management_System_Review
         Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(date_tb.Text)
         Dim businessID As Integer = Businesses.GetBusinessID(business_ddl.SelectedItem.ToString())
 
+        'Clear error
+        error_lbl.Text = ""
+
         'Load table
         Try
             Students.LoadEMSTable(VIDOfDate, Review_dgv, businessID)
@@ -173,7 +176,7 @@ Public Class Employee_Management_System_Review
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Dim dr As SqlDataReader
-        Dim sql As String = "SELECT employeeNumber From studentInfo_template WHERE business='" & Business & "' and job='" & position & "'"
+        Dim sql As String = "SELECT accountNumber From studentInfo_template WHERE businessID='" & Business & "' and jobID='" & position & "'"
         Try
             con.ConnectionString = connection_string
             con.Open()

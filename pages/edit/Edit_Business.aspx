@@ -52,7 +52,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Starting Balance">
                             <ItemTemplate>
-                                <asp:Textbox ID="startingBalanceDGV_tb" runat="server" Text='<%#Bind("startingBalance") %>' Visible="true" ReadOnly="true" CssClass="textbox"></asp:Textbox>
+                                <asp:Textbox ID="startingBalanceDGV_tb" runat="server" Text='<%#Bind("startingBalance") %>' TextMode="Number" Visible="true" ReadOnly="false" CssClass="textbox"></asp:Textbox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Job #1">

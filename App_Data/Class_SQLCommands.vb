@@ -83,7 +83,7 @@ Public Class Class_SQLCommands
 		Dim con As New SqlConnection
 		Dim cmd As New SqlCommand
 		Dim errorReturn As String = ""
-		Dim sqlStatement As String = "SELECT id, kitNumber, schoolID, category, FORMAT(dateIn, 'MM/dd/yyyy') as dateIn, FORMAT(dateOut, 'MM/dd/yyyy') as dateOut, gsiStaff, notes 
+		Dim sqlStatement As String = "SELECT id, kitNumber, schoolID, category, FORMAT(dateIn, 'yyyy-MM-dd') as dateIn, FORMAT(dateOut, 'yyyy-MM-dd') as dateOut, gsiStaff, notes 
 										FROM kitInventory"
 		Dim sqlSearchStatement As String
 		Dim sqlSortStatement As String
@@ -94,7 +94,7 @@ Public Class Class_SQLCommands
 			'Get school id
 			con.ConnectionString = connection_string
 			con.Open()
-			cmd.CommandText = "SELECT id FROM schoolInfo WHERE schoolName LIKE '%" & searchTerm & "%'"
+			cmd.CommandText = "SELECT id FROM schoolInfo WHERE schoolName = '" & searchTerm & "'"
 			cmd.Connection = con
 			dr = cmd.ExecuteReader()
 
@@ -105,10 +105,14 @@ Public Class Class_SQLCommands
 			cmd.Dispose()
 			con.Close()
 
+			'Add search statement
+			sqlSearchStatement = " WHERE schoolID = '" & searchTerm & "'"
+		Else
+			'Add search statement
+			sqlSearchStatement = " WHERE " & searchBy & " LIKE '%" & searchTerm & "%'"
 		End If
 
-		'Add search statement
-		sqlSearchStatement = " WHERE " & searchBy & " LIKE '%" & searchTerm & "%'"
+
 		sqlSortStatement = " ORDER BY " & columnSort & " " & orderSort & ""
 
 		'Add search statement and sort statement to sqlstatement

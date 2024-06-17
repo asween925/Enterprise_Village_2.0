@@ -8,7 +8,7 @@
           <title>Astro Skate Editorial</title>
 
 
-<link href="~/~/css/Styles.Checklist.css" rel="stylesheet" type="text/css">
+<link href="~/css/Styles.Checklist.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         </div>
         
       <div class="header3">
-        <img class="business" alt="Business" src="Images/AstroSkate.jpg">
+        <img class="business" alt="Business" src="../../Images/AstroSkate.jpg">
         </div>
         
      <div class="main_astro">

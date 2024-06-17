@@ -64,17 +64,17 @@ Public Class Edit_School
         school_dgv.DataSource = Nothing
         school_dgv.DataBind()
 
-        'Try
-        Review_sds.ConnectionString = connection_string
+        Try
+            Review_sds.ConnectionString = connection_string
             Review_sds.SelectCommand = sql
             school_dgv.DataSource = Review_sds
             school_dgv.DataBind()
 
-        'Catch
-        '    error_lbl.Text = "Error in loaddata()"
-        '    cmd.Dispose()
-        '    con.Close()
-        'End Try
+        Catch
+            error_lbl.Text = "Error in loaddata()"
+            cmd.Dispose()
+            con.Close()
+        End Try
 
         cmd.Dispose()
         con.Close()

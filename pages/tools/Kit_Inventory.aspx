@@ -70,8 +70,9 @@
                 <%--Sorting Section--%>
                 <div id="sorting_div" runat="server">
                     <p>Search and Sorting:</p>
-                    <asp:TextBox ID="search_tb" runat="server" CssClass="textbox"></asp:TextBox>
-                    &ensp;<asp:DropDownList ID="searchBy_ddl" runat="server" CssClass="ddl">
+                    <asp:TextBox ID="search_tb" runat="server" CssClass="textbox" Visible="true"></asp:TextBox>
+                    <asp:DropDownList ID="searchSchoolName_ddl" runat="server" CssClass="ddl" Visible="false"></asp:DropDownList>
+                    &ensp;<asp:DropDownList ID="searchBy_ddl" runat="server" CssClass="ddl" AutoPostBack="true">
                         <asp:ListItem>ID</asp:ListItem>
                         <asp:ListItem>Kit Number</asp:ListItem>
                         <asp:ListItem>School Name</asp:ListItem>
@@ -132,12 +133,12 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Date In" Visible="true">
                             <ItemTemplate>
-                                <asp:TextBox ID="dateInDGV_tb" runat="server" Width="80px" Text='<%#Bind("dateIn") %>' DataFormatString="{0: MM-dd-yyyy }" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="dateInDGV_tb" runat="server" Text='<%#Bind("dateIn") %>' DataFormatString="{0: yyyy-MM-dd }" TextMode="Date" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Date Out" Visible="true">
                             <ItemTemplate>
-                                <asp:TextBox ID="dateOutDGV_tb" runat="server" Width="80px" Text='<%#Bind("dateOut") %>' DataFormatString="{0: MM-dd-yyyy }" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="dateOutDGV_tb" runat="server" Text='<%#Bind("dateOut") %>' DataFormatString="{0: yyyy-MM-dd }" TextMode="Date" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="GSI Staff">
@@ -156,7 +157,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Notes" Visible="true">
                             <ItemTemplate>
-                                <asp:TextBox ID="notesDGV_tb" runat="server" Width="120px" Text='<%#Bind("notes") %>' CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="notesDGV_tb" runat="server" Width="120px" Text='<%#Bind("notes") %>' TextMode="MultiLine" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -177,6 +178,15 @@
                 $(this).parent(".sub-menu").children("ul").slideToggle("100");
                 $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
             });
+        </script>
+        <script>
+            function ChangeTypeDate() {
+                document.getElementById('<%= search_tb.ClientID %>').type = 'Date';
+            }
+
+            function ChangeTypeLine() {
+                document.getElementById('<%= search_tb.ClientID %>').type = 'SingleLine';
+            }
         </script>
 
         <asp:SqlDataSource ID="Review_sds" runat="server"></asp:SqlDataSource>

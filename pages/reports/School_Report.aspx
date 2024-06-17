@@ -38,7 +38,7 @@
             <h2 class="h2 no-print">School Report</h2>
             <h3 class="no-print">This page displays all schools in the database. Use the drop down menu to select a school you would like to view.
             </h3>
-            <p>School Name Drop Down List:</p>
+            <p>School Name:</p>
             <asp:DropDownList CssClass="ddl" ID="schoolNameSearch_ddl" runat="server" Width="200px" AutoPostBack="true"></asp:DropDownList> &ensp;<asp:Label ID="error_lbl" runat="server" Font-Size="X-Large" ForeColor="Red"></asp:Label>
             <p>Keyword Search:</p>
             <asp:TextBox ID="search_tb" runat="server" CssClass="textbox"></asp:TextBox> &nbsp;&nbsp; <asp:Button ID="search_btn" runat="server" CssClass="button3" text="Search"/>     

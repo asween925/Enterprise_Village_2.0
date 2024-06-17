@@ -39,6 +39,13 @@ Public Class Teacher_Letter
 		'Check if visit date has a date
 		If visitDate_tb.Text <> Nothing Then
 
+			'Hide info div
+			info_div.Visible = False
+
+			'hide teacher ddl
+			teacherName_ddl.Visible = False
+			teacher_p.Visible = False
+
 			'Made school name DDL and header visible
 			schoolName_ddl.Visible = True
 			school_p.Visible = True
@@ -64,6 +71,9 @@ Public Class Teacher_Letter
 
 		'Check if school DDL has a selected school
 		If schoolName_ddl.SelectedIndex <> 0 Then
+
+			'Hide letter div
+			info_div.Visible = False
 
 			'Make teacher DDL and header visible
 			teacherName_ddl.Visible = True

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Database.aspx.vb" Inherits="Enterprise_Village_2._0.Database" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Database.aspx.vb" MaintainScrollPositionOnPostback="true" Inherits="Enterprise_Village_2._0.Database" %>
 
 <!doctype html>
 <html>

@@ -47,7 +47,7 @@ Public Class Volunteer_Database
 	Sub LoadData()
 		Dim VIDOfDate As Integer
 		Dim SchoolID As Integer
-		Dim SQLStatement As String = "SELECT vo.id, firstName, lastName, businessID, schoolID, v.visitDate, pr, svHours, notes, regular FROM volunteers vo JOIN visitInfo v ON v.id = vo.visitID"
+		Dim SQLStatement As String = "SELECT vo.id, firstName, lastName, businessID, schoolID, FORMAT(v.visitDate, 'yyyy-MM-dd') as visitDate, pr, svHours, notes, regular FROM volunteers vo JOIN visitInfo v ON v.id = vo.visitID"
 
 		'Clear error
 		error_lbl.Text = ""
@@ -96,7 +96,7 @@ Public Class Volunteer_Database
 
 			'Check if specific visit date of selected school has been selected
 			If schoolVisitDate_ddl.SelectedIndex <> 0 Then
-				VIDOfDate = VisitData.GetVisitIDFromDate(visitDate_tb.Text)
+				VIDOfDate = VisitData.GetVisitIDFromDate(schoolVisitDate_ddl.SelectedValue)
 				SQLStatement = SQLStatement & " AND vo.visitID = '" & VIDOfDate & "'"
 
 				'Load total SV hours
@@ -153,6 +153,9 @@ Public Class Volunteer_Database
 			End If
 
 		End If
+
+		'error_lbl.Text = SQLStatement
+		'Exit Sub
 
 		'Load data from volunteers table
 		Try
@@ -1170,21 +1173,23 @@ Public Class Volunteer_Database
 
 	Sub TotalSVHours(Optional VisitDate As String = Nothing, Optional SchoolName As String = Nothing)
 		Dim SQLStatement As String = "SELECT SUM(svHours) as svHours FROM volunteers WHERE "
+		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(VisitDate)
+		Dim SchoolID As Integer = SchoolData.GetSchoolID(SchoolName)
 
 		'Check if load by visit date or load by school name is active
 		If visitDate_tb.Text <> Nothing Then
-			SQLStatement += "visitdate= '" & VisitDate & "' "
+			SQLStatement += "visitID= '" & VIDOfDate & "' "
 
 			If visitDateSchools_ddl.SelectedIndex <> 0 Then
-				SQLStatement += " AND schoolName= '" & SchoolName & "' "
+				SQLStatement += " AND schoolID= '" & SchoolID & "' "
 			End If
 		End If
 
 		If schoolName_ddl.SelectedIndex <> 0 Then
-			SQLStatement += "schoolName = '" & SchoolName & "' "
+			SQLStatement += "schoolID = '" & SchoolID & "' "
 
 			If schoolVisitDate_ddl.SelectedIndex <> 0 Then
-				SQLStatement += " AND visitDate = '" & VisitDate & "' "
+				SQLStatement += " AND visitID = '" & VIDOfDate & "' "
 			End If
 		End If
 
@@ -1477,12 +1482,18 @@ Public Class Volunteer_Database
 
 			'School Dropdown
 			Dim ddlSchool As DropDownList = CType(e.Row.FindControl("schoolNameDGV_ddl"), DropDownList)
-			ddlSchool.DataSource = GetData("SELECT id, schoolName FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
+			Dim lblSchool As String = CType(e.Row.FindControl("schoolNameDGV_lbl"), Label).Text
+
+			If visitDate_tb.Text <> "" Then
+				ddlSchool.DataSource = GetData("SELECT s.id, s.schoolName as 'schoolName' FROM schoolInfo s JOIN visitInfo v ON v.school = s.id OR v.school2 = s.id OR v.school3 = s.id OR v.school4 = s.id OR v.school5 = s.id WHERE v.visitDate='" & visitDate_tb.Text & "' AND NOT s.id=505 ORDER BY schoolName")
+			Else
+				ddlSchool.DataSource = GetData("SELECT id, schoolName FROM schoolInfo WHERE NOT (schoolName = 'A1 No School Scheduled') AND NOT id='505' ORDER BY schoolName ASC")
+			End If
+
 			ddlSchool.DataTextField = "schoolName"
 			ddlSchool.DataValueField = "id"
 			ddlSchool.DataBind()
 			ddlSchool.Items.Insert(0, " ")
-			Dim lblSchool As String = CType(e.Row.FindControl("schoolNameDGV_lbl"), Label).Text
 
 			'Select index 0 if school ID is 0, otherwise, select the school name associated with the ID
 			If lblSchool = "0" Then
@@ -1670,7 +1681,7 @@ Public Class Volunteer_Database
 
 
 	Protected Sub businessAssignments_btn_Click(sender As Object, e As EventArgs) Handles businessAssignments_btn.Click
-		Dim URL As String = "/pages/student/Open_Closed_Status.aspx"
+		Dim URL As String = "/pages/edit/Open_Closed_Status.aspx"
 		Dim VisitID As String = ""
 
 		'Check if visit date has been selected or entered

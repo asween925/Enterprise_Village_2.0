@@ -72,7 +72,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Account Number">
                             <ItemTemplate>
-                                <asp:TextBox ID="empNum_tb" runat="server" Width="100px" Text='<%#Bind("Employeenumber") %>' ReadOnly="false" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="empNum_tb" runat="server" Width="100px" Text='<%#Bind("accountNumber") %>' textmode="Number" ReadOnly="false" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Student First Name">

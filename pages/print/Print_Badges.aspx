@@ -51,7 +51,7 @@
                 <br />
                  <%--badge--%>
                     <div class="badge badge_print">                 
-                        <img class="badge_logo" alt="Tech Data" src="Images/TD_SYNNEX.png">
+                        <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
                         <asp:Image ID="photo_img1" CssClass="photo print_photo" runat="server" />    
                         <br /><br /><br /><br /><br /><br /><br /><br /><br />
                         <asp:Label runat="server" Text="Name: "></asp:Label>
@@ -69,7 +69,7 @@
                 
                 <%--badge2--%>
                     <div class="badge badge_print2">                 
-                        <img class="badge_logo" alt="Tech Data" src="Images/TD_SYNNEX.png">
+                        <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
                         <asp:Image ID="photo_img2" CssClass="photo print_photo" runat="server"/>    
                         <br /><br /><br /><br /><br /><br /><br /><br /><br />
                         <asp:Label runat="server" Text="Name: "></asp:Label>
@@ -87,7 +87,7 @@
                 
                 <%--badge3--%>
                     <div class="badge badge_print3">                 
-                        <img class="badge_logo" alt="Tech Data" src="Images/TD_SYNNEX.png">
+                        <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
                         <asp:Image ID="photo_img3" CssClass="photo print_photo" runat="server" />    
                         <br /><br /><br /><br /><br /><br /><br /><br /><br />
                         <asp:Label runat="server" Text="Name: "></asp:Label>
@@ -105,7 +105,7 @@
                 
                 <%--badge4--%>
                     <div class="badge badge_print4">                 
-                        <img class="badge_logo" alt="Tech Data" src="Images/TD_SYNNEX.png">
+                        <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
                         <asp:Image ID="photo_img4" CssClass="photo print_photo" runat="server" />    
                         <br /><br /><br /><br /><br /><br /><br /><br /><br />
                         <asp:Label runat="server" Text="Name: "></asp:Label>

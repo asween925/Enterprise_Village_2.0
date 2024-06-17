@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Input_Student_Information.aspx.vb" Inherits="Enterprise_Village_2._0.Input_Student_Information" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Input_Student_Information.aspx.vb" MaintainScrollPositionOnPostback="true" Inherits="Enterprise_Village_2._0.Input_Student_Information" %>
 
 <!doctype html>
 <html>
@@ -62,13 +62,13 @@
                         <asp:TemplateField HeaderText="Business Name">
                             <ItemTemplate>
                                 <asp:Label ID="business_lbl" runat="server" Text='<%#Bind("BusinessID") %>' Visible="false" />
-                                <asp:DropDownList CssClass="ddl" ID="business_ddl" runat="server" Width="200px" OnSelectedIndexChanged="BusinessSelectedIndexChanged" AutoPostBack="true" Enabled="false">
+                                <asp:DropDownList CssClass="ddl" ID="business_ddl" runat="server" Width="200px" OnSelectedIndexChanged="BusinessSelectedIndexChanged" AutoPostBack="false" Enabled="false">
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Account Number">
                             <ItemTemplate>
-                                <asp:TextBox ID="empNum_tb" runat="server" Width="100px" Text='<%#Bind("Employeenumber") %>' ReadOnly="true" Enabled="false" CssClass="textbox"></asp:TextBox>
+                                <asp:TextBox ID="empNum_tb" runat="server" Width="100px" Text='<%#Bind("accountNumber") %>' ReadOnly="true" Enabled="false" CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Student First Name">
@@ -102,7 +102,7 @@
                     <Columns>
                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />                       
                         <asp:BoundField DataField="businessName" HeaderText="Business Name" ReadOnly="true" Visible="true" />
-                        <asp:BoundField DataField="employeeNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
+                        <asp:BoundField DataField="accountNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
                         <asp:BoundField DataField="firstName" HeaderText="First Name" ReadOnly="true" Visible="true" />
                         <asp:BoundField DataField="lastName" HeaderText="Last Name" ReadOnly="true" Visible="true" />
                         <asp:BoundField DataField="jobTitle" HeaderText="Position" ReadOnly="true" Visible="true" />                        

@@ -50,15 +50,19 @@ Public Class Open_Closed_Status
 		OnlineBanking_dgv.DataSource = Nothing
 		OnlineBanking_dgv.DataBind()
 
-		'Try
-		Businesses.LoadOpenClosedStatus(VIDOfDate, OnlineBanking_dgv)
-			'Catch
-			'	error_lbl.Text = "Error in LoadData() SQL query. Check query or visitInfo / businessVisitInfo in DB."
-			'	Exit Sub
-			'End Try
+		'Clear error
+		error_lbl.Text = ""
 
-			'Highlight row being edited
-			For Each row As GridViewRow In OnlineBanking_dgv.Rows
+		'Load open closed status
+		Try
+			Businesses.LoadOpenClosedStatus(VIDOfDate, OnlineBanking_dgv)
+		Catch
+			error_lbl.Text = "Error in LoadData() SQL query. Check query or visitInfo / businessVisitInfo in DB."
+			Exit Sub
+		End Try
+
+		'Highlight row being edited
+		For Each row As GridViewRow In OnlineBanking_dgv.Rows
 			If row.RowIndex = OnlineBanking_dgv.EditIndex Then
 				row.BackColor = ColorTranslator.FromHtml("#ebe534")
 				'row.BorderColor = ColorTranslator.FromHtml("#ffffff")
@@ -116,6 +120,12 @@ Public Class Open_Closed_Status
 
 		If maxVolCount = Nothing Then
 			maxVolCount = 0
+		End If
+
+		'Check if min count is larger than max count
+		If minVolCount > maxVolCount Then
+			error_lbl.Text = "Minimum volunteer count is larger than the maximum volunteer count. Please change the minimum volunteer count."
+			Exit Sub
 		End If
 
 		'Update businessVisitInfo with minimum and maximum volunteer counts

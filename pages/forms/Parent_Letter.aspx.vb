@@ -60,8 +60,8 @@ Public Class Parent_Letter
 		volRange_lbl.Text = vMin & "-" & vMax
 
 		'Assign training time
-		trainingTime_lbl.Text = vTrainingTime
-		trainingTimeSlip_lbl.Text = vTrainingTime
+		trainingTime_lbl.Text = DateTime.Parse(vTrainingTime).ToString("t")
+		trainingTimeSlip_lbl.Text = DateTime.Parse(vTrainingTime).ToString("t")
 
 	End Sub
 

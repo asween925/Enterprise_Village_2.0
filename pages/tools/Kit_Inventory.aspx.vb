@@ -36,18 +36,15 @@ Public Class Kit_Inventory
 			headerSchoolName_lbl.Text = header.GetSchoolHeader()
 
 			'Populate schools DDL
-			Dim load As New Class_SchoolData
-			load.LoadSchoolsDDL(schoolName_ddl)
+			Schools.LoadSchoolsDDL(schoolName_ddl)
+			Schools.LoadSchoolsDDL(searchSchoolName_ddl)
 		End If
 	End Sub
 
 	Sub LoadTable()
-		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-		Dim con As New SqlConnection
-		Dim cmd As New SqlCommand
 		Dim columnSort As String = "id"
 		Dim orderSort As String = "ASC"
-		Dim searchTerm As String = search_tb.Text
+		Dim searchTerm As String
 		Dim searchBy As String = "id"
 		Dim sql As String = "SELECT id, kitNumber, schoolID, category, FORMAT(dateIn, 'MM/dd/yyyy') as dateIn, FORMAT(dateOut, 'MM/dd/yyyy') as dateOut, gsiStaff, notes
 							  FROM kitInventory"
@@ -104,6 +101,15 @@ Public Class Kit_Inventory
 				searchBy = "gsiStaff"
 		End Select
 
+		'Check if searching for school name or anything else
+		If search_tb.Visible = True And search_tb.Text <> "" Then
+			searchTerm = search_tb.Text
+		ElseIf search_tb.Visible = False And searchSchoolName_ddl.SelectedIndex <> 0 Then
+			searchTerm = searchSchoolName_ddl.SelectedValue
+		Else
+			searchTerm = ""
+		End If
+
 		'Load table
 		Try
 			kits_dgv.DataSource = load.LoadKitInventory(searchTerm, searchBy, columnSort, orderSort)
@@ -121,6 +127,11 @@ Public Class Kit_Inventory
 				row.BorderWidth = 2
 			End If
 		Next
+
+		'If loading from dateIn or dateOut, keep textmode to date
+		If searchBy = "dateIn" Or searchBy = "dateOut" Then
+			Page.ClientScript.RegisterStartupScript(Me.GetType(), "ChangeTypeDate", "ChangeTypeDate();", True)
+		End If
 
 	End Sub
 
@@ -344,12 +355,12 @@ Public Class Kit_Inventory
 	Protected Sub search_btn_Click(sender As Object, e As EventArgs) Handles search_btn.Click
 
 		'Check if textbox is filled
-		If search_tb.Text <> "" Or search_tb.Text <> Nothing Then
-			LoadTable()
-		Else
-			error_lbl.Text = "Please enter a search term in the search bar."
-			Exit Sub
-		End If
+		'If search_tb.Text <> "" Or search_tb.Text <> Nothing Then
+		LoadTable()
+		'Else
+		'	error_lbl.Text = "Please enter a search term in the search bar."
+		'	Exit Sub
+		'End If
 
 	End Sub
 
@@ -360,8 +371,26 @@ Public Class Kit_Inventory
 		searchBy_ddl.SelectedIndex = searchBy_ddl.Items.IndexOf(searchBy_ddl.Items.FindByValue("ID"))
 		sortingColumn_ddl.SelectedIndex = sortingColumn_ddl.Items.IndexOf(sortingColumn_ddl.Items.FindByValue("ID"))
 		sortingOrder_ddl.SelectedIndex = sortingOrder_ddl.Items.IndexOf(sortingOrder_ddl.Items.FindByValue("Ascending"))
+		searchSchoolName_ddl.SelectedIndex = 0
+		searchSchoolName_ddl.Visible = False
+		search_tb.Visible = True
+		Page.ClientScript.RegisterStartupScript(Me.GetType(), "ChangeTypeLine", "ChangeTypeLine();", True)
 
 		LoadTable()
 	End Sub
 
+	Protected Sub searchBy_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles searchBy_ddl.SelectedIndexChanged
+		If searchBy_ddl.SelectedValue = "Date In" Or searchBy_ddl.SelectedValue = "Date Out" Then
+			Page.ClientScript.RegisterStartupScript(Me.GetType(), "ChangeTypeDate", "ChangeTypeDate();", True)
+			search_tb.Visible = True
+			searchSchoolName_ddl.Visible = False
+		ElseIf searchBy_ddl.SelectedValue = "School Name" Then
+			search_tb.Visible = False
+			searchSchoolName_ddl.Visible = True
+		Else
+			Page.ClientScript.RegisterStartupScript(Me.GetType(), "ChangeTypeLine", "ChangeTypeLine();", True)
+			search_tb.Visible = True
+			searchSchoolName_ddl.Visible = False
+		End If
+	End Sub
 End Class

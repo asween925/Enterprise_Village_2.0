@@ -13,7 +13,7 @@ Public Class EV_Daily_Forms
 	Dim Visits As New Class_VisitData
 	Dim Schools As New Class_SchoolData
 	Dim Students As New Class_StudentData
-	Dim SH As Class_SchoolHeader
+	Dim SH As New Class_SchoolHeader
 	Dim VisitID As Integer = Visits.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

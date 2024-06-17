@@ -38,7 +38,7 @@
             <h2 class="h2 no-print">Edit School</h2>
             <h3 class="no-print">This page will allow you to edit a school in the database. Use the drop down menu below to view a specific school. You can also use the textbox under that to search for names, emails, phone numbers, and anything else.
             </h3>
-            <p>School Name Drop Down List:</p>
+            <p>School Name:</p>
             <asp:DropDownList CssClass="ddl" ID="schoolNameSearch_ddl" runat="server" Width="200px" AutoPostBack="true"></asp:DropDownList> 
             <p>Keyword Search:</p>
             <asp:TextBox ID="search_tb" runat="server" CssClass="textbox"></asp:TextBox> &nbsp;&nbsp; <asp:Button ID="search_btn" runat="server" CssClass="button3" text="Search"/>     
@@ -54,13 +54,6 @@
                     <Columns>
                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
                         <asp:BoundField DataField="schoolName" HeaderText="School Name" Visible="true" ReadOnly="true" />
-                        <%--<asp:TemplateField HeaderText="School Name">
-                            <ItemTemplate>
-                                <asp:Label id="schoolName_lbl" runat="server" Text='<%#Bind("schoolName") %>' Visible="false"></asp:Label>
-                                <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" AutoPostBack="true" ReadOnly="false">
-                                </asp:DropDownList>
-                            </ItemTemplate>                         
-                        </asp:TemplateField>--%>
                         <asp:BoundField DataField="currentVisitDate" HeaderText="Current Visit Date" Visible="true" DataFormatString="{0: MM/dd/yyyy } " ReadOnly="true" />
                         <asp:BoundField DataField="previousVisitDate" HeaderText="Previous Visit Date" Visible="true" DataFormatString="{0: MM/dd/yyyy } " ReadOnly="true" />
                         <asp:TemplateField HeaderText="Administrator </br> First Name" >
@@ -99,18 +92,7 @@
                                 <asp:DropDownList CssClass="ddl" ID="schoolType_ddl" runat="server" Width="100px" AutoPostBack="true" >
                                 </asp:DropDownList>
                             </ItemTemplate>                         
-                        </asp:TemplateField>                       
-                        <%--<asp:TemplateField Headertext="Current Visit Date" Visible="true">
-                            <ItemTemplate>
-                                <asp:TextBox ID="currentVisitDate_tb" runat="server" Width="80px" Text='<%#Bind("currentVisitDate", "{0:d}") %>' DataFormatString="{0: MM-dd-yyyy } " CssClass="textbox"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Headertext="Previous Visit Date" Visible="true">
-                            <ItemTemplate>
-                                <asp:TextBox ID="previousVisitDate_tb" runat="server" Width="80px" Text='<%#Bind("previousVisitDate", "{0:d}") %>' DataFormatString="{0: MM-dd-yyyy }" CssClass="textbox"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>                        
-                        
+                        </asp:TemplateField>                                                                     
                        <asp:TemplateField HeaderText="Address">
                             <ItemTemplate>
                                 <asp:TextBox ID="address_tb" runat="server" Width="100px" Text='<%#Bind("address") %>' CssClass="textbox"></asp:TextBox>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Open_Closed_Status.aspx.vb" Inherits="Enterprise_Village_2._0.Open_Closed_Status" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Open_Closed_Status.aspx.vb" MaintainScrollPositionOnPostback="true" Inherits="Enterprise_Village_2._0.Open_Closed_Status" %>
 
 <!doctype html>
 <html>
@@ -53,7 +53,7 @@
                     <asp:TemplateField HeaderText="Open </br> Status">
                         <ItemTemplate>
                             <asp:Label ID="openstatus_lbl" runat="server" Text='<%#Bind("openstatus")%>' Visible="false"></asp:Label>
-                            <asp:DropDownList CssClass="ddl" ID="openstatus_ddl" runat="server" Width="70px" AutoPostBack="true" ReadOnly="false">
+                            <asp:DropDownList CssClass="ddl" ID="openstatus_ddl" runat="server" Width="70px" AutoPostBack="false" ReadOnly="false">
                                 <asp:ListItem>Closed</asp:ListItem>
                                 <asp:ListItem>Open</asp:ListItem>
                             </asp:DropDownList>
@@ -63,7 +63,7 @@
                     <asp:TemplateField HeaderText="School Assigned">
                         <ItemTemplate>
                             <asp:Label ID="schoolName_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="false"></asp:Label>
-                            <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" AutoPostBack="true" ReadOnly="false">
+                            <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" AutoPostBack="false" ReadOnly="false">
                             </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>

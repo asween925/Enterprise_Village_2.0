@@ -282,9 +282,33 @@ Public Class Closed_Business_Checks
 		'Check if check type is payroll or operating
 		If checkType_ddl.SelectedValue = "Payroll" Then
 
+			'Assign pay to the order of, dollar amount, written amount, and memo for check 1
+			checkName1_tb.Text = ""
+			checkAmount1_lbl.Text = ""
+			writtenAmount1_tb.Text = ""
+			Memo1_tb.Text = "Payroll 2"
+
+			'Check 2
+			checkName2_tb.Text = ""
+			checkAmount2_lbl.Text = ""
+			writtenAmount2_tb.Text = ""
+			Memo2_tb.Text = "Payroll 2"
+
+			'Check 2
+			checkName3_tb.Text = ""
+			checkAmount3_lbl.Text = ""
+			writtenAmount3_tb.Text = ""
+			Memo3_tb.Text = "Payroll 2"
+
+			'Check 4
+			checkName4_tb.Text = ""
+			checkAmount4_lbl.Text = ""
+			writtenAmount4_tb.Text = ""
+			Memo4_tb.Text = "Payroll 2"
+
 			'Make direct deposit forms visible, checks invisible
-			checksOverall_div.Visible = False
-			ddSlips_div.Visible = True
+			checksOverall_div.Visible = True
+			ddSlips_div.Visible = False
 
 
 		ElseIf checkType_ddl.SelectedValue = "Operating" Then
@@ -430,33 +454,9 @@ Public Class Closed_Business_Checks
 
 		If checkType_ddl.SelectedValue = "Payroll" Then
 
-			'Assign pay to the order of, dollar amount, written amount, and memo for check 1
-			checkName1_tb.Text = ""
-			checkAmount1_lbl.Text = ""
-			writtenAmount1_tb.Text = ""
-			Memo1_tb.Text = "Payroll 3"
-
-			'Check 2
-			checkName2_tb.Text = ""
-			checkAmount2_lbl.Text = ""
-			writtenAmount2_tb.Text = ""
-			Memo2_tb.Text = "Payroll 3"
-
-			'Check 3
-			checkName3_tb.Text = ""
-			checkAmount3_lbl.Text = ""
-			writtenAmount3_tb.Text = ""
-			Memo3_tb.Text = "Payroll 3"
-
-			'Check 4
-			checkName4_tb.Text = ""
-			checkAmount4_lbl.Text = ""
-			writtenAmount4_tb.Text = ""
-			Memo4_tb.Text = "Payroll 3"
-
-			'Make direct deposit forms invisible, checks visible
-			checksOverall_div.Visible = True
-			ddSlips_div.Visible = False
+			'Make direct deposit forms visible, checks invisible
+			checksOverall_div.Visible = False
+			ddSlips_div.Visible = True
 
 		ElseIf checkType_ddl.SelectedValue = "Operating" Then
 

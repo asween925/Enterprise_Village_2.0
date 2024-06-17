@@ -185,7 +185,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Visit Date">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="visitDateDGV_tb" runat="server" Width="80px" Text='<%# Convert.ToDateTime(Eval("visitDate")).ToString("MM/dd/yyyy") %>' CssClass="textbox" ></asp:TextBox>
+                                        <asp:TextBox ID="visitDateDGV_tb" runat="server" TextMode="Date" Text='<%#Bind("visitDate", "{0:yyyy-MM-dd}") %>' CssClass="textbox" ></asp:TextBox>
                                     </ItemTemplate>                         
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Business">
@@ -196,7 +196,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="School Name">
                                     <ItemTemplate>
-                                        <asp:Label id="schoolNameDGV_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="true"></asp:Label>
+                                        <asp:Label id="schoolNameDGV_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="false"></asp:Label>
                                         <asp:DropDownList CssClass="ddl" ID="schoolNameDGV_ddl" runat="server" Width="200px" ReadOnly="false"></asp:DropDownList>
                                     </ItemTemplate>                         
                                 </asp:TemplateField>
@@ -217,12 +217,12 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="SV Hours">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="svHoursDGV_tb" runat="server" Width="50px" Text='<%#Bind("svHours") %>' CssClass="textbox" ></asp:TextBox>
+                                        <asp:TextBox ID="svHoursDGV_tb" runat="server" Width="50px" Text='<%#Bind("svHours") %>' TextMode="Number" CssClass="textbox" ></asp:TextBox>
                                     </ItemTemplate>                         
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Notes">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="notesDGV_tb" runat="server" Width="150px" Text='<%#Bind("notes") %>' CssClass="textbox" ></asp:TextBox>
+                                        <asp:TextBox ID="notesDGV_tb" runat="server" Width="150px" Text='<%#Bind("notes") %>' CssClass="textbox" TextMode="MultiLine" ></asp:TextBox>
                                     </ItemTemplate>                         
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Regular Volunteer?">

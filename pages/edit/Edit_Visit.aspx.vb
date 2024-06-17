@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Drawing
+Imports System.Net.Mail
 Public Class Edit_Visit
     Inherits System.Web.UI.Page
     Dim sqlserver As String = System.Configuration.ConfigurationManager.AppSettings("EV_sfp").ToString
@@ -35,7 +36,7 @@ Public Class Edit_Visit
         Dim con As New SqlConnection
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim cmd As New SqlCommand
-        Dim sql As String = "SELECT v.id, s.id as 'schoolid1', s2.id as 'schoolid2', s3.id as 'schoolid3', s4.id as 'schoolid4', s5.id as 'schoolid5', s.schoolName as 'schoolname1', s2.schoolName as 'schoolname2', s3.schoolName as 'schoolname3', s4.schoolName as 'schoolname4', s5.schoolName as 'schoolname5', v.vTrainingTime, v.vMinCount, v.vMaxCount, v.replyBy, v.visitDate, v.studentCount, v.visitTime
+        Dim sql As String = "SELECT v.id, s.id as 'schoolid1', s2.id as 'schoolid2', s3.id as 'schoolid3', s4.id as 'schoolid4', s5.id as 'schoolid5', s.schoolName as 'schoolname1', s2.schoolName as 'schoolname2', s3.schoolName as 'schoolname3', s4.schoolName as 'schoolname4', s5.schoolName as 'schoolname5', v.vTrainingTime, v.vMinCount, v.vMaxCount, FORMAT(v.replyBy, 'yyyy-MM-dd') as replyBy, FORMAT(v.visitDate, 'yyyy-MM-dd') as visitDate, v.studentCount, v.visitTime
                                   FROM visitInfo v 
                                   LEFT JOIN schoolInfo s ON s.ID = v.school
 								  LEFT JOIN schoolInfo s2 ON s2.ID = v.school2
@@ -102,8 +103,8 @@ Public Class Edit_Visit
         Dim School5Name As String = Schools.GetSchoolNameFromID(school5)
 
         'If updating the visit date, check to make sure that there is already not a visit date scheduled for that day
-        If Visits.GetVisitIDFromDate(visitDate) <> Nothing Then
-            error_lbl.Text = "Cannot move visit to that date as there is already a visit created for that date."
+        If visitDate <> date_tb.Text And Visits.GetVisitIDFromDate(visitDate) <> Nothing Then
+            error_lbl.Text = "Cannot move visit to that date as there is already a visit created for that date." & visitDate & " " & date_tb.Text
             Exit Sub
         End If
 

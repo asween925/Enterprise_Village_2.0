@@ -25,7 +25,7 @@
         </div>
         
       <div class="header3">
-        <img class="business" alt="Business" src="Images/cityhall.jpg" >
+        <img class="business" alt="Business" src="../../Images/cityhall.jpg" >
         </div>
         
      <div class="main_city">

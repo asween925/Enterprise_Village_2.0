@@ -166,8 +166,8 @@
                         </ul>
                     </div>
                     <div class="button_item2">
-                        <img src="Images/EV Screenshots/Magic%20Computer%20Top.jpg" alt="Magic Computer - Top" style="height: auto; width: 100%;" />
-                        <img src="Images/EV Screenshots/Magic%20Computer%20Bottom.jpg" alt="Magic Computer - Account Summary" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Magic%20Computer%20Top.jpg" alt="Magic Computer - Top" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Magic%20Computer%20Bottom.jpg" alt="Magic Computer - Account Summary" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -195,7 +195,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Create%20a%20Visit.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Create%20a%20Visit.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -210,7 +210,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Create%20a%20School.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Create%20a%20School.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -228,7 +228,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Create%20a%20Teacher.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Create%20a%20Teacher.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -249,7 +249,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Edit%20Visit.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Edit%20Visit.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -269,7 +269,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Edit%20Open%20Closed%20Status.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Edit%20Open%20Closed%20Status.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -286,7 +286,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Edit%20School.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Edit%20School.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -306,7 +306,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Edit%20Teachers.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Edit%20Teachers.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -325,7 +325,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Teacher%20Home.jpg" alt="Teacher Home" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Teacher%20Home.jpg" alt="Teacher Home" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -364,7 +364,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/ISI.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/ISI.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -385,7 +385,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/EMS.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/EMS.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -412,7 +412,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Edit%20Profits.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Edit%20Profits.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -428,7 +428,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Edit%20Sales.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Edit%20Sales.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -445,7 +445,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Town%20Hall%20PP.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Town%20Hall%20PP.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -487,8 +487,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/School%20Visit%20Checklist.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/School%20Visit%20Checklist%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/School%20Visit%20Checklist.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/School%20Visit%20Checklist%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -505,7 +505,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/School%20Notes.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/School%20Notes.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -535,8 +535,8 @@
                         
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Kit%20Inventory.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/Kit%20Inventory%20Table.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Kit%20Inventory.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/Kit%20Inventory%20Table.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -551,7 +551,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Move%20Articles.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Move%20Articles.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -567,7 +567,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/SRF%20Checklist.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/SRF%20Checklist.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -584,7 +584,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Volunteer%20DB.jpg" alt="Vol DB" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Volunteer%20DB.jpg" alt="Vol DB" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -599,9 +599,9 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Requested%20Features.jpg" alt="Request" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Requested%20Features.jpg" alt="Request" style="height: auto; width: 100%;" />
                         <br />
-                        <img src="Images/EV Screenshots/Requested%20Features%202.jpg" alt="Request2" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Requested%20Features%202.jpg" alt="Request2" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -618,7 +618,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Business%20Sales%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Business%20Sales%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -635,8 +635,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Student%20Spending%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/Student%20Spending%20Report%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Student%20Spending%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/Student%20Spending%20Report%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -651,7 +651,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Amount%20Spent%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Amount%20Spent%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -666,7 +666,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Negative%20Balance%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Negative%20Balance%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -681,7 +681,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Profit%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Profit%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -695,7 +695,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Duplicate%20Number%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Duplicate%20Number%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -709,7 +709,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Duplicate%20Students%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Duplicate%20Students%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -726,7 +726,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Student%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Student%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -743,7 +743,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/School%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/School%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -757,7 +757,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Visit%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Visit%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -771,7 +771,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Teacher%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Teacher%20Report.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -790,7 +790,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Family%20Community%20Info.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Family%20Community%20Info.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -807,7 +807,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Teacher%20Letter.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Teacher%20Letter.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -823,7 +823,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Parent%20Letter.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Parent%20Letter.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -839,8 +839,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/EV%20Daily%20Forms.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/EV%20Daily%20Forms%20OOC.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/EV%20Daily%20Forms.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/EV%20Daily%20Forms%20OOC.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -870,8 +870,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/EV%20Lunch%20Forms%20Letter.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/EV%20Lunch%20Forms%20Receipt.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/EV%20Lunch%20Forms%20Letter.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/EV%20Lunch%20Forms%20Receipt.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -885,7 +885,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Staff%20List.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Staff%20List.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -899,7 +899,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Break%20Schedules.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Break%20Schedules.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -914,7 +914,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Bus%20Transportation.jpg" alt="Bus Transport" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Bus%20Transportation.jpg" alt="Bus Transport" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -928,7 +928,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/School%20Schedule.jpg" alt="School Sched" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/School%20Schedule.jpg" alt="School Sched" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -945,7 +945,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Closed%20Business%20Checks.jpg" alt="Closed Biz Checks" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Closed%20Business%20Checks.jpg" alt="Closed Biz Checks" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -960,7 +960,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Business%20Directory.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Business%20Directory.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -973,7 +973,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Checklist%20Directory.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Checklist%20Directory.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1024,7 +1024,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/payroll_checks.jpeg" alt="Payroll checks layout" style="width: 100%; height: auto;" />
+                        <img src="../Images/EV Screenshots/payroll_checks.jpeg" alt="Payroll checks layout" style="width: 100%; height: auto;" />
                     </div>
                 </div>
 
@@ -1070,7 +1070,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/operating_checks.jpeg" alt="Operating checks layout" style="width: 100%; height: auto;" />
+                        <img src="../Images/EV Screenshots/operating_checks.jpeg" alt="Operating checks layout" style="width: 100%; height: auto;" />
                     </div>
                 </div>
 
@@ -1088,7 +1088,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Online%20Banking.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Online%20Banking.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1109,9 +1109,9 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Sales%20System.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/Sales%20System%20Help.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/Sales%20History.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Sales%20System.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/Sales%20System%20Help.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/Sales%20History.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1130,7 +1130,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Teller%20System%20(Savings).jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Teller%20System%20(Savings).jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1144,8 +1144,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/ATM.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/ATM%20Student.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/ATM.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/ATM%20Student.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1192,7 +1192,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Badge Creator.jpg" alt="Badge creator layout" style="width: 100%; height: auto;" />
+                        <img src="../Images/EV Screenshots/Badge Creator.jpg" alt="Badge creator layout" style="width: 100%; height: auto;" />
                     </div>
                 </div>
 
@@ -1211,7 +1211,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Badge History.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Badge History.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1241,7 +1241,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Badge%20Printing.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Badge%20Printing.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1255,7 +1255,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/BayCare%20Admin.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/BayCare%20Admin.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1272,8 +1272,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Voting%20System%201.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <img src="Images/EV Screenshots/Voting%20System%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
+                        <img src="../Images/EV Screenshots/Voting%20System%201.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <img src="../Images/EV Screenshots/Voting%20System%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />
                     </div>
                 </div>
 
@@ -1290,8 +1290,8 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Manager%20System%201.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
-                        <%--<img src="Images/EV Screenshots/Voting%20System%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />--%>
+                        <img src="../Images/EV Screenshots/Manager%20System%201.jpg" alt="Create a Visit" style="height: auto; width: 100%;" /><br />
+                        <%--<img src="../Images/EV Screenshots/Voting%20System%202.jpg" alt="Create a Visit" style="height: auto; width: 100%;" />--%>
                     </div>
                 </div>
 
@@ -1306,7 +1306,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Inventory%20-%20Home.jpg" alt="Inventory Home Page" style="height: auto; width: 100%;" />                        
+                        <img src="../Images/EV Screenshots/Inventory%20-%20Home.jpg" alt="Inventory Home Page" style="height: auto; width: 100%;" />                        
                     </div>
                 </div>
 
@@ -1320,7 +1320,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Inventory%20-%20Create.jpg" alt="Inventory Create Page" style="height: auto; width: 100%;" />  
+                        <img src="../Images/EV Screenshots/Inventory%20-%20Create.jpg" alt="Inventory Create Page" style="height: auto; width: 100%;" />  
                     </div>
                 </div>
 
@@ -1339,7 +1339,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Inventory%20-%20Edit.jpg" alt="Inventory Edit Item" style="height: auto; width: 100%;" />  
+                        <img src="../Images/EV Screenshots/Inventory%20-%20Edit.jpg" alt="Inventory Edit Item" style="height: auto; width: 100%;" />  
                     </div>
                 </div>
 
@@ -1355,7 +1355,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Inventory%20-%20Add.jpg" alt="Inventory Add Remove Amount" style="height: auto; width: 100%;" />  
+                        <img src="../Images/EV Screenshots/Inventory%20-%20Add.jpg" alt="Inventory Add Remove Amount" style="height: auto; width: 100%;" />  
                     </div>
                 </div>
 
@@ -1369,7 +1369,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Inventory%20-%20Low%20Inventory%20Report.jpg" alt="Inventory Low Inv Report" style="height: auto; width: 100%;" />  
+                        <img src="../Images/EV Screenshots/Inventory%20-%20Low%20Inventory%20Report.jpg" alt="Inventory Low Inv Report" style="height: auto; width: 100%;" />  
                     </div>
                 </div>
 
@@ -1384,7 +1384,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/Inventory%20-%20View%20All%20Items.jpg" alt="Inventory View All Items" style="height: auto; width: 100%;" />  
+                        <img src="../Images/EV Screenshots/Inventory%20-%20View%20All%20Items.jpg" alt="Inventory View All Items" style="height: auto; width: 100%;" />  
                     </div>
                 </div>
 
@@ -1399,7 +1399,7 @@
                         </ul>
                     </div>
                     <div class="button_item2" style="text-align: left;">
-                        <img src="Images/EV Screenshots/changelog.jpg" alt="Inventory View All Items" style="height: auto; width: 100%;" />  
+                        <img src="../Images/EV Screenshots/changelog.jpg" alt="Inventory View All Items" style="height: auto; width: 100%;" />  
                     </div>
                 </div>
             </div>
