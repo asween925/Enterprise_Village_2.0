@@ -16,31 +16,28 @@ Public Class _Default
 	Dim sqldatabase As String = System.Configuration.ConfigurationManager.AppSettings("EV_DB").ToString
 	Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
 	Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
-	Dim VisitID As New Class_VisitData
-	Dim Visit As Integer = VisitID.GetVisitID
+    Dim Visits As New Class_VisitData
+    Dim SH As New Class_SchoolHeader
+    Dim VisitID As Integer = Visits.GetVisitID
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        'Redirect to log in page if logged out
         If Session("LoggedIn") <> "1" Then
             Response.Redirect("../default.aspx")
         End If
 
         If Not (IsPostBack) Then
-            Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
-            Dim dr As SqlDataReader
-
-            If Visit <> 0 Then
-                visitdate_hf.Value = Visit
-            End If
-
 
             'Populating school header
-            Dim header As New Class_SchoolHeader
-            headerSchoolName_lbl.Text = header.GetSchoolHeader()
+            headerSchoolName_lbl.Text = SH.GetSchoolHeader()
+
+            'Load business logos
+
         End If
 
     End Sub
+
+
 
 End Class

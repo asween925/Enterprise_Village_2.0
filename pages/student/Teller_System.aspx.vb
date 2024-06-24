@@ -192,13 +192,19 @@ Public Class Teller_System
         cmd.Dispose()
         con.Close()
 
-        'error_lbl.Text = "Deposit Successful!"
-
+        'Show success message
         Page.ClientScript.RegisterStartupScript(Me.GetType(), "DepositSucessText", "DepositSucessText();", True)
+
+        'Refresh page after 4 seconds
+        Dim meta As New HtmlMeta()
+        meta.HttpEquiv = "Refresh"
+        meta.Content = "4;url=teller_system.aspx"
+        Me.Page.Controls.Add(meta)
 
         'Response.Redirect("./teller_system.aspx")
 
-        Response.Redirect("/pages/print/Print_Teller.aspx?b=" & URLEnd & "&b2=" & checkAmountIndex & "&b3=" & cashIndex)
+        'USE THIS PAGE TO GO TO THE PRINT RECEIPT PAGE
+        'Response.Redirect("/pages/print/Print_Teller.aspx?b=" & URLEnd & "&b2=" & checkAmountIndex & "&b3=" & cashIndex)
     End Sub
 
     Sub OpenSavingsAccount()
@@ -232,8 +238,17 @@ Public Class Teller_System
                 cmd.ExecuteNonQuery()
                 cmd.Dispose()
 
+                'Show success message
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "DepositSucessText", "DepositSucessText();", True)
+
+                'Refresh page after 4 seconds
+                Dim meta As New HtmlMeta()
+                meta.HttpEquiv = "Refresh"
+                meta.Content = "4;url=teller_system.aspx"
+                Me.Page.Controls.Add(meta)
+
                 'Go to savings receipt page
-                Response.Redirect("/pages/print/Print_Teller_Savings.aspx?b=" & empID & "&b2=" & savingsAmountIndex)
+                'Response.Redirect("/pages/print/Print_Teller_Savings.aspx?b=" & empID & "&b2=" & savingsAmountIndex)
 
                 cmd.Dispose()
                 con.Close()

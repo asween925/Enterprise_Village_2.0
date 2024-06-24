@@ -262,7 +262,7 @@ function DepositSucessText() {
     myVar = setTimeout(Enter, 0);
     text = "Deposit sucessful! Reloading the page...";
     document.getElementById("demo3").innerHTML = text;
-    myVar = setTimeout(DepositSuccessText2, 3000);
+    /*myVar = setTimeout(DepositSuccessText2, 3000);*/
 }
 
 function DepositSuccessText2() {

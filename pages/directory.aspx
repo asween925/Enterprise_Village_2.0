@@ -40,7 +40,7 @@
             <div class="button_grid">
                 <div class="button_item">
                     <!---Astro Skate--->
-                    <asp:Image ID="Image1" runat="server" Class="Business_logo" ImageUrl="~/media/logos/AstroSkate/AstroSkate White Background.png" />
+                    <asp:Image ID="Image1" runat="server" Class="Business_logo" ImageUrl="~/media/logos/10/AstroSkate White Background.png" AlternateText="AstroLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton11" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=10" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -51,7 +51,7 @@
 
                 <div class="button_item">
                     <!---Achieva Credit Union (formerly Bank of America)--->
-                    <asp:Image ID="Image2" runat="server" ImageUrl="~/media/logos/Achieva/achieva.png" Class="Business_logo" />
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/media/logos/12/achieva.png" Class="Business_logo" AlternateText="BankLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton9" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=12" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -66,7 +66,7 @@
 
                 <div class="button_item">
                     <%--Baycare--%>
-                    <asp:Image ID="Image15" runat="server" ImageUrl="~/media/logos/BayCare/bayCare.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image15" runat="server" ImageUrl="~/media/logos/13/bayCare.jpg" Class="Business_logo" AlternateText="BayCareLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=13" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -77,7 +77,7 @@
 
                 <div class="button_item">
                     <%--BBB--%>
-                    <asp:Image ID="Image4" runat="server" ImageUrl="~/media/logos/bbb/bbb.png" Class="Business_logo" />
+                    <asp:Image ID="Image4" runat="server" ImageUrl="~/media/logos/9/bbb.png" Class="Business_logo" AlternateText="BBBLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton15" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=9" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -90,7 +90,7 @@
 
                 <div class="button_item">
                     <%--Koozie Group--%>
-                    <asp:Image ID="Image5" runat="server" ImageUrl="~/media/logos/Koozie/Koozie.png" Class="Business_logo" />
+                    <asp:Image ID="Image5" runat="server" ImageUrl="~/media/logos/6/Koozie.png" Class="Business_logo" AlternateText="KoozieLogo"/>
                     <br />
                     <asp:LinkButton ID="LinkButton17" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=6" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -101,7 +101,7 @@
 
                 <div class="button_item">
                     <%--City Hall--%>
-                    <asp:Image ID="Image6" runat="server" ImageUrl="~/media/logos/city_hall/cityhall.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image6" runat="server" ImageUrl="~/media/logos/14/cityhall.jpg" Class="Business_logo" AlternateText="CityhallLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton19" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=14" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -116,7 +116,7 @@
 
                 <div class="button_item">
                     <%--CVS--%>
-                    <asp:Image ID="Image7" runat="server" ImageUrl="~/media/logos/CVS/CVS.png" Class="Business_logo" />
+                    <asp:Image ID="Image7" runat="server" ImageUrl="~/media/logos/3/CVS.png" Class="Business_logo" AlternateText="CVSLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton21" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=3" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -127,7 +127,7 @@
 
                 <div class="button_item">
                     <%--Ditek--%>
-                    <asp:Image ID="Image8" runat="server" ImageUrl="~/media/logos/Ditek/Ditek.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image8" runat="server" ImageUrl="~/media/logos/11/Ditek.jpg" Class="Business_logo" AlternateText="DitekLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton23" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=11" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -140,7 +140,7 @@
 
                 <div class="button_item">
                     <%--Duke--%>
-                    <asp:Image ID="Image9" runat="server" ImageUrl="~/media/logos/Duke/Duke.gif" Class="Business_logo" />
+                    <asp:Image ID="Image9" runat="server" ImageUrl="~/media/logos/16/Duke.gif" Class="Business_logo" AlternateText="DukeLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton25" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=16" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -149,7 +149,7 @@
 
                 <div class="button_item">
                     <%--HSN--%>
-                    <asp:Image ID="Image10" runat="server" ImageUrl="~/media/logos/HSN/HSN.png" Class="Business_logo" />
+                    <asp:Image ID="Image10" runat="server" ImageUrl="~/media/logos/8/HSN.png" Class="Business_logo" AlternateText="HSNLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton27" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=8" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -162,7 +162,7 @@
 
                 <div class="button_item">
                     <%--Kanes--%>
-                    <asp:Image ID="Image11" runat="server" ImageUrl="~/media/logos/Kanes/Kanes.png" Class="Business_logo" />
+                    <asp:Image ID="Image11" runat="server" ImageUrl="~/media/logos/5/Kanes.png" Class="Business_logo" AlternateText="KanesLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton29" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=5" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -173,7 +173,7 @@
 
                 <div class="button_item">
                     <%--McDonalds--%>
-                    <asp:Image ID="Image12" runat="server" ImageUrl="~/media/logos/Mcdonalds/McDonalds.png" Class="Business_logo" />
+                    <asp:Image ID="Image12" runat="server" ImageUrl="~/media/logos/17/McDonalds.png" Class="Business_logo" AlternateText="McdLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton31" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=17" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -186,7 +186,7 @@
 
                 <div class="button_item">
                     <%--Mix--%>
-                    <asp:Image ID="Image13" runat="server" ImageUrl="~/media/logos/Mix 1007/MIX100.7 Wide.png" Class="Business_logo" />
+                    <asp:Image ID="Image13" runat="server" ImageUrl="~/media/logos/18/MIX100.7 Wide.png" Class="Business_logo" AlternateText="MixLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton33" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=18" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -195,7 +195,7 @@
 
                 <div class="button_item">
                     <%--Solid Waste--%>
-                    <asp:Image ID="Image14" runat="server" ImageUrl="~/media/logos/solid_waste/solid_waste.png" Class="Business_logo" />
+                    <asp:Image ID="Image14" runat="server" ImageUrl="~/media/logos/19/solid_waste.png" Class="Business_logo" AlternateText="PCSWLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton35" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=19" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -206,7 +206,7 @@
 
                 <div class="button_item">
                     <%--KnowBe4--%>
-                    <asp:Image ID="Image16" runat="server" ImageUrl="~/media/logos/KnowBe4/KnowBe4 Full Logo Full Color (2).png" Class="Business_logo" />
+                    <asp:Image ID="Image16" runat="server" ImageUrl="~/media/logos/21/KnowBe4 Full Logo Full Color (2).png" Class="Business_logo" AlternateText="KnowBe4Logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton39" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=21" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -215,7 +215,7 @@
 
                 <div class="button_item">
                     <%--Bucs--%>
-                    <asp:Image ID="Image18" runat="server" ImageUrl="~/media/logos/Bucs/Bucs.png" Class="Business_logo" />
+                    <asp:Image ID="Image18" runat="server" ImageUrl="~/media/logos/1/Bucs.png" Class="Business_logo" AlternateText="BucsLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton43" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=1" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -228,7 +228,7 @@
 
                 <div class="button_item">
                     <%--Rays--%>
-                    <asp:Image ID="Image19" runat="server" ImageUrl="~/media/logos/Rays/Rays.png" Class="Business_logo" />
+                    <asp:Image ID="Image19" runat="server" ImageUrl="~/media/logos/2/Rays.png" Class="Business_logo" AlternateText="RaysLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton45" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=2" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -239,7 +239,7 @@
 
                 <div class="button_item">
                     <%--Times--%>
-                    <asp:Image ID="Image21" runat="server" ImageUrl="~/media/logos/Times/times_logo.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image21" runat="server" ImageUrl="~/media/logos/22/PowerDesignLogo (2).png" Class="Business_logo" AlternateText="TimesLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton49" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=22" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -254,7 +254,7 @@
 
                 <div class="button_item">
                     <%--TD SYNNEX--%>
-                    <asp:Image ID="Image22" runat="server" ImageUrl="~/media/logos/TD synnex/td_synnex.png" Class="Business_logo" />
+                    <asp:Image ID="Image22" runat="server" ImageUrl="~/media/logos/7/td_synnex.png" Class="Business_logo" AlternateText="TDSYNNEXLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton51" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=7" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />
@@ -267,7 +267,7 @@
 
                 <div class="button_item">
                     <%--united Way--%>
-                    <asp:Image ID="Image23" runat="server" ImageUrl="~/media/logos/United Way/UnitedWaySuncoast_Logo-LRG.png" Class="Business_logo" />
+                    <asp:Image ID="Image23" runat="server" ImageUrl="~/media/logos/24/UnitedWaySuncoast_Logo-LRG.png" Class="Business_logo" AlternateText="UWLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton53" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=24" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />

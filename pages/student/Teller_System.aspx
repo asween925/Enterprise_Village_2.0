@@ -9,13 +9,13 @@
 
     <title>Teller System</title>
 
-    <link href="css/Styles.Teller2.css" rel="stylesheet" type="text/css">
+    <link href="~/css/Styles.Teller2.css" rel="stylesheet" type="text/css">
     <link href="~/css/Styles.print.css" rel="stylesheet" media="print" type="text/css">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 </head>
 
 <body>
-    <form autocomplete="off"  id="Online_Banking_Form" runat="server">
+    <form autocomplete="off" id="Online_Banking_Form" runat="server">
         <div id="site_wrap">
 
             <%--Header--%>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="header3 teller_logo_print">
-                <img class="business" alt="Business" src="media/Logos/Achieva/achieva.png">
+                <img class="business" alt="Business" src="../../media/Logos/Achieva/achieva.png">
             </div>
 
                 <%--First Page--%>

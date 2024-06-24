@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Home_Page.aspx.vb" Inherits="Enterprise_Village_2._0.Home_Page" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" Async="false" CodeBehind="Home_Page.aspx.vb" Inherits="Enterprise_Village_2._0.Home_Page" %>
 
 <!doctype html>
 <html>
@@ -254,7 +254,7 @@
                         </div>
                     </div>
                     <div class="content_home_bottom">
-                        <p>Last Updated: 6/12/2024 @ 1:00pm&ensp;Version: 2.2.24a&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
+                        <p>Last Updated: 6/12/2024 @ 1:00pm&ensp;Version: 2.2.25&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
                     </div>
 
                     <br />

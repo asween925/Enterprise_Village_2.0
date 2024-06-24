@@ -240,6 +240,7 @@ Public Class Class_BusinessData
 		con.Close()
 	End Sub
 
+	'Load open closed status table
 	Function LoadOpenClosedStatus(VisitID As Integer, Table As GridView)
 		Dim da As New SqlDataAdapter
 		Dim dt As New DataTable
@@ -250,6 +251,39 @@ Public Class Class_BusinessData
 								  INNER JOIN schoolInfo s ON s.id = o.schoolID
 								  WHERE o.visitID='" & VisitID & "'
 								  ORDER BY b.businessname"
+
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = SQLStatement
+		cmd.Connection = con
+		da.SelectCommand = cmd
+		da.Fill(dt)
+
+		Table.DataSource = dt
+		Table.DataBind()
+
+		Return Table
+
+	End Function
+
+	'Load edit business gridview
+	Function LoadEditBusinessTable(Table As GridView)
+		Dim da As New SqlDataAdapter
+		Dim dt As New DataTable
+		Dim SQLStatement As String = "SELECT b.id, b.businessName, b.address, b.startingBalance, CONCAT('../../media/Logos/', b.id, '/', b.logoPath) as logoPath, j.jobTitle as jobTitle1, j2.jobTitle as jobTitle2, j3.jobTitle as jobTitle3, j4.jobTitle as jobTitle4
+                                      , j5.jobTitle as jobTitle5, j6.jobTitle as jobTitle6, j7.jobTitle as jobTitle7, j8.jobTitle as jobTitle8, j9.jobTitle as jobTitle9, j10.jobTitle as jobTitle10
+                                      FROM businessInfo b
+                                      LEFT JOIN jobs j ON j.id = b.position1
+                                      LEFT JOIN jobs j2 ON j2.id = b.position2
+                                      LEFT JOIN jobs j3 ON j3.id = b.position3
+                                      LEFT JOIN jobs j4 ON j4.id = b.position4
+                                      LEFT JOIN jobs j5 ON j5.id = b.position5
+                                      LEFT JOIN jobs j6 ON j6.id = b.position6
+                                      LEFT JOIN jobs j7 ON j7.id = b.position7
+                                      LEFT JOIN jobs j8 ON j8.id = b.position8
+                                      LEFT JOIN jobs j9 ON j9.id = b.position9
+                                      LEFT JOIN jobs j10 ON j10.id = b.position10
+                                      ORDER BY b.businessName"
 
 		con.ConnectionString = connection_string
 		con.Open()

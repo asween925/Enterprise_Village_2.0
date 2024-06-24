@@ -47,28 +47,35 @@
             
             <%--Load by Visit Date--%>
             <div id="visitDate_div" runat="server" visible="false">
+                <h3>Load by Visit Date</h3>
                 <p>Visit Date:&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="visitDateSchools_a" runat="server" visible="false">Scheduled Schools for Selected Visit Date:</a></p>
-                <asp:TextBox ID="visitDate_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>&emsp;&emsp;<asp:DropDownList ID="visitDateSchools_ddl" runat="server" AutoPostBack="true" CssClass="ddl" Visible="false"></asp:DropDownList>
-                <br />
-                <br />
-                <asp:Button ID="checkIn_btn" runat="server" CssClass="button3" Text="Check In" Visible="False" />
+                <asp:TextBox ID="visitDate_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>&emsp;&emsp;<asp:DropDownList ID="visitDateSchools_ddl" runat="server" AutoPostBack="true" CssClass="ddl" Visible="false"></asp:DropDownList>               
             </div>
             
             <%--Load by School Name--%>
             <div id="schoolName_div" runat="server" visible="false">
+                <h3>Load by School Name</h3>
                 <p>School Name: &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="schoolVisitDate_a" runat="server" visible="false">Scheduled Visit Dates for Selected School:</a></p>
                 <asp:DropDownList ID="schoolName_ddl" runat="server" CssClass="ddl" AutoPostBack="true" ></asp:DropDownList>&emsp;&emsp;<asp:DropDownList ID="schoolVisitDate_ddl" runat="server" CssClass="ddl" AutoPostBack="true" Visible="false"></asp:DropDownList>
-            </div>                        
+            </div>
+            
+            <%--Load buttons --%>
+            <div id="buttons_div" runat="server" visible="false">
+                <br />
+                <asp:Button ID="addVol_btn" runat="server" CssClass="button3" Text="Add New Volunteer" />&ensp;<asp:Button ID="checkIn_btn" runat="server" CssClass="button3" Text="Check In" />
+            </div>
             
             <%--Add Volunteer--%>
-            <div id="addVol_div" runat="server" visible="true" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
-                <p style="border-top: 1px solid gray; padding-top: 10px;">Add Volunteer:</p>
+            <div id="addVol_div" runat="server" visible="false" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+                <h3 style="border-top: 1px solid gray; padding-top: 10px;">Add Volunteer:</h3>
+                <asp:TextBox ID="visitDateVol_tb" runat="server" CssClass="textbox" Textmode="Date"></asp:TextBox> 
+                &ensp;  
+                <asp:DropDownList ID="businessName_ddl" runat="server" CssClass="ddl"></asp:DropDownList>
+                <br /><br />
                 <asp:TextBox ID="firstName_tb" runat="server" CssClass="textbox" placeholder="First Name" ></asp:TextBox>
                 &ensp;
                 <asp:TextBox ID="lastName_tb" runat="server" CssClass="textbox" placeholder="Last Name"></asp:TextBox> 
-                &ensp;           
-                <%--<asp:DropDownList ID="businessName_ddl" runat="server" CssClass="ddl"></asp:DropDownList>
-                &ensp;--%>
+                &ensp;             
                 <asp:DropDownList ID="pr_ddl" runat="server" CssClass="ddl">
                     <asp:ListItem>PR</asp:ListItem>
                     <asp:ListItem>N</asp:ListItem>
@@ -80,20 +87,20 @@
                     <asp:ListItem>S</asp:ListItem>
                 </asp:DropDownList>
                 &ensp;
-                <%--<asp:TextBox ID="svHours_tb" runat="server" CssClass="textbox" TextMode="Number" Text="6" Width="70px"></asp:TextBox>
+                <asp:TextBox ID="svHours_tb" runat="server" CssClass="textbox" TextMode="Number" Text="6" Width="70px"></asp:TextBox>
                 &ensp;<asp:DropDownList ID="regularVol_ddl" runat="server" CssClass="ddl">
                         <asp:ListItem>Regular Volunteer?</asp:ListItem>
                         <asp:ListItem>No</asp:ListItem>
                         <asp:ListItem>Yes</asp:ListItem>
                       </asp:DropDownList>
-                &ensp;--%><asp:TextBox ID="notes_tb" runat="server" CssClass="textbox" placeholder="Notes" ></asp:TextBox>
+                &ensp;<asp:TextBox ID="notes_tb" runat="server" CssClass="textbox" placeholder="Notes" ></asp:TextBox>
                 &nbsp;<asp:Button ID="submit_btn" runat="server" CssClass="button3" Text="Submit" />
-            &emsp;&emsp; Total SV Hours for School: <asp:Label ID="totalSVHours_lbl" runat="server" Text="0"></asp:Label>
+            &emsp;&emsp; Total SV Hours for School: <asp:Label ID="totalSVHours_lbl" runat="server" Text="0"></asp:Label>              
             </div>
 
             <%--Volunteer Check In--%>
             <div id="checkIn_div" runat="server" visible="false" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
-                <p>Volunteer Check In:</p>
+                <h3>Volunteer Check In:</h3>
                 <table>
                     <tbody>
                         <tr>
@@ -143,7 +150,7 @@
             </div>
 
             <%--View Volunteers--%>
-            <div id="viewVol_div" runat="server">
+            <div id="viewVol_div" runat="server" visible="true">
                 <p>Search by First or Last Name: 
                     <asp:TextBox ID="search_tb" runat="server" CssClass="textbox"></asp:TextBox>&ensp;<asp:Button ID="search_btn" runat="server" CssClass="button3" Text="Search" />&ensp;|&ensp;
                     Sort By:
@@ -235,6 +242,9 @@
                     <br /><br /><br />
                 </div>
             </div>
+
+
+
 
             <asp:DropDownList  CssClass="ddl" ID="businessCount_ddl" runat="server" Visible="false">
                 <asp:ListItem>1</asp:ListItem>

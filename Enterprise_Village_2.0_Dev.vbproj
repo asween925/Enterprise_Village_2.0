@@ -133,11 +133,55 @@
   <ItemGroup>
     <Content Include="images\Icons\wi-day-sunny-overcast.png" />
     <Content Include="images\Icons\wi-day-sunny.png" />
+    <Content Include="media\backgrounds\checkbackground.jpg" />
+    <Content Include="media\Logos\10\AstroSkate White Background.png" />
+    <Content Include="media\Logos\10\AstroSkate White Background2.png" />
+    <Content Include="media\Logos\10\AstroSkate.jpg" />
+    <Content Include="media\Logos\10\AstroSkate.png" />
+    <Content Include="media\Logos\10\AstroSkate2.jpg" />
+    <Content Include="media\Logos\11\DITEK Logo 2005.JPG" />
+    <Content Include="media\Logos\11\DITEK.jpg" />
+    <Content Include="media\Logos\11\DITEK.tif" />
+    <Content Include="media\Logos\12\achieva.png" />
+    <Content Include="media\Logos\13\BayCare.jpg" />
+    <Content Include="media\Logos\14\cityhall.jpg" />
+    <Content Include="media\Logos\15\Dalilogo.gif" />
+    <Content Include="media\Logos\16\Duke.gif" />
+    <Content Include="media\Logos\16\DukeOLD.jpg" />
+    <Content Include="media\Logos\17\mcdonalds-png-logo-simple-m-1.png" />
+    <Content Include="media\Logos\17\McDonalds.png" />
+    <Content Include="media\Logos\18\Mix 100.7.tiff" />
+    <Content Include="media\Logos\18\MIX100.7 Wide.png" />
+    <Content Include="media\Logos\19\Solid_waste.png" />
+    <Content Include="media\Logos\1\Bucs logo.tiff" />
+    <Content Include="media\Logos\1\Bucs.gif" />
+    <Content Include="media\Logos\1\bucs.png" />
+    <Content Include="media\Logos\20\PCUSMALL.png" />
+    <Content Include="media\Logos\20\Pinellas County Utlities SMALL VERSION.png" />
+    <Content Include="media\Logos\20\Pinellas County Utlities.png" />
+    <Content Include="media\Logos\21\KnowBe4 Full Logo Full Color %282%29.png" />
+    <Content Include="media\Logos\22\times_logo.jpg" />
+    <Content Include="media\Logos\22\times_logo1.jpg" />
+    <Content Include="media\Logos\23\ups_2color_Fullsize_2010.jpg" />
+    <Content Include="media\Logos\23\UPS_Logo_Small_2010.jpg" />
+    <Content Include="media\Logos\24\UnitedWaySuncoast_Logo-LRG.png" />
+    <Content Include="media\Logos\2\rays.png" />
+    <Content Include="media\Logos\2\RaysPrimaryLogo2010.jpg" />
+    <Content Include="media\Logos\3\CVS.jpg" />
+    <Content Include="media\Logos\3\CVS.png" />
+    <Content Include="media\Logos\5\Kanes.png" />
+    <Content Include="media\Logos\6\Koozie.png" />
+    <Content Include="media\Logos\7\td_synnex.png" />
+    <Content Include="media\Logos\7\TD_SYNNEX1.png" />
+    <Content Include="media\Logos\7\techdata.png" />
+    <Content Include="media\Logos\8\hsn.png" />
+    <Content Include="media\Logos\9\bbb.png" />
     <Content Include="pages\inv\navInv.html" />
     <Content Include="media\Logos\Achieva\achieva.png" />
     <Content Include="pages\forms\Parent_Letter.aspx" />
     <Content Include="pages\forms\Bus_Transportation.aspx" />
     <Content Include="pages\forms\School_Schedule.aspx" />
+    <Content Include="pages\student\New_Check_System.aspx" />
     <Content Include="pages\tools\Requested_Features.aspx" />
     <Content Include="pages\forms\Closed_Business_Checks.aspx" />
     <Content Include="pages\edit\Edit_Business.aspx" />
@@ -734,6 +778,13 @@
     </Compile>
     <Compile Include="pages\forms\School_Schedule.aspx.vb">
       <DependentUpon>School_Schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\student\New_Check_System.aspx.designer.vb">
+      <DependentUpon>New_Check_System.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\student\New_Check_System.aspx.vb">
+      <DependentUpon>New_Check_System.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\tools\Requested_Features.aspx.designer.vb">

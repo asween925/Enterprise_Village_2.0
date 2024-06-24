@@ -1678,8 +1678,6 @@ Public Class Volunteer_Database
 		SubmitCheckIn()
 	End Sub
 
-
-
 	Protected Sub businessAssignments_btn_Click(sender As Object, e As EventArgs) Handles businessAssignments_btn.Click
 		Dim URL As String = "/pages/edit/Open_Closed_Status.aspx"
 		Dim VisitID As String = ""
@@ -1705,11 +1703,24 @@ Public Class Volunteer_Database
 		End If
 	End Sub
 
+	Protected Sub addVol_btn_Click(sender As Object, e As EventArgs) Handles addVol_btn.Click
+		'Reveal add volunteer section if not revealed
+		If addVol_div.Visible = False Then
+			addVol_btn.Text = "Hide New Volunteer"
+			addVol_div.Visible = True
+		Else
+			addVol_div.Visible = False
+			addVol_btn.Text = "Add New Volunteer"
+		End If
+	End Sub
+
+
+
 	Protected Sub visitDate_tb_TextChanged(sender As Object, e As EventArgs) Handles visitDate_tb.TextChanged
 		If visitDate_tb.Text <> Nothing Then
 			visitDateSchools_ddl.Visible = True
 			visitDateSchools_a.Visible = True
-			checkIn_btn.Visible = True
+			buttons_div.Visible = True
 
 			'Load schools associated with selected visit date
 			SchoolData.LoadVisitDateSchoolsDDL(visitDate_tb.Text, visitDateSchools_ddl)
@@ -1727,6 +1738,7 @@ Public Class Volunteer_Database
 		If schoolName_ddl.SelectedIndex <> 0 Then
 			schoolVisitDate_ddl.Visible = True
 			schoolVisitDate_a.Visible = True
+			buttons_div.Visible = True
 
 			'Clear school visit date and visit date text box
 			schoolVisitDate_ddl.Items.Clear()
@@ -1749,5 +1761,6 @@ Public Class Volunteer_Database
 	Protected Sub visitDateSchools_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles visitDateSchools_ddl.SelectedIndexChanged
 		LoadData()
 	End Sub
+
 
 End Class

@@ -11,7 +11,7 @@
     <title>McDonald's Sales System</title>
 
     <link href="~/css/Styles.print.css" rel="stylesheet" media="print" type="text/css">
-    <link href="css/Styles.McDonaldsSales.css" rel="stylesheet" media="screen" type="text/css">
+    <link href="~/css/Styles.McDonaldsSales.css" rel="stylesheet" media="screen" type="text/css">
 
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 </head>
@@ -28,7 +28,7 @@
                 <div class="enter_account" id="Screen1">
 
                     <%--Enter Account--%>
-                    <image alt="McDonald's Logo" src="media\Logos\Mcdonalds\mcdonalds-png-logo-simple-m-1.png"></image>
+                    <image alt="McDonald's Logo" src="../../media\Logos\Mcdonalds\mcdonalds-png-logo-simple-m-1.png"></image>
                     <br />
                     <asp:Label ID="label6" Font-Bold="true" runat="server" class="no-print">Enter an Account Number</asp:Label>
                     <br />
@@ -71,21 +71,21 @@
                     <%--Buttons--%>
                     <div class="snack_box">
                         <label class="container">
-                            <image alt="Snack Only" src="images\snackonly.png" width="260px;" height="260px;"></image>
+                            <image alt="Snack Only" src="../../images\snackonly.png" width="260px;" height="260px;"></image>
                             <input type="radio" name="radio" id="snack_rdo" runat="server">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="drink_box">
                         <label class="container">
-                            <image alt="Drink Only" src="images\drinkonly.png" width="260px;" height="260px;"></image>
+                            <image alt="Drink Only" src="../../images\drinkonly.png" width="260px;" height="260px;"></image>
                             <input type="radio" name="radio" id="drink_rdo" runat="server">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="snackanddrink_box">
                         <label class="container">
-                            <image alt="Snack and Drink" src="images\snack&drink.png" width="250px;" height="250px;"></image>
+                            <image alt="Snack and Drink" src="../../images\snack&drink.png" width="250px;" height="250px;"></image>
                             <input type="radio" name="radio" id="both_rdo" runat="server">
                             <span class="checkmark"></span>
                         </label>

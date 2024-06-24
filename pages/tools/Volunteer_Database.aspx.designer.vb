@@ -104,15 +104,6 @@ Partial Public Class Volunteer_Database
     Protected WithEvents visitDateSchools_ddl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''checkIn_btn control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents checkIn_btn As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''schoolName_div control.
     '''</summary>
     '''<remarks>
@@ -149,6 +140,33 @@ Partial Public Class Volunteer_Database
     Protected WithEvents schoolVisitDate_ddl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''buttons_div control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents buttons_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''addVol_btn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents addVol_btn As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''checkIn_btn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents checkIn_btn As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''addVol_div control.
     '''</summary>
     '''<remarks>
@@ -156,6 +174,24 @@ Partial Public Class Volunteer_Database
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents addVol_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''visitDateVol_tb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents visitDateVol_tb As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''businessName_ddl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents businessName_ddl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''firstName_tb control.
@@ -183,6 +219,24 @@ Partial Public Class Volunteer_Database
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pr_ddl As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''svHours_tb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents svHours_tb As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''regularVol_ddl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents regularVol_ddl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''notes_tb control.

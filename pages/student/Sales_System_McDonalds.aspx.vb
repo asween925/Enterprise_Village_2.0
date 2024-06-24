@@ -290,7 +290,19 @@ Public Class Sales_System_McDonalds
         cmd.Dispose()
         con.Close()
         SqlConnection.ClearAllPools()
-        Response.Redirect("/pages/print/Print_Sales.aspx?b=" & AccountNumber)
+
+        'Show success message
+        Page.ClientScript.RegisterStartupScript(Me.GetType(), "DepositSucessText", "DepositSucessText();", True)
+
+        'Refresh page after 4 seconds
+        Dim meta As New HtmlMeta()
+        meta.HttpEquiv = "Refresh"
+        meta.Content = "4;url=sales_system_mcdonalds.aspx"
+        Me.Page.Controls.Add(meta)
+        error_lbl.Text = "Purchase successful!"
+
+        'Move to print sales page to print receipt
+        'Response.Redirect("/pages/print/Print_Sales.aspx?b=" & AccountNumber)
     End Sub
 
     Protected Sub enterAccount_btn_Click(sender As Object, e As EventArgs) Handles enterAccount_btn.Click
