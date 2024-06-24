@@ -218,23 +218,9 @@
                     <div class="popup content_home_changelog" onclick="myFunction()">
                         Latest Updates
                         <div class="popuptext" id="myPopup">
-                            <span>Last Updated: 3/7/2024 (v2.2.22)</span>
+                            <span>Last Updated: 6/24/2024 (v2.2.26)</span>
                             <ul>
-                                <li>Closed Business Checks
-		                            <ul>
-                                        <li>Direct Deposit forms now fit within the green check paper.</li>
-                                    </ul>
-                                                            </li>
-                                                            <li>EV Lunch Forms
-		                            <ul>
-                                        <li>Letter will no longer load dates with A1 No School Scheduled selected as the first school in the visit date.</li>
-                                    </ul>
-                                                            </li>
-                                                            <li>Volunteer Database
-		                            <ul>
-                                        <li>Updated font size of check in section</li>
-                                        <li>Updated colors of check in section</li>
-                                    </ul>
+                                <li>Updates found on github.com/asween925/Enterprise_Village_2.0
                                 </li>
 
                             </ul>
@@ -254,7 +240,7 @@
                         </div>
                     </div>
                     <div class="content_home_bottom">
-                        <p>Last Updated: 6/12/2024 @ 1:00pm&ensp;Version: 2.2.25&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
+                        <p>Last Updated: 6/24/2024 @ 7:45am&ensp;Version: 2.2.26&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
                     </div>
 
                     <br />
