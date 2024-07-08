@@ -188,8 +188,12 @@ Public Class login
                             Exit Sub
                         End Try
 
-                        'Check if school has a visit created for 22-23
+                        'Check if school has a visit created for current school year
                         Try
+                            'Get current year, then get next year
+                            Dim currentYear As String = Date.Now.Year.ToString()
+                            Dim nextYear As String = currentYear + 1
+
                             con.ConnectionString = connection_string
                             con.Open()
 
@@ -197,7 +201,7 @@ Public Class login
                             cmd.CommandText = "SELECT id FROM (SELECT id, visitDate FROM visitInfo WHERE school = '" & schoolID_hf.Value & "' 
                                                     OR school2 = '" & schoolID_hf.Value & "' OR school3 = '" & schoolID_hf.Value & "' 
                                                     OR school4 = '" & schoolID_hf.Value & "' OR school5 = '" & schoolID_hf.Value & "')   
-                                                    as x WHERE visitDate BETWEEN '07-01-2023' AND '07-01-2024' AND NOT id=505" '<----CHANGE HERE
+                                                    as x WHERE visitDate BETWEEN '07-01-" & currentYear & "' AND '07-01-" & nextYear & "'" '<----CHANGE HERE  
                             cmd.Connection = con
                             dr = cmd.ExecuteReader
 
@@ -329,6 +333,10 @@ Public Class login
 
                 'Get visit ID from visitInfo and check if there is a visit in the system
                 Try
+                    'Get current year, then get next year
+                    Dim currentYear As String = Date.Now.Year.ToString()
+                    Dim nextYear As String = currentYear + 1
+
                     con.ConnectionString = connection_string
                     con.Open()
 
@@ -336,7 +344,7 @@ Public Class login
                     cmd.CommandText = "SELECT id FROM (SELECT id, visitDate FROM visitInfo WHERE school = '" & schoolID_hf.Value & "' 
                                                     OR school2 = '" & schoolID_hf.Value & "' OR school3 = '" & schoolID_hf.Value & "' 
                                                     OR school4 = '" & schoolID_hf.Value & "' OR school5 = '" & schoolID_hf.Value & "')   
-                                                    as x WHERE visitDate BETWEEN '07-01-2023' AND '07-01-2024'" '<----CHANGE HERE  
+                                                    as x WHERE visitDate BETWEEN '07-01-" & currentYear & "' AND '07-01-" & nextYear & "'" '<----CHANGE HERE  
                     cmd.Connection = con
                     dr = cmd.ExecuteReader
 

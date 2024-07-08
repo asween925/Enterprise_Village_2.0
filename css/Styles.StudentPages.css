@@ -140,6 +140,61 @@ h3 {
     height: 99%;
 }
 
+.EV_Logo_Wrapper {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+    .EV_Logo_Wrapper img {
+        display: table;
+        position: relative;
+        margin: auto;
+        transform: scale(.7, .7);
+    }
+
+.EV_Logo_Bottom {
+    width: 130px;
+    height: 70px;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    text-align: center;
+}
+
+.blurArea {
+    transition: 0.5s;
+}
+
+    .blurArea#blur.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+#popup {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 30vw;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0, .30);
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    border: 2px solid black;
+    border-radius: 25px;
+    text-align: center;
+}
+
+    #popup.active {
+        top: 50%;
+        visibility: visible;
+        opacity: 1;
+        transition: 0.5s;
+    }
 
 /*-----Buttons-----*/
 
@@ -162,6 +217,29 @@ h3 {
 }
 
     .print_button:hover {
+        background-color: #074100;
+    }
+
+.print_button2 {
+    background-color: #009900;
+    border-radius: 10px;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.2s;
+    /*box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.24),0 17px 500px 0 rgba(0,0,0,0.19);*/
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 4px;
+    border: none;
+    font-size: calc(10px + 0.6vw);
+}
+
+    .print_button2:hover {
         background-color: #074100;
     }
 
@@ -207,6 +285,75 @@ h3 {
 
     .button3:hover {
         background-color: #1e2c73;
+    }
+
+.delete_button {
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.2s;
+    /*box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.24),0 17px 500px 0 rgba(0,0,0,0.19);*/
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 4px;
+    border: none;
+    font-size: calc(10px + 0.6vw);
+}
+
+    .delete_button:hover {
+        background-color: darkred;
+    }
+
+.save_check {
+    background-color: #116bfa;
+    border-radius: 10px;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.2s;
+    /*box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.24),0 17px 500px 0 rgba(0,0,0,0.19);*/
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 4px;
+    border: none;
+    font-size: calc(10px + 0.6vw);
+}
+
+    .save_check:hover {
+        background-color: #1e2c73;
+    }
+
+.group_button {
+    background-color: #fff800;
+    border-radius: 40px;
+    border-style: initial;
+    color: black;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: calc(11px + 0.6vw);
+    margin: 5px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.2s;
+    box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.24),0 17px 500px 0 rgba(0,0,0,0.19);
+    text-align: center;
+}
+
+    .group_button:hover {
+        background-color: #656200;
+        color: white;
     }
 
 /*-----End Buttons-----*/
@@ -836,7 +983,14 @@ h3 {
     background: linear-gradient(22deg, rgba(247,201,158,1) 25%, rgba(180,122,218,1) 50%, rgba(45,74,255,1) 90%);
     height: 100%;
     overflow: auto;
+    transition: 0.5s;
 }
+
+    .CS_BG_Default#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
 
 .CS_Header {
     margin-left: 10px;
@@ -865,23 +1019,46 @@ h3 {
     transform: translate(-50%, -50%);
     margin: 0;
     text-shadow: 1px 1px 2px #515151;
-    font-family: Tahoma;
+    font-family: 'Arial Rounded MT';
+    text-decoration: underline;
 }
 
+.CS_Group_Div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: calc(10px + 0.6vw);
+}
+
+.CS_Group_DDL {
+    padding: 5px;
+    font-size: calc(10px + 0.6vw);
+    border-radius: 25px;
+    padding: 5px;
+    text-align: left;
+    border: 2px solid black;
+    transition-duration: 0.2s;
+}
+
+    .CS_Group_DDL:hover {
+        border: 2px solid dodgerblue;
+    }
+
 .CS_Main_Check {
-    border: 1px solid black;
-    background-color: beige;
-    /*background-image: url("../../media/backgrounds/checkbackground.jpg");*/
-    max-height: 35%;
-    /*width: 100%;*/
-    max-width: 50vw;
-    margin-top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    font-size: 1.0vw;
-    overflow: auto;
-    box-shadow: 0px 5px 10px -1px #515151;
+        border: 1px solid black;
+        border-radius: 15px;
+        background-color: beige;
+        /*background-image: url("../../media/backgrounds/checkbackground.jpg");*/
+        max-height: 35%;
+        /*width: 100%;*/
+        max-width: 50vw;
+        margin-top: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+        font-size: calc(8px + 0.6vw);
+        overflow: auto;
+        box-shadow: 0px 5px 10px -1px #515151;
 }
 
 .CS_Main_Check_BizName {
@@ -905,34 +1082,46 @@ h3 {
 }*/
 
 .CS_Main_Check_Students {
-    width: 68%;
+    width: 55%;
     box-sizing: border-box;
-    height: 2.8vh;
+    /*height: 3.1vh;*/
+    font-size: calc(8px + 0.6vw);
 }
 
 .CS_Main_Check_Dollars {
-    width: 10%;
+    width: 15%;
     float: right;
-    font-size: 1vw;
-    height: 2.8vh;
+    font-size: calc(8px + 0.6vw);
+    /*height: 3.1vh;*/
 }
 
 .CS_Main_Check_Written {
-    width: 89%;
+    width: 86%;
     box-sizing: border-box;
-    height: 2.8vh;
+    /*height: 3.1vh;*/
+    font-size: calc(8px + 0.6vw);
 }
 
 .CS_Main_Check_Memo {
-    width: 13%;
+    width: 19%;
     box-sizing: border-box;
-    font-size: 1vw;
-    height: 2.8vh;
+    font-size: calc(8px + 0.6vw);
+    /*height: 3.1vh;*/
 }
 
 .CS_Main_Check_Bottom {
     display: block;
     /*box-sizing: border-box;*/
+}
+
+.CS_Main_Check_SignLine {
+    float: right;
+}
+
+.CS_Buttons_Div {
+    margin-top: 60px;
+    text-align: center;
+    font-size: calc(10px + 0.6vw);
 }
 
 

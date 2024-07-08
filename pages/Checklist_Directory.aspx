@@ -122,8 +122,8 @@
                     <asp:Image ID="Image9" runat="server" ImageUrl="~/media/logos/Duke/Duke.gif" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton25" runat="server" PostBackUrl="/pages/checklists/duke_electric_bill_checklist.aspx" CssClass="button3">Energy Bill Checklist</asp:LinkButton>
-                    <br />
-                    <asp:LinkButton ID="LinkButton4" runat="server" PostBackUrl="/pages/checklists/duke_meter_checklist.aspx" CssClass="button3">Meter Reader Checklist</asp:LinkButton>
+                    <%--<br />
+                    <asp:LinkButton ID="LinkButton4" runat="server" PostBackUrl="/pages/checklists/duke_meter_checklist.aspx" CssClass="button3">Meter Reader Checklist</asp:LinkButton>--%>
                     <br />
                     <asp:LinkButton ID="LinkButton5" runat="server" PostBackUrl="/pages/checklists/duke_energy_utility_engineer_energy_conservation_checklist.aspx" CssClass="button3">Utility Engineer Energy Conservation Checklist</asp:LinkButton>
                 </div>

@@ -284,13 +284,40 @@ Partial Public Class Volunteer_Database
     Protected WithEvents ach_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''ach_tb control.
+    '''ach1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ach_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ach1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ach2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ach2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ach3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ach3_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ach4_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ach4_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolAch_ddl control.
@@ -311,13 +338,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents cvs_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''cvs_tb control.
+    '''cvs1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cvs_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents cvs1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cvs2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvs2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''cvs3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cvs3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolCVS_ddl control.
@@ -338,13 +383,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents pcsw_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''pcsw_tb control.
+    '''pcsw1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pcsw_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents pcsw1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''pcsw2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pcsw2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolPCSW_ddl control.
@@ -365,13 +419,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents astro_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''astro_tb control.
+    '''astro1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents astro_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents astro1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''astro2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents astro2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolAstro_ddl control.
@@ -392,13 +455,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents ditek_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''ditek_tb control.
+    '''ditek1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ditek_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ditek1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ditek2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ditek2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolDitek_ddl control.
@@ -419,13 +491,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents know_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''know_tb control.
+    '''know1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents know_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents know1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''know2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents know2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolKnow_ddl control.
@@ -446,13 +527,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents baycare_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''baycare_tb control.
+    '''baycare1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents baycare_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents baycare1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''baycare2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents baycare2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolBaycare_ddl control.
@@ -473,13 +563,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents duke_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''duke_tb control.
+    '''duke1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents duke_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents duke1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''duke2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents duke2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolDuke_ddl control.
@@ -500,13 +599,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents bucs_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''bucs_tb control.
+    '''bucs1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents bucs_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents bucs1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''bucs2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bucs2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolBucs_ddl control.
@@ -527,13 +635,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents bbb_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''bbb_tb control.
+    '''bbb1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents bbb_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents bbb1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''bbb2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bbb2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolBBB_ddl control.
@@ -554,13 +671,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents hsn_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''hsn_tb control.
+    '''hsn1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hsn_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents hsn1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''hsn2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hsn2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolHSN_ddl control.
@@ -581,13 +707,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents rays_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''rays_tb control.
+    '''rays1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents rays_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents rays1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rays2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rays2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''rays3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rays3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolRays_ddl control.
@@ -608,13 +752,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents bic_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''bic_tb control.
+    '''bic1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents bic_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents bic1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''bic2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bic2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''bic3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bic3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolBic_ddl control.
@@ -635,13 +797,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents kanes_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''kanes_tb control.
+    '''kanes1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents kanes_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents kanes1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''kanes2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents kanes2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolKanes_ddl control.
@@ -662,13 +833,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents times_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''times_tb control.
+    '''times1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents times_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents times1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''times2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents times2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''times3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents times3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolTimes_ddl control.
@@ -689,13 +878,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents city_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''city_tb control.
+    '''city1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents city_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents city1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''city2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents city2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''city3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents city3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolCity_ddl control.
@@ -716,13 +923,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents mcdonalds_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''mcdonalds_tb control.
+    '''mcd1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents mcdonalds_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents mcd1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''mcd2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mcd2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''mcd3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mcd3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolMcdonalds_ddl control.
@@ -743,13 +968,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents td_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''td_tb control.
+    '''td1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents td_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents td1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''td2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents td2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''td3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents td3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolTD_ddl control.
@@ -770,13 +1013,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents mix_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''mix_tb control.
+    '''mix1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents mix_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents mix1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''mix2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mix2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolMix_ddl control.
@@ -797,13 +1049,31 @@ Partial Public Class Volunteer_Database
     Protected WithEvents united_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''united_tb control.
+    '''uw1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents united_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents uw1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''uw2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents uw2_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''uw3_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents uw3_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolUnited_ddl control.
@@ -824,13 +1094,22 @@ Partial Public Class Volunteer_Database
     Protected WithEvents pcu_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''pcu_tb control.
+    '''pcu1_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pcu_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents pcu1_chk As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''pcu2_chk control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pcu2_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolPCU_ddl control.
@@ -851,13 +1130,13 @@ Partial Public Class Volunteer_Database
     Protected WithEvents ups_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''ups_tb control.
+    '''ups_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ups_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ups_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolUPS_ddl control.
@@ -878,13 +1157,13 @@ Partial Public Class Volunteer_Database
     Protected WithEvents dali_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
-    '''dali_tb control.
+    '''dali_chk control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dali_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents dali_chk As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''regVolDali_ddl control.

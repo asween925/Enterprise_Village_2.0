@@ -66,7 +66,7 @@
                 <asp:LinkButton ID="LinkButton14" runat="server" PostBackUrl="/pages/checklist_directory.aspx" Font-Size="Large" CssClass="button button1">CHECKLIST DIRECTORY</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton33" runat="server" PostBackUrl="/pages/inventory_home.aspx" Font-Size="Large" CssClass="button button1">INVENTORY</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton27" runat="server" PostBackUrl="/pages/Help_page.aspx" Font-Size="Large" CssClass="button button1">HELP</asp:LinkButton>
-                <asp:LinkButton ID="LinkButton24" runat="server" PostBackUrl="/pages/default.aspx" Font-Size="Large" CssClass="button button1">LOG OUT</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton24" runat="server" PostBackUrl="/default.aspx" Font-Size="Large" CssClass="button button1">LOG OUT</asp:LinkButton>
                 <br />
                 <asp:Label ID="error_lbl" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Red"></asp:Label>
                 <br />

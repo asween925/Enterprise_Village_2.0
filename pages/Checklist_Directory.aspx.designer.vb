@@ -257,15 +257,6 @@ Partial Public Class Checklist_Directory
     Protected WithEvents LinkButton25 As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''LinkButton4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LinkButton4 As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''LinkButton5 control.
     '''</summary>
     '''<remarks>

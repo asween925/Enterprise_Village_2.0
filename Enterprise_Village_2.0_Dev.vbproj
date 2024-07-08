@@ -131,8 +131,10 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\flickity.min.css" />
     <Content Include="images\Icons\wi-day-sunny-overcast.png" />
     <Content Include="images\Icons\wi-day-sunny.png" />
+    <Content Include="jscript\flickity.pkgd.min.js" />
     <Content Include="media\backgrounds\checkbackground.jpg" />
     <Content Include="media\Logos\10\AstroSkate White Background.png" />
     <Content Include="media\Logos\10\AstroSkate White Background2.png" />

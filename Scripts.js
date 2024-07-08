@@ -857,6 +857,16 @@ function scalePages(page, maxWidth, maxHeight) {
   page.attr('style', '-webkit-transform:scale(' + basePage.scale + ');left:' + newLeftPos + 'px;top:' + newTopPos + 'px;');
     }
 
+
+function togglePopup() {
+        //Blur the div with the blur id
+        var blur = document.getElementById('CS_BG_Default');
+        blur.classList.toggle('active');
+
+        //Toggle the Sim Research Popup
+        var popup = document.getElementById('popup');
+        popup.classList.toggle('active');
+}
     
 
 

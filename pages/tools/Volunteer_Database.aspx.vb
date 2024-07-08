@@ -4,6 +4,8 @@ Imports System.Configuration
 Imports System.Data.SqlClient
 Imports System.Drawing
 Imports System.Web.UI.WebControls.Expressions
+Imports System.Runtime.CompilerServices
+Imports System.Diagnostics.Contracts
 
 Public Class Volunteer_Database
 	Inherits System.Web.UI.Page
@@ -302,10 +304,22 @@ Public Class Volunteer_Database
 		'Check for bodies and assign variables
 
 		'Check for achieva bodies
-		If ach_tb.Text = "" Then
+		If ach1_chk.Checked = False And ach2_chk.Checked = False And ach3_chk.Checked = False And ach4_chk.Checked = False Then
 			AchVol = "0"
 		Else
-			AchVol = ach_tb.Text
+			If ach1_chk.Checked = True Then
+				AchVol = "1"
+			End If
+			If ach2_chk.Checked = True Then
+				AchVol = "2"
+			End If
+			If ach3_chk.Checked = True Then
+				AchVol = "3"
+			End If
+			If ach4_chk.Checked = True Then
+				AchVol = "4"
+			End If
+
 		End If
 
 		If regVolAch_ddl.SelectedIndex <> 0 Then
@@ -314,11 +328,17 @@ Public Class Volunteer_Database
 			AchReg = "None"
 		End If
 
+
 		'Check for astro bodies
-		If astro_tb.Text = "" Then
+		If astro1_chk.Checked = False And astro2_chk.Checked = False Then
 			AstVol = "0"
 		Else
-			AstVol = astro_tb.Text
+			If astro1_chk.Checked = True Then
+				AstVol = "1"
+			End If
+			If astro2_chk.Checked = True Then
+				AstVol = "2"
+			End If
 		End If
 
 		If regVolAstro_ddl.SelectedIndex <> 0 Then
@@ -327,11 +347,17 @@ Public Class Volunteer_Database
 			AstReg = "None"
 		End If
 
+
 		'Check for Baycare bodies
-		If baycare_tb.Text = "" Then
+		If baycare1_chk.Checked = False And baycare2_chk.Checked = False Then
 			BayVol = "0"
 		Else
-			BayVol = baycare_tb.Text
+			If baycare1_chk.Checked = True Then
+				BayVol = "1"
+			End If
+			If baycare2_chk.Checked = True Then
+				BayVol = "2"
+			End If
 		End If
 
 		If regVolBaycare_ddl.SelectedIndex <> 0 Then
@@ -340,11 +366,17 @@ Public Class Volunteer_Database
 			BayReg = "None"
 		End If
 
+
 		'Check bbb bodies
-		If bbb_tb.Text = "" Then
+		If bbb1_chk.Checked = False And bbb2_chk.Checked = False Then
 			BBBVol = "0"
 		Else
-			BBBVol = bbb_tb.Text
+			If bbb1_chk.Checked = True Then
+				BBBVol = "1"
+			End If
+			If bbb2_chk.Checked = True Then
+				BBBVol = "2"
+			End If
 		End If
 
 		If regVolBBB_ddl.SelectedIndex <> 0 Then
@@ -353,11 +385,20 @@ Public Class Volunteer_Database
 			BBBReg = "None"
 		End If
 
+
 		'Check koozie bodies
-		If bic_tb.Text = "" Then
+		If bic1_chk.Enabled = False And bic2_chk.Enabled = False And bic3_chk.Enabled = False Then
 			BicVol = "0"
 		Else
-			BicVol = bic_tb.Text
+			If bic1_chk.Checked = True Then
+				BicVol = "1"
+			End If
+			If bic2_chk.Checked = True Then
+				BicVol = "2"
+			End If
+			If bic3_chk.Checked = True Then
+				BicVol = "3"
+			End If
 		End If
 
 		If regVolBic_ddl.SelectedIndex <> 0 Then
@@ -366,11 +407,20 @@ Public Class Volunteer_Database
 			BicReg = "None"
 		End If
 
+
 		'Check for city hall bodies
-		If city_tb.Text = "" Then
+		If city1_chk.Checked = False And city2_chk.Checked = False And city3_chk.Checked = False Then
 			CitVol = "0"
 		Else
-			CitVol = city_tb.Text
+			If city1_chk.Checked = True Then
+				CitVol = "1"
+			End If
+			If city2_chk.Checked = True Then
+				CitVol = "2"
+			End If
+			If city3_chk.Checked = True Then
+				CitVol = "3"
+			End If
 		End If
 
 		If regVolCity_ddl.SelectedIndex <> 0 Then
@@ -379,11 +429,17 @@ Public Class Volunteer_Database
 			CitReg = "None"
 		End If
 
+
 		'Check for mix bodies
-		If mix_tb.Text = "" Then
+		If mix1_chk.Checked = False And mix2_chk.Checked = False Then
 			MixVol = "0"
 		Else
-			MixVol = mix_tb.Text
+			If mix1_chk.Checked = True Then
+				MixVol = "1"
+			End If
+			If mix2_chk.Checked = True Then
+				MixVol = "2"
+			End If
 		End If
 
 		If regVolMix_ddl.SelectedIndex <> 0 Then
@@ -392,11 +448,12 @@ Public Class Volunteer_Database
 			MixReg = "None"
 		End If
 
+
 		'Check for ups bodies
-		If ups_tb.Text = "" Then
+		If ups_chk.Checked = False Then
 			UPSVol = "0"
 		Else
-			UPSVol = ups_tb.Text
+			UPSVol = "1"
 		End If
 
 		If regVolUPS_ddl.SelectedIndex <> 0 Then
@@ -405,11 +462,20 @@ Public Class Volunteer_Database
 			UPSReg = "None"
 		End If
 
+
 		'Check cvs bodies
-		If cvs_tb.Text = "" Then
+		If cvs1_chk.Checked = False And cvs2_chk.Checked = False And cvs3_chk.Checked = False Then
 			CVSVol = "0"
 		Else
-			CVSVol = cvs_tb.Text
+			If cvs1_chk.Checked = True Then
+				CVSVol = "1"
+			End If
+			If cvs2_chk.Checked = True Then
+				CVSVol = "2"
+			End If
+			If cvs3_chk.Checked = True Then
+				CVSVol = "3"
+			End If
 		End If
 
 		If regVolCVS_ddl.SelectedIndex <> 0 Then
@@ -418,11 +484,17 @@ Public Class Volunteer_Database
 			CVSReg = "None"
 		End If
 
+
 		'Check ditek bodies
-		If ditek_tb.Text = "" Then
+		If ditek1_chk.Checked = False And ditek2_chk.Checked = False Then
 			DitVol = "0"
 		Else
-			DitVol = ditek_tb.Text
+			If ditek1_chk.Checked = True Then
+				DitVol = "1"
+			End If
+			If ditek2_chk.Checked = True Then
+				DitVol = "2"
+			End If
 		End If
 
 		If regVolDitek_ddl.SelectedIndex <> 0 Then
@@ -431,11 +503,17 @@ Public Class Volunteer_Database
 			DitReg = "None"
 		End If
 
+
 		'Check duke energy bodies
-		If duke_tb.Text = "" Then
+		If duke1_chk.Checked = False And duke2_chk.Checked = False Then
 			DukeVol = "0"
 		Else
-			DukeVol = duke_tb.Text
+			If duke1_chk.Checked = True Then
+				DukeVol = "1"
+			End If
+			If duke2_chk.Checked = True Then
+				DukeVol = "2"
+			End If
 		End If
 
 		If regVolDuke_ddl.SelectedIndex <> 0 Then
@@ -444,11 +522,17 @@ Public Class Volunteer_Database
 			DukeReg = "None"
 		End If
 
+
 		'Check hsn bodies
-		If hsn_tb.Text = "" Then
+		If hsn1_chk.Checked = False And hsn2_chk.Checked = False Then
 			HSNVol = "0"
 		Else
-			HSNVol = hsn_tb.Text
+			If hsn1_chk.Checked = True Then
+				HSNVol = "1"
+			End If
+			If hsn2_chk.Checked = True Then
+				HSNVol = "2"
+			End If
 		End If
 
 		If regVolHSN_ddl.SelectedIndex <> 0 Then
@@ -457,11 +541,17 @@ Public Class Volunteer_Database
 			HSNReg = "None"
 		End If
 
+
 		'Check kanes bodies
-		If kanes_tb.Text = "" Then
+		If kanes1_chk.Checked = False And kanes2_chk.Checked = False Then
 			KanesVol = "0"
 		Else
-			KanesVol = kanes_tb.Text
+			If kanes1_chk.Checked = True Then
+				KanesVol = "1"
+			End If
+			If kanes2_chk.Checked = True Then
+				KanesVol = "2"
+			End If
 		End If
 
 		If regVolKanes_ddl.SelectedIndex <> 0 Then
@@ -470,11 +560,21 @@ Public Class Volunteer_Database
 			KanesReg = "None"
 		End If
 
+
 		'Check mcdonalds bodies
-		If mcdonalds_tb.Text = "" Then
+		If mcd1_chk.Checked = False And mcd2_chk.Checked = False And mcd3_chk.Checked = False Then
 			McDVol = "0"
 		Else
-			McDVol = mcdonalds_tb.Text
+			If mcd1_chk.Checked = True Then
+				McDVol = "1"
+			End If
+			If mcd2_chk.Checked = True Then
+				McDVol = "2"
+			End If
+			If mcd3_chk.Checked = True Then
+				McDVol = "3"
+			End If
+
 		End If
 
 		If regVolMcdonalds_ddl.SelectedIndex <> 0 Then
@@ -483,11 +583,20 @@ Public Class Volunteer_Database
 			McDReg = "None"
 		End If
 
+
 		'Check united way bodies
-		If united_tb.Text = "" Then
+		If uw1_chk.Checked = False And uw2_chk.Checked = False And uw3_chk.Checked = False Then
 			UWVol = "0"
 		Else
-			UWVol = united_tb.Text
+			If uw1_chk.Checked = True Then
+				UWVol = "1"
+			End If
+			If uw2_chk.Checked = True Then
+				UWVol = "2"
+			End If
+			If uw3_chk.Checked = True Then
+				UWVol = "3"
+			End If
 		End If
 
 		If regVolUnited_ddl.SelectedIndex <> 0 Then
@@ -496,11 +605,12 @@ Public Class Volunteer_Database
 			UWReg = "None"
 		End If
 
+
 		'Check dali bodies
-		If dali_tb.Text = "" Then
+		If dali_chk.Checked = False Then
 			DaliVol = "0"
 		Else
-			DaliVol = dali_tb.Text
+			DaliVol = "1"
 		End If
 
 		If regVolDali_ddl.SelectedIndex <> 0 Then
@@ -509,11 +619,17 @@ Public Class Volunteer_Database
 			DaliReg = "None"
 		End If
 
+
 		'Check pcsw bodies
-		If pcsw_tb.Text = "" Then
+		If pcsw1_chk.Checked = False And pcsw2_chk.Checked = False Then
 			PCSWVol = "0"
 		Else
-			PCSWVol = pcsw_tb.Text
+			If pcsw1_chk.Checked = True Then
+				PCSWVol = "1"
+			End If
+			If pcsw2_chk.Checked = True Then
+				PCSWVol = "2"
+			End If
 		End If
 
 		If regVolPCSW_ddl.SelectedIndex <> 0 Then
@@ -522,11 +638,17 @@ Public Class Volunteer_Database
 			PCSWReg = "None"
 		End If
 
+
 		'Check knowbe4 bodies
-		If know_tb.Text = "" Then
+		If know1_chk.Checked = False And know2_chk.Checked = False Then
 			KnowVol = "0"
 		Else
-			KnowVol = know_tb.Text
+			If know1_chk.Checked = True Then
+				KnowVol = "1"
+			End If
+			If know2_chk.Checked = True Then
+				KnowVol = "2"
+			End If
 		End If
 
 		If regVolKnow_ddl.SelectedIndex <> 0 Then
@@ -535,11 +657,17 @@ Public Class Volunteer_Database
 			KnowReg = "None"
 		End If
 
+
 		'Check bucs bodies
-		If bucs_tb.Text = "" Then
+		If bucs1_chk.Checked = False And bucs2_chk.Checked = False Then
 			BucsVol = "0"
 		Else
-			BucsVol = bucs_tb.Text
+			If bucs1_chk.Checked = True Then
+				BucsVol = "1"
+			End If
+			If bucs2_chk.Checked = True Then
+				BucsVol = "2"
+			End If
 		End If
 
 		If regVolBucs_ddl.SelectedIndex <> 0 Then
@@ -548,11 +676,21 @@ Public Class Volunteer_Database
 			BucsReg = "None"
 		End If
 
+
 		'Check rays bodies
-		If rays_tb.Text = "" Then
+		If rays1_chk.Checked = False And rays2_chk.Checked = False And rays3_chk.Checked = False Then
 			RaysVol = "0"
 		Else
-			RaysVol = rays_tb.Text
+			If rays1_chk.Checked = True Then
+				RaysVol = "1"
+			End If
+			If rays2_chk.Checked = True Then
+				RaysVol = "2"
+			End If
+			If rays3_chk.Checked = True Then
+				RaysVol = "3"
+			End If
+
 		End If
 
 		If regVolRays_ddl.SelectedIndex <> 0 Then
@@ -562,10 +700,18 @@ Public Class Volunteer_Database
 		End If
 
 		'Check times bodies
-		If times_tb.Text = "" Then
+		If times1_chk.Checked = False And times2_chk.Checked = False And times3_chk.Checked = False Then
 			TimesVol = "0"
 		Else
-			TimesVol = times_tb.Text
+			If times1_chk.Checked = True Then
+				TimesVol = "1"
+			End If
+			If times2_chk.Checked = True Then
+				TimesVol = "2"
+			End If
+			If times3_chk.Checked = True Then
+				TimesVol = "3"
+			End If
 		End If
 
 		If regVolTimes_ddl.SelectedIndex <> 0 Then
@@ -575,10 +721,19 @@ Public Class Volunteer_Database
 		End If
 
 		'Check td synnex bodies
-		If td_tb.Text = "" Then
+		If td1_chk.Checked = False And td2_chk.Checked = False And td3_chk.Checked = False Then
 			TDVol = "0"
 		Else
-			TDVol = td_tb.Text
+			If td1_chk.Checked = True Then
+				TDVol = "1"
+			End If
+			If td2_chk.Checked = True Then
+				TDVol = "2"
+			End If
+			If td3_chk.Checked = True Then
+				TDVol = "3"
+			End If
+
 		End If
 
 		If regVolTD_ddl.SelectedIndex <> 0 Then
@@ -588,10 +743,16 @@ Public Class Volunteer_Database
 		End If
 
 		'Check pcu bodies
-		If pcu_tb.Text = "" Then
+		If pcu1_chk.Checked = False And pcu2_chk.Checked = False Then
 			PCUVol = "0"
 		Else
-			PCUVol = pcu_tb.Text
+			If pcu1_chk.Checked = True Then
+				PCUVol = "1"
+			End If
+			If pcu2_chk.Checked = True Then
+				PCUVol = "2"
+			End If
+
 		End If
 
 		If regVolPCU_ddl.SelectedIndex <> 0 Then
@@ -653,7 +814,7 @@ Public Class Volunteer_Database
 
 			cmd.ExecuteNonQuery()
 
-			error_lbl.Text = "Successfully updated volunteer check in for " & VisitDate
+			error_lbl.Text = "Successfully updated volunteer check in for " & VisitDate.ToString()
 
 			cmd.Dispose()
 			con.Close()
@@ -662,39 +823,24 @@ Public Class Volunteer_Database
 			Exit Sub
 		End Try
 
-		cmd.Dispose()
-		con.Close()
+		'Refresh page
+		Dim meta As New HtmlMeta()
+		meta.HttpEquiv = "Refresh"
+		meta.Content = "3;url=volunteer_database.aspx"
+		Me.Page.Controls.Add(meta)
 
 	End Sub
 
-	Sub Textboxes()
+	Sub Checkboxes()
 		Dim count As Integer = 1
 		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(visitDate_tb.Text)
 
-		'Clear text boxes
-		bucs_tb.Text = ""
-		rays_tb.Text = ""
-		cvs_tb.Text = ""
-		kanes_tb.Text = ""
-		bic_tb.Text = ""
-		td_tb.Text = ""
-		hsn_tb.Text = ""
-		bbb_tb.Text = ""
-		astro_tb.Text = ""
-		ditek_tb.Text = ""
-		ach_tb.Text = ""
-		baycare_tb.Text = ""
-		city_tb.Text = ""
-		dali_tb.Text = ""
-		duke_tb.Text = ""
-		mcdonalds_tb.Text = ""
-		mix_tb.Text = ""
-		pcsw_tb.Text = ""
-		pcu_tb.Text = ""
-		know_tb.Text = ""
-		times_tb.Text = ""
-		ups_tb.Text = ""
-		united_tb.Text = ""
+		'Clear checkboxes
+		For Each cBox As Control In checkIn_div.Controls
+			If TypeOf cBox Is CheckBox Then
+				CType(cBox, CheckBox).Checked = False
+			End If
+		Next
 
 		'Reset DDLs
 		regVolAch_ddl.SelectedIndex = 0
@@ -750,7 +896,8 @@ Public Class Volunteer_Database
 
 								Select Case businessCount_ddl.SelectedValue
 									Case "1"
-										bucs_tb.Enabled = True
+										bucs1_chk.Enabled = True
+										bucs2_chk.Enabled = True
 										regVolBucs_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -767,7 +914,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "2"
-										rays_tb.Enabled = True
+										rays1_chk.Enabled = True
+										rays2_chk.Enabled = True
+										rays3_chk.Enabled = True
 										regVolRays_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -784,7 +933,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "3"
-										cvs_tb.Enabled = True
+										cvs1_chk.Enabled = True
+										cvs2_chk.Enabled = True
+										cvs3_chk.Enabled = True
 										regVolCVS_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -801,7 +952,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "5"
-										kanes_tb.Enabled = True
+										kanes1_chk.Enabled = True
+										kanes2_chk.Enabled = True
 										regVolKanes_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -818,7 +970,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "6"
-										bic_tb.Enabled = True
+										bic1_chk.Enabled = True
+										bic2_chk.Enabled = True
+										bic3_chk.Enabled = True
 										regVolBic_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -835,7 +989,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "7"
-										td_tb.Enabled = True
+										td1_chk.Enabled = True
+										td2_chk.Enabled = True
+										td3_chk.Enabled = True
 										regVolTD_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -852,7 +1008,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "8"
-										hsn_tb.Enabled = True
+										hsn1_chk.Enabled = True
+										hsn2_chk.Enabled = True
 										regVolHSN_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -869,7 +1026,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "9"
-										bbb_tb.Enabled = True
+										bbb1_chk.Enabled = True
+										bbb2_chk.Enabled = True
 										regVolBBB_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -886,7 +1044,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "10"
-										astro_tb.Enabled = True
+										astro1_chk.Enabled = True
+										astro2_chk.Enabled = True
 										regVolAstro_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -903,7 +1062,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "11"
-										ditek_tb.Enabled = True
+										ditek1_chk.Enabled = True
+										ditek2_chk.Enabled = True
 										regVolDitek_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -920,7 +1080,10 @@ Public Class Volunteer_Database
 										End If
 
 									Case "12"
-										ach_tb.Enabled = True
+										ach1_chk.Enabled = True
+										ach2_chk.Enabled = True
+										ach3_chk.Enabled = True
+										ach4_chk.Enabled = True
 										regVolAch_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -937,7 +1100,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "13"
-										baycare_tb.Enabled = True
+										baycare1_chk.Enabled = True
+										baycare2_chk.Enabled = True
 										regVolBaycare_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -954,7 +1118,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "14"
-										city_tb.Enabled = True
+										city1_chk.Enabled = True
+										city2_chk.Enabled = True
+										city3_chk.Enabled = True
 										regVolCity_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -971,7 +1137,7 @@ Public Class Volunteer_Database
 										End If
 
 									Case "15"
-										dali_tb.Enabled = True
+										dali_chk.Enabled = True
 										regVolDali_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -988,7 +1154,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "16"
-										duke_tb.Enabled = True
+										duke1_chk.Enabled = True
+										duke2_chk.Enabled = True
 										regVolDuke_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1005,7 +1172,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "17"
-										mcdonalds_tb.Enabled = True
+										mcd1_chk.Enabled = True
+										mcd2_chk.Enabled = True
+										mcd3_chk.Enabled = True
 										regVolMcdonalds_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1022,7 +1191,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "18"
-										mix_tb.Enabled = True
+										mix1_chk.Enabled = True
+										mix2_chk.Enabled = True
 										regVolMix_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1039,7 +1209,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "19"
-										pcsw_tb.Enabled = True
+										pcsw1_chk.Enabled = True
+										pcsw2_chk.Enabled = True
 										regVolPCSW_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1056,7 +1227,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "20"
-										pcu_tb.Enabled = True
+										pcu1_chk.Enabled = True
+										pcu2_chk.Enabled = True
 										regVolPCU_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1073,7 +1245,8 @@ Public Class Volunteer_Database
 										End If
 
 									Case "21"
-										know_tb.Enabled = True
+										know1_chk.Enabled = True
+										know2_chk.Enabled = True
 										regVolKnow_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1090,7 +1263,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "22"
-										times_tb.Enabled = True
+										times1_chk.Enabled = True
+										times2_chk.Enabled = True
+										times3_chk.Enabled = True
 										regVolTimes_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1107,7 +1282,7 @@ Public Class Volunteer_Database
 										End If
 
 									Case "23"
-										ups_tb.Enabled = True
+										ups_chk.Enabled = True
 										regVolUPS_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1124,7 +1299,9 @@ Public Class Volunteer_Database
 										End If
 
 									Case "24"
-										united_tb.Enabled = True
+										uw1_chk.Enabled = True
+										uw2_chk.Enabled = True
+										uw3_chk.Enabled = True
 										regVolUnited_ddl.Enabled = True
 
 										'Set color of text based on school assigned
@@ -1274,31 +1451,16 @@ Public Class Volunteer_Database
 	Sub LoadVolCheckIn(VisitDate As String)
 		Dim VIDOfDate As Integer = VisitData.GetVisitIDFromDate(VisitDate)
 		Dim CheckInSQL As String = "SELECT * FROM volunteersCheckIn WHERE visitID = '" & VIDOfDate & "'"
+		Dim AchVol, AchReg, AstVol, AstReg, BayVol, BayReg, BBBVol, BBBReg, BicVol, BicReg, CitVol, CitReg, MixVol, MixReg, UPSVol, UPSReg, CVSVol, CVSReg, DitVol,
+		DitReg, DukeVol, DukeReg, HSNVol, HSNReg, KanesVol, KanesReg, McDVol, McDReg, UWVol, UWReg, DaliVol, DaliReg, PCSWVol, PCSWReg, KnowVol,
+		KnowReg, BucsVol, BucsReg, RaysVol, RaysReg, TimesVol, TimesReg, TDVol, TDReg, PCUVol, PCUReg As String
 
-		'Clear text boxes
-		bucs_tb.Text = ""
-		rays_tb.Text = ""
-		cvs_tb.Text = ""
-		kanes_tb.Text = ""
-		bic_tb.Text = ""
-		td_tb.Text = ""
-		hsn_tb.Text = ""
-		bbb_tb.Text = ""
-		astro_tb.Text = ""
-		ditek_tb.Text = ""
-		ach_tb.Text = ""
-		baycare_tb.Text = ""
-		city_tb.Text = ""
-		dali_tb.Text = ""
-		duke_tb.Text = ""
-		mcdonalds_tb.Text = ""
-		mix_tb.Text = ""
-		pcsw_tb.Text = ""
-		pcu_tb.Text = ""
-		know_tb.Text = ""
-		times_tb.Text = ""
-		ups_tb.Text = ""
-		united_tb.Text = ""
+		'Clear checkboxes
+		For Each cBox As Control In checkIn_div.Controls
+			If TypeOf cBox Is CheckBox Then
+				CType(cBox, CheckBox).Checked = False
+			End If
+		Next
 
 		'Reset DDLs
 		regVolAch_ddl.SelectedIndex = 0
@@ -1325,9 +1487,9 @@ Public Class Volunteer_Database
 		regVolUnited_ddl.SelectedIndex = 0
 		regVolUPS_ddl.SelectedIndex = 0
 
-		'Load data from volunteers Check in table and assign it to the textboxes and DDLs
-		Try
-			con.ConnectionString = connection_string
+		'Load data from volunteers Check in table and assign it to the variables and DDLs
+		'Try
+		con.ConnectionString = connection_string
 			con.Open()
 			cmd.CommandText = CheckInSQL
 			cmd.Connection = con
@@ -1335,51 +1497,51 @@ Public Class Volunteer_Database
 
 			If dr.HasRows Then
 				While dr.Read()
-					ach_tb.Text = dr("achVol").ToString
+					AchVol = dr("achVol").ToString
 					regVolAch_ddl.SelectedValue = dr("achReg").ToString
-					astro_tb.Text = dr("astroVol").ToString
+					AstVol = dr("astroVol").ToString
 					regVolAstro_ddl.SelectedValue = dr("astroReg").ToString
-					baycare_tb.Text = dr("baycareVol").ToString
+					BayVol = dr("baycareVol").ToString
 					regVolBaycare_ddl.SelectedValue = dr("baycareReg").ToString
-					bbb_tb.Text = dr("bbbVol").ToString
+					BBBVol = dr("bbbVol").ToString
 					regVolBBB_ddl.SelectedValue = dr("bbbReg").ToString
-					bic_tb.Text = dr("bicVol").ToString
+					BicVol = dr("bicVol").ToString
 					regVolBic_ddl.SelectedValue = dr("bicReg").ToString
-					city_tb.Text = dr("cityVol").ToString
+					CitVol = dr("cityVol").ToString
 					regVolCity_ddl.SelectedValue = dr("cityReg").ToString
-					cvs_tb.Text = dr("cvsVol").ToString
+					CVSVol = dr("cvsVol").ToString
 					regVolCVS_ddl.SelectedValue = dr("cvsReg").ToString
-					ditek_tb.Text = dr("ditekVol").ToString
+					DitVol = dr("ditekVol").ToString
 					regVolDitek_ddl.SelectedValue = dr("ditekReg").ToString
-					duke_tb.Text = dr("dukeVol").ToString
+					DukeVol = dr("dukeVol").ToString
 					regVolDuke_ddl.SelectedValue = dr("dukeReg").ToString
-					kanes_tb.Text = dr("kanesVol").ToString
+					KanesVol = dr("kanesVol").ToString
 					regVolKanes_ddl.SelectedValue = dr("kanesReg").ToString
-					know_tb.Text = dr("knowVol").ToString
+					KnowVol = dr("knowVol").ToString
 					regVolKnow_ddl.SelectedValue = dr("knowReg").ToString
-					dali_tb.Text = dr("daliVol").ToString
+					DaliVol = dr("daliVol").ToString
 					regVolDali_ddl.SelectedValue = dr("daliReg").ToString
-					mcdonalds_tb.Text = dr("mcdVol").ToString
+					McDVol = dr("mcdVol").ToString
 					regVolMcdonalds_ddl.SelectedValue = dr("mcdReg").ToString
-					mix_tb.Text = dr("mixVol").ToString
+					MixVol = dr("mixVol").ToString
 					regVolMix_ddl.SelectedValue = dr("mixReg").ToString
-					pcu_tb.Text = dr("pcuVol").ToString
+					PCUVol = dr("pcuVol").ToString
 					regVolPCU_ddl.SelectedValue = dr("pcuReg").ToString
-					pcsw_tb.Text = dr("pcswVol").ToString
+					PCSWVol = dr("pcswVol").ToString
 					regVolPCSW_ddl.SelectedValue = dr("pcswReg").ToString
-					bucs_tb.Text = dr("tbbucsVol").ToString
+					BucsVol = dr("tbbucsVol").ToString
 					regVolBucs_ddl.SelectedValue = dr("tbbucsReg").ToString
-					rays_tb.Text = dr("tbraysVol").ToString
+					RaysVol = dr("tbraysVol").ToString
 					regVolRays_ddl.SelectedValue = dr("tbraysReg").ToString
-					times_tb.Text = dr("tbtimesVol").ToString
+					TimesVol = dr("tbtimesVol").ToString
 					regVolTimes_ddl.SelectedValue = dr("tbtimesReg").ToString
-					td_tb.Text = dr("tdVol").ToString
+					TDVol = dr("tdVol").ToString
 					regVolTD_ddl.SelectedValue = dr("tdReg").ToString
-					ups_tb.Text = dr("upsVol").ToString
+					UPSVol = dr("upsVol").ToString
 					regVolUPS_ddl.SelectedValue = dr("upsReg").ToString
-					united_tb.Text = dr("unitedVol").ToString
+					UWVol = dr("unitedVol").ToString
 					regVolUnited_ddl.SelectedValue = dr("unitedReg").ToString
-					hsn_tb.Text = dr("hsnVol").ToString
+					HSNVol = dr("hsnVol").ToString
 					regVolHSN_ddl.SelectedValue = dr("hsnReg").ToString
 				End While
 
@@ -1394,13 +1556,233 @@ Public Class Volunteer_Database
 			cmd.Dispose()
 			con.Close()
 
-		Catch
-			error_lbl.Text = "Error in LoadData(). Could not load volunteer check in information."
-			Exit Sub
-		End Try
+			'Catch
+			'	error_lbl.Text = "Error in LoadData(). Could not load volunteer check in information."
+			'	Exit Sub
+			'End Try
 
-		cmd.Dispose()
+			cmd.Dispose()
 		con.Close()
+
+		'Assign values to checkboxes
+		Select Case AchVol
+			Case "1"
+				ach1_chk.Checked = True
+			Case "2"
+				ach1_chk.Checked = True
+				ach2_chk.Checked = True
+			Case "3"
+				ach1_chk.Checked = True
+				ach2_chk.Checked = True
+				ach3_chk.Checked = True
+			Case "4"
+				ach1_chk.Checked = True
+				ach2_chk.Checked = True
+				ach3_chk.Checked = True
+				ach4_chk.Checked = True
+		End Select
+
+		Select Case AstVol
+			Case "1"
+				astro1_chk.Checked = True
+			Case "2"
+				astro1_chk.Checked = True
+				astro2_chk.Checked = True
+		End Select
+
+		Select Case BayVol
+			Case "1"
+				baycare1_chk.Checked = True
+			Case "2"
+				baycare1_chk.Checked = True
+				baycare2_chk.Checked = True
+		End Select
+
+		Select Case BBBVol
+			Case "1"
+				bbb1_chk.Checked = True
+			Case "2"
+				bbb1_chk.Checked = True
+				bbb2_chk.Checked = True
+		End Select
+
+		Select Case BicVol
+			Case "1"
+				bic1_chk.Checked = True
+			Case "2"
+				bic1_chk.Checked = True
+				bic2_chk.Checked = True
+			Case "3"
+				bic1_chk.Checked = True
+				bic2_chk.Checked = True
+				bic3_chk.Checked = True
+		End Select
+
+		Select Case CitVol
+			Case "1"
+				city1_chk.Checked = True
+			Case "2"
+				city1_chk.Checked = True
+				city2_chk.Checked = True
+			Case "3"
+				city1_chk.Checked = True
+				city2_chk.Checked = True
+				city3_chk.Checked = True
+		End Select
+
+		Select Case MixVol
+			Case "1"
+				mix1_chk.Checked = True
+			Case "2"
+				mix1_chk.Checked = True
+				mix2_chk.Checked = True
+		End Select
+
+		Select Case UPSVol
+			Case "1"
+				ups_chk.Checked = True
+		End Select
+
+		Select Case CVSVol
+			Case "1"
+				cvs1_chk.Checked = True
+			Case "2"
+				cvs1_chk.Checked = True
+				cvs2_chk.Checked = True
+			Case "3"
+				cvs1_chk.Checked = True
+				cvs2_chk.Checked = True
+				cvs3_chk.Checked = True
+		End Select
+
+		Select Case DitVol
+			Case "1"
+				ditek1_chk.Checked = True
+			Case "2"
+				ditek1_chk.Checked = True
+				ditek2_chk.Checked = True
+		End Select
+
+		Select Case DukeVol
+			Case "1"
+				duke1_chk.Checked = True
+			Case "2"
+				duke1_chk.Checked = True
+				duke2_chk.Checked = True
+		End Select
+
+		Select Case HSNVol
+			Case "1"
+				hsn1_chk.Checked = True
+			Case "2"
+				hsn1_chk.Checked = True
+				hsn2_chk.Checked = True
+		End Select
+
+		Select Case KanesVol
+			Case "1"
+				kanes1_chk.Checked = True
+			Case "2"
+				kanes1_chk.Checked = True
+				kanes2_chk.Checked = True
+		End Select
+
+		Select Case McDVol
+			Case "1"
+				mcd1_chk.Checked = True
+			Case "2"
+				mcd1_chk.Checked = True
+				mcd2_chk.Checked = True
+			Case "3"
+				mcd1_chk.Checked = True
+				mcd2_chk.Checked = True
+				mcd3_chk.Checked = True
+		End Select
+
+		Select Case UWVol
+			Case "1"
+				uw1_chk.Checked = True
+			Case "2"
+				uw1_chk.Checked = True
+				uw2_chk.Checked = True
+			Case "3"
+				uw1_chk.Checked = True
+				uw2_chk.Checked = True
+				uw3_chk.Checked = True
+		End Select
+
+		Select Case DaliVol
+			Case "1"
+				dali_chk.Checked = True
+		End Select
+
+		Select Case PCSWVol
+			Case "1"
+				pcsw1_chk.Checked = True
+			Case "2"
+				pcsw1_chk.Checked = True
+				pcsw2_chk.Checked = True
+		End Select
+
+		Select Case KnowVol
+			Case "1"
+				know1_chk.Checked = True
+			Case "2"
+				know1_chk.Checked = True
+				know2_chk.Checked = True
+		End Select
+
+		Select Case BucsVol
+			Case "1"
+				bucs1_chk.Checked = True
+			Case "2"
+				bucs1_chk.Checked = True
+				bucs2_chk.Checked = True
+		End Select
+
+		Select Case RaysVol
+			Case "1"
+				rays1_chk.Checked = True
+			Case "2"
+				rays1_chk.Checked = True
+				rays2_chk.Checked = True
+			Case "3"
+				rays1_chk.Checked = True
+				rays2_chk.Checked = True
+				rays3_chk.Checked = True
+		End Select
+
+		Select Case TimesVol
+			Case "1"
+				times1_chk.Checked = True
+			Case "2"
+				times1_chk.Checked = True
+				times2_chk.Checked = True
+			Case "3"
+				times1_chk.Checked = True
+				times2_chk.Checked = True
+				times3_chk.Checked = True
+		End Select
+
+		Select Case TDVol
+			Case "1"
+				td1_chk.Checked = True
+			Case "2"
+				td1_chk.Checked = True
+				td2_chk.Checked = True
+			Case "3"
+				td1_chk.Checked = True
+				td2_chk.Checked = True
+				td3_chk.Checked = True
+		End Select
+
+		Select Case PCUVol
+			Case "1"
+				pcu1_chk.Checked = True
+			Case "2"
+				pcu1_chk.Checked = True
+				pcu2_chk.Checked = True
+		End Select
 
 	End Sub
 
@@ -1668,9 +2050,8 @@ Public Class Volunteer_Database
 	Protected Sub checkIn_btn_Click(sender As Object, e As EventArgs) Handles checkIn_btn.Click
 		If checkIn_div.Visible = False Then
 			checkIn_div.Visible = True
-			Textboxes()
-		Else
-			checkIn_div.Visible = False
+			addVol_div.Visible = False
+			Checkboxes()
 		End If
 	End Sub
 
@@ -1706,11 +2087,8 @@ Public Class Volunteer_Database
 	Protected Sub addVol_btn_Click(sender As Object, e As EventArgs) Handles addVol_btn.Click
 		'Reveal add volunteer section if not revealed
 		If addVol_div.Visible = False Then
-			addVol_btn.Text = "Hide New Volunteer"
 			addVol_div.Visible = True
-		Else
-			addVol_div.Visible = False
-			addVol_btn.Text = "Add New Volunteer"
+			checkIn_div.Visible = False
 		End If
 	End Sub
 
@@ -1763,4 +2141,425 @@ Public Class Volunteer_Database
 	End Sub
 
 
+
+	Protected Sub ach1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles ach1_chk.CheckedChanged
+		If ach1_chk.Checked = False Then
+			ach1_chk.Checked = False
+			ach2_chk.Checked = False
+			ach3_chk.Checked = False
+			ach4_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub ach2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles ach2_chk.CheckedChanged
+		If ach2_chk.Checked = True Then
+			ach1_chk.Checked = True
+		Else
+			ach2_chk.Checked = False
+			ach3_chk.Checked = False
+			ach4_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub ach3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles ach3_chk.CheckedChanged
+		If ach3_chk.Checked = True Then
+			ach1_chk.Checked = True
+			ach2_chk.Checked = True
+		Else
+			ach3_chk.Checked = False
+			ach4_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub ach4_chk_CheckedChanged(sender As Object, e As EventArgs) Handles ach4_chk.CheckedChanged
+		If ach4_chk.Checked = True Then
+			ach1_chk.Checked = True
+			ach2_chk.Checked = True
+			ach3_chk.Checked = True
+		Else
+			ach4_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub astro1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles astro1_chk.CheckedChanged
+		If astro1_chk.Checked = False Then
+			astro1_chk.Checked = False
+			astro2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub astro2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles astro2_chk.CheckedChanged
+		If astro2_chk.Checked = True Then
+			astro1_chk.Checked = True
+		Else
+			astro1_chk.Checked = False
+			astro2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub baycare1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles baycare1_chk.CheckedChanged
+		If baycare1_chk.Checked = False Then
+			baycare1_chk.Checked = False
+			baycare2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub baycare2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles baycare2_chk.CheckedChanged
+		If baycare2_chk.Checked = True Then
+			baycare1_chk.Checked = True
+		Else
+			baycare2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bbb1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bbb1_chk.CheckedChanged
+		If bbb1_chk.Checked = False Then
+			bbb1_chk.Checked = False
+			bbb2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bbb2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bbb2_chk.CheckedChanged
+		If bbb2_chk.Checked = True Then
+			bbb1_chk.Checked = True
+		Else
+			bbb2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bic1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bic1_chk.CheckedChanged
+		If bic1_chk.Checked = False Then
+			bic1_chk.Checked = False
+			bic2_chk.Checked = False
+			bic3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bic2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bic2_chk.CheckedChanged
+		If bic2_chk.Checked = True Then
+			bic1_chk.Checked = True
+		Else
+			bic2_chk.Checked = False
+			bic3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bic3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bic3_chk.CheckedChanged
+		If bic3_chk.Checked = True Then
+			bic1_chk.Checked = True
+			bic2_chk.Checked = True
+		Else
+			bic3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub city1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles city1_chk.CheckedChanged
+		If city1_chk.Checked = False Then
+			city1_chk.Checked = False
+			city2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub city2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles city2_chk.CheckedChanged
+		If city2_chk.Checked = True Then
+			city1_chk.Checked = True
+		Else
+			city2_chk.Checked = False
+			city3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub city3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles city3_chk.CheckedChanged
+		If city3_chk.Checked = True Then
+			city1_chk.Checked = True
+			city2_chk.Checked = True
+		Else
+			city3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub mix1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles mix1_chk.CheckedChanged
+		If mix1_chk.Checked = False Then
+			mix1_chk.Checked = False
+			mix2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub mix2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles mix2_chk.CheckedChanged
+		If mix2_chk.Checked = True Then
+			mix1_chk.Checked = True
+		Else
+			mix2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub cvs1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles cvs1_chk.CheckedChanged
+		If cvs1_chk.Checked = False Then
+			cvs1_chk.Checked = False
+			cvs2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub cvs2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles cvs2_chk.CheckedChanged
+		If cvs2_chk.Checked = True Then
+			cvs1_chk.Checked = True
+		Else
+			cvs2_chk.Checked = False
+			cvs3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub cvs3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles cvs3_chk.CheckedChanged
+		If cvs3_chk.Checked = True Then
+			cvs1_chk.Checked = True
+			cvs2_chk.Checked = True
+		Else
+			cvs3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub ditek1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles ditek1_chk.CheckedChanged
+		If ditek1_chk.Checked = False Then
+			ditek1_chk.Checked = False
+			ditek2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub ditek2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles ditek2_chk.CheckedChanged
+		If ditek2_chk.Checked = True Then
+			ditek1_chk.Checked = True
+		Else
+			ditek2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub duke1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles duke1_chk.CheckedChanged
+		If duke1_chk.Checked = False Then
+			duke1_chk.Checked = False
+			duke2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub duke2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles duke2_chk.CheckedChanged
+		If duke2_chk.Checked = True Then
+			duke1_chk.Checked = True
+		Else
+			duke2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub hsn1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles hsn1_chk.CheckedChanged
+		If hsn1_chk.Checked = False Then
+			hsn1_chk.Checked = False
+			hsn2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub hsn2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles hsn2_chk.CheckedChanged
+		If hsn2_chk.Checked = True Then
+			hsn1_chk.Checked = True
+		Else
+			hsn2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub kanes1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles kanes1_chk.CheckedChanged
+		If kanes1_chk.Checked = False Then
+			kanes1_chk.Checked = False
+			kanes2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub kanes2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles kanes2_chk.CheckedChanged
+		If kanes2_chk.Checked = True Then
+			kanes1_chk.Checked = True
+		Else
+			kanes2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub mcd1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles mcd1_chk.CheckedChanged
+		If mcd1_chk.Checked = False Then
+			mcd1_chk.Checked = False
+			mcd2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub mcd2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles mcd2_chk.CheckedChanged
+		If mcd2_chk.Checked = True Then
+			mcd1_chk.Checked = True
+		Else
+			mcd2_chk.Checked = False
+			mcd3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub mcd3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles mcd3_chk.CheckedChanged
+		If mcd3_chk.Checked = True Then
+			mcd1_chk.Checked = True
+			mcd2_chk.Checked = True
+		Else
+			mcd3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub uw1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles uw1_chk.CheckedChanged
+		If uw1_chk.Checked = False Then
+			uw1_chk.Checked = False
+			uw2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub uw2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles uw2_chk.CheckedChanged
+		If uw2_chk.Checked = True Then
+			uw1_chk.Checked = True
+		Else
+			uw2_chk.Checked = False
+			uw3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub uw3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles uw3_chk.CheckedChanged
+		If uw3_chk.Checked = True Then
+			uw1_chk.Checked = True
+			uw2_chk.Checked = True
+		Else
+			uw3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub pcsw1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles pcsw1_chk.CheckedChanged
+		If pcsw1_chk.Checked = False Then
+			pcsw1_chk.Checked = False
+			pcsw2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub pcsw2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles pcsw2_chk.CheckedChanged
+		If pcsw2_chk.Checked = True Then
+			pcsw1_chk.Checked = True
+		Else
+			pcsw2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub know1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles know1_chk.CheckedChanged
+		If know1_chk.Checked = False Then
+			know1_chk.Checked = False
+			know2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub know2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles know2_chk.CheckedChanged
+		If know2_chk.Checked = True Then
+			know1_chk.Checked = True
+		Else
+			know2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bucs1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bucs1_chk.CheckedChanged
+		If bucs1_chk.Checked = False Then
+			bucs1_chk.Checked = False
+			bucs2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub bucs2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles bucs2_chk.CheckedChanged
+		If bucs2_chk.Checked = True Then
+			bucs1_chk.Checked = True
+		Else
+			bucs2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub rays1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles rays1_chk.CheckedChanged
+		If rays1_chk.Checked = False Then
+			rays1_chk.Checked = False
+			rays2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub rays2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles rays2_chk.CheckedChanged
+		If rays2_chk.Checked = True Then
+			rays1_chk.Checked = True
+		Else
+			rays2_chk.Checked = False
+			rays3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub rays3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles rays3_chk.CheckedChanged
+		If rays3_chk.Checked = True Then
+			rays1_chk.Checked = True
+			rays2_chk.Checked = True
+		Else
+			rays3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub times1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles times1_chk.CheckedChanged
+		If times1_chk.Checked = False Then
+			times1_chk.Checked = False
+			times2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub times2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles times2_chk.CheckedChanged
+		If times2_chk.Checked = True Then
+			times1_chk.Checked = True
+		Else
+			times2_chk.Checked = False
+			times3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub times3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles times3_chk.CheckedChanged
+		If times3_chk.Checked = True Then
+			times1_chk.Checked = True
+			times2_chk.Checked = True
+		Else
+			times3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub td1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles td1_chk.CheckedChanged
+		If td1_chk.Checked = False Then
+			td1_chk.Checked = False
+			td2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub td2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles td2_chk.CheckedChanged
+		If td2_chk.Checked = True Then
+			td1_chk.Checked = True
+		Else
+			td2_chk.Checked = False
+			td3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub td3_chk_CheckedChanged(sender As Object, e As EventArgs) Handles td3_chk.CheckedChanged
+		If td3_chk.Checked = True Then
+			td1_chk.Checked = True
+			td2_chk.Checked = True
+		Else
+			td3_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub pcu1_chk_CheckedChanged(sender As Object, e As EventArgs) Handles pcu1_chk.CheckedChanged
+		If pcu1_chk.Checked = False Then
+			pcu1_chk.Checked = False
+			pcu2_chk.Checked = False
+		End If
+	End Sub
+
+	Protected Sub pcu2_chk_CheckedChanged(sender As Object, e As EventArgs) Handles pcu2_chk.CheckedChanged
+		If pcu2_chk.Checked = True Then
+			pcu1_chk.Checked = True
+		Else
+			pcu2_chk.Checked = False
+		End If
+	End Sub
 End Class
