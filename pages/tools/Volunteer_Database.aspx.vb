@@ -41,6 +41,9 @@ Public Class Volunteer_Database
 			'Populate regular volunteer DDLs
 			PopulateVolDDL()
 
+			'Populate business name DDL for adding volunteers
+			BusinessData.LoadBusinessNamesDDL(businessName_ddl)
+
 			'Load data
 			LoadData()
 		End If
@@ -67,6 +70,11 @@ Public Class Volunteer_Database
 			'Load volunteer check in information
 			LoadVolCheckIn(visitDate_tb.Text)
 
+			'Make add volunteer visit date text box and label disabled
+			addVolDate_a.Visible = False
+			visitDateVol_tb.Visible = False
+			addVolSpace_a.Visible = False
+
 			'Load schools scheduled to come on this 
 
 			'Check if a specific school of scheduled visit date have been selected
@@ -84,6 +92,9 @@ Public Class Volunteer_Database
 				TotalSVHours(visitDate_tb.Text)
 			End If
 
+			'Make volunteers div visible
+			viewVol_div.Visible = True
+
 		Else
 			SQLStatement = SQLStatement
 		End If
@@ -95,6 +106,11 @@ Public Class Volunteer_Database
 
 			'Load total SV hours
 			TotalSVHours(Nothing, schoolName_ddl.SelectedValue)
+
+			'Make add volunteer visit date text box and label visible
+			addVolDate_a.Visible = True
+			visitDateVol_tb.Visible = True
+			addVolSpace_a.Visible = True
 
 			'Check if specific visit date of selected school has been selected
 			If schoolVisitDate_ddl.SelectedIndex <> 0 Then
@@ -109,6 +125,9 @@ Public Class Volunteer_Database
 				'Load total SV hours
 				TotalSVHours(Nothing, schoolName_ddl.SelectedValue)
 			End If
+
+			'Make volunteers div visible
+			viewVol_div.Visible = True
 
 		Else
 			SQLStatement = SQLStatement
@@ -156,9 +175,6 @@ Public Class Volunteer_Database
 
 		End If
 
-		'error_lbl.Text = SQLStatement
-		'Exit Sub
-
 		'Load data from volunteers table
 		Try
 			con.Close()
@@ -200,6 +216,8 @@ Public Class Volunteer_Database
 		Dim VisitDate As String
 		Dim VIDOfDate As Integer
 		Dim PR As String
+		Dim BusinessName As String
+		Dim BusinessID As Integer
 		Dim SVHours As String = "6"
 		Dim Regular As Boolean = False
 		Dim Notes As String
@@ -234,30 +252,18 @@ Public Class Volunteer_Database
 				Exit Sub
 			Else
 				VisitDate = schoolVisitDate_ddl.SelectedValue
+				VIDOfDate = VisitData.GetVisitIDFromDate(VisitDate)
 				SchoolName = schoolName_ddl.SelectedValue
 				SchoolID = SchoolData.GetSchoolID(SchoolName)
 
 			End If
 		End If
 
-		'Assign regular variable
-		'If regularVol_ddl.SelectedValue = "No" Then
-		'	Regular = False
-		'Else
-		'	Regular = True
-		'End If
-
-		'If SV Hours is blank
-		'If svHours_tb.Text = Nothing Or svHours_tb.Text = "" Then
-		'	SVHours = "0"
-		'Else
-		'	SVHours = svHours_tb.Text
-		'End If
-
 		'Assign fields to variables
 		FirstName = firstName_tb.Text
 		LastName = lastName_tb.Text
-		'BusinessName = businessName_ddl.SelectedValue
+		BusinessName = businessName_ddl.SelectedValue
+		BusinessID = BusinessData.GetBusinessID(BusinessName)
 		PR = pr_ddl.SelectedValue
 		Notes = notes_tb.Text
 
@@ -273,7 +279,7 @@ Public Class Volunteer_Database
 			con.Open()
 			cmd.Connection = con
 			cmd.CommandText = "INSERT INTO volunteers (visitID, schoolID, businessID, firstName, lastName, pr, svHours, notes, regular)
-                                VALUES ('" & VIDOfDate & "', '" & SchoolID & "', '0', '" & FirstName & "', '" & LastName & "', '" & PR & "', '" & SVHours & "', '" & Notes & "', '" & Regular & "')"
+                                VALUES ('" & VIDOfDate & "', '" & SchoolID & "', '" & BusinessID & "', '" & FirstName & "', '" & LastName & "', '" & PR & "', '" & SVHours & "', '" & Notes & "', '" & Regular & "')"
 
 			cmd.ExecuteNonQuery()
 			cmd.Dispose()
@@ -1488,8 +1494,8 @@ Public Class Volunteer_Database
 		regVolUPS_ddl.SelectedIndex = 0
 
 		'Load data from volunteers Check in table and assign it to the variables and DDLs
-		'Try
-		con.ConnectionString = connection_string
+		Try
+			con.ConnectionString = connection_string
 			con.Open()
 			cmd.CommandText = CheckInSQL
 			cmd.Connection = con
@@ -1556,12 +1562,12 @@ Public Class Volunteer_Database
 			cmd.Dispose()
 			con.Close()
 
-			'Catch
-			'	error_lbl.Text = "Error in LoadData(). Could not load volunteer check in information."
-			'	Exit Sub
-			'End Try
+		Catch
+			error_lbl.Text = "Error in LoadData(). Could not load volunteer check in information."
+			Exit Sub
+		End Try
 
-			cmd.Dispose()
+		cmd.Dispose()
 		con.Close()
 
 		'Assign values to checkboxes
@@ -1891,12 +1897,17 @@ Public Class Volunteer_Database
 						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
 						End If
+
+						ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
 					Case 3
 						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
 						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(2).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
 						End If
+
+						ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+						ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
 					Case 4
 						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
@@ -1905,6 +1916,10 @@ Public Class Volunteer_Database
 						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(3).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
 						End If
+
+						ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+						ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+						ddlSchool.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
 					Case 5
 						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
@@ -1915,6 +1930,11 @@ Public Class Volunteer_Database
 						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(4).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#afc3ff")
 						End If
+
+						ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+						ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+						ddlSchool.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+						ddlSchool.Items(4).Attributes.CssStyle.Add("background-color", "#afc3ff")
 					Case 6
 						If lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(1).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
@@ -1927,6 +1947,12 @@ Public Class Volunteer_Database
 						ElseIf lblSchool = SchoolData.GetSchoolID(visitDateSchools_ddl.Items(5).Value) Then
 							e.Row.BackColor = ColorTranslator.FromHtml("#ffd8af")
 						End If
+
+						ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+						ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+						ddlSchool.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+						ddlSchool.Items(4).Attributes.CssStyle.Add("background-color", "#afc3ff")
+						ddlSchool.Items(5).Attributes.CssStyle.Add("background-color", "#ffd8af")
 				End Select
 			End If
 
@@ -2106,6 +2132,33 @@ Public Class Volunteer_Database
 			'Add an option to show all the volunteers for a visit date
 			visitDateSchools_ddl.Items.RemoveAt(0)
 			visitDateSchools_ddl.Items.Insert(0, "Show All Schools")
+
+			'Assign colors to school DDL text
+			Select Case visitDateSchools_ddl.Items.Count
+				Case 1
+					'The first item in the DDL is the Show All Schools item, does not need to change color
+				Case 2
+					visitDateSchools_ddl.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+				Case 3
+					visitDateSchools_ddl.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					visitDateSchools_ddl.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+
+				Case 4
+					visitDateSchools_ddl.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					visitDateSchools_ddl.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+					visitDateSchools_ddl.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+				Case 5
+					visitDateSchools_ddl.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					visitDateSchools_ddl.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+					visitDateSchools_ddl.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+					visitDateSchools_ddl.Items(4).Attributes.CssStyle.Add("background-color", "#afc3ff")
+				Case 6
+					visitDateSchools_ddl.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					visitDateSchools_ddl.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+					visitDateSchools_ddl.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+					visitDateSchools_ddl.Items(4).Attributes.CssStyle.Add("background-color", "#afc3ff")
+					visitDateSchools_ddl.Items(5).Attributes.CssStyle.Add("background-color", "#ffd8af")
+			End Select
 
 			'Load data
 			LoadData()

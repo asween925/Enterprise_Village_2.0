@@ -72,7 +72,7 @@ Public Class Class_BusinessData
 		Dim I As String = ""
 		Dim C As String = ""
 		Dim B As String = ""
-		Dim logoRoot As String = "~/media/Logos/"
+		Dim logoRoot As String = "~/media/Logos/" & BusinessID & "/"
 
 		con.ConnectionString = connection_string
 		con.Open()

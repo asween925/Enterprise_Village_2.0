@@ -62,7 +62,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="School Assigned">
                         <ItemTemplate>
-                            <asp:Label ID="schoolName_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="false"></asp:Label>
+                            <asp:Label ID="schoolName_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="true"></asp:Label>
                             <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" AutoPostBack="false" ReadOnly="false">
                             </asp:DropDownList>
                         </ItemTemplate>

@@ -16,6 +16,7 @@ Public Class Open_Closed_Status
 	Dim Visits As New Class_VisitData
 	Dim SH As New Class_SchoolHeader
 	Dim Businesses As New Class_BusinessData
+	Dim SchoolData As New Class_SchoolData
 	Dim VisitID As Integer = Visits.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -54,15 +55,15 @@ Public Class Open_Closed_Status
 		error_lbl.Text = ""
 
 		'Load open closed status
-		Try
-			Businesses.LoadOpenClosedStatus(VIDOfDate, OnlineBanking_dgv)
-		Catch
-			error_lbl.Text = "Error in LoadData() SQL query. Check query or visitInfo / businessVisitInfo in DB."
-			Exit Sub
-		End Try
+		'Try
+		Businesses.LoadOpenClosedStatus(VIDOfDate, OnlineBanking_dgv)
+			'Catch
+			'	error_lbl.Text = "Error in LoadData() SQL query. Check query or visitInfo / businessVisitInfo in DB."
+			'	Exit Sub
+			'End Try
 
-		'Highlight row being edited
-		For Each row As GridViewRow In OnlineBanking_dgv.Rows
+			'Highlight row being edited
+			For Each row As GridViewRow In OnlineBanking_dgv.Rows
 			If row.RowIndex = OnlineBanking_dgv.EditIndex Then
 				row.BackColor = ColorTranslator.FromHtml("#ebe534")
 				'row.BorderColor = ColorTranslator.FromHtml("#ffffff")
@@ -185,37 +186,100 @@ Public Class Open_Closed_Status
 	End Sub
 
 	Private Sub OnlineBanking_dgv_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles OnlineBanking_dgv.RowDataBound
-		Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(date_tb.Text)
-
 		If (e.Row.RowType = DataControlRowType.DataRow) Then
-
-			'School Dropdown
-			Dim ddlSchool1 As DropDownList = CType(e.Row.FindControl("schoolName_ddl"), DropDownList)
+			Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(date_tb.Text)
+			Dim ddlSchool As DropDownList = CType(e.Row.FindControl("schoolName_ddl"), DropDownList)
 			Dim tbVMin As TextBox = CType(e.Row.FindControl("vMinCount_tb"), TextBox)
 			Dim tbVMax As TextBox = CType(e.Row.FindControl("vMaxCount_tb"), TextBox)
+			Dim lblSchool As String = CType(e.Row.FindControl("schoolName_lbl"), Label).Text
 
-			ddlSchool1.DataSource = GetData("SELECT s.id as 'id', s.schoolName as 'schoolName'
+			'School Dropdown
+			ddlSchool.DataSource = GetData("SELECT s.id as 'id', s.schoolName as 'schoolName'
 											  FROM schoolInfo s 
 											  JOIN visitInfo v ON v.school = s.id OR v.school2 = s.id OR v.school3 = s.id OR v.school4 = s.id OR v.school5 = s.id
 											  WHERE v.visitDate='" & date_tb.Text & "'
 											  ORDER BY schoolName ")
-			ddlSchool1.DataTextField = "schoolName"
-			ddlSchool1.DataValueField = "id"
-			ddlSchool1.DataBind()
-			Dim lblSchool1 As String = CType(e.Row.FindControl("schoolName_lbl"), Label).Text
-			If lblSchool1 = Nothing Then
-				ddlSchool1.Items.FindByValue("A1 No School Scheduled").Selected = True
+			ddlSchool.DataTextField = "schoolName"
+			ddlSchool.DataValueField = "id"
+			ddlSchool.DataBind()
+
+			If lblSchool = Nothing Then
+				ddlSchool.Items.FindByValue("A1 No School Scheduled").Selected = True
 			Else
-				ddlSchool1.Items.FindByValue(lblSchool1).Selected = True
+				ddlSchool.Items.FindByValue(lblSchool).Selected = True
 			End If
 
-			'ddlSchool1.Items.Insert(0, "")
-			Dim school1ID As String = ddlSchool1.SelectedValue
+			'Assign different colors for visit dates
+			Select Case ddlSchool.Items.Count
+				Case 2
+					If lblSchool = ddlSchool.Items(1).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+					End If
+
+					ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+				Case 3
+					If lblSchool = ddlSchool.Items(1).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+					ElseIf lblSchool = ddlSchool.Items(2).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+					End If
+
+					ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+				Case 4
+					If lblSchool = ddlSchool.Items(1).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+					ElseIf lblSchool = ddlSchool.Items(2).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+					ElseIf lblSchool = ddlSchool.Items(3).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
+					End If
+
+					ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+					ddlSchool.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+				Case 5
+					If lblSchool = ddlSchool.Items(1).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+					ElseIf lblSchool = ddlSchool.Items(2).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+					ElseIf lblSchool = ddlSchool.Items(3).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
+					ElseIf lblSchool = ddlSchool.Items(4).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afc3ff")
+					End If
+
+					ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+					ddlSchool.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+					ddlSchool.Items(4).Attributes.CssStyle.Add("background-color", "#afc3ff")
+				Case 6
+					If lblSchool = ddlSchool.Items(1).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afd8ff")
+					ElseIf lblSchool = ddlSchool.Items(2).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#ffafaf")
+					ElseIf lblSchool = ddlSchool.Items(3).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#bfffaf")
+					ElseIf lblSchool = ddlSchool.Items(4).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#afc3ff")
+					ElseIf lblSchool = ddlSchool.Items(5).Value Then
+						e.Row.BackColor = ColorTranslator.FromHtml("#ffd8af")
+					End If
+
+					ddlSchool.Items(1).Attributes.CssStyle.Add("background-color", "#afd8ff")
+					ddlSchool.Items(2).Attributes.CssStyle.Add("background-color", "#ffafaf")
+					ddlSchool.Items(3).Attributes.CssStyle.Add("background-color", "#bfffaf")
+					ddlSchool.Items(4).Attributes.CssStyle.Add("background-color", "#afc3ff")
+					ddlSchool.Items(5).Attributes.CssStyle.Add("background-color", "#ffd8af")
+			End Select
+
+			'ddlSchool.Items.Insert(0, "")
+			Dim school1ID As String = ddlSchool.SelectedValue
 
 			'Open Status Dropdown
 			Dim ddlopenstatus As DropDownList = CType(e.Row.FindControl("openstatus_ddl"), DropDownList)
 
-			ddlSchool1.DataSource = GetData("SELECT DISTINCT openstatus 
+			ddlSchool.DataSource = GetData("SELECT DISTINCT openstatus 
 											  FROM businessVisitInfo 
 											  WHERE visitID='" & VIDOfDate & "'")
 			ddlopenstatus.DataTextField = "schoolName"
@@ -224,17 +288,18 @@ Public Class Open_Closed_Status
 			Dim lblopenstatus As String = CType(e.Row.FindControl("openstatus_lbl"), Label).Text
 			If lblopenstatus = True Then
 				ddlopenstatus.Items.FindByValue("Open").Selected = True
-				ddlSchool1.Visible = True
+				ddlSchool.Visible = True
 				tbVMin.Visible = True
 				tbVMax.Visible = True
 			Else
 				ddlopenstatus.Items.FindByValue("Closed").Selected = True
-				ddlSchool1.Visible = False
+				ddlSchool.Visible = False
 				tbVMin.Visible = False
 				tbVMax.Visible = False
 			End If
 
 		End If
+
 	End Sub
 
 	Private Sub OnlineBanking_dgv_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) Handles OnlineBanking_dgv.RowCancelingEdit

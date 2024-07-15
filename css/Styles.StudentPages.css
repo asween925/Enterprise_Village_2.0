@@ -992,6 +992,307 @@ h3 {
         user-select: none;
     }
 
+.CS_BG_astro {
+    background: linear-gradient(16deg, rgba(255,14,152,1) 0%, rgba(255,226,226,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_astro#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_baycare {
+    background: linear-gradient(63deg, rgba(2,179,255,1) 0%, rgba(30,80,119,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_baycare#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_boa {
+    background: linear-gradient(63deg, rgba(255,0,0,1) 0%, rgba(255,136,136,1) 46%, rgba(34,69,255,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_boa#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_boa2 {
+    background: linear-gradient(222deg, rgba(247,201,158,1) 25%, rgba(180,122,218,1) 50%, rgba(45,74,255,1) 90%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_boa2#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_bbb {
+    background: linear-gradient(56deg, rgba(255,255,255,1) 0%, rgba(33,107,133,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_bbb#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_city {
+    background: linear-gradient(63deg, rgba(101,161,186,1) 0%, rgba(144,161,175,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_city#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_mix {
+    background: linear-gradient(174deg, rgba(3,239,255,1) 0%, rgba(255,97,203,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_mix#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_pcsw {
+    background: linear-gradient(27deg, rgba(255,215,74,1) 4%, rgba(13,85,177,1) 41%, rgba(255,72,72,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_pcsw#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_duke {
+    background: linear-gradient(174deg, rgba(43,193,255,1) 0%, rgba(50,103,148,1) 46%, rgba(0,161,5,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_duke#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_dali {
+    background: linear-gradient(to top, rgb(209, 52, 31), rgb(255, 253, 254)), rgb(3, 0, 209);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_dali#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_times {
+    background: linear-gradient(27deg, rgba(22,87,47,1) 52%, rgba(204,199,199,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_times#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_united {
+    background: linear-gradient(27deg, rgba(0,79,148,1) 29%, rgba(227,179,61,1) 76%, rgba(244,65,68,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_united#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_ups {
+    background: linear-gradient(27deg, rgba(22,87,47,1) 52%, rgba(204,199,199,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_ups#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_bucs {
+    background: linear-gradient(16deg, rgba(231,206,206,1) 0%, rgba(255,0,0,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_bucs#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_rays {
+    background: linear-gradient(163deg, rgba(29,91,205,1) 50%, rgba(245,223,99,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_rays#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_cvs {
+    background: linear-gradient(163deg, rgba(255,0,0,1) 0%, rgba(255,255,255,1) 84%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_cvs#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_kanes {
+    background: linear-gradient(214deg, rgba(0,186,255,1) 0%, rgba(203,203,203,1) 68%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_kanes#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_bic {
+    background: linear-gradient(27deg, rgba(255,255,255,1) 0%, rgba(0,80,175,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_bic#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_td {
+    background: linear-gradient(152deg, rgba(0,110,104,1) 0%, rgba(7,191,255,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_td#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_hsn {
+    background: linear-gradient(56deg, rgba(255,255,255,1) 0%, rgba(0,157,212,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_hsn#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_ditek {
+    background: linear-gradient(27deg, rgba(255,255,255,1) 29%, rgba(228,209,26,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_ditek#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_mcd {
+    background: linear-gradient(16deg, rgba(237,57,57,1) 46%, rgba(255,248,0,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_mcd#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+.CS_BG_knowbe4 {
+    background: linear-gradient(27deg, rgba(255,117,0,1) 47%, rgba(255,255,255,1) 100%);
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+    .CS_BG_knowbe4#contentCS_div.active {
+        filter: blur(20px);
+        pointer-events: none;
+        user-select: none;
+    }
+
+
+
 .CS_Header {
     margin-left: 10px;
     margin-right: 10px;
@@ -1007,7 +1308,6 @@ h3 {
     transform: scale(.8,.8);
     display: block;
     float: right;
-    box-shadow: 0px 5px 10px -1px #515151;
 }
 
 .CS_Header_Title {

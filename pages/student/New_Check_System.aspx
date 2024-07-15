@@ -28,7 +28,7 @@
                         <asp:Label ID="businessNameHeader_lbl" runat="server"></asp:Label>
                         Payroll Check System</a>
                     <a>
-                        <asp:Image ID="imgStartLogo" runat="server" ImageUrl="~/Media/FP_Logo.png" CssClass="CS_Header_Logo" /></a>
+                        <asp:Image ID="imgStartLogo" runat="server" CssClass="CS_Header_Logo" /></a>
                 </div>
 
                 <%--Link Buttons--%>
@@ -46,9 +46,9 @@
                         <asp:ListItem>Payroll 3</asp:ListItem>
                     </asp:DropDownList>
                 </div>
-                <br />
-                <asp:Label ID="error_lbl" runat="server" Font-Bold="true" Font-Size="X-Large"></asp:Label>
-                <br />
+
+                <%--Error Label--%>
+                <asp:Label ID="error_lbl" runat="server" Font-Bold="true" Font-Size="X-Large" ></asp:Label>
 
                 <!-- Check Carousel -->
                 <div class="gallery js-flickity">
@@ -90,7 +90,7 @@
                     </div>
 
                     <%--Check 2--%>
-                    <div id="check2_div" runat="server" class="gallery-cell" visible="true">
+                    <div id="check2_div" runat="server" class="gallery-cell" visible="false">
                         <div class="CS_Main_Check">
                             <asp:Label ID="businessName2_lbl" runat="server" Text="Business Name" CssClass="CS_Main_Check_BizName"></asp:Label>&ensp;<asp:Label ID="currentDate2_lbl" runat="server" Text="1/01/2021" CssClass="CS_Main_Check_Date" Font-Underline="True"></asp:Label>
                             <br />
@@ -127,7 +127,7 @@
                     </div>
 
                     <%--Check 3--%>
-                    <div id="check3_div" runat="server" class="gallery-cell" visible="true">
+                    <div id="check3_div" runat="server" class="gallery-cell" visible="false">
                         <div class="CS_Main_Check">
                             <asp:Label ID="businessName3_lbl" runat="server" Text="Business Name" CssClass="CS_Main_Check_BizName"></asp:Label>&ensp;<asp:Label ID="currentDate3_lbl" runat="server" Text="1/01/2021" CssClass="CS_Main_Check_Date" Font-Underline="True"></asp:Label>
                             <br />
@@ -164,7 +164,7 @@
                     </div>
                     
                     <%--Check 4--%>
-                    <div id="check4_div" runat="server" class="gallery-cell" visible="true">
+                    <div id="check4_div" runat="server" class="gallery-cell" visible="false">
                         <div class="CS_Main_Check">
                             <asp:Label ID="businessName4_lbl" runat="server" Text="Business Name" CssClass="CS_Main_Check_BizName"></asp:Label>&ensp;<asp:Label ID="currentDate4_lbl" runat="server" Text="1/01/2021" CssClass="CS_Main_Check_Date" Font-Underline="True"></asp:Label>
                             <br />
@@ -206,7 +206,7 @@
                 <div id="buttons_div" runat="server" class="CS_Buttons_Div">
                     <asp:Button ID="save_btn" runat="server" CssClass="save_check" Text="Save Check" />&ensp;<asp:Button ID="delete_btn" runat="server" CssClass="delete_button" Text="Delete Check" />
                     <br />
-                    <asp:Button ID="print_btn" runat="server" CssClass="print_button2" Text="Print" />
+                    <asp:Button ID="print_btn" runat="server" CssClass="print_button2" Text="Print" Visible="false" />
                 </div>
                 <br />
 

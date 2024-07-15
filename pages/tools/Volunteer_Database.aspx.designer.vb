@@ -59,6 +59,15 @@ Partial Public Class Volunteer_Database
     Protected WithEvents businessAssignments_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''refresh_btn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents refresh_btn As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''error_lbl control.
     '''</summary>
     '''<remarks>
@@ -176,6 +185,24 @@ Partial Public Class Volunteer_Database
     Protected WithEvents addVol_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''addVolDate_a control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents addVolDate_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
+    '''addVolBiz_a control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents addVolBiz_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
     '''visitDateVol_tb control.
     '''</summary>
     '''<remarks>
@@ -183,6 +210,15 @@ Partial Public Class Volunteer_Database
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents visitDateVol_tb As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''addVolSpace_a control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents addVolSpace_a As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
     '''businessName_ddl control.
@@ -1236,15 +1272,6 @@ Partial Public Class Volunteer_Database
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents sortBy_btn As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''refresh_btn control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents refresh_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''volunteers_dgv control.
