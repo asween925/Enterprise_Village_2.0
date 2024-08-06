@@ -182,8 +182,8 @@
                 </h5>
 
                 <h6 class="check_second6">2.&nbsp;<asp:CheckBox ID="CheckBox1" runat="server" />&nbsp;&nbsp;Print and sign first set of <strong>Salary Checks </strong>(Payroll 1)</h6>
-                <h6 class="check_second6">3.&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" />&nbsp;&nbsp;Print <strong>DIRECT DEPOSIT</strong> receipts (Payroll 2)</h6>
-                <h6 class="check_second6">4.&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" />&nbsp;&nbsp;Print and sign third set of <strong>Salary Checks </strong>(Payroll 3)</h6>
+                <h6 class="check_second6">3.&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" />&nbsp;&nbsp;Print and sign third set of <strong>Salary Checks </strong>(Payroll 2)</h6>
+                <h6 class="check_second6">4.&nbsp;<asp:CheckBox ID="CheckBox4" runat="server" />&nbsp;&nbsp;Print <strong>DIRECT DEPOSIT</strong> receipts (Payroll 3)</h6>
 
                 <h5 style="border-top: 1px dashed black">After printing and signing ALL of the Salary Checks, click on the yellow 'Business Operating Checks' button.</h5>
 

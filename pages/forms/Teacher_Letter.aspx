@@ -72,7 +72,7 @@
                     Number of students: <asp:Label ID="studentCount_lbl" runat="server" Font-Bold="true"></asp:Label>
                     <%--<asp:Label ID="sharingSchool_lbl" runat="server" Font-Bold="true"></asp:Label>--%>
                 </p>
-                <p style="font-weight: bold;">1. Your assigned businesses will be marked with a "✓". Never close a business without contacting tomlinl@pcsb.org OR campognif@pcsb.org.</p>
+                <p style="font-weight: bold;">1. Your assigned businesses will be marked with a "✓". Never close a business without contacting tomlinl@pcsb.org.</p>
                 
                 <div>
                     <table class="tg">                      
@@ -94,13 +94,13 @@
                             </tr>
                             <tr>
                                 <td class="tg-hfk9"><asp:CheckBox ID="bbb_chk" runat="server" Text="BBB" Enabled="false"/></td>
-                                <td class="tg-hfk9"><asp:CheckBox ID="hsn_chk" runat="server" Text="HSN" Enabled="false"/></td>
+                                <td class="tg-hfk9"><asp:CheckBox ID="hsn_chk" runat="server" Text="PCS Newsroom" Enabled="false"/></td>
                                 <td class="tg-hfk9"><asp:CheckBox ID="rays_chk" runat="server" Text="Tampa Bay Rays" Enabled="false"/></td>
                             </tr>
                             <tr>
                                 <td class="tg-hfk9"><asp:CheckBox ID="bic_chk" runat="server" Text="Koozie Group" Enabled="false"/></td>
                                 <td class="tg-hfk9"><asp:CheckBox ID="kanes_chk" runat="server" Text="Kane's" Enabled="false"/></td>
-                                <td class="tg-hfk9"><asp:CheckBox ID="times_chk" runat="server" Text="Tampa Bay Times" Enabled="false"/></td>
+                                <td class="tg-hfk9"><asp:CheckBox ID="times_chk" runat="server" Text="Power Design" Enabled="false"/></td>
                             </tr>
                             <tr>
                                 <td class="tg-hfk9"><asp:CheckBox ID="city_chk" runat="server" Text="City Hall" Enabled="false"/></td>
@@ -123,7 +123,7 @@
 
                 <%--PCSB Teacher Letter--%>
                 <div runat="server" id="inCountyLetter_div" visible="false">
-                    <p><a style="font-weight: bold;">2. CHECKBOOKS AND DEBIT CARDS:</a> Check registers will be sent along with your cirriculum. Checkbooks should have the student's name and account number written on the front, along with their <a style="font-weight: bold;">first Deposit Ticket filled out and the Net Deposit recorded in their registers.</a> Debit cards and name tags will be issued at EV.</p>
+                    <p><a style="font-weight: bold;">2. CHECKBOOKS AND DEBIT CARDS:</a> Check registers will be sent along with your curriculum. Checkbooks should have the student's name and account number written on the front, along with their <a style="font-weight: bold;">first Deposit Ticket filled out and the Net Deposit recorded in their registers.</a> Debit cards and name tags will be issued at EV.</p>
                     <p><a style="font-weight: bold;">3. REMINDERS:</a> Each manager should have an envelope that contains their completed Business Workbook & checkbooks. Teaching Kits must be returned in tact on the day of your visit. <a style="font-weight: bold;">Directions for submitting student articles/stories are in the Teaching Kit.</a></p>
                     <p>
                         <a style="font-weight: bold;">4. VOLUNTEER TRAINING WILL BE HELD THE MORNING OF YOUR VISIT!</a> We ask that volunteers arrive 15 minutes before:
@@ -140,7 +140,7 @@
                     </p>
                     <p>
                         <a style="font-weight: bold;">6. STUDENT BUSINESS ASSIGNMENTS AND ACCOUNT NUMBERS:</a>
-                        Please go to <a style="font-weight: bold;">https://ev.pcsb.org</a> and log in with your standard <a style="font-weight: bold;">PCSB username and password</a> to assign your students to businesses and receive their individual account numbers. <a style="font-weight: bold;">Non-PCSB teachers</a> will log in with the assigned password emailed to them. This needs to be completed BEFORE YOUR SCHEDULED REPLY BY DATE (found above). If you exceed this date, please contact us.
+                        Please go to <a style="font-weight: bold;">https://ev.pcsb.org</a> and log in with your standard <a style="font-weight: bold;">PCSB email and password</a> to assign your students to businesses and receive their individual account numbers. <a style="font-weight: bold;">Non-PCSB teachers</a> will log in with the assigned password emailed to them. This needs to be completed BEFORE YOUR SCHEDULED REPLY BY DATE (found above). If you exceed this date, please contact us.
                     </p>
                     <%--<p>
                         <a style="font-weight: bold;">7. TRANSPORTATION:</a>
@@ -152,7 +152,7 @@
 
                 <%--Out of County Letter--%>
                 <div runat="server" id="outOfCountyLetter_div" visible="false">
-                    <p><a style="font-weight: bold;">2. CHECKBOOKS AND DEBIT CARDS:</a> Check registers will be sent along with your cirriculum. Checkbooks should have the student's name and account number written on the front, along with their <a style="font-weight: bold;">first Deposit Ticket filled out and the Net Deposit recorded in their registers.</a> Debit cards and name tags will be issued at EV.</p>
+                    <p><a style="font-weight: bold;">2. CHECKBOOKS AND DEBIT CARDS:</a> Check registers will be sent along with your curriculum. Checkbooks should have the student's name and account number written on the front, along with their <a style="font-weight: bold;">first Deposit Ticket filled out and the Net Deposit recorded in their registers.</a> Debit cards and name tags will be issued at EV.</p>
                     <p><a style="font-weight: bold;">3. REMINDERS:</a> Each manager should have an envelope that contains their completed Business Workbook & checkbooks. Business Assignment Sheets and Volunteer List should be returned by the reply date below. All Volunteers must be Level 1 approved and all Teaching Kits must be returned in tact on the day of your visit.<a style="font-weight: bold;">****Directions for submitting student articles/stories are in the Teaching Kit.</a></p>
                     <p>
                         <a style="font-weight: bold;">4. VOLUNTEER TRAINING WILL BE HELD THE MORNING OF YOUR VISIT!</a> We ask that volunteers arrive 15 minutes before:
@@ -169,7 +169,7 @@
                     </p>
                     <p>
                         <a style="font-weight: bold;">6. STUDENT BUSINESS ASSIGNMENTS AND ACCOUNT NUMBERS:</a>
-                        Please go to <a style="font-weight: bold;">https://ev.pcsb.org</a> and log in with your standard <a style="font-weight: bold;">PCSB username and password</a> to assign your students to businesses and receive their individual account numbers. <a style="font-weight: bold;">Non-PCSB teachers</a> will log in with the assigned password emailed to them. This needs to be completed BEFORE YOUR SCHEDULED REPLY BY DATE (found above). If you exceed this date, please contact us.
+                        Please go to <a style="font-weight: bold;">https://ev.pcsb.org</a> and log in with your standard <a style="font-weight: bold;">PCSB email and password</a> to assign your students to businesses and receive their individual account numbers. <a style="font-weight: bold;">Non-PCSB teachers</a> will log in with the assigned password emailed to them. This needs to be completed BEFORE YOUR SCHEDULED REPLY BY DATE (found above). If you exceed this date, please contact us.
                     </p>
                     <p>
                         <a style="font-weight: bold;">7. TRANSPORTATION:</a>

@@ -48,8 +48,8 @@ Public Class Class_TransactionData
         con.ConnectionString = connection_string
         con.Open()
         cmd.CommandText = "SELECT t.ID,t.transactiontimestamp,b.businessName,CONCAT('$',t.saleamount + t.saleAmount2 + t.saleAmount3 + t.saleAmount4) AS saleamount FROM Transactions t 
-                            INNER JOIN businessinfo b ON b.ID = t.business
-                            WHERE visitdate ='" & visitID & "' AND employeeNumber ='" & empID & "'"
+                            INNER JOIN businessinfo b ON b.ID = t.businessID
+                            WHERE t.visitID ='" & visitID & "' AND t.accountNumber ='" & empID & "'"
 
         Dim da As New SqlDataAdapter
         da.SelectCommand = cmd

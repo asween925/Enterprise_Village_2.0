@@ -47,12 +47,12 @@
             <asp:Label ID="error_lbl" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="Red"></asp:Label>
             <div class="button_grid__inv">
                     <div class="button_item2">
-                        <asp:LinkButton ID="create_btn" runat="server" PostBackUrl="/create_item.aspx" CssClass="button_inv_home">Create an Item</asp:LinkButton><br />
+                        <asp:LinkButton ID="create_btn" runat="server" PostBackUrl="/pages/inv/create_item.aspx" CssClass="button_inv_home">Create an Item</asp:LinkButton><br />
                         
                     </div>
                 <div class="button_item2">
                     <br />
-                        <asp:LinkButton ID="LinkButton3" runat="server" PostBackUrl="/edit_item.aspx" CssClass="button_inv_home">Edit Item</asp:LinkButton><br />
+                        <asp:LinkButton ID="LinkButton3" runat="server" PostBackUrl="/pages/inv/edit_item.aspx" CssClass="button_inv_home">Edit Item</asp:LinkButton><br />
                 </div>
                 <div class="button_item2">
                     <br />
@@ -60,11 +60,11 @@
                 </div>
                 <div class="button_item2">
                     <br />
-                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="/low_inventory_report.aspx" CssClass="button_inv_home">Low Inventory Report</asp:LinkButton><br />
+                        <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="/pages/inv/low_inventory_report.aspx" CssClass="button_inv_home">Low Inventory Report</asp:LinkButton><br />
                 </div>
                 <div class="button_item2">
                     <br />
-                        <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="/view_all_items.aspx" CssClass="button_inv_home">View All Items</asp:LinkButton><br />
+                        <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="/pages/inv/view_all_items.aspx" CssClass="button_inv_home">View All Items</asp:LinkButton><br />
                 </div>
                 <div class="button_item2">
                     <br />

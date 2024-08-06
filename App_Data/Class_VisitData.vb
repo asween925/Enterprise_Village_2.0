@@ -384,4 +384,26 @@ Public Class Class_VisitData
         End Using
     End Sub
 
+    'Gets the visit ID from a school ID
+    Function GetVisitIDFromSchoolID(SchoolID As Integer)
+        Dim visitIDSQL As String = "SELECT id FROM visitInfo WHERE school = '" & SchoolID & "' OR school2 = '" & SchoolID & "' OR school3 = '" & SchoolID & "' OR school4 = '" & SchoolID & "' OR school5 = '" & SchoolID & "'"
+        Dim returnValue As Integer
+
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.CommandText = visitIDSQL
+        cmd.Connection = con
+        dr = cmd.ExecuteReader
+
+        While dr.Read
+            returnValue = dr("id").ToString
+        End While
+
+        cmd.Dispose()
+        con.Close()
+
+        Return returnValue
+    End Function
+
+
 End Class

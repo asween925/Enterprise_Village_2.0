@@ -83,7 +83,7 @@ Public Class Employee_Management_System_Review
 
         'Load business names into ddl (if they are open for selected visit date)
         Try
-            Businesses.LoadBusinessNamesDDL(business_ddl, True, VIDOfDate)
+            Businesses.LoadBusinessNamesDDL(business_ddl, True, False, VIDOfDate, 0)
         Catch
             error_lbl.Text = "Error in date_ddl. Cannot obtain business names."
             Exit Sub

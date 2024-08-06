@@ -68,16 +68,16 @@ Public Class Account_Summary
         Total_purchases_lbl.Text = totalTransactions.ToString("C")
 
         'Display transaction info
-        Try
-            Transactions_dgv.DataSource = TransactionData.LoadTransactionTable(empID, Visit)
+        'Try
+        Transactions_dgv.DataSource = TransactionData.LoadTransactionTable(empID, Visit)
             Transactions_dgv.DataBind()
-        Catch
-            error2_lbl.Text = "There was an error getting account information, please inform a staff member."
-            Exit Sub
-        End Try
+            'Catch
+            '    error2_lbl.Text = "There was an error getting account information, please inform a staff member."
+            '    Exit Sub
+            'End Try
 
-        'Assign student name and number to labels
-        Name_lbl.Text = Studentinfo.FirstName & " " & Studentinfo.LastName
+            'Assign student name and number to labels
+            Name_lbl.Text = Studentinfo.FirstName & " " & Studentinfo.LastName
         Employee_number_lbl.Text = Studentinfo.AccountNumber
 
         'Get net deposit info

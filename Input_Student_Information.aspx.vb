@@ -11,115 +11,85 @@ Public Class Input_Student_Information
     Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-    Dim schoolID As String
+    Dim con As New SqlConnection
+    Dim cmd As New SqlCommand
+    Dim dr As SqlDataReader
+    Dim VisitID As Integer
+    Dim SchoolID As Integer
+    Dim TeacherID As Integer
+    Dim Visits As New Class_VisitData
+    Dim Schools As New Class_SchoolData
+    Dim Businesses As New Class_BusinessData
+    Dim Students As New Class_StudentData
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim SchoolName As String
+        Dim VisitDate As String
+        Dim replyByDate As Date
+        Dim currentDate As Date = DateTime.Now()
+        Dim result As Integer = DateTime.Compare(currentDate, replyByDate)
+
         'Asks If the session Is still active, If Not, then it will redirect to the login screen
         If Session("LoggedIn") <> "1" Then
-            Response.Redirect("../../default.aspx")
+            Response.Redirect("default.aspx")
         End If
 
         'Get schoolID from URL from login page
-        schoolID = Request.QueryString("b")
+        SchoolID = Request.QueryString("b")
 
-        If schoolID = Nothing Then
-            schoolID = 505
+        'Assign school ID to the blank school name if there is no ID
+        If SchoolID = Nothing Then
+            SchoolID = 505
             Exit Sub
         End If
 
         If Not (IsPostBack) Then
-            Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
-            Dim dr As SqlDataReader
-            Dim sql2 As String = "SELECT FORMAT(visitDate,'MM/dd/yyyy') as visitDate FROM visitinfo ORDER BY visitDate DESC"
-            Dim visitIDSQL As String = "SELECT id FROM visitInfo WHERE school = '" & schoolID & "' OR school2 = '" & schoolID & "' OR school3 = '" & schoolID & "' OR school4 = '" & schoolID & "' OR school5 = '" & schoolID & "' AND visitDate BETWEEN '08-10-2022' AND '07-01-2023'"
 
             'Get visit ID using schoolID from URL
             Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = visitIDSQL
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
-
-                While dr.Read()
-                    visitID_hf.Value = dr("id").ToString
-                    'error_lbl.Text = visitID_hf.Value
-                End While
-
-                cmd.Dispose()
-                con.Close()
-
+                VisitID = Visits.GetVisitIDFromSchoolID(SchoolID)
             Catch
                 error_lbl.Text = "Error in visitIDSQL query. Please use the link below to email us about this issue."
                 Exit Sub
-
             End Try
 
-            'Get School Name
-            Dim schoolNameSQL As String = "SELECT s.SchoolName FROM Schoolinfo s INNER JOIN visitInfo v on s.ID = v.School OR s.id = v.school2 or s.id = v.school3 or s.id = v.school4 or s.id = v.school5 WHERE v.id='" & visitID_hf.Value & "' AND s.id='" & schoolID & "'"
+            'Get School Name        
             Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = schoolNameSQL
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
-
-                While dr.Read()
-                    Schools_lbl.Text = dr("schoolName").ToString & " for "
-                End While
-
-                cmd.Dispose()
-                con.Close()
-
+                SchoolName = Schools.GetSchoolNameFromID(SchoolID) & " for "
             Catch
                 error_lbl.Text = "Error in schoolNameSQL query. Please use the link below to email us about this issue."
                 Exit Sub
             End Try
 
             'Get Visit Date
-            Dim visitDateSQL As String = "SELECT FORMAT(visitDate,'MM/dd/yyyy') as visitDate FROM visitInfo WHERE id='" & visitID_hf.Value & "'"
             Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = visitDateSQL
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
-
-                While dr.Read()
-                    visitDate_lbl.Text = dr("visitDate").ToString
-                End While
-
-                cmd.Dispose()
-                con.Close()
-
+                VisitDate = Visits.GetVisitDateFromID(VisitID)
             Catch
                 error_lbl.Text = "Error in visitDateSQL query. Please use the link below to email us about this issue."
                 Exit Sub
-
             End Try
 
             'Populate the business name DDL
-            Dim businessDDLSQL As String = "SELECT DISTINCT b.Businessname FROM businessinfo b 
-                                          INNER JOIN businessVisitInfo o
-                                          ON o.businessID = b.id
-                                          WHERE o.openstatus='1' AND o.visitID = '" & visitID_hf.Value & "' AND o.schoolID = '" & schoolID & "'
-                                          ORDER BY b.Businessname"
+            'Dim businessDDLSQL As String = "SELECT DISTINCT b.Businessname FROM businessinfo b 
+            'INNER JOIN businessVisitInfo o
+            'ON o.businessID = b.id
+            'WHERE o.openstatus='1' AND o.visitID = '" & visitID_hf.Value & "' AND o.schoolID = '" & SchoolID & "'
+            'ORDER BY b.Businessname"
             Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = businessDDLSQL
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
+                Businesses.LoadBusinessNamesDDL(business_ddl, True, True, VisitID, SchoolID)
+                'con.ConnectionString = connection_string
+                'con.Open()
+                'cmd.CommandText = businessDDLSQL
+                'cmd.Connection = con
+                'dr = cmd.ExecuteReader
 
-                While dr.Read()
-                    business_ddl.Items.Add(dr(0).ToString)
-                End While
-                business_ddl.Items.Insert(0, "")
+                'While dr.Read()
+                '    business_ddl.Items.Add(dr(0).ToString)
+                'End While
+                'business_ddl.Items.Insert(0, "")
 
-                cmd.Dispose()
-                con.Close()
+                'cmd.Dispose()
+                'con.Close()
 
             Catch
                 error_lbl.Text = "Error in businessDDLSQL query. Please use the link below to email us about this issue."
@@ -127,32 +97,16 @@ Public Class Input_Student_Information
             End Try
 
             'Check if reply by date is before the current date logged in.
-            Dim replyByQuery As String = "SELECT replyBy FROM visitInfo WHERE id = '" & visitID_hf.Value & "'"
-            Dim replyByDate As Date
-            Dim currentDate As Date = DateTime.Now()
             Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = replyByQuery
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
+                replyByDate = Visits.LoadVisitInfoFromDate(VisitDate, "replyBy")
 
-                While dr.Read()
-                    replyBy.Value = dr("replyBy").ToString
-                End While
-
-                replyByDate = replyBy.Value
-                Dim result As Integer = DateTime.Compare(currentDate, replyByDate)
-
-                If result > 0 Then
+                If currentDate >= replyByDate Then
+                    'If result > 0 Then
                     business_ddl.Enabled = False
                     submit_btn.Enabled = False
                     error_lbl.Text = "You are no longer able to make changes to your Enterprise Village student list because your selected visit date is only/less than 2 weeks away." & Environment.NewLine & "Please email stavrosinstitute@pcsb.org for more information on this."
                     Exit Sub
                 End If
-
-                cmd.Dispose()
-                con.Close()
 
             Catch
                 error_lbl.Text = "Error with replyBy query. Please use the link below to email us about this issue."
@@ -162,9 +116,9 @@ Public Class Input_Student_Information
 
             'Fill out print table
             Try
-                Dim visitDate As String = visitDate_lbl.Text
                 con.ConnectionString = connection_string
-                Dim sql As String = "    Select s.id, s.firstName, s.lastName, s.accountNumber, b.businessName, sc.schoolName, j.jobTitle
+                Review_sds.ConnectionString = connection_string
+                Review_sds.SelectCommand = "Select s.id, s.firstName, s.lastName, s.accountNumber, b.businessName, sc.schoolName, j.jobTitle
                                 from studentInfo s
                                 inner join businessInfo b 
 	                                on b.id=s.businessID
@@ -174,10 +128,7 @@ Public Class Input_Student_Information
 	                                on v.id=s.visitID
 								inner join schoolInfo sc
 									on s.schoolID = sc.id
-                                        where v.visitDate ='" & visitDate & "' and sc.id='" & schoolID & "' and not b.businessName='Training Business' and not s.firstName IS NULL and not s.lastName IS NULL"
-
-                Review_sds.ConnectionString = connection_string
-                Review_sds.SelectCommand = sql
+                                        where v.id ='" & VisitID & "' and sc.id='" & SchoolID & "' and not b.businessName='Training Business' and not s.firstName IS NULL and not s.lastName IS NULL"
                 employees_dgv.DataSource = Review_sds
                 employees_dgv.DataBind()
                 con.Dispose()
@@ -188,9 +139,46 @@ Public Class Input_Student_Information
                 Exit Sub
             End Try
 
+            'Enable business ddl
             business_ddl.Enabled = True
 
+            'Assign labels
+            visitDate_lbl.Text = VisitDate
+            Schools_lbl.Text = SchoolName
+
         End If
+    End Sub
+
+    Sub loadData()
+        Dim BusinessName As String = business_ddl.SelectedValue
+        Dim BusinessID As Integer = Businesses.GetBusinessID(BusinessName)
+
+        'Clear error label
+        error_lbl.Text = ""
+
+        VisitID = Visits.GetVisitIDFromSchoolID(SchoolID)
+
+        'Load EMS table
+        Students.LoadEMSTable(VisitID, Review_dgv, BusinessID)
+
+        'con.ConnectionString = connection_string
+        'Review_sds.ConnectionString = connection_string
+        'Review_sds.SelectCommand = sql
+        'Review_dgv.DataSource = Review_sds
+        'Review_dgv.DataBind()
+        'con.Dispose()
+        'con.Close()
+        'cmd.Dispose()
+
+        'Highlight row being edited
+        For Each row As GridViewRow In Review_dgv.Rows
+            If row.RowIndex = Review_dgv.EditIndex Then
+                row.BackColor = ColorTranslator.FromHtml("#ebe534")
+                'row.BorderColor = ColorTranslator.FromHtml("#ffffff")
+                row.BorderWidth = 2
+            End If
+        Next
+
     End Sub
 
     Private Sub Review_dgv_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles Review_dgv.RowUpdating
@@ -246,6 +234,7 @@ Public Class Input_Student_Information
         Review_dgv.PageIndex = e.NewPageIndex
         loadData()
     End Sub
+
     Private Sub Review_dgv_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles Review_dgv.RowEditing
         Review_dgv.EditIndex = e.NewEditIndex
         loadData()
@@ -412,42 +401,7 @@ Public Class Input_Student_Information
         Return empID
     End Function
 
-    Sub loadData()
-        Dim visitDate As String = visitDate_lbl.Text
-        Dim businessID As String = business_ddl.SelectedItem.ToString
-        Dim con As New SqlConnection
-        Dim cmd As New SqlCommand
-        con.ConnectionString = connection_string
-        Dim sql As String = "Select s.id, s.firstName, s.lastName, s.accountnumber, b.id as BusinessID,j.id as JobID, b.businessName, s.schoolID as 'schoolID'
-                                from studentInfo s
-                                inner join businessInfo b 
-	                                on b.id=s.businessID
-                                inner join jobs j
-	                                on j.id=s.jobID
-                                inner join visitInfo v
-	                                on v.id=s.visitID
-                                        where v.visitDate ='" & visitDate & "' and b.businessName='" & businessID & "'"
 
-        error_lbl.Text = ""
-
-        Review_sds.ConnectionString = connection_string
-        Review_sds.SelectCommand = sql
-        Review_dgv.DataSource = Review_sds
-        Review_dgv.DataBind()
-        con.Dispose()
-        con.Close()
-        cmd.Dispose()
-
-        'Highlight row being edited
-        For Each row As GridViewRow In Review_dgv.Rows
-            If row.RowIndex = Review_dgv.EditIndex Then
-                row.BackColor = ColorTranslator.FromHtml("#ebe534")
-                'row.BorderColor = ColorTranslator.FromHtml("#ffffff")
-                row.BorderWidth = 2
-            End If
-        Next
-
-    End Sub
 
     Private Sub business_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles business_ddl.SelectedIndexChanged
         If business_ddl.SelectedIndex <> 0 Then
@@ -488,9 +442,8 @@ Public Class Input_Student_Information
     End Sub
 
     Protected Sub logout_btn_Click(sender As Object, e As EventArgs) Handles logout_btn.Click
-
         HttpContext.Current.Session.Abandon()
-        Response.Redirect(".\default.aspx")
+        Response.Redirect("default.aspx")
     End Sub
 
     Protected Sub teacherHome_btn_Click(sender As Object, e As EventArgs) Handles teacherHome_btn.Click

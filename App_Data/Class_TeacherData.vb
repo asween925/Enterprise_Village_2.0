@@ -96,4 +96,29 @@ Public Class Class_TeacherData
 		Return Table
 	End Function
 
+
+	'Get teacher first and last name
+	Function GetTeacherFullName(TeacherID As String)
+		Dim TeacherName As String = ""
+
+		'Get school info from school name
+		con.ConnectionString = connection_string
+		con.Open()
+		cmd.CommandText = "SELECT TRIM(firstName) + ' ' + TRIM(lastName) as teacherName FROM teacherInfo WHERE id = '" & TeacherID & "'"
+		cmd.Connection = con
+		dr = cmd.ExecuteReader
+
+		While dr.Read()
+			TeacherName = dr("teacherName").ToString()
+			cmd.Dispose()
+			con.Close()
+			Return TeacherName
+		End While
+
+		cmd.Dispose()
+		con.Close()
+
+		Return TeacherName
+	End Function
+
 End Class

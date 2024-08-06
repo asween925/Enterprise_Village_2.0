@@ -88,7 +88,7 @@
                 <div id="step2_div" runat="server" visible="false" class="school_visit_section school_visit_section_print">
                     <h3>STEP 2: BOOKKEEPER ONLY <i id="I1" runat="server" visible="false">- COMPLETED</i></h3>
                     <p class="no-print">Last Edited By: <asp:Label ID="lastEdited2_lbl" runat="server" CssClass="no-print"></asp:Label></p>
-                    <asp:CheckBox ID="invoice_chk" runat="server" Text="Invoice # Issued" />&emsp;<asp:CheckBox ID="director_chk" Text="Director's Signature" runat="server" />&emsp;<asp:Label ID="step2Msg_lbl" runat="server" Font-Size="X-Large" ForeColor="Red"></asp:Label>
+                    <asp:CheckBox ID="invoice_chk" runat="server" Text="Invoice # Issued" />&emsp;<asp:CheckBox ID="director_chk" Text="Manager's Signature" runat="server" />&emsp;<asp:Label ID="step2Msg_lbl" runat="server" Font-Size="X-Large" ForeColor="Red"></asp:Label>
                     <br class="no-print"/>
                     <br class="no-print"/>
                     <asp:Button ID="step2Submit_btn" runat="server" Text="Submit" Visible="false" CssClass="button3 button3 no-print" />

@@ -271,10 +271,6 @@ Public Class School_Visit_Checklist
 
         '-----------STEP 3------------
 
-        lastEdited3_lbl.Text = LastEditedBy3 & " " & DateTime.Parse(contractRecieved).ToString("yyyy-MM-dd")
-        invoiceNum_tb.Text = invoiceNum
-        notes_tb.Text = notes
-
         If contractRecieved = Nothing Then
             contractRecieved_tb.Text = ""
         Else
@@ -286,6 +282,11 @@ Public Class School_Visit_Checklist
         Else
             delivery_ddl.SelectedValue = deliveryMethod
         End If
+
+        lastEdited3_lbl.Text = LastEditedBy3 & " " & contractRecieved_tb.Text
+        invoiceNum_tb.Text = invoiceNum
+        notes_tb.Text = notes
+
 
         '-----------STEP 4------------
 

@@ -35,16 +35,21 @@ Public Class Class_BusinessData
 		Return returnBusinessID
 	End Function
 
-	Function LoadBusinessNamesDDL(businessNameDDL As DropDownList, Optional Open As Boolean = False, Optional VisitID As Integer = 0)
+	Function LoadBusinessNamesDDL(businessNameDDL As DropDownList, Optional Open As Boolean = False, Optional Schools As Boolean = False, Optional VisitID As Integer = 0, Optional SchoolID As Integer = 0)
 		Dim SQLStatement As String = "SELECT b.businessName FROM businessInfo b"
 		Dim SQLOpenClause As String = " JOIN businessVisitInfo o ON b.id = o.businessID WHERE o.openstatus=1 AND o.visitID='" & VisitID & "' AND NOT b.id=28 AND NOT b.id=29 ORDER BY b.businessName"
+		Dim SQLSchoolsClause As String = " JOIN businessVisitInfo o ON b.id = o.businessID WHERE o.openstatus=1 AND o.visitID='" & VisitID & "' AND o.schoolID = '" & SchoolID & "' AND NOT b.id=28 AND NOT b.id=29 ORDER BY b.businessName"
 
 		'Clear out teacher and school DDLs
 		businessNameDDL.Items.Clear()
 
 		'If Open is true, add a where clause to only load business names if they are open on the passed through visit ID
 		If Open = True Then
-			SQLStatement = SQLStatement & SQLOpenClause
+			If Schools = True Then
+				SQLStatement = SQLStatement & SQLSchoolsClause
+			Else
+				SQLStatement = SQLStatement & SQLOpenClause
+			End If
 		Else
 			SQLStatement = SQLStatement & " WHERE NOT b.id=28 AND NOT b.id=29 ORDER BY b.businessName"
 		End If
@@ -298,5 +303,56 @@ Public Class Class_BusinessData
 		Return Table
 
 	End Function
+
+	'Get background class from business ID
+	Function GetBackgroundClass(BusinessID As Integer)
+		Dim CssClass As String = ""
+
+		Select Case BusinessID
+			Case 1
+				CssClass = "main_bucs"
+			Case 2
+				CssClass = "main_rays"
+			Case 3
+				CssClass = "main_cvs"
+			Case 5
+				CssClass = "main_kanes"
+			Case 6
+				CssClass = "main_bic"
+			Case 7
+				CssClass = "main_td"
+			Case 8
+				CssClass = "main_hsn"
+			Case 9
+				CssClass = "main_bbb"
+			Case 10
+				CssClass = "main_astro"
+			Case 11
+				CssClass = "main_ditek"
+			Case 12
+				CssClass = "main_boa"
+			Case 13
+				CssClass = "main_baycare"
+			Case 14
+				CssClass = "main_city"
+			Case 16
+				CssClass = "main_duke"
+			Case 17
+				CssClass = "main_mcd"
+			Case 18
+				CssClass = "main_mix"
+			Case 19
+				CssClass = "main_pcsw"
+			Case 21
+				CssClass = "main_knowbe4"
+			Case 22
+				CssClass = "main_times"
+			Case 24
+				CssClass = "main_united"
+		End Select
+
+		Return CssClass
+	End Function
+
 
 End Class

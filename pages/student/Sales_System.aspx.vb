@@ -7,38 +7,34 @@ Public Class Sales_System
     Dim sqldatabase As String = System.Configuration.ConfigurationManager.AppSettings("EV_DB").ToString
     Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
-    Dim DBConnection As New DatabaseConection
+    Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
+    Dim con As New SqlConnection
+    Dim cmd As New SqlCommand
     Dim dr As SqlDataReader
+    Dim DBConnection As New DatabaseConection
     Dim logoRoot As String = "~/media/Logos/"
     Dim decTotal As Decimal
-    Dim VisitID As New Class_VisitData
-    Dim Visit As Integer = VisitID.GetVisitID
+    Dim Visits As New Class_VisitData
+    Dim Businesses As New Class_BusinessData
+    Dim VisitID As Integer = Visits.GetVisitID
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim BusinessID As Integer = Request.QueryString("b")
+        Dim Biz = Businesses.GetBusinessLogos(BusinessID)
+
+        'Put cursor on the account number textbox
         Debit_card_account.Focus()
 
         If Not (IsPostBack) Then
-            Dim businessID As String = Request.QueryString("b")
-            Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
-            Dim con As New SqlConnection
-            Dim cmd As New SqlCommand
-            Dim dr As SqlDataReader
 
-            F2URL.NavigateUrl = "sales_history.aspx?B=" & businessID
-            Dim businessSQL As String = "SELECT logoPath, businessColor, businessName FROM businessinfo WHERE ID='" & businessID & "'"
-            Label_date_time.Text = DateAndTime.Now.ToString("G")
-            If businessID = Nothing Then
-                businessID = 0
-            End If
-
+            'McDonald's Sales
             If businessID = 17 Then
                 label6.Text = "Type account number"
             End If
 
-            'Calls class to pull visitDate
-
-            If Visit <> 0 Then
-                visitdate_hf.Value = Visit
+            'Check if visit is active currently
+            If VisitID <> 0 Then
+                visitdate_hf.Value = VisitID
             Else
                 error_lbl.Text = "No visit date, please go to 'Database Creator' on the 'Tools / Reports' page and create a new school visit date."
                 Debit_card_account.Enabled = False
@@ -51,85 +47,18 @@ Public Class Sales_System
                 F2URL.Enabled = False
             End If
 
-            Try
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.CommandText = businessSQL
-                cmd.Connection = con
-                dr = cmd.ExecuteReader
-
-                While dr.Read()
-                    Dim imagePath As String = logoRoot & dr(0).ToString
-                    Dim bColor As String = dr(1).ToString
-                    BusLogo_img.ImageUrl = imagePath
-                    Me.Title = dr(2).ToString & " Sales System"
-
-                End While
-
-                cmd.Dispose()
-                con.Close()
-
-            Catch
-                error_lbl.Text = "Error in PageLoad. Could not find image path and/or bColor."
-                Exit Sub
-            Finally
-                cmd.Dispose()
-                con.Close()
-
-            End Try
-
-            cmd.Dispose()
-            con.Close()
-
-            Select Case businessID
-                Case 1
-                    sales_system_div.Attributes("class") = "main_bucs"
-                Case 2
-                    sales_system_div.Attributes("class") = "main_rays"
-                Case 3
-                    sales_system_div.Attributes("class") = "main_cvs"
-                Case 5
-                    sales_system_div.Attributes("class") = "main_kanes"
-                Case 6
-                    sales_system_div.Attributes("class") = "main_bic"
-                Case 7
-                    sales_system_div.Attributes("class") = "main_td"
-                Case 8
-                    sales_system_div.Attributes("class") = "main_hsn"
-                Case 9
-                    sales_system_div.Attributes("class") = "main_bbb"
-                Case 10
-                    sales_system_div.Attributes("class") = "main_astro"
-                Case 11
-                    sales_system_div.Attributes("class") = "main_ditek"
-                Case 12
-                    sales_system_div.Attributes("class") = "main_boa"
-                Case 13
-                    sales_system_div.Attributes("class") = "main_baycare"
-                Case 14
-                    sales_system_div.Attributes("class") = "main_city"
-                Case 16
-                    sales_system_div.Attributes("class") = "main_duke"
-                Case 17
-                    sales_system_div.Attributes("class") = "main_mcd"
-                Case 18
-                    sales_system_div.Attributes("class") = "main_mix"
-                Case 19
-                    sales_system_div.Attributes("class") = "main_pcsw"
-                Case 21
-                    sales_system_div.Attributes("class") = "main_knowbe4"
-                Case 22
-                    sales_system_div.Attributes("class") = "main_times"
-                Case 24
-                    sales_system_div.Attributes("class") = "main_united"
-            End Select
+            'Assign labels, buttons, background
+            F2URL.NavigateUrl = "sales_history.aspx?B=" & BusinessID
+            sales_system_div.Attributes("class") = Businesses.GetBackgroundClass(BusinessID)
+            BusLogo_img.ImageUrl = Biz.ImagePath
+            Me.Title = Biz.BusinessName & " Sales System"
+            Label_date_time.Text = DateAndTime.Now.ToString("G")
 
         End If
     End Sub
 
     Protected Sub Enter_account_btn_Click(sender As Object, e As EventArgs) Handles Enter_account_btn.Click
         Dim GetStudentInfo As New Class_StudentData
-        Dim studentInfo = GetStudentInfo.StudentLookup(Visit, Debit_card_account.Text)
         Dim netDeposit As Double = 0.00
         Dim netDeposit1 As Double = 0.00
         Dim netDeposit2 As Double = 0.00
@@ -139,6 +68,7 @@ Public Class Sales_System
         Dim remainingBalance As Double = 0.00
         Dim savings As Double = 0.00
         Dim visitID As Integer = visitdate_hf.Value
+        Dim studentInfo = GetStudentInfo.StudentLookup(visitID, Debit_card_account.Text)
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand

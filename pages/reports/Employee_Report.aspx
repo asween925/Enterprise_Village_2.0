@@ -59,7 +59,7 @@
             <asp:GridView ID="employees_dgv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium" Visible="true" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                 <Columns>
                     <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
-                    <asp:BoundField DataField="employeeNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
+                    <asp:BoundField DataField="accountNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="businessName" HeaderText="Business" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="jobTitle" HeaderText="Job Title" ReadOnly="true" Visible="true" />
                     <asp:BoundField DataField="firstName" HeaderText="First Name" ReadOnly="true" Visible="true" />

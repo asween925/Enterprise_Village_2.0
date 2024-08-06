@@ -22,7 +22,7 @@ Public Class Class_BadgesData
                                         ON bi.id = s.businessID
                                         INNER JOIN jobs j
                                         ON j.id = s.jobID
-                                        WHERE visitID = '" & VisitID & "'"
+                                        WHERE b.visitID = '" & VisitID & "'"
 
         'Check if where clause and order by clause is not blank
         If SQLWhere <> "" Then

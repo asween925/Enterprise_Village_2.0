@@ -11,6 +11,7 @@ Public Class Create_Item
 	Dim DBConnection As New DatabaseConection
 	Dim dr As SqlDataReader
 	Dim VisitID As New Class_VisitData
+	Dim Businesses As New Class_BusinessData
 	Dim Visit As Integer = VisitID.GetVisitID
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -41,6 +42,7 @@ Public Class Create_Item
 	Sub Submit()
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
 		Dim dr As SqlDataReader
+		Dim BusinessID As Integer
 
 		'Check for blanks or errors
 		If itemName_tb.Text = Nothing Or itemName_tb.Text = "" Then
@@ -81,6 +83,13 @@ Public Class Create_Item
 
 			End Using
 
+			'Check if business used ddl is N/A, if so, make the ID 0
+			If businessUsed_ddl.SelectedValue = "N/A" Then
+				BusinessID = 0
+			Else
+				BusinessID = Businesses.GetBusinessID(businessUsed_ddl.SelectedValue)
+			End If
+
 			'Insert data into DB
 			Using cmd As New SqlCommand("INSERT INTO EV_Inventory (
 													 itemName
@@ -108,7 +117,7 @@ Public Class Create_Item
 				cmd.Parameters.Add("@itemCategory", SqlDbType.VarChar).Value = itemCategory_ddl.SelectedValue
 				cmd.Parameters.Add("@itemSubCat", SqlDbType.VarChar).Value = itemSubCat_ddl.SelectedValue
 				cmd.Parameters.Add("@currentLocation", SqlDbType.VarChar).Value = currentLocation_ddl.SelectedValue
-				cmd.Parameters.Add("@businessUsed", SqlDbType.VarChar).Value = businessUsed_ddl.SelectedValue
+				cmd.Parameters.Add("@businessUsed", SqlDbType.Int).Value = BusinessID
 				cmd.Parameters.Add("@onHand", SqlDbType.Int).Value = onHand_tb.Text
 				cmd.Parameters.Add("@source", SqlDbType.VarChar).Value = source_ddl.SelectedValue
 				cmd.Parameters.Add("@merchCode", SqlDbType.VarChar).Value = merchCode_ddl.SelectedValue

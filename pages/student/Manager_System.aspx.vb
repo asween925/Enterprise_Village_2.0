@@ -85,8 +85,8 @@ Public Class Manager_System
             cmd.CommandText = "SELECT i.id, i.itemName, i.usedDaily, i.businessUsed, i.merchCode
                                 FROM EV_Inventory i
                                 INNER JOIN businessInfo b
-                                ON businessUsed = b.businessID
-                                WHERE b.businessID = '" & BusinessID & "'"
+                                ON i.businessUsedID = b.ID
+                                WHERE b.ID = '" & DitekBusinessID & "'"
 
             Dim da As New SqlDataAdapter
             da.SelectCommand = cmd
