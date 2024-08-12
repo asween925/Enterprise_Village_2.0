@@ -308,10 +308,11 @@ Public Class Break_Schedules
 				job2A_p.Visible = True
 				job1B_p.Visible = True
 				job2B_p.Visible = True
+				job3B_p.Visible = True
 				job1C_p.Visible = True
 				job2C_p.Visible = True
 			Case 5 'Kanes
-				Job1A = "Sales Associate #s"
+				Job1A = "Sales Associate #2"
 				Job2A = "Financial Officer"
 				Job1B = "Sales Associate #1"
 				Job2B = "Sales Associate #3"
@@ -413,19 +414,19 @@ Public Class Break_Schedules
 				job2B_p.Visible = True
 				job1C_p.Visible = True
 				job2C_p.Visible = True
-			Case 12 'BoA
+			Case 12 'Bank
 				Job1A = "Teller #3"
 				Job2A = "Teller #6"
 				Job3A = "Branch Manager"
 				Job4A = "Savings Officer #2"
 				Job5A = "Customer Service Representative #2"
-				Job1B = "Financial Officer"
+				Job1B = "Savings Officer #1"
 				Job2B = "Teller #2"
 				Job3B = "Teller #4"
 				Job4B = "Customer Service Representative #1"
 				Job1C = "Teller #1"
 				Job2C = "Teller #5"
-				Job3C = "Savings Officer #1"
+				Job3C = "Financial Officer"
 
 				job1A_p.Visible = True
 				job2A_p.Visible = True
@@ -461,7 +462,7 @@ Public Class Break_Schedules
 				Job5A = "Assistant Package Handler"
 				Job1B = "Mayor"
 				Job2B = "Assistant Art Curator #1"
-				Job3B = "City Planner"
+				'Job3B = "City Planner" 8/9/2024: omitting city planner
 				Job4B = "Supervisor of Elections"
 				Job1C = "PCU Manager"
 				Job2C = "Treasurer"
@@ -473,7 +474,7 @@ Public Class Break_Schedules
 				job5A_p.Visible = True
 				job1B_p.Visible = True
 				job2B_p.Visible = True
-				job3B_p.Visible = True
+				'job3B_p.Visible = True  8/9/2024: omitting city planner
 				job4B_p.Visible = True
 				job1C_p.Visible = True
 				job2C_p.Visible = True
@@ -539,11 +540,11 @@ Public Class Break_Schedules
 				job1B_p.Visible = True
 			Case 20 'PCW
 			Case 21 'Knowbe4
-				Job1A = "IT Support Specialist"
-				Job2A = "Financial Officer"
-				Job1B = "Sales Representative"
-				Job1C = "Developer of Fun and Shenanigans"
-				Job2C = "Manager"
+				Job1A = "Developer of Fun and Shenanigans"
+				Job2A = "IT Support Specialist"
+				Job1B = "Manager"
+				Job1C = "Finanical Officer"
+				Job2C = "Sales Representative"
 
 				job1A_p.Visible = True
 				job2A_p.Visible = True
@@ -567,10 +568,10 @@ Public Class Break_Schedules
 			Case 24 'United way
 				Job1A = "Resource Development Director"
 				Job2A = "Financial Officer"
-				Job1B = "Public Relations Director"
+				Job1B = "Resource Development Assistant"
 				Job2B = "Manager"
 				Job1C = "Community Impact Director"
-				Job2C = "Resource Development Assistant"
+				Job2C = "Public Relations Director"
 
 				job1A_p.Visible = True
 				job2A_p.Visible = True

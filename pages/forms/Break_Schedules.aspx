@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">Jobs</h2>
+                        <h2 style="font-size: 26px;">&nbsp;</h2>
                         <p id="job1A_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job1A_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job2A_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job2A_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job3A_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job3A_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">Jobs</h2>
+                        <h2 style="font-size: 26px;">&nbsp;</h2>
                         <p id="job1B_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job1B_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job2B_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job2B_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job3B_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job3B_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
@@ -126,7 +126,7 @@
                     </div>
 
                     <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">Jobs</h2>
+                        <h2 style="font-size: 26px;">&nbsp;</h2>
                         <p id="job1C_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job1C_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job2C_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job2C_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job3C_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job3C_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
