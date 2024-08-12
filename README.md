@@ -24,13 +24,7 @@ Originally, it started development back in late 2021 headed up by the previous T
 ### Navigating
 
 * Hosted on https://ev.pcsb.org
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+* You need a PCSB email or to be in our system in order to navigate the site. This application is primarily designed for PCSB teachers and private/out-of-county teachers visiting Enterprise Village.
 
 ## Authors
 
@@ -42,5 +36,4 @@ Project Manager, Developer, Designer: Austin Sweeney (sweeneya@pcsb.org)
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [dbader](https://github.com/dbader/readme-template)
+Thank you to Pinellas County Schools, Jak Dawnson, Stephen Whitton, and Robert Ceneskie for additional support.
