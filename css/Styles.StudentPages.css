@@ -150,7 +150,7 @@ h3 {
         display: table;
         position: relative;
         margin: auto;
-        transform: scale(.7, .7);
+        transform: scale(.6, .6);
     }
 
 .EV_Logo_Bottom {
@@ -1291,8 +1291,6 @@ h3 {
         user-select: none;
     }
 
-
-
 .CS_Header {
     margin-left: 10px;
     margin-right: 10px;
@@ -1424,6 +1422,138 @@ h3 {
     font-size: calc(10px + 0.6vw);
 }
 
+
+/*New Teller System*/
+
+.TS_Background {
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+    /*background-image: url("../media/backgrounds/tellerbg.jpg");
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    background-size: auto;*/
+    
+}
+
+.TS_Header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    filter: none;
+    background-color: #88173b;
+    height: 70px;
+}
+
+.TS_Header_Logo {
+    position: relative;
+    transform: scale(.6, .6);
+}
+
+.TS_Window {
+    border: 2px solid black;
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    height: auto;
+    width: 20%;
+    text-align: center;
+}
+
+.TS_AcctEnter {
+    margin-top: 100px;
+}
+
+.TS_P {
+    font-weight: bold;
+    font-size: calc(10px + .8vw);
+    text-decoration: underline;
+}
+
+.TS_TB {
+    font-size: calc(10px + .8vw);
+    height: 40px;
+    width: 30%;
+    text-align: center;
+}
+
+.TS_Info {
+    width: 70%;
+    background-color: darkred;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.TS_Info_Row {
+    display: flex;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.TS_Info_Column {
+    flex: 50%;
+    padding: 5px;
+}
+
+.TS_Info_Table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: none;
+}
+
+.TS_Info_Table_H, TS_Info_Table_D {
+    text-align: left;
+    padding: 16px;
+}
+
+/*.TS_Info_Table_R:nth-child(even) {
+    background-color: #f2f2f2;
+}*/
+
+.TS_Radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.TS_Radio_Img {
+    height: 150px;
+    width: 150px;
+}
+
+.TS_Amount {
+    margin-left: auto;
+    margin-right: auto;
+    /*border: 2px solid black;*/
+    width: auto;
+}
+
+.TS_History {
+    position: relative;
+    left: 0px;
+    backdrop-filter: blur(10px);
+    border-top: 2px solid black;
+    border-top-right-radius: 15px;
+    border-right: 2px solid black;
+    border-bottom-right-radius: 15px;
+    border-bottom: 2px solid black;
+    background-color: blue;
+    width: 15%;
+}
+
+TS_Radio + img {
+    cursor: pointer;
+}
+
+.TS_Radio:checked + img {
+    outline: 2px solid #f00;
+}
 
 /*---------End Page Specific Classes---------*/
 

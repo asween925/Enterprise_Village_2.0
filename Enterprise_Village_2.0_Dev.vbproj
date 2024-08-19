@@ -134,8 +134,12 @@
     <Content Include="css\flickity.min.css" />
     <Content Include="images\Icons\wi-day-sunny-overcast.png" />
     <Content Include="images\Icons\wi-day-sunny.png" />
+    <Content Include="images\tellermoney1.png" />
+    <Content Include="images\tellermoney2.png" />
+    <Content Include="images\tellermoney3.png" />
     <Content Include="jscript\flickity.pkgd.min.js" />
     <Content Include="media\backgrounds\checkbackground.jpg" />
+    <Content Include="media\backgrounds\tellerBG.jpg" />
     <Content Include="media\Logos\10\AstroSkate White Background.png" />
     <Content Include="media\Logos\10\AstroSkate White Background2.png" />
     <Content Include="media\Logos\10\AstroSkate.jpg" />
@@ -145,6 +149,7 @@
     <Content Include="media\Logos\11\DITEK.jpg" />
     <Content Include="media\Logos\11\DITEK.tif" />
     <Content Include="media\Logos\12\achieva.png" />
+    <Content Include="media\Logos\12\ACUweblogo-wht.png" />
     <Content Include="media\Logos\13\BayCare.jpg" />
     <Content Include="media\Logos\14\cityhall.jpg" />
     <Content Include="media\Logos\15\Dalilogo.gif" />
@@ -184,6 +189,7 @@
     <Content Include="pages\forms\Bus_Transportation.aspx" />
     <Content Include="pages\forms\School_Schedule.aspx" />
     <Content Include="pages\student\New_Check_System.aspx" />
+    <Content Include="pages\student\Teller_System_New.aspx" />
     <Content Include="pages\tools\Requested_Features.aspx" />
     <Content Include="pages\forms\Closed_Business_Checks.aspx" />
     <Content Include="pages\edit\Edit_Business.aspx" />
@@ -787,6 +793,13 @@
     </Compile>
     <Compile Include="pages\student\New_Check_System.aspx.vb">
       <DependentUpon>New_Check_System.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\student\Teller_System_New.aspx.designer.vb">
+      <DependentUpon>Teller_System_New.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\student\Teller_System_New.aspx.vb">
+      <DependentUpon>Teller_System_New.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\tools\Requested_Features.aspx.designer.vb">

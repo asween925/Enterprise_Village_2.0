@@ -50,20 +50,20 @@ Public Class Magic_Computer
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT deposit2Enable, deposit3Enable FROM visitInfo WHERE id = '" & visitdate_hf.Value & "'"
+                cmd.CommandText = "SELECT deposit3Enable, deposit3Enable FROM visitInfo WHERE id = '" & visitdate_hf.Value & "'"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     If dr("deposit3Enable").ToString = "True" Then
-                        directDeposit_btn.Text = "Remove Direct Deposit (Deposit #3)"
+                        deposit3Enable_btn.Text = "Disable Deposit #3"
                     Else
-                        directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #3)"
+                        deposit3Enable_btn.Text = "Enable Deposit #3"
                     End If
-                    If dr("deposit2Enable").ToString = "True" Then
-                        deposit2Enable_btn.Text = "Disable Deposit #2"
+                    If dr("deposit3Enable").ToString = "True" Then
+                        directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
                     Else
-                        deposit2Enable_btn.Text = "Enable Deposit #2"
+                        directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)"
                     End If
 
                 End While
@@ -134,7 +134,7 @@ Public Class Magic_Computer
         Dim timestamp As DateTime = DateTime.Now
 
         'Check button text
-        If directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #3)" Then
+        If directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)" Then
 
             'Transfer to savings
             Try
@@ -143,7 +143,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE s SET s.initialDeposit3='7.00', s.netDeposit3='7.00', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=1 AND s.visitID='" & visitID & "'"
+                cmd.CommandText = "UPDATE s SET s.initialDeposit2='7.00', s.netDeposit2='7.00', s.cbw2='0.00', s.tellerTimestamp2='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=1 AND s.visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -151,7 +151,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE s SET s.initialDeposit3='6.50', s.netDeposit3='6.50', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=2 AND s.visitID='" & visitID & "'"
+                cmd.CommandText = "UPDATE s SET s.initialDeposit2='6.50', s.netDeposit2='6.50', s.cbw2='0.00', s.tellerTimestamp2='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=2 AND s.visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -159,7 +159,7 @@ Public Class Magic_Computer
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE s SET s.initialDeposit3='6.00', s.netDeposit3='6.00', s.cbw3='0.00', s.tellerTimestamp3='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=3 AND s.visitID='" & visitID & "'"
+                cmd.CommandText = "UPDATE s SET s.initialDeposit2='6.00', s.netDeposit2='6.00', s.cbw2='0.00', s.tellerTimestamp2='" & DateTime.Now() & "' FROM studentInfo s INNER JOIN jobs j ON j.id = s.jobID WHERE j.jobSalary=3 AND s.visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -172,7 +172,7 @@ Public Class Magic_Computer
                 con.Close()
 
                 'Change button text
-                directDeposit_btn.Text = "Remove Direct Deposit (Deposit #3)"
+                directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
 
                 'Refresh page
                 Dim meta As New HtmlMeta()
@@ -186,14 +186,14 @@ Public Class Magic_Computer
                 Exit Sub
             End Try
 
-        ElseIf directDeposit_btn.Text = "Remove Direct Deposit (Deposit #3)" Then
+        ElseIf directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)" Then
 
             Try
                 'Salary tier 3 ($6.00)
                 con.ConnectionString = connection_string
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "UPDATE studentInfo SET initialDeposit3='0.00', netDeposit3='0.00', cbw3='0.00' FROM studentInfo s WHERE visitID='" & visitID & "'"
+                cmd.CommandText = "UPDATE studentInfo SET initialDeposit2='0.00', netDeposit2='0.00', cbw2='0.00' FROM studentInfo s WHERE visitID='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 
@@ -206,7 +206,7 @@ Public Class Magic_Computer
                 con.Close()
 
                 'Change button text
-                directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #3)"
+                directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)"
 
                 'Refresh page
                 Dim meta As New HtmlMeta()
@@ -380,19 +380,19 @@ Public Class Magic_Computer
         End If
     End Sub
 
-    Sub Deposit2Enable()
+    Sub Deposit3Enable()
         Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Dim sql As String = ""
 
         'Check if button is enabled or disabled
-        If deposit2Enable_btn.Text = "Enable Deposit #2" Then
+        If deposit3Enable_btn.Text = "Enable Deposit #3" Then
             sql = "UPDATE visitInfo
-                                SET deposit2Enable = 1
+                                SET deposit3Enable = 1
                                 WHERE id='" & visitdate_hf.Value & "'"
 
-            'Update deposit2Enabled
+            'Update deposit3Enabled
             Try
                 con.ConnectionString = connection_string
                 con.Open()
@@ -401,20 +401,20 @@ Public Class Magic_Computer
                 cmd.ExecuteNonQuery()
                 con.Close()
 
-                deposit2Enable_btn.Text = "Disable Deposit #2"
-                error_lbl.Text = "Deposit #2 is now Enabled."
+                deposit3Enable_btn.Text = "Disable Deposit #3"
+                error_lbl.Text = "Deposit #3 is now Enabled."
 
             Catch
-                error_lbl.Text = "deposit2Enable failed."
+                error_lbl.Text = "deposit3Enable failed."
                 Exit Sub
             End Try
 
-        ElseIf deposit2Enable_btn.Text = "Disable Deposit #2" Then
+        ElseIf deposit3Enable_btn.Text = "Disable Deposit #3" Then
             sql = "UPDATE visitInfo
-                                SET deposit2Enable = 0
+                                SET deposit3Enable = 0
                                 WHERE id='" & visitdate_hf.Value & "'"
 
-            'Update deposit2Enabled
+            'Update deposit3Enabled
             Try
                 con.ConnectionString = connection_string
                 con.Open()
@@ -423,11 +423,11 @@ Public Class Magic_Computer
                 cmd.ExecuteNonQuery()
                 con.Close()
 
-                deposit2Enable_btn.Text = "Enable Deposit #2"
-                error_lbl.Text = "Deposit #2 is now Disabled."
+                deposit3Enable_btn.Text = "Enable Deposit #3"
+                error_lbl.Text = "Deposit #3 is now Disabled."
 
             Catch
-                error_lbl.Text = "deposit2Enable failed."
+                error_lbl.Text = "deposit3Enable failed."
                 Exit Sub
             End Try
 
@@ -626,8 +626,8 @@ Public Class Magic_Computer
         SplitEmpNumber()
     End Sub
 
-    Protected Sub deposit2Enable_btn_Click(sender As Object, e As EventArgs) Handles deposit2Enable_btn.Click
-        Deposit2Enable()
+    Protected Sub deposit3Enable_btn_Click(sender As Object, e As EventArgs) Handles deposit3Enable_btn.Click
+        Deposit3Enable()
     End Sub
 
     Protected Sub savingsUpdate_btn_Click(sender As Object, e As EventArgs) Handles savingsUpdate_btn.Click

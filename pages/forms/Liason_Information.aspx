@@ -46,7 +46,7 @@
                 <h3 style="text-align: center;">Enterprise Village Family & Community Liaison Information</h3>
                 <br />
                 <p>School: <asp:Label ID="schoolName_lbl" runat="server" Font-Bold="true"></asp:Label>&emsp; Liaison: <asp:Label ID="liaison_lbl" runat="server" Font-Bold="true"></asp:Label></p>
-                <p>From: <a style="font-weight: bold;">Karen Brighton, Community Liaison, Stavros Institute</a></p>
+                <p>From: <a style="font-weight: bold;">Kathryn Hilton, Community Liaison, Stavros Institute</a></p>
                 <p>Your school is scheduled to visit Enterprise Village on: <asp:Label ID="visitDate_lbl" runat="server" Font-Bold="true"></asp:Label>.</p>
                 <p>The number of volunteers needed that day is between <asp:Label ID="vMinCount_lbl" runat="server" Font-Bold="true"></asp:Label> and <asp:Label ID="vMaxCount_lbl" runat="server" Font-Bold="true"></asp:Label></p>
                 <p style="font-weight: bold;">Please be aware that this number will be strictly adhered to. Visitors are permitted during lunch and town meeting only.</p>
@@ -55,7 +55,7 @@
                 <p>Each fifth grade teacher has an Enterprise Village Parent Volunteer Letter to send home with students. This letter includes an Enterprise Village Response Form to be completed by the student's parent or guardian and returned to that student's teacher.</p>
                 <p>Once the students have returned the forms, the teachers should forward all forms or a complete list to you for registration purposes.</p>
                 <p>Once the volunteers have been approved, compile a detailed list, indicating that the volunteer has been registered and is eligible to volunteer. <a style="font-weight: bold;">(Please list the volunteers by the name under which they are entered in the volunteer system.)</a></p>
-                <p><a style="font-weight: bold; text-decoration: underline;">IMPORTANT:</a> All lists should be sent to Karen Brighton (Stavros Institute) no later than <asp:Label ID="replyBy_lbl" runat="server" Font-Bold="true"></asp:Label>.</p>
+                <p><a style="font-weight: bold; text-decoration: underline;">IMPORTANT:</a> All lists should be sent to Kathryn Hilton (Stavros Institute) no later than <asp:Label ID="replyBy_lbl" runat="server" Font-Bold="true"></asp:Label>.</p>
                 <p>Also, please let your staff and parents know that they can learn more about Enterprise Village by accessing our website, <a style="font-weight: bold;">www.stavrosinstitute.org.</a></p>
             </div>
 

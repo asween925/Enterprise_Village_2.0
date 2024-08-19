@@ -95,13 +95,13 @@ Partial Public Class Magic_Computer
     Protected WithEvents directDeposit_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''deposit2Enable_btn control.
+    '''deposit3Enable_btn control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents deposit2Enable_btn As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents deposit3Enable_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''label21 control.

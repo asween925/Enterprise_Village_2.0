@@ -54,7 +54,7 @@
             <asp:Button ID="directDeposit_btn" runat="server" Text="Initiate Direct Deposit (Deposit #3)" CssClass="transfer_savings_btn" />
             <br />
             <br />
-            <asp:Button ID="deposit2Enable_btn" runat="server" Text="Enable Deposit #2" CssClass="button3" />
+            <asp:Button ID="deposit3Enable_btn" runat="server" Text="Enable Deposit #3" CssClass="button3" />
             <br />
             <br />
 
