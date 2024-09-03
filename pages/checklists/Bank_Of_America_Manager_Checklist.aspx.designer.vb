@@ -185,6 +185,33 @@ Partial Public Class Bank_Of_America_Manager_Checklist
     Protected WithEvents bus10_ala_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''bus11_pnr_cb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bus11_pnr_cb As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''bus11_lar_cb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bus11_lar_cb As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''bus11_ala_cb control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bus11_ala_cb As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
     '''bus12_pnr_cb control.
     '''</summary>
     '''<remarks>
