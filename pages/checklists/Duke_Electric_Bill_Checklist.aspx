@@ -99,7 +99,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus9_printbill_cb" runat="server"  /></td>
               </tr>
               <tr>
-                <td><p>HSN</p></td>
+                <td><p>PCS Newsroom</p></td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_mr_cb" runat="server" /></td>
                 <td class="text_field"><asp:TextBox ID="bus11_totaldue_tb" runat="server" TextMode="Number"></asp:TextBox></td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_printbill_cb" runat="server"  /></td>
@@ -135,7 +135,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus19_printbill_cb" runat="server"  /></td>
               </tr>
               <tr>
-                <td><p>Tampa Bay Times</p></td>
+                <td><p>Power Design</p></td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_mr_cb" runat="server" /></td>
                 <td class="text_field"><asp:TextBox ID="bus20_totaldue_tb" runat="server" TextMode="Number"></asp:TextBox></td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_printbill_cb" runat="server"  /></td>

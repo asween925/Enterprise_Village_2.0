@@ -132,11 +132,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\flickity.min.css" />
+    <Content Include="images\dollarsign.png" />
+    <Content Include="images\dollarsign2.png" />
+    <Content Include="images\dollarsign3.png" />
+    <Content Include="images\dollarsign4.png" />
     <Content Include="images\Icons\wi-day-sunny-overcast.png" />
     <Content Include="images\Icons\wi-day-sunny.png" />
-    <Content Include="images\tellermoney1.png" />
-    <Content Include="images\tellermoney2.png" />
-    <Content Include="images\tellermoney3.png" />
+    <Content Include="images\quarter1.png" />
+    <Content Include="images\quarter2.png" />
+    <Content Include="images\quarter3.png" />
+    <Content Include="images\quarter4.png" />
     <Content Include="jscript\flickity.pkgd.min.js" />
     <Content Include="media\backgrounds\checkbackground.jpg" />
     <Content Include="media\backgrounds\tellerBG.jpg" />
@@ -189,7 +194,7 @@
     <Content Include="pages\forms\Bus_Transportation.aspx" />
     <Content Include="pages\forms\School_Schedule.aspx" />
     <Content Include="pages\student\New_Check_System.aspx" />
-    <Content Include="pages\student\Teller_System_New.aspx" />
+    <Content Include="pages\student\Teller_System.aspx" />
     <Content Include="pages\tools\Requested_Features.aspx" />
     <Content Include="pages\forms\Closed_Business_Checks.aspx" />
     <Content Include="pages\edit\Edit_Business.aspx" />
@@ -732,7 +737,7 @@
     <Content Include="Not used\Teller_Startup.aspx" />
     <Content Include="pages\inv\Low_Inventory_Report.aspx" />
     <Content Include="pages\inv\Add_Remove_Amount.aspx" />
-    <Content Include="pages\student\Teller_System.aspx" />
+    <Content Include="pages\student\Teller_System_Old.aspx" />
     <Content Include="pages\checklists\Unified_Giving_Director%27s_Checklist.aspx" />
     <Content Include="pages\checklists\UPS_Package_Handler_Checklist.aspx" />
     <Content Include="pages\checklists\Verizon_Graphic_Artist_Checklist.aspx" />
@@ -795,11 +800,11 @@
       <DependentUpon>New_Check_System.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\student\Teller_System_New.aspx.designer.vb">
-      <DependentUpon>Teller_System_New.aspx</DependentUpon>
+    <Compile Include="pages\student\Teller_System.aspx.designer.vb">
+      <DependentUpon>Teller_System.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\student\Teller_System_New.aspx.vb">
-      <DependentUpon>Teller_System_New.aspx</DependentUpon>
+    <Compile Include="pages\student\Teller_System.aspx.vb">
+      <DependentUpon>Teller_System.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\tools\Requested_Features.aspx.designer.vb">
@@ -1501,11 +1506,11 @@
       <DependentUpon>Add_Remove_Amount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\student\Teller_System.aspx.designer.vb">
-      <DependentUpon>Teller_System.aspx</DependentUpon>
+    <Compile Include="pages\student\Teller_System_Old.aspx.designer.vb">
+      <DependentUpon>Teller_System_Old.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\student\Teller_System.aspx.vb">
-      <DependentUpon>Teller_System.aspx</DependentUpon>
+    <Compile Include="pages\student\Teller_System_Old.aspx.vb">
+      <DependentUpon>Teller_System_Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\checklists\Unified_Giving_Director%27s_Checklist.aspx.designer.vb">

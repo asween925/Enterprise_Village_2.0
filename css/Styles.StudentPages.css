@@ -1433,7 +1433,6 @@ h3 {
     background-repeat: no-repeat;
     backdrop-filter: blur(5px);
     background-size: auto;*/
-    
 }
 
 .TS_Header {
@@ -1450,10 +1449,21 @@ h3 {
     transform: scale(.6, .6);
 }
 
+.TS_Error {
+    color: red;
+    font-weight: bold;
+    font-size: calc(10px + 0.8vw);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    /*padding-top: 10px;
+    padding-bottom: 10px;*/
+}
+
 .TS_Window {
-    border: 2px solid black;
-    border-radius: 15px;
-    backdrop-filter: blur(20px);
+    /*border: 2px solid black;*/
+    /*border-radius: 15px;*/
+    /*backdrop-filter: blur(20px);*/
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: auto;
@@ -1461,31 +1471,38 @@ h3 {
     padding: 20px;
     height: auto;
     width: 20%;
-    text-align: center;
+    text-align: left;
 }
 
 .TS_AcctEnter {
     margin-top: 100px;
+    /*background-color: #88173b;*/
+    /*border-radius: 25px;*/
 }
 
 .TS_P {
     font-weight: bold;
     font-size: calc(10px + .8vw);
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightskyblue;
 }
 
 .TS_TB {
-    font-size: calc(10px + .8vw);
+    font-size: calc(10px + .6vw);
     height: 40px;
-    width: 30%;
-    text-align: center;
+    width: 100%;
+    text-align: left;
 }
 
 .TS_Info {
     width: 70%;
-    background-color: darkred;
-    border-radius: 50px;
+    background-color: black;
+    border-radius: 5px;
     box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-size: calc(7px + 0.6vw);
 }
 
 .TS_Info_Row {
@@ -1523,15 +1540,15 @@ h3 {
 }
 
 .TS_Radio_Img {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
 }
 
 .TS_Amount {
     margin-left: auto;
     margin-right: auto;
     /*border: 2px solid black;*/
-    width: auto;
+    width: 60%;
 }
 
 .TS_History {
@@ -1552,8 +1569,57 @@ TS_Radio + img {
 }
 
 .TS_Radio:checked + img {
-    outline: 2px solid #f00;
+    outline: 2px solid #88173b;
+    transition: 0.3s;
+    background-color: antiquewhite;
+    border-radius: 25px;
 }
+
+.TS_Buttons {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.TS_SubmitBtn {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.TS_Button2 {
+    color: black;
+    font-weight: bold;
+    background-color: lightskyblue;
+    border-radius: 5px;
+    font-size: calc(8px + 0.8vw);
+    width: 25%;
+}
+
+.TS_Button2:hover {
+    transition: 0.3s;
+    color: white;
+    background-color: black;
+}
+
+.TS_Button3 {
+    color: white;
+    background-color: #88173b;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: calc(6px + .6vw);
+}
+
+    .TS_Button3:hover {
+        cursor: pointer;
+        color: black;
+        background-color: white;
+        border: 2px solid #88173b;
+    }
 
 /*---------End Page Specific Classes---------*/
 

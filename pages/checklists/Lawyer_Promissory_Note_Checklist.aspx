@@ -147,7 +147,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <p>HSN</p>
+                                <p>PCS Newsroom</p>
                             </td>
                             <td class="checkbox">
                                 <input type="checkbox"></td>
@@ -212,7 +212,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <p>Tampa Bay Times</p>
+                                <p>Power Design</p>
                             </td>
                             <td class="checkbox">
                                 <input type="checkbox"></td>

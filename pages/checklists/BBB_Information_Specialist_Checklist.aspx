@@ -83,7 +83,7 @@
                 <td class="checkbox"><input type="text" class="textbox"></td>
               </tr>
               <tr>
-                <td>HSN</td>
+                <td>PCS Newsroom</td>
                 <td class="checkbox"><input type="text" class="textbox"></td>
                 <td class="checkbox"><input type="text" class="textbox"></td>
               </tr>
@@ -113,7 +113,7 @@
                 <td class="checkbox"><input type="text" class="textbox"></td>
               </tr>
               <tr>
-                <td>Tampa Bay Times</td>
+                <td>Power Design</td>
                 <td class="checkbox"><input type="text" class="textbox"></td>
                 <td class="checkbox"><input type="text" class="textbox"></td>
               </tr>

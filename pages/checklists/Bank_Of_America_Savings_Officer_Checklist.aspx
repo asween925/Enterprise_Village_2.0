@@ -106,7 +106,7 @@
                                 <asp:CheckBox ID="bus10_collectmortgage__cb" runat="server" /></td>
                         </tr>
                         <tr>
-                            <td class="row_text">HSN</td>
+                            <td class="row_text">PCS Newsroom</td>
                             <td class="text_field">
                                 <asp:TextBox ID="bus11_numberofemployees_tb" runat="server" class="textbox_small" TextMode="Number"></asp:TextBox></td>
                             <td class="checkbox">
@@ -155,7 +155,7 @@
                                 <asp:CheckBox ID="bus19_collectmortgage__cb" runat="server" /></td>
                         </tr>
                         <tr>
-                            <td class="row_text">Tampa Bay Times</td>
+                            <td class="row_text">Power Design</td>
                             <td class="text_field">
                                 <asp:TextBox ID="bus20_numberofemployees_tb" runat="server" class="textbox_small" TextMode="Number"></asp:TextBox></td>
                             <td class="checkbox">

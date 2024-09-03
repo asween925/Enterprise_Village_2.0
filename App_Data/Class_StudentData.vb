@@ -13,6 +13,7 @@ Public Class Class_StudentData
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
     Dim studentCount As String
     Dim errorStr As String
+    Dim TransactionData As New Class_TransactionData
 
     'Gets the number of students in EV 2.0 from a passed through visitID date (this is the correct number of students, not the student count number that the staff enters when the visitID is created)
     Function GetStudentCount(visitDate As String)
@@ -395,5 +396,38 @@ Public Class Class_StudentData
 
         Return Table
     End Function
+
+
+    'Gets the student balance
+    Function GetStudentBalance(VisitID As Integer, AcctNum As Integer)
+        Dim Balance As Double
+        Dim NetDeposit As Double
+        Dim TotalTransactions As Double
+        Dim Savings As Double = 0.00
+        Dim NetDeposit1 As Double = 0.00
+        Dim NetDeposit2 As Double = 0.00
+        Dim NetDeposit3 As Double = 0.00
+        Dim NetDeposit4 As Double = 0.00
+
+        'Get total transactions of student
+        TotalTransactions = TransactionData.GetTotalTransactions(AcctNum, VisitID)
+
+        'Get net deposit info
+        Dim NetDeposits = TransactionData.GetDepositInfo(VisitID, AcctNum)
+
+        NetDeposit1 = NetDeposits.NetDeposit1
+        NetDeposit2 = NetDeposits.NetDeposit2
+        NetDeposit3 = NetDeposits.NetDeposit3
+        NetDeposit4 = NetDeposits.NetDeposit4
+
+        Savings = NetDeposits.Savings
+
+        'Get remaining balance for customer
+        NetDeposit = NetDeposit1 + NetDeposit2 + NetDeposit3 + NetDeposit4
+        Balance = NetDeposit - TotalTransactions - Savings
+
+        Return Balance
+    End Function
+
 
 End Class

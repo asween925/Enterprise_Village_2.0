@@ -77,7 +77,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus10_procollect_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td>HSN</td>
+                <td>PCS Newsroom</td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_procollect_cb" runat="server" /></td>
               </tr>
               <tr>
@@ -97,7 +97,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus19_procollect_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td>Tampa Bay Times</td>
+                <td>Power Design</td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_procollect_cb" runat="server" /></td>
               </tr>
               <tr>

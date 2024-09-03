@@ -140,9 +140,9 @@
                 <br />
             </div>
 
-            <%--HSN Sales--%>
+            <%--PCS Newsroom Sales--%>
             <div id="hsn_div" runat="server" visible="false">
-                <p runat="server">HSN Sales:</p>
+                <p runat="server">PCS Newsroom Sales:</p>
                 <asp:GridView ID="hsn_dgv" runat="server" AutoGenerateColumns="False" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium">
                     <AlternatingRowStyle BackColor="#99CCFF" />
                     <Columns>
@@ -212,7 +212,7 @@
 
             <%--times Sales--%>
             <div id="times_div" runat="server" visible="false">
-                <p runat="server">Tampa Bay Times Sales:</p>
+                <p runat="server">Power Design Sales:</p>
                 <asp:GridView ID="times_dgv" runat="server" AutoGenerateColumns="False" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium">
                     <AlternatingRowStyle BackColor="#99CCFF" />
                     <Columns>

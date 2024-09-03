@@ -77,7 +77,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus10_wbd_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td class="row_text"><p>HSN</p></td>
+                <td class="row_text"><p>PCS Newsroom</p></td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_wbd_cb" runat="server" /></td>
               </tr>
               <tr>
@@ -97,7 +97,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus19_wbd_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td class="row_text"><p>Tampa Bay Times</p></td>
+                <td class="row_text"><p>Power Design</p></td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_wbd_cb" runat="server" /></td>
               </tr>
               <tr>

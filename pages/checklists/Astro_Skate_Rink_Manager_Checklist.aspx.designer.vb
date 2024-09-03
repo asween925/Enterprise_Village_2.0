@@ -20,7 +20,7 @@ Partial Public Class Astro_Skate_Rink_Manager_Checklist
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    '''Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents fform1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
     '''bus2_collectbus1__cb control.

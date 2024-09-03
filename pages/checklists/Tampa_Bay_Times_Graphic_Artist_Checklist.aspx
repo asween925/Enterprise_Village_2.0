@@ -5,7 +5,7 @@
 <head runat ="server">
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=2.0; user-scalable=0;">
-          <title>Tampa Bay Times Graphic Artist Checklist</title>
+          <title>Power Design Graphic Artist Checklist</title>
 
 
 <link href="~/css/Styles.Checklist.css" rel="stylesheet" type="text/css">
@@ -85,7 +85,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus10_adpaper_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td class="row_text2">HSN</td>
+                <td class="row_text2">PCS Newsroom</td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_adpaper_cb" runat="server" /></td>
               </tr>
               <tr>
@@ -109,7 +109,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus19_adpaper_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td class="row_text2">Tampa Bay Times</td>
+                <td class="row_text2">Power Design</td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_adpaper_cb" runat="server" /></td>
               </tr>
               <tr>

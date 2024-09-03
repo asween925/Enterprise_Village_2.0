@@ -103,9 +103,9 @@
                             <td class="checkbox">
                                 <asp:CheckBox ID="bus10_ala_cb" runat="server" /></td>
                         </tr>
-                        <tr>
+                        <%--<tr>
                             <td>
-                                <p>HSN</p>
+                                <p>PCS Newsroom</p>
                             </td>
                             <td class="checkbox">
                                 <asp:CheckBox ID="bus11_pnr_cb" runat="server" /></td>
@@ -113,7 +113,7 @@
                                 <asp:CheckBox ID="bus11_lar_cb" runat="server" /></td>
                             <td class="checkbox">
                                 <asp:CheckBox ID="bus11_ala_cb" runat="server" /></td>
-                        </tr>
+                        </tr>--%>
                         <tr>
                             <td>
                                 <p>Kane's</p>
@@ -182,7 +182,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <p>Tampa Bay Times</p>
+                                <p>Power Design</p>
                             </td>
                             <td class="checkbox">
                                 <asp:CheckBox ID="bus20_pnr_cb" runat="server" /></td>

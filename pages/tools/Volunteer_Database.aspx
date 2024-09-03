@@ -19,10 +19,12 @@
         .tg-hfk9 {
             font-size: 20px;
         }
+
         .td-float {
             float: right;
         }
     </style>
+
 </head>
 
 <body>
@@ -46,89 +48,90 @@
             <h2 class="h2">Volunteer Database</h2>
             <h3>This is the volunteer database where you can add a new volunteer to the list and view all the volunteers in the database. Enter a visit date or select a school name to get started.
             </h3>
-            <asp:Button ID="visitDate_btn" runat="server" Text="Load by Visit Date" CssClass="button3" />&ensp;
-            <asp:Button ID="schoolName_btn" runat="server" Text="Load by School Name" CssClass="button3" />&ensp;|&ensp;
+            <asp:Button ID="addVol_btn" runat="server" CssClass="button3" Text="Add New Volunteer" />&ensp;
+            <asp:Button ID="scheduleVol_btn" runat="server" CssClass="button3" Text="Schedule Volunteers" />&ensp;
+            <asp:Button ID="checkIn_btn" runat="server" CssClass="button3" Text="Check In Volunteers" />&ensp;
+            <asp:Button ID="viewVol_btn" runat="server" CssClass="button3" Text="View Volunteers" />&ensp;
+            &ensp;|&ensp;
             <asp:Button ID="businessAssignments_btn" runat="server" CssClass="button3" Text="View Assignments (Opens New Tab)"></asp:Button>&ensp;|&ensp;
             <asp:Button ID="refresh_btn" runat="server" CssClass="button3" Text="Refresh" />&ensp;<asp:Label ID="error_lbl" runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Red"></asp:Label>
 
-            <%--Load By--%>
-            <div>
-
-                <%--Load by Visit Date--%>
-                <div id="visitDate_div" runat="server" visible="false">
-                    <h3>Load by Visit Date:</h3>
-                    <p>Visit Date: &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="visitDateSchools_a" runat="server" visible="false">Scheduled Schools for Selected Visit Date:</a></p>
-                    <asp:TextBox ID="visitDate_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>&emsp;&emsp;<asp:DropDownList ID="visitDateSchools_ddl" runat="server" AutoPostBack="true" CssClass="ddl" Visible="false"></asp:DropDownList>
-                </div>
-
-                <%--Load by School Name--%>
-                <div id="schoolName_div" runat="server" visible="false">
-                    <h3>Load by School Name:</h3>
-                    <p>School Name: &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="schoolVisitDate_a" runat="server" visible="false">Scheduled Visit Dates for Selected School:</a></p>
-                    <asp:DropDownList ID="schoolName_ddl" runat="server" CssClass="ddl" AutoPostBack="true"></asp:DropDownList>&emsp;&emsp;<asp:DropDownList ID="schoolVisitDate_ddl" runat="server" CssClass="ddl" AutoPostBack="true" Visible="false"></asp:DropDownList>
-                </div>
-
-                <%--Load buttons --%>
-                <div id="buttons_div" runat="server" visible="false">
-                    <br />
-                    <asp:Button ID="addVol_btn" runat="server" CssClass="button3" Text="Add New Volunteer" />&ensp;<asp:Button ID="checkIn_btn" runat="server" CssClass="button3" Text="Check In" />
-                </div>
-
-            </div>
-        
-            <%--Add Volunteer--%>
+            <%--Add New Volunteer--%>
             <div id="addVol_div" runat="server" visible="false" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
-                <h3 style="border-top: 1px solid gray; padding-top: 10px;">Add Volunteer:</h3>
-                <p>
-                    <a id="addVolDate_a" runat="server" visible="false">Visit Date:&emsp;&emsp;&emsp;&emsp;&emsp;</a>
-                    <a id="addVolBiz_a" runat="server" visible="true">Business Name:</a></p>
-                <asp:TextBox ID="visitDateVol_tb" runat="server" CssClass="textbox" TextMode="Date" Visible="false"></asp:TextBox>
-                <a id="addVolSpace_a" runat="server" visible="false">&ensp;</a>  
-                <asp:DropDownList ID="businessName_ddl" runat="server" CssClass="ddl" Visible="true"></asp:DropDownList>
-                <p>First Name: &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                   Last Name: &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;  
-                   PR: &ensp;&ensp;&nbsp; SV Hours: &ensp;&nbsp;&nbsp;&nbsp;&nbsp; Regular? &ensp;&nbsp;&nbsp;&nbsp;Notes:</p>
+                <h3>Add New Volunteer:</h3>
+                <p>First Name:</p>
                 <asp:TextBox ID="firstName_tb" runat="server" CssClass="textbox"></asp:TextBox>
-                &ensp;
+                <p>Last Name:</p>
                 <asp:TextBox ID="lastName_tb" runat="server" CssClass="textbox"></asp:TextBox>
-                &ensp;             
+                <p>School Name:</p>
+                <asp:DropDownList ID="schoolNameAdd_ddl" runat="server" CssClass="ddl"></asp:DropDownList>
+                <p>PR:</p>
                 <asp:DropDownList ID="pr_ddl" runat="server" CssClass="ddl">
                     <asp:ListItem></asp:ListItem>
-                    <asp:ListItem>N</asp:ListItem>
-                    <asp:ListItem>Y</asp:ListItem>
-                    <asp:ListItem>I</asp:ListItem>
-                    <asp:ListItem>H</asp:ListItem>
-                    <asp:ListItem>P</asp:ListItem>
-                    <asp:ListItem>A</asp:ListItem>
-                    <asp:ListItem>S</asp:ListItem>
+                    <asp:ListItem>Not Registered</asp:ListItem>
+                    <asp:ListItem>Yes</asp:ListItem>
+                    <asp:ListItem>Inactive</asp:ListItem>
+                    <asp:ListItem>Hold</asp:ListItem>
+                    <asp:ListItem>Pending</asp:ListItem>
+                    <asp:ListItem>Staff</asp:ListItem>
                 </asp:DropDownList>
-                &ensp;
+                <p>SV Hours:</p>
                 <asp:TextBox ID="svHours_tb" runat="server" CssClass="textbox" TextMode="Number" Text="6" Width="70px"></asp:TextBox>
-                &ensp;&ensp;<asp:DropDownList ID="regularVol_ddl" runat="server" CssClass="ddl" Width="70px">
+                <p>Regular?</p>
+                <asp:DropDownList ID="regularVol_ddl" runat="server" CssClass="ddl" Width="70px">
                     <asp:ListItem></asp:ListItem>
                     <asp:ListItem>No</asp:ListItem>
                     <asp:ListItem>Yes</asp:ListItem>
+                    <asp:ListItem>Corporate</asp:ListItem>
                 </asp:DropDownList>
-                &ensp;<asp:TextBox ID="notes_tb" runat="server" CssClass="textbox"></asp:TextBox>
-                &nbsp;<asp:Button ID="submit_btn" runat="server" CssClass="button3" Text="Submit" />
-                &emsp;&emsp; Total SV Hours for School(s):
-                <asp:Label ID="totalSVHours_lbl" runat="server" Text="0"></asp:Label>
+                <p>Notes:</p>
+                <asp:TextBox ID="notes_tb" runat="server" CssClass="textbox"></asp:TextBox>
+                <br />
+                <br />
+                <asp:Button ID="submit_btn" runat="server" CssClass="button3" Text="Submit" />
             </div>
 
-            <%--Check In--%>
-            <div id="checkIn_div" runat="server" visible="false" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
-                <h3>Volunteer Check In:</h3>
+            <%--Schedule Volunteers--%>
+            <div id="scheduleVol_div" runat="server" visible="false" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+                <h3>Schedule Volunteers:</h3>
+                <p>Filter by School Name (Optional):</p>
+                <asp:DropDownList ID="schoolNameSchedule_ddl" runat="server" AutoPostBack="true" CssClass="ddl"></asp:DropDownList>
+                <p>Volunteer Name:</p>
+                <asp:DropDownList ID="volNameSchedule_ddl" runat="server" CssClass="ddl" AutoPostBack="true"></asp:DropDownList>
+                <br /><br />
+
+                <%--Table of Volunteers--%>
+                <div id="scheduledVol_div" runat="server" visible="false">
+                    <asp:GridView ID="scheduledVol_dgv" runat="server" Font-Size="Medium" Visible="true" PageSize="20" CellPadding="5" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows"></asp:GridView>
+
+                    <%--Visit Date Schedule--%>
+                    <p>Visit Date:</p>
+                    <asp:TextBox ID="visitDateSchedule_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>
+                    <br /><br />
+                    <asp:Button ID="submitSchedule_btn" runat="server" CssClass="button3" Text="Submit" />
+                </div>
+
+                
+            </div>
+
+            <%--Check In Volunteer--%>
+            <div id="checkIn_div" runat="server" visible="true" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+                <h3>Check In Volunteers:</h3>
+                <p>Visit Date: &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="schoolNameCheckin_a" runat="server" visible="false">Scheduled Schools for Selected Visit Date:</a></p>
+                <asp:TextBox ID="visitDateCheckin_tb" runat="server" TextMode="Date" CssClass="textbox" AutoPostBack="true"></asp:TextBox>&emsp;&emsp;<asp:DropDownList ID="schoolNameCheckin_ddl" runat="server" AutoPostBack="true" CssClass="ddl" Visible="false"></asp:DropDownList>
+                <br />
+                <br />
                 <table>
                     <tbody>
                         <tr>
                             <td class="tg-hfk9"><a id="ach_a" runat="server">Achieva Credit Union: </a>
                                 <asp:CheckBox ID="ach1_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <asp:CheckBox ID="ach2_chk" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:CheckBox ID="ach3_chk" runat="server" AutoPostBack="true" Enabled="false"/>
-                                <asp:CheckBox ID="ach4_chk" runat="server" AutoPostBack="true" Enabled="false"/>
+                                <asp:CheckBox ID="ach3_chk" runat="server" AutoPostBack="true" Enabled="false" />
+                                <asp:CheckBox ID="ach4_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <%--<asp:TextBox ID="ach_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolAch_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
                             <td class="tg-hfk9"><a id="cvs_a" runat="server">CVS: </a>
-                                <asp:CheckBox ID="cvs1_chk" runat="server" AutoPostBack="true" Enabled="false"/>
+                                <asp:CheckBox ID="cvs1_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <asp:CheckBox ID="cvs2_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <asp:CheckBox ID="cvs3_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <%--<asp:TextBox ID="cvs_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolCVS_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
@@ -170,10 +173,10 @@
                                 <asp:CheckBox ID="bbb1_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <asp:CheckBox ID="bbb2_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <%--<asp:TextBox ID="bbb_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolBBB_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
-                            <td class="tg-hfk9"><a id="hsn_a" runat="server">HSN: </a>
-                                <asp:CheckBox ID="hsn1_chk" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:CheckBox ID="hsn2_chk" runat="server" AutoPostBack="true" Enabled="false" />
-                                <%--<asp:TextBox ID="hsn_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolHSN_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
+                            <td class="tg-hfk9"><a id="pcsn_a" runat="server">PCS Newsroom: </a>
+                                <asp:CheckBox ID="pcsn1_chk" runat="server" AutoPostBack="true" Enabled="false" />
+                                <asp:CheckBox ID="pcsn2_chk" runat="server" AutoPostBack="true" Enabled="false" />
+                                <%--<asp:TextBox ID="hsn_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolPCSN_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
                             <td class="tg-hfk9"><a id="rays_a" runat="server">Tampa Bay Rays: </a>
                                 <asp:CheckBox ID="rays1_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <asp:CheckBox ID="rays2_chk" runat="server" AutoPostBack="true" Enabled="false" />
@@ -190,11 +193,11 @@
                                 <asp:CheckBox ID="kanes1_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <asp:CheckBox ID="kanes2_chk" runat="server" AutoPostBack="true" Enabled="false" />
                                 <%--<asp:TextBox ID="kanes_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolKanes_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
-                            <td class="tg-hfk9"><a id="times_a" runat="server">Tampa Bay Times: </a>
-                                <asp:CheckBox ID="times1_chk" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:CheckBox ID="times2_chk" runat="server" AutoPostBack="true" Enabled="false" />
-                                <asp:CheckBox ID="times3_chk" runat="server" AutoPostBack="true" Enabled="false" />
-                                <%--<asp:TextBox ID="times_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolTimes_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
+                            <td class="tg-hfk9"><a id="power_a" runat="server">Power Design: </a>
+                                <asp:CheckBox ID="power1_chk" runat="server" AutoPostBack="true" Enabled="false" />
+                                <asp:CheckBox ID="power2_chk" runat="server" AutoPostBack="true" Enabled="false" />
+                                <asp:CheckBox ID="power3_chk" runat="server" AutoPostBack="true" Enabled="false" />
+                                <%--<asp:TextBox ID="times_tb" runat="server" CssClass="textbox" TextMode="Number" Width="40" Enabled="false"></asp:TextBox>--%>&ensp;<asp:DropDownList ID="regVolPower_ddl" runat="server" CssClass="ddl td-float" Enabled="false"></asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td class="tg-hfk9"><a id="city_a" runat="server">City Hall: </a>
@@ -244,14 +247,41 @@
                 <asp:Button ID="submitCheckIn_btn" runat="server" CssClass="button3" Text="Submit" />
             </div>
 
-            <%--View Volunteers--%>
-            <div id="viewVol_div" runat="server" visible="false">
+            <%--View Volunteers Control--%>
+            <div id="viewVolControls_div" runat="server" visible="false" style="border-bottom: 1px solid gray; padding-bottom: 10px;">
+                <h3>View Volunteers:</h3>
+                <p>Visit Date:</p>
+                <asp:TextBox ID="visitDateViewVolCtrl_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>
+                <p>or Volunteer Name:</p>
+                <asp:DropDownList ID="volNameViewVolCtrl_ddl" runat="server" CssClass="ddl" AutoPostBack="true"></asp:DropDownList>
+                <br /><br />
+                
+                <p>Total SV Hours: <asp:Label ID="totalSVHoursCtrl_lbl" runat="server"></asp:Label></p>
+                <div id="viewVolCtrlDGV_div" runat="server" visible="false">
+                    <asp:GridView ID="viewVolCtrl_dgv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" CellPadding="5" Height="50" AllowPaging="True" ShowHeaderWhenEmpty="True" Font-Size="Medium" Visible="true" PageSize="20" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
+                        <Columns>
+                            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" Visible="false" />
+                            <asp:BoundField DataField="volunteerID" HeaderText="Volunteer ID" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="firstName" HeaderText="First Name" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="lastName" HeaderText="Last Name" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="visitDate" HeaderText="Visit Date" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="schoolName" HeaderText="School Name" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="pr" HeaderText="PR" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="svHours" HeaderText="SV Hours" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="notes" HeaderText="Notes" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="regular" HeaderText="Regular Volunteer?" ReadOnly="true" Visible="true" />                           
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
+
+            <%--Volunteers Gridview--%>
+            <div id="viewVol_div" runat="server" visible="true">
                 <p>
                     Search by First or Last Name: 
                     <asp:TextBox ID="search_tb" runat="server" CssClass="textbox"></asp:TextBox>&ensp;<asp:Button ID="search_btn" runat="server" CssClass="button3" Text="Search" />&ensp;|&ensp;
                     Sort By:
                     <asp:DropDownList ID="sortBy_ddl" runat="server" CssClass="ddl">
-                        <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Recently Added</asp:ListItem>
                         <asp:ListItem>First Name</asp:ListItem>
                         <asp:ListItem>Last Name</asp:ListItem>
@@ -264,15 +294,16 @@
                     </asp:DropDownList>
                     &ensp;
                     <asp:DropDownList ID="ascDesc_ddl" runat="server" CssClass="ddl">
-                        <asp:ListItem></asp:ListItem>
-                        <asp:ListItem>Ascending</asp:ListItem>
                         <asp:ListItem>Descending</asp:ListItem>
-                    </asp:DropDownList>&ensp;<asp:Button ID="sortBy_btn" runat="server" CssClass="button3" Text="Sort" />                   
+                        <asp:ListItem>Ascending</asp:ListItem>                     
+                    </asp:DropDownList>&ensp;<asp:Button ID="sortBy_btn" runat="server" CssClass="button3" Text="Sort" />
+                    &ensp;
+                    <a>Total SV Hours: <asp:Label ID="totalSVHours_lbl" runat="server" Text="-"></asp:Label></a>
                 </p>
                 <div>
                     <asp:GridView ID="volunteers_dgv" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="true" AutoGenerateDeleteButton="true" DataKeyNames="ID" CellPadding="5" Height="50" AllowPaging="True" ShowHeaderWhenEmpty="True" Font-Size="Medium" Visible="true" PageSize="20" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                         <Columns>
-                            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" Visible="false" />
+                            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" Visible="true" />
                             <%--<asp:BoundField DataField="visitDate" HeaderText="Visit Date" Visible="true" DataFormatString="{0: MM/dd/yyyy }" />--%>
                             <asp:TemplateField HeaderText="First Name">
                                 <ItemTemplate>
@@ -289,7 +320,7 @@
                                     <asp:TextBox ID="visitDateDGV_tb" runat="server" TextMode="Date" Text='<%#Bind("visitDate", "{0:yyyy-MM-dd}") %>' CssClass="textbox"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Business">
+                            <asp:TemplateField HeaderText="Assigned<br/>Business">
                                 <ItemTemplate>
                                     <asp:Label ID="businessNameDGV_lbl" runat="server" Text='<%#Bind("businessID") %>' Visible="false"></asp:Label>
                                     <asp:DropDownList CssClass="ddl" ID="businessNameDGV_ddl" runat="server" Width="200px" ReadOnly="false"></asp:DropDownList>
@@ -306,13 +337,12 @@
                                     <asp:Label ID="prDGV_lbl" runat="server" Text='<%#Bind("pr")%>' Visible="false"></asp:Label>
                                     <asp:DropDownList CssClass="ddl" ID="prDGV_ddl" runat="server" ReadOnly="false">
                                         <asp:ListItem>PR</asp:ListItem>
-                                        <asp:ListItem>N</asp:ListItem>
-                                        <asp:ListItem>Y</asp:ListItem>
-                                        <asp:ListItem>I</asp:ListItem>
-                                        <asp:ListItem>H</asp:ListItem>
-                                        <asp:ListItem>P</asp:ListItem>
-                                        <asp:ListItem>A</asp:ListItem>
-                                        <asp:ListItem>S</asp:ListItem>
+                                        <asp:ListItem>Not Registered</asp:ListItem>
+                                        <asp:ListItem>Yes</asp:ListItem>
+                                        <asp:ListItem>Inactive</asp:ListItem>
+                                        <asp:ListItem>Hold</asp:ListItem>
+                                        <asp:ListItem>Pending</asp:ListItem>
+                                        <asp:ListItem>Staff</asp:ListItem>
                                     </asp:DropDownList>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -326,7 +356,7 @@
                                     <asp:TextBox ID="notesDGV_tb" runat="server" Width="150px" Text='<%#Bind("notes") %>' CssClass="textbox" TextMode="MultiLine"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Regular Volunteer?">
+                            <asp:TemplateField HeaderText="Regular<br/>Volunteer?">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="regularDGV_chk" runat="server" Checked='<%#Bind("regular") %>' />
                                 </ItemTemplate>
@@ -379,6 +409,15 @@
             $(".sub-menu a").click(function () {
                 $(this).parent(".sub-menu").children("ul").slideToggle("100");
                 $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+            });
+        </script>
+
+        <%--Delete confirmation--%>
+        <script>
+            jQuery("a").filter(function () {
+                return this.innerHTML.indexOf("Delete") == 0;
+            }).click(function () {
+                return confirm("Are you sure you want to delete this volunteer?");
             });
         </script>
 

@@ -240,7 +240,7 @@
                         </div>
                     </div>
                     <div class="content_home_bottom">
-                        <p>Last Updated: 6/24/2024 @ 7:45am&ensp;Version: 2.2.26&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
+                        <p>Last Updated: 8/19/2024 @ 7:45am&ensp;Version: 2.2.29b&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
                     </div>
 
                     <br />

@@ -34,7 +34,7 @@
             <tbody>
               <tr>
                 <td class="table_header">Business</td>
-                <td class="table_header">Collect $3 Check</td>
+                <td class="table_header">Collect $1 Check</td>
               </tr>
               <tr>
                 <td>Achieva Credit Union</td>
@@ -73,7 +73,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus10_collectbus1__cb" runat="server" /></td>
               </tr>
               <tr>
-                <td>HSN</td>
+                <td>PCS Newsroom</td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_collectbus1__cb" runat="server" /></td>
               </tr>
               <tr>
@@ -101,7 +101,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus19_collectbus1__cb" runat="server" /></td>
               </tr>
               <tr>
-                <td>Tampa Bay Times</td>
+                <td>Power Design</td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_collectbus1__cb" runat="server" /></td>
               </tr>
               <tr>

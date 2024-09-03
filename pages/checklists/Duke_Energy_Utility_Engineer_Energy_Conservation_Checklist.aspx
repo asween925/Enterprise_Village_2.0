@@ -110,7 +110,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus10_remove_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td class="row_text"><p>HSN</p></td>
+                <td class="row_text"><p>PCS Newsroom</p></td>
                 <td class="checkbox"><asp:CheckBox ID="bus11_install_cb" runat="server" /></td>
                 <td class="checkbox"><p>1</p></td>
                 <td class="text_field"><asp:TextBox ID="bus11_thermostat_tb" runat="server" TextMode="Number"></asp:TextBox></td>
@@ -152,7 +152,7 @@
                 <td class="checkbox"><asp:CheckBox ID="bus19_remove_cb" runat="server" /></td>
               </tr>
               <tr>
-                <td class="row_text"><p>Tampa Bay Times</p></td>
+                <td class="row_text"><p>Power Design</p></td>
                 <td class="checkbox"><asp:CheckBox ID="bus20_install_cb" runat="server" /></td>
                 <td class="checkbox"><p>1</p></td>
                 <td class="text_field"><asp:TextBox ID="bus20_thermostat_tb" runat="server" TextMode="Number"></asp:TextBox></td>

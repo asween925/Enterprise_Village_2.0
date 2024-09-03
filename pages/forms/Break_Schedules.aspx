@@ -72,8 +72,8 @@
 
                 <%--Group A--%>
                 <div class="button_grid_home" style="border-top: 3px solid black; ">
-                    <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">A</h2>
+                    <div class="button_item2" style="margin-top: -15px;">
+                        <h2 style="font-size: 36px;">A</h2>
                         <p class="Break1" style="font-style:italic;">Break #1 (10 Minutes)</p>
                         <p class="Break1" style="font-style:italic; font-weight: bold;"><asp:Label ID="break1ATime_lbl" runat="server"></asp:Label></p>
                         <p class="Break2" style="font-style:italic;">Break #2 (20 Minutes)</p>
@@ -82,8 +82,8 @@
                         <p class="Break3" style="font-style:italic; font-weight: bold;"><asp:Label ID="break3ATime_lbl" runat="server"></asp:Label></p>
                     </div>
 
-                    <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">&nbsp;</h2>
+                    <div class="button_item2" style="margin-top: -15px;">
+                        <h2 style="font-size: 36px;">&nbsp;</h2>
                         <p id="job1A_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job1A_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job2A_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job2A_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job3A_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job3A_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
@@ -94,8 +94,8 @@
 
                 <%--Group B--%>
                 <div class="button_grid_home" style="border-top: 3px solid black; margin-top: -10px;">
-                    <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">B</h2>
+                    <div class="button_item2" style="margin-top: -15px;">
+                        <h2 style="font-size: 36px;">B</h2>
                         <p class="Break1" style="font-style:italic;">Break #1 (10 Minutes)</p>
                         <p class="Break1" style="font-style:italic; font-weight: bold;"><asp:Label ID="break1BTime_lbl" runat="server"></asp:Label></p>
                         <p class="Break2" style="font-style:italic;">Break #2 (20 Minutes)</p>
@@ -104,8 +104,8 @@
                         <p class="Break3" style="font-style:italic; font-weight: bold;"><asp:Label ID="break3BTime_lbl" runat="server"></asp:Label></p>
                     </div>
 
-                    <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">&nbsp;</h2>
+                    <div class="button_item2" style="margin-top: -15px;">
+                        <h2 style="font-size: 36px;">&nbsp;</h2>
                         <p id="job1B_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job1B_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job2B_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job2B_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job3B_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job3B_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
@@ -115,8 +115,8 @@
 
                 <%--Group C--%>
                 <div class="button_grid_home" style="border-top: 3px solid black; margin-top: -10px;">
-                    <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">C</h2>
+                    <div class="button_item2" style="margin-top: -15px;">
+                        <h2 style="font-size: 36px;">C</h2>
                         <p class="Break1" style="font-style:italic;">Break #1 (10 Minutes)</p>
                         <p class="Break1" style="font-style:italic; font-weight: bold;"><asp:Label ID="break1CTime_lbl" runat="server"></asp:Label></p>
                         <p class="Break2" style="font-style:italic;">Break #2 (20 Minutes)</p>
@@ -125,8 +125,8 @@
                         <p class="Break3" style="font-style:italic; font-weight: bold;"><asp:Label ID="break3CTime_lbl" runat="server"></asp:Label></p>
                     </div>
 
-                    <div class="button_item2" style="margin-top: -10px;">
-                        <h2 style="font-size: 26px;">&nbsp;</h2>
+                    <div class="button_item2" style="margin-top: -15px;">
+                        <h2 style="font-size: 36px;">&nbsp;</h2>
                         <p id="job1C_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job1C_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job2C_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job2C_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
                         <p id="job3C_p" runat="server" visible="false" style="padding: 5px;"><asp:Label ID="job3C_lbl" runat="server" Text="Sale Associate #1"></asp:Label>&emsp;<a>______________________________________________</a></p>
@@ -135,7 +135,7 @@
 
                 <%--Schedule Times--%>
                 <div class="button_grid_home" style="border-top: 3px solid black; margin-top: -10px;">
-                    <div class="button_item2" style="margin-top: -10px;">
+                    <div class="button_item2" style="margin-top: -15px;">
                         <p style="font-style:italic; color: purple;">Business Meeting #1 (10 Minutes)</p>
                         <p style="font-style:italic; color: orange;">Setup Time</p>
                         <p class="Break1" style="font-style:italic;">Business Meeting #2 (10 Minutes)</p>
@@ -144,7 +144,7 @@
                         <p style="font-style:italic; color: black;">Town Meeting (10 Minutes)</p>
                     </div>
                     
-                    <div class="button_item2" style="margin-top: -10px;">
+                    <div class="button_item2" style="margin-top: -15px;">
                         <p style="color: purple;" >9:55 - 10:05</p>
                         <p style="color: orange;">10:05 - Until National Anthem</p>
                         <p class="Break1">11:00 - 11:10</p>

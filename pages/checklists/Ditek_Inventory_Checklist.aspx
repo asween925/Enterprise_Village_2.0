@@ -108,7 +108,7 @@
                                 <asp:CheckBox ID="CheckBox9" runat="server" /></td>
                         </tr>
                         <tr>
-                            <td>HSN</td>
+                            <td>PCS Newsroom</td>
                             <td class="checkbox">
                                 <asp:CheckBox ID="bus11_collectbus2__cb" runat="server" /></td>
                             <td class="checkbox">
@@ -150,7 +150,7 @@
                                 <asp:CheckBox ID="CheckBox15" runat="server" /></td>
                         </tr>
                         <tr>
-                            <td>Tampa Bay Times</td>
+                            <td>Power Design</td>
                             <td class="checkbox">
                                 <asp:CheckBox ID="bus20_collectbus2__cb" runat="server" /></td>
                             <td class="checkbox">
