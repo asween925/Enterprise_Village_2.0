@@ -142,6 +142,12 @@
     <Content Include="images\quarter2.png" />
     <Content Include="images\quarter3.png" />
     <Content Include="images\quarter4.png" />
+    <Content Include="images\quarterClear.png" />
+    <Content Include="images\snack&amp;drink.png" />
+    <Content Include="images\snackonly.png" />
+    <Content Include="images\tellermoney1.png" />
+    <Content Include="images\tellermoney2.png" />
+    <Content Include="images\tellermoney3.png" />
     <Content Include="jscript\flickity.pkgd.min.js" />
     <Content Include="media\backgrounds\checkbackground.jpg" />
     <Content Include="media\backgrounds\tellerBG.jpg" />
@@ -737,7 +743,6 @@
     <Content Include="Not used\Teller_Startup.aspx" />
     <Content Include="pages\inv\Low_Inventory_Report.aspx" />
     <Content Include="pages\inv\Add_Remove_Amount.aspx" />
-    <Content Include="pages\student\Teller_System_Old.aspx" />
     <Content Include="pages\checklists\Unified_Giving_Director%27s_Checklist.aspx" />
     <Content Include="pages\checklists\UPS_Package_Handler_Checklist.aspx" />
     <Content Include="pages\checklists\Verizon_Graphic_Artist_Checklist.aspx" />
@@ -1504,13 +1509,6 @@
     </Compile>
     <Compile Include="pages\inv\Add_Remove_Amount.aspx.vb">
       <DependentUpon>Add_Remove_Amount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\student\Teller_System_Old.aspx.designer.vb">
-      <DependentUpon>Teller_System_Old.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\student\Teller_System_Old.aspx.vb">
-      <DependentUpon>Teller_System_Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\checklists\Unified_Giving_Director%27s_Checklist.aspx.designer.vb">

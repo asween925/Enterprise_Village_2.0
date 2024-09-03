@@ -23,22 +23,22 @@ Partial Public Class Teller_System
     Protected WithEvents Online_Banking_Form As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''visitdate_hf control.
+    '''contentTS_div control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents visitdate_hf As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents contentTS_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''employee_number_tb control.
+    '''divHeader control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents employee_number_tb As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents divHeader As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''error_lbl control.
@@ -50,58 +50,121 @@ Partial Public Class Teller_System
     Protected WithEvents error_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Enter_account_btn control.
+    '''acctEnter_div control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Enter_account_btn As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents acctEnter_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''clear_btn control.
+    '''acctNum_tb control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents clear_btn As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents acctNum_tb As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''savings_div control.
+    '''acctEnter_btn control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents savings_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents acctEnter_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''savings_ddl control.
+    '''screen2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents savings_ddl As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents screen2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''error_savings_lbl control.
+    '''acctInfo_div control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents error_savings_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents acctInfo_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''savings_btn control.
+    '''studentName_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents savings_btn As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents studentName_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''acctNum_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents acctNum_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''balance_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents balance_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''deposit1_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents deposit1_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''deposit2_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents deposit2_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''deposit3_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents deposit3_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''savings_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents savings_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''enterDeposit_div control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents enterDeposit_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''deposit_div control.
@@ -113,209 +176,137 @@ Partial Public Class Teller_System
     Protected WithEvents deposit_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Check_amount_ddl control.
+    '''seven_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Check_amount_ddl As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents seven_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''cash_recieved_ddl control.
+    '''sixfive_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cash_recieved_ddl As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents sixfive_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Net_tb2 control.
+    '''six_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Net_tb2 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents six_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Enter_deposit_btn control.
+    '''savings_div control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Enter_deposit_btn As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents savings_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''HiddenField1 control.
+    '''savings150_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HiddenField1 As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents savings150_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Label1 control.
+    '''savings100_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents savings100_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Name_lbl control.
+    '''savings50_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Name_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents savings50_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Label2 control.
+    '''cashback_div control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cashback_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''Employee_number_lbl control.
+    '''cash100_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Employee_number_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cash100_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Label4 control.
+    '''cash75_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cash75_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Balance_lbl control.
+    '''cash50_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Balance_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cash50_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Label18 control.
+    '''cash25_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label18 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cash25_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Label3 control.
+    '''cash00_rdo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents cash00_rdo As Global.System.Web.UI.HtmlControls.HtmlInputRadioButton
 
     '''<summary>
-    '''Savings_lbl control.
+    '''submit_btn control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Savings_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents submit_btn As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Label7 control.
+    '''back_btn control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Label11 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label11 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Deposit1_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Deposit1_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Label12 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label12 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Deposit2_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Deposit2_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Label13 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label13 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Deposit3_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Deposit3_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Label17 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label17 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Deposit4_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Deposit4_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents back_btn As Global.System.Web.UI.WebControls.Button
 End Class
