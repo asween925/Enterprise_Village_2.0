@@ -92,115 +92,115 @@ Public Class Teller_System
 
             'Check if deposit 2 or deposit 3 is enabled
             Try
-            cmd.Connection = con
-            con.ConnectionString = connection_string
-            con.Open()
-            cmd.CommandText = "SELECT deposit3Enable FROM visitInfo WHERE id='" & Visit & "'"
-            dr = cmd.ExecuteReader
+                cmd.Connection = con
+                con.ConnectionString = connection_string
+                con.Open()
+                cmd.CommandText = "SELECT deposit3Enable FROM visitInfo WHERE id='" & Visit & "'"
+                dr = cmd.ExecuteReader
 
-            While dr.Read()
+                While dr.Read()
 
-                Deposit3Enable = dr("deposit3Enable").ToString
+                    Deposit3Enable = dr("deposit3Enable").ToString
 
-                'Check if deposit 1 has been entered
-                If Deposit1_lbl.Text <> "$0.00" Then
+                    'Check if deposit 1 has been entered
+                    If deposit1_lbl.Text <> "$0.00" Then
 
-                    'Check if deposit 2 has been entered
-                    If Deposit2_lbl.Text <> "$0.00" Then
+                        'Check if deposit 2 has been entered
+                        If deposit2_lbl.Text <> "$0.00" Then
 
-                        'Check if deposit 3 has been enabled by the staff via magic computer
-                        If Deposit3Enable = "False" Then
+                            'Check if deposit 3 has been enabled by the staff via magic computer
+                            If Deposit3Enable = "False" Then
 
-                            'Disable deposit buttons
+                                'Disable deposit buttons
+                                seven_rdo.Disabled = True
+                                sixfive_rdo.Disabled = True
+                                six_rdo.Disabled = True
+
+                                'Check if savings account has been created
+                                If savings_lbl.Text <> "$0.00" Then
+
+                                    'Enable savings and submit buttons
+                                    savings50_rdo.Disabled = True
+                                    savings100_rdo.Disabled = True
+                                    savings150_rdo.Disabled = True
+                                    submit_btn.Enabled = False
+
+                                    error_lbl.Text = "It is not time to deposit the 3rd check. Please wait until the 3rd deposit is active."
+
+                                    'Savings is $0
+                                Else
+
+                                    'Enable savings and submit buttons
+                                    savings50_rdo.Disabled = False
+                                    savings100_rdo.Disabled = False
+                                    savings150_rdo.Disabled = False
+                                    submit_btn.Enabled = True
+
+                                    error_lbl.Text = "Please open a savings account or cancel the deposit."
+
+                                End If
+
+                                'Deposit 3 is active
+                            Else
+
+                                'Enable deposit, submit and cashback buttons
+                                seven_rdo.Disabled = False
+                                sixfive_rdo.Disabled = False
+                                six_rdo.Disabled = False
+                                cash100_rdo.Disabled = False
+                                cash75_rdo.Disabled = False
+                                cash50_rdo.Disabled = False
+                                cash25_rdo.Disabled = False
+                                cash00_rdo.Disabled = False
+                                submit_btn.Enabled = True
+
+                                'Make savings div invisible
+                                savings_div.Visible = False
+                                deposit_div.Visible = True
+
+                                Exit Try
+                            End If
+
+                            'Make savings div visible
+                            savings_div.Visible = True
+                            deposit_div.Visible = False
+                            cashback_div.Visible = False
+
+                        Else
+
+                            'Disable deposit, submit and cashback buttons
                             seven_rdo.Disabled = True
                             sixfive_rdo.Disabled = True
                             six_rdo.Disabled = True
+                            cash100_rdo.Disabled = True
+                            cash75_rdo.Disabled = True
+                            cash50_rdo.Disabled = True
+                            cash25_rdo.Disabled = True
+                            cash00_rdo.Disabled = True
+                            submit_btn.Enabled = False
 
-                            'Check if savings account has been created
-                            If Savings_lbl.Text <> "$0.00" Then
+                            error_lbl.Text = "You do not need to deposit the 2nd check. Please wait until the direct deposit has been entered."
+                            Exit Sub
 
-                                'Enable savings and submit buttons
-                                savings50_rdo.Disabled = True
-                                savings100_rdo.Disabled = True
-                                savings150_rdo.Disabled = True
-                                submit_btn.Enabled = False
-
-                                error_lbl.Text = "It is not time to deposit the 3rd check. Please wait until the 3rd deposit is active."
-
-                                'Savings is $0
-                            Else
-
-                                'Enable savings and submit buttons
-                                savings50_rdo.Disabled = False
-                                savings100_rdo.Disabled = False
-                                savings150_rdo.Disabled = False
-                                submit_btn.Enabled = True
-
-                                error_lbl.Text = "Please open a savings account or cancel the deposit."
-
-                            End If
-
-                            'Deposit 3 is active
-                        Else
-
-                            'Enable deposit, submit and cashback buttons
-                            seven_rdo.Disabled = False
-                            sixfive_rdo.Disabled = False
-                            six_rdo.Disabled = False
-                            cash100_rdo.Disabled = False
-                            cash75_rdo.Disabled = False
-                            cash50_rdo.Disabled = False
-                            cash25_rdo.Disabled = False
-                            cash00_rdo.Disabled = False
-                            submit_btn.Enabled = True
-
-                            'Make savings div invisible
-                            savings_div.Visible = False
-                            deposit_div.Visible = True
-
-                            Exit Try
                         End If
-
-                        'Make savings div visible
-                        savings_div.Visible = True
-                        deposit_div.Visible = False
-                        cashback_div.Visible = False
 
                     Else
 
-                        'Disable deposit, submit and cashback buttons
-                        seven_rdo.Disabled = True
-                        sixfive_rdo.Disabled = True
-                        six_rdo.Disabled = True
-                        cash100_rdo.Disabled = True
-                        cash75_rdo.Disabled = True
-                        cash50_rdo.Disabled = True
-                        cash25_rdo.Disabled = True
-                        cash00_rdo.Disabled = True
-                        submit_btn.Enabled = False
-
-                        error_lbl.Text = "You do not need to deposit the 2nd check. Please wait until the direct deposit has been entered."
-                        Exit Sub
+                        'Make deposit div visible
+                        deposit_div.Visible = True
+                        savings_div.Visible = False
 
                     End If
 
-                Else
+                End While
 
-                    'Make deposit div visible
-                    deposit_div.Visible = True
-                    savings_div.Visible = False
+                con.Close()
+                cmd.Dispose()
 
-                End If
-
-            End While
-
-            con.Close()
-            cmd.Dispose()
-
-        Catch
-            error_lbl.Text = "Error in EnterDeposit(). Could not check for deposit 2 or 3 enabled."
-            Exit Sub
-        End Try
+            Catch
+                error_lbl.Text = "Error in EnterDeposit(). Could not check for deposit 2 or 3 enabled."
+                Exit Sub
+            End Try
 
         End If
 
