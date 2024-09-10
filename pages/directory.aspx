@@ -148,8 +148,8 @@
                 </div>
 
                 <div class="button_item">
-                    <%--HSN--%>
-                    <asp:Image ID="Image10" runat="server" ImageUrl="~/media/logos/8/HSN.png" Class="Business_logo" AlternateText="HSNLogo" />
+                    <%--PCS News--%>
+                    <asp:Image ID="Image10" runat="server" ImageUrl="~/media/logos/8/pinellas-district-logo.png" Class="Business_logo" AlternateText="PCSBLogo" />
                     <br />
                     <asp:LinkButton ID="LinkButton27" runat="server" PostBackUrl="/pages/student/check_writing_system.aspx?b=8" CssClass="button3">Check Writing Startup</asp:LinkButton>
                     <br />

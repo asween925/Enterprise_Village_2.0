@@ -68,6 +68,24 @@ Partial Public Class Parent_Letter
     Protected WithEvents schoolName_ddl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''teacherName_p control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents teacherName_p As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''teacherName_ddl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents teacherName_ddl As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''print_btn control.
     '''</summary>
     '''<remarks>
@@ -84,6 +102,15 @@ Partial Public Class Parent_Letter
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents letter_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''visitDate_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents visitDate_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''visitDateLetter_lbl control.
@@ -104,13 +131,40 @@ Partial Public Class Parent_Letter
     Protected WithEvents volRange_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''trainingTime_lbl control.
+    '''replyBy_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents trainingTime_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents replyBy_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''teacherName_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents teacherName_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''volArrive_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents volArrive_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''volDepart_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents volDepart_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''returnSlip_div control.
@@ -129,15 +183,6 @@ Partial Public Class Parent_Letter
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents visitDateSlip1_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''visitDateSlip2_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents visitDateSlip2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''trainingTimeSlip_lbl control.

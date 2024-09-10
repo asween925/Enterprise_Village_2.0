@@ -92,6 +92,8 @@ Public Class Edit_Business
         Dim JobID8 As String
         Dim JobID9 As String
         Dim JobID10 As String
+        Dim UpdatedLogo As String
+        Dim Logos = BusinessData.GetBusinessLogos(ID)
 
         'Get Job title IDs / check if job title if blank
         Try
@@ -176,12 +178,13 @@ Public Class Edit_Business
         If FileUpload1.HasFile Then
             LogoPath += FileUpload1.FileName
             FileUpload1.SaveAs(MapPath(LogoPath))
+            UpdatedLogo = FileUpload1.FileName
         Else
-            Dim img As System.Web.UI.WebControls.Image = TryCast(business_dgv.Rows(e.RowIndex).FindControl("img_user"), System.Web.UI.WebControls.Image)
-            LogoPath = img.ImageUrl
+            'Get the original file name from business info
+            UpdatedLogo = GetOriginalLogoFile(ID)
         End If
 
-        'error_lbl.Text = LogoPath
+        'error_lbl.Text = UpdatedLogo
         'Exit Sub
 
         'Update DB
@@ -190,7 +193,7 @@ Public Class Edit_Business
                 Using cmd As New SqlCommand(SQLStatement)
                     cmd.Parameters.AddWithValue("@ID", ID)
                     cmd.Parameters.AddWithValue("@businessName", BusinessName)
-                    cmd.Parameters.AddWithValue("@logoPath", FileUpload1.FileName)
+                    cmd.Parameters.AddWithValue("@logoPath", UpdatedLogo)
                     cmd.Parameters.AddWithValue("@address", Address)
                     cmd.Parameters.AddWithValue("@startingBalance", StartingBalance)
                     cmd.Connection = con
@@ -336,6 +339,25 @@ Public Class Edit_Business
                 End Using
             End Using
         End Using
+    End Function
+
+    Private Function GetOriginalLogoFile(BusinessID As Integer)
+        Dim LogoFileName As String
+
+        con.ConnectionString = connection_string
+        con.Open()
+        cmd.CommandText = "SELECT logoPath FROM businessinfo WHERE ID='" & BusinessID & "'"
+        cmd.Connection = con
+        dr = cmd.ExecuteReader
+
+        While dr.Read()
+            LogoFileName = dr(0).ToString
+        End While
+
+        cmd.Dispose()
+        con.Close()
+
+        Return LogoFileName
     End Function
 
 End Class

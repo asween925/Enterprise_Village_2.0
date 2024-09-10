@@ -2,6 +2,7 @@
 Imports System.Data
 Imports System.Configuration
 Imports System.Data.SqlClient
+Imports System.Runtime.CompilerServices
 
 Public Class Parent_Letter
 	Inherits System.Web.UI.Page
@@ -13,6 +14,8 @@ Public Class Parent_Letter
 	Dim Visits As New Class_VisitData
 	Dim SchoolData As New Class_SchoolData
 	Dim VisitID As Integer = Visits.GetVisitID
+	Dim Teacher As New Class_TeacherData
+	Dim Schedule As New Class_SchoolSchedule
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 		Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
@@ -42,38 +45,61 @@ Public Class Parent_Letter
 		Dim VisitDate As String = Convert.ToDateTime(visitDate_tb.Text)
 		Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(VisitDate)
 		Dim vTrainingTime As String = Visits.LoadVisitInfoFromDate(VisitDate, "vTrainingTime")
+		Dim vArrival As String = Schedule.GetVolArrivalTime(Visits.LoadVisitInfoFromDate(VisitDate, "visitTime"))
+		Dim vDismissal As String = Schedule.GetDismissalTime(Visits.LoadVisitInfoFromDate(VisitDate, "visitTime"))
 		Dim SchoolName As String = schoolName_ddl.SelectedValue
 		Dim SchoolID As String = SchoolData.GetSchoolID(SchoolName)
 		Dim vMin As String = SchoolData.GetVolunteerRange(VIDOfDate, SchoolID).VMin
 		Dim vMax As String = SchoolData.GetVolunteerRange(VIDOfDate, SchoolID).VMax
+		Dim TeacherName As String = teacherName_ddl.SelectedValue
 
 		'Reveal divs
 		letter_div.Visible = True
 		returnSlip_div.Visible = True
 
 		'Assign visit date labels
+		visitDate_lbl.Text = VisitDate
 		visitDateLetter_lbl.Text = VisitDate
 		visitDateSlip1_lbl.Text = VisitDate
-		visitDateSlip2_lbl.Text = VisitDate
 
 		'Assign volunteer labels
 		volRange_lbl.Text = vMin & "-" & vMax
 
 		'Assign training time
-		trainingTime_lbl.Text = DateTime.Parse(vTrainingTime).ToString("t")
 		trainingTimeSlip_lbl.Text = DateTime.Parse(vTrainingTime).ToString("t")
+
+		'Assign teacher name
+		teacherName_lbl.Text = TeacherName
+
+		'Assign arrival and dismissal times
+		volArrive_lbl.Text = DateTime.Parse(vArrival).ToString("t")
+		volDepart_lbl.Text = DateTime.Parse(vDismissal).ToString("t")
 
 	End Sub
 
 	Protected Sub visitDate_tb_TextChanged(sender As Object, e As EventArgs) Handles visitDate_tb.TextChanged
-		Dim visitDate As String = visitDate_tb.Text
+		If visitDate_tb.Text <> Nothing Then
+			Dim visitDate As String = visitDate_tb.Text
 
-		'Reveal school name DDL
-		schoolName_p.Visible = True
-		schoolName_ddl.Visible = True
+			'Clear school name ddl
+			schoolName_ddl.Items.Clear()
+			teacherName_ddl.Items.Clear()
 
-		'Populate school name DDL
-		SchoolData.LoadVisitDateSchoolsDDL(visitDate, schoolName_ddl)
+			'Reveal school name DDL
+			schoolName_p.Visible = True
+			schoolName_ddl.Visible = True
+
+			'Populate school name DDL
+			SchoolData.LoadVisitDateSchoolsDDL(visitDate, schoolName_ddl)
+		Else
+			'Hide school name DDL
+			schoolName_p.Visible = False
+			schoolName_ddl.Visible = False
+			teacherName_p.Visible = False
+			teacherName_ddl.Visible = False
+			letter_div.Visible = False
+			returnSlip_div.Visible = False
+		End If
 	End Sub
 
 	Protected Sub print_btn_Click(sender As Object, e As EventArgs) Handles print_btn.Click
@@ -82,6 +108,29 @@ Public Class Parent_Letter
 
 	Protected Sub schoolName_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles schoolName_ddl.SelectedIndexChanged
 		If schoolName_ddl.SelectedIndex <> 0 Then
+			Dim SID As String = SchoolData.GetSchoolID(schoolName_ddl.SelectedValue)
+
+			'Clear teacher name DDL
+			teacherName_ddl.Items.Clear()
+
+			'Reveal teacher name DDL
+			teacherName_p.Visible = True
+			teacherName_ddl.Visible = True
+
+			'Populate teacher name DDL
+			Teacher.LoadTeacherNameDDL(SID, teacherName_ddl)
+		Else
+			'Hide school name DDL
+			teacherName_p.Visible = False
+			teacherName_ddl.Visible = False
+			letter_div.Visible = False
+			returnSlip_div.Visible = False
+		End If
+
+	End Sub
+
+	Protected Sub teacherName_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles teacherName_ddl.SelectedIndexChanged
+		If teacherName_ddl.SelectedIndex <> 0 Then
 			LoadData()
 		End If
 	End Sub

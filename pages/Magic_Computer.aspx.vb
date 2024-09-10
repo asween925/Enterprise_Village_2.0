@@ -36,7 +36,7 @@ Public Class Magic_Computer
             If Visit <> 0 Then
                 visitdate_hf.Value = Visit
             Else
-                error_lbl.Text = "No visit date, please go to 'Database Creator' on the 'Tools / Reports' page and create a new school visit date."
+                error_lbl.Text = "No visit date created. Please create one for today on Create a Visit."
                 accountNumber_tb.Enabled = False
                 Enter_btn.Enabled = False
                 directDeposit_btn.Enabled = False
@@ -50,28 +50,24 @@ Public Class Magic_Computer
             Try
                 con.ConnectionString = connection_string
                 con.Open()
-                cmd.CommandText = "SELECT deposit3Enable, deposit3Enable FROM visitInfo WHERE id = '" & visitdate_hf.Value & "'"
+                cmd.CommandText = "SELECT deposit3Enable FROM visitInfo WHERE id = '" & visitdate_hf.Value & "'"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
                 While dr.Read()
                     If dr("deposit3Enable").ToString = "True" Then
                         deposit3Enable_btn.Text = "Disable Deposit #3"
-                    Else
-                        deposit3Enable_btn.Text = "Enable Deposit #3"
-                    End If
-                    If dr("deposit3Enable").ToString = "True" Then
                         directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
                     Else
+                        deposit3Enable_btn.Text = "Enable Deposit #3"
                         directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)"
                     End If
-
                 End While
 
                 cmd.Dispose()
                 con.Close()
             Catch
-                error_lbl.Text = "Error in savings query 3."
+                error_lbl.Text = "Error Page Load() Cannot check if deposit 3 is enabled."
                 Exit Sub
             End Try
 
@@ -163,14 +159,6 @@ Public Class Magic_Computer
                 cmd.ExecuteNonQuery()
                 con.Close()
 
-                'Checking deposit 2 enable
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.Connection = con
-                cmd.CommandText = "UPDATE visitInfo SET deposit3Enable=1 WHERE id='" & visitID & "'"
-                cmd.ExecuteNonQuery()
-                con.Close()
-
                 'Change button text
                 directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
 
@@ -194,14 +182,6 @@ Public Class Magic_Computer
                 con.Open()
                 cmd.Connection = con
                 cmd.CommandText = "UPDATE studentInfo SET initialDeposit2='0.00', netDeposit2='0.00', cbw2='0.00' FROM studentInfo s WHERE visitID='" & visitID & "'"
-                cmd.ExecuteNonQuery()
-                con.Close()
-
-                'Checking deposit 2 enable
-                con.ConnectionString = connection_string
-                con.Open()
-                cmd.Connection = con
-                cmd.CommandText = "UPDATE visitInfo SET deposit3Enable=0 WHERE id='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 

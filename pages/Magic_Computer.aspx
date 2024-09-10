@@ -41,7 +41,7 @@
 
             <%--Top Section--%>
             <h2 class="h2">Magic Computer</h2>
-            <h3>This page will allow you to adjust account balance for a student and transfer the $1.50 into savings.</h3>
+            <h3>This page will allow you to adjust account balance for a student, transfer direct deposit to all students, and to enable the 3rd deposit of the day.</h3>
             <p>Enter Account Number:</p>
             <asp:TextBox ID="accountNumber_tb" runat="server" TextMode="Number" Width="50px" CssClass="textbox"></asp:TextBox>
             &nbsp;&nbsp;
@@ -51,7 +51,7 @@
             <asp:DropDownList ID="studentName_ddl" runat="server" AutoPostBack="true" CssClass="ddl"></asp:DropDownList>
             <br />
             <br />
-            <asp:Button ID="directDeposit_btn" runat="server" Text="Initiate Direct Deposit (Deposit #3)" CssClass="transfer_savings_btn" />
+            <asp:Button ID="directDeposit_btn" runat="server" Text="Initiate Direct Deposit (Deposit #2)" CssClass="transfer_savings_btn" />
             <br />
             <br />
             <asp:Button ID="deposit3Enable_btn" runat="server" Text="Enable Deposit #3" CssClass="button3" />

@@ -580,7 +580,7 @@ input[type=number] {
         text-align: center;
         height: 100%;
         background: rgb(255,255,255);
-        background: linear-gradient(56deg, rgba(255,255,255,1) 0%, rgba(0,157,212,1) 100%);
+        background: linear-gradient(90deg, rgba(255,214,26,1) 0%, rgba(8,2,116,1) 100%, rgba(0,212,255,1) 100%);
     }
 
     .main_ditek {

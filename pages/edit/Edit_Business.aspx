@@ -37,7 +37,6 @@
             <h3>This page allows you to edit various things about the businesses for Enterprise Village.
             </h3>
             <asp:Label ID="error_lbl" runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Red"></asp:Label>
-            <br />
 
             <%--Business Gridview--%>
             <div id="businessTable_div" runat="server" visible="true" class="gridviewDiv">
@@ -49,11 +48,6 @@
                                <asp:TextBox ID="businessNameDGV_tb" runat="server" ReadOnly="false" Text='<%#Bind("businessName") %>' CssClass="textbox"></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <%--<asp:TemplateField HeaderText="Name" HeaderStyle-Width="200px">
-                            <ItemTemplate>
-                                <asp:Label ID="businessLogoDGV_lbl" runat="server" Text='<%# Eval("logoPath") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
                         <asp:TemplateField HeaderText="Logo" HeaderStyle-Width="200px">
                             <ItemTemplate>
                                 <asp:Image ID="businessLogoDGV_img" runat="server" ImageUrl='<%# Eval("logoPath") %>'
