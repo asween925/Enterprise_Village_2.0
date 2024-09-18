@@ -68,24 +68,6 @@ Partial Public Class Parent_Letter
     Protected WithEvents schoolName_ddl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''teacherName_p control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents teacherName_p As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''teacherName_ddl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents teacherName_ddl As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''print_btn control.
     '''</summary>
     '''<remarks>
@@ -138,15 +120,6 @@ Partial Public Class Parent_Letter
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents replyBy_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''teacherName_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents teacherName_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''volArrive_lbl control.

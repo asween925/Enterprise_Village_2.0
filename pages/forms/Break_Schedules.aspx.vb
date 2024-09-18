@@ -356,14 +356,14 @@ Public Class Break_Schedules
 				job2B_p.Visible = True
 				job1C_p.Visible = True
 				job2C_p.Visible = True
-			Case 8 'HSN
-				Job1A = "Inventory Control Specialist #1"
-				Job2A = "Financial Officer"
-				Job3A = "Customer Service Rep #1"
-				Job1B = "Customer Service Rep #2"
-				Job2B = "TV Host #1"
-				Job1C = "Manager"
-				Job2C = "TV Host #2"
+			Case 8 'PCS TV
+				Job1A = "Financial Officer"
+				Job2A = "Media Producer #1"
+				Job3A = "Reporter / Editor"
+				Job1B = "On-Air Host #1"
+				Job2B = "Media Producer #2"
+				Job1C = "On-Air Host #2"
+				Job2C = "Production Manager"
 
 				job1A_p.Visible = True
 				job2A_p.Visible = True
@@ -485,17 +485,19 @@ Public Class Break_Schedules
 				job1A_p.Visible = True
 				job1B_p.Visible = True
 			Case 16 'Duke
-				Job1A = "Meter Reader #2"
+				Job1A = "Customer Care Specialist #2"
 				Job2A = "Financial Officer"
-				Job1B = "Utility Engineer"
+				Job1B = "Marketing Specialist"
 				Job2B = "Manager"
-				Job1C = "Meter Reader #1"
+				Job1C = "Customer Care Specialist #1"
+				Job2C = "Energy Efficiency Advisor"
 
 				job1A_p.Visible = True
 				job2A_p.Visible = True
 				job1B_p.Visible = True
 				job2B_p.Visible = True
 				job1C_p.Visible = True
+				job2C_p.Visible = True
 			Case 17 'McDonalds
 				Job1A = "Sales Associate #2"
 				Job2A = "Customer Service Representative #1"
@@ -551,14 +553,24 @@ Public Class Break_Schedules
 				job1B_p.Visible = True
 				job1C_p.Visible = True
 				job2C_p.Visible = True
-			Case 22 'Times / Newspaper
-				Job1A = "All Employees Break"
-				Job1B = "WORK TIME (All Employees Working)"
-				Job1C = "WORK TIME (All Employees Working)"
+			Case 22 'Power Design
+				Job1A = "Financial Officer"
+				Job2A = "Estimator"
+				Job1B = "Project Manager"
+				Job2B = "Electrician #2"
+				Job3B = "HVAC Tech #2"
+				Job4B = "PlusOne Specialist"
+				Job1C = "Electrician #1"
+				Job2C = "HVAC Tech #1"
 
 				job1A_p.Visible = True
+				job2A_p.Visible = True
 				job1B_p.Visible = True
+				job2B_p.Visible = True
+				job3B_p.Visible = True
+				job4B_p.Visible = True
 				job1C_p.Visible = True
+				job2C_p.Visible = True
 			Case 23 'UPS
 				Job1A = "Package Handler"
 				Job2A = "Assistant Package Handler"

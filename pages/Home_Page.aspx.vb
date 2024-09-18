@@ -57,11 +57,11 @@ Public Class Home_Page
             count_lbl.Text = StudentData.GetStudentCount(visitDate_lbl.Text)
 
             'Check if bookkeeper / tech tech / director is logged in
-            If SQL.GetUserJob(Username) = "Bookkeeper" Or SQL.GetUserJob(Username) = "Technology Technician" Or SQL.GetUserJob(Username) = "Director" Then
-                LinkButton33.Visible = True
-            Else
-                LinkButton33.Visible = False
-            End If
+            'If SQL.GetUserJob(Username) = "Bookkeeper" Or SQL.GetUserJob(Username) = "Technology Technician" Or SQL.GetUserJob(Username) = "Director" Then
+            '    LinkButton33.Visible = True
+            'Else
+            '    LinkButton33.Visible = False
+            'End If
 
             'Load calendar
             Calendar()

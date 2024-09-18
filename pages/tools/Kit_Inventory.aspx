@@ -149,8 +149,7 @@
                                     <asp:ListItem>S. Fritz</asp:ListItem>
                                     <asp:ListItem>B. Mazurek</asp:ListItem>
                                     <asp:ListItem>M. Rush</asp:ListItem>
-                                    <asp:ListItem>P. Pittman</asp:ListItem>
-                                    <asp:ListItem>D. Sweigart</asp:ListItem>
+                                    <asp:ListItem>M. Blum</asp:ListItem>
                                     <asp:ListItem>J. Dunton</asp:ListItem>
                                 </asp:DropDownList>
                             </ItemTemplate>

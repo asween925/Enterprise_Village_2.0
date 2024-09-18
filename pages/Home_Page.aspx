@@ -218,7 +218,7 @@
                     <div class="popup content_home_changelog" onclick="myFunction()">
                         Latest Updates
                         <div class="popuptext" id="myPopup">
-                            <span>Last Updated: 6/24/2024 (v2.2.26)</span>
+                            <span>Last Updated: 9/16/2024 (v2.3.01)</span>
                             <ul>
                                 <li>Updates found on github.com/asween925/Enterprise_Village_2.0
                                 </li>
@@ -240,7 +240,7 @@
                         </div>
                     </div>
                     <div class="content_home_bottom">
-                        <p>Last Updated: 8/19/2024 @ 7:45am&ensp;Version: 2.2.29b&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
+                        <p>Last Updated: 9/16/2024 &ensp;Version: 2.3.1&ensp;Current Visit ID:<asp:Label ID="visitID_lbl" runat="server"></asp:Label></p>
                     </div>
 
                     <br />

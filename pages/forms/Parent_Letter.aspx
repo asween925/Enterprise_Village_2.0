@@ -40,8 +40,6 @@
             <asp:TextBox ID="visitDate_tb" runat="server" TextMode="Date" CssClass="textbox no-print" AutoPostBack="true"></asp:TextBox><a class="no-print">&ensp;</a><asp:Label ID="error_lbl" runat="server" Font-Bold="true" Font-Size="X-Large" ForeColor="Red"></asp:Label>
             <p class="no-print" id="schoolName_p" runat="server" visible="false">School Name (Used to Get Volunteer Range):</p>
             <asp:DropDownList ID="schoolName_ddl" runat="server" CssClass="ddl no-print" AutoPostBack="true" Visible="false"></asp:DropDownList>
-            <p class="no-print" id="teacherName_p" runat="server" visible="false">Teacher Name:</p>
-            <asp:DropDownList ID="teacherName_ddl" runat="server" CssClass="ddl no-print" AutoPostBack="true" Visible="false"></asp:DropDownList>
             <br class="no-print" /><br class="no-print" />
             <asp:Button ID="print_btn" runat="server" Text="Save as PDF" CssClass="button3 no-print" />
             <br class="no-print" />
@@ -66,12 +64,10 @@
 
                 <table style="margin-left: auto; margin-right: auto; text-align: center; width: 100%;">
                     <tr>
-                        <th style="text-decoration: underline;">Teacher</th>
                         <th style="text-decoration: underline;">Volunteer Arrival Time</th>
                         <th style="text-decoration: underline;">Volunteer Dismissal Time</th>
                     </tr>
                     <tr>
-                        <td><asp:Label ID="teacherName_lbl" runat="server"></asp:Label></td>
                         <td><asp:Label ID="volArrive_lbl" runat="server"></asp:Label></td>
                         <td><asp:Label ID="volDepart_lbl" runat="server"></asp:Label></td>
                     </tr>

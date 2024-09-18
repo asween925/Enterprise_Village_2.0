@@ -121,7 +121,7 @@
                     <p>Sincerely,</p>
                     <br />
                     <br />
-                    <p style="margin: 0px;">Patricia Jeremiah-Pittman, Director</p>
+                    <p style="margin: 0px;">Matthew Blum, Manager</p>
                     <p style="margin: 0px;">Stavros Institute</p>
                 </div>
             </div>
