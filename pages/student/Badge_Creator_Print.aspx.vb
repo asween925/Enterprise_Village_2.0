@@ -31,7 +31,7 @@ Public Class Badge_Creator_Print
         Dim studentName() As String = badges_ddl.SelectedValue.Split(".")
         Dim SQLWhere As String = " AND (s.employeeNumber = '" & studentName(0) & "')"
 
-        If employeeNumber_lbl1.Text = Nothing Then
+        If employeeNumber1_lbl.Text = Nothing Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -52,13 +52,13 @@ Public Class Badge_Creator_Print
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
 
-                employeeNumber_lbl1.Text = row.Cells(1).Text
-                studentName_lbl1.Text = row.Cells(2).Text
+                employeeNumber1_lbl.Text = row.Cells(1).Text
+                studentName1_lbl.Text = row.Cells(2).Text
                 photo_img1.ImageUrl = row.Cells(3).Text
                 photo_img1.Visible = True
-                businessName_lbl1.Text = row.Cells(4).Text
-                position_lbl1.Text = row.Cells(5).Text
-                date_lbl1.Text = DateTime.Now.ToShortDateString()
+                businessName1_lbl.Text = row.Cells(4).Text
+                position1_lbl.Text = row.Cells(5).Text
+                date1_lbl.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -67,7 +67,7 @@ Public Class Badge_Creator_Print
                 Exit Sub
             End If
 
-        ElseIf employeeNumber_lbl2.Text = Nothing Then
+        ElseIf employeeNumber2_lbl.Text = Nothing Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -88,13 +88,13 @@ Public Class Badge_Creator_Print
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
 
-                employeeNumber_lbl2.Text = row.Cells(1).Text
-                studentName_lbl2.Text = row.Cells(2).Text
+                employeeNumber2_lbl.Text = row.Cells(1).Text
+                studentName2_lbl.Text = row.Cells(2).Text
                 photo_img2.ImageUrl = row.Cells(3).Text
                 photo_img2.Visible = True
-                businessName_lbl2.Text = row.Cells(4).Text
-                position_lbl2.Text = row.Cells(5).Text
-                date_lbl2.Text = DateTime.Now.ToShortDateString()
+                businessName2_lbl.Text = row.Cells(4).Text
+                position2_lbl.Text = row.Cells(5).Text
+                date2_lbl.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -103,7 +103,7 @@ Public Class Badge_Creator_Print
                 Exit Sub
             End If
 
-        ElseIf employeeNumber_lbl3.Text = Nothing Then
+        ElseIf employeeNumber3_lbl.Text = Nothing Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -124,13 +124,13 @@ Public Class Badge_Creator_Print
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
 
-                employeeNumber_lbl3.Text = row.Cells(1).Text
-                studentName_lbl3.Text = row.Cells(2).Text
+                employeeNumber3_lbl.Text = row.Cells(1).Text
+                studentName3_lbl.Text = row.Cells(2).Text
                 photo_img3.ImageUrl = row.Cells(3).Text
                 photo_img3.Visible = True
-                businessName_lbl3.Text = row.Cells(4).Text
-                position_lbl3.Text = row.Cells(5).Text
-                date_lbl3.Text = DateTime.Now.ToShortDateString()
+                businessName3_lbl.Text = row.Cells(4).Text
+                position3_lbl.Text = row.Cells(5).Text
+                date3_lbl.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -139,7 +139,7 @@ Public Class Badge_Creator_Print
                 Exit Sub
             End If
 
-        ElseIf employeeNumber_lbl4.Text = Nothing Then
+        ElseIf employeeNumber4_lbl.Text = Nothing Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -160,13 +160,13 @@ Public Class Badge_Creator_Print
                 'Populate badge with data from the existingBadges table
                 Dim row As GridViewRow = printBadges_dgv.Rows(0)
 
-                employeeNumber_lbl4.Text = row.Cells(1).Text
-                studentName_lbl4.Text = row.Cells(2).Text
+                employeeNumber4_lbl.Text = row.Cells(1).Text
+                studentName4_lbl.Text = row.Cells(2).Text
                 photo_img4.ImageUrl = row.Cells(3).Text
                 photo_img4.Visible = True
-                businessName_lbl4.Text = row.Cells(4).Text
-                position_lbl4.Text = row.Cells(5).Text
-                date_lbl4.Text = DateTime.Now.ToShortDateString()
+                businessName4_lbl.Text = row.Cells(4).Text
+                position4_lbl.Text = row.Cells(5).Text
+                date4_lbl.Text = DateTime.Now.ToShortDateString()
 
                 'Clear badges from DDL
                 badges_ddl.Items.Clear()
@@ -189,20 +189,20 @@ Public Class Badge_Creator_Print
         End Try
 
         'If printed badges are loaded, clear out loaded names from DDL
-        If studentName_lbl1.Text <> Nothing Then
-            badges_ddl.Items.Remove(employeeNumber_lbl1.Text & ".   " & studentName_lbl1.Text)
+        If studentName1_lbl.Text <> Nothing Then
+            badges_ddl.Items.Remove(employeeNumber1_lbl.Text & ".   " & studentName1_lbl.Text)
         End If
 
-        If studentName_lbl2.Text <> Nothing Then
-            badges_ddl.Items.Remove(employeeNumber_lbl2.Text & ".   " & studentName_lbl2.Text)
+        If studentName2_lbl.Text <> Nothing Then
+            badges_ddl.Items.Remove(employeeNumber2_lbl.Text & ".   " & studentName2_lbl.Text)
         End If
 
-        If studentName_lbl3.Text <> Nothing Then
-            badges_ddl.Items.Remove(employeeNumber_lbl3.Text & ".   " & studentName_lbl3.Text)
+        If studentName3_lbl.Text <> Nothing Then
+            badges_ddl.Items.Remove(employeeNumber3_lbl.Text & ".   " & studentName3_lbl.Text)
         End If
 
-        If studentName_lbl4.Text <> Nothing Then
-            badges_ddl.Items.Remove(employeeNumber_lbl4.Text & ".   " & studentName_lbl4.Text)
+        If studentName4_lbl.Text <> Nothing Then
+            badges_ddl.Items.Remove(employeeNumber4_lbl.Text & ".   " & studentName4_lbl.Text)
             error_lbl.Text = "You have 4 badges ready to be printed. Please find a teacher so you can print the badges."
             badges_ddl.Enabled = False
         End If

@@ -41,8 +41,8 @@ input[type=number] {
         border: 2px solid black;
         border-radius: 0px;
         text-align: left;
-        width: 8.5cm;
-        height: 5.5cm;
+        width: 6cm;
+        height: 8cm;
         padding-left: 12px;
         padding-right: 12px;
         margin: 10px;
@@ -57,8 +57,8 @@ input[type=number] {
         border: 2px solid black;
         border-radius: 0px;
         text-align: left;
-        width: 8.5cm;
-        height: 5.5cm;
+        width: 6cm;
+        height: 8cm;
         padding-left: 12px;
         padding-right: 12px;
         margin: 10px;
@@ -73,8 +73,8 @@ input[type=number] {
         border: 2px solid black;
         border-radius: 0px;
         text-align: left;
-        width: 8.5cm;
-        height: 5.5cm;
+        width: 6cm;
+        height: 8cm;
         padding-left: 12px;
         padding-right: 12px;
         margin: 10px;
@@ -89,8 +89,8 @@ input[type=number] {
         border: 2px solid black;
         border-radius: 0px;
         text-align: left;
-        width: 8.5cm;
-        height: 5.5cm;
+        width: 6cm;
+        height: 8cm;
         padding-left: 12px;
         padding-right: 12px;
         margin: 10px;
@@ -101,15 +101,92 @@ input[type=number] {
         position: relative;
     }
 
-    .badge_logo {
+    /*.badge_logo {
         float: left;       
         padding-top: 10px;
         margin-left: auto;
         height: 25%;
         width: 45%;
+    }*/
+
+    .badge_logo {
+        float: left;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        height: 10%;
+        width: 50%;
     }
 
-    .print_photo {
+    .badge_logo_PCS {
+        float: right;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        height: 12%;
+        width: 22%;
+    }
+
+    .badge_logo_stav {
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 16%;
+        width: 60%;
+    }
+
+    .badge_count {
+        position: absolute;
+        left: 300px;
+        font-size: 30px;
+    }
+
+    .badge_total {
+        position: absolute;
+        left: 370px;
+        top: 35px;
+        font-size: 30px;
+    }
+
+    .badge_student_name {
+        font-weight: bold;
+        font-size: calc(12px + 0.7vw);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .badge_biz_name {
+        /*font-weight: bold;*/
+        font-size: calc(10px + 0.6vw);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .badge_job_title {
+        font-style: italic;
+        font-size: calc(10px + 0.6vw);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .badge_date {
+        font-size: calc(10px + 0.6vw);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .badge_emp {
+        font-size: calc(10px + 0.6vw);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*.print_photo {
         float: right;
         width: 140px;
         height: 140px;
@@ -117,6 +194,18 @@ input[type=number] {
         left: 10px;
         position: relative;
         margin-bottom: 20px;
+        border: 1px solid black;
+    }*/
+
+    .badge_photo {
+        border: 2px solid gray;
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 45px;
+        left: 55px;
+        float: right;
+        border: 1px solid black;
     }
 
     .d-none {

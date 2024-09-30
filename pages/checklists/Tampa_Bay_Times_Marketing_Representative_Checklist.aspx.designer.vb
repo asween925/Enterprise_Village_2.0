@@ -32,15 +32,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus1_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus1_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus1_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus2_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -48,15 +39,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus2_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus2_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus2_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus3_bus20collectad_cb control.
@@ -68,15 +50,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus3_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus3_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus3_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus4_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -84,15 +57,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus4_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus4_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus4_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus5_bus20collectad_cb control.
@@ -104,15 +68,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus5_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus5_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus5_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus18_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -120,15 +75,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus18_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus18_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus18_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus6_bus20collectad_cb control.
@@ -140,15 +86,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus6_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus6_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus6_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus7_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -156,15 +93,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus7_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus7_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus7_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus9_bus20collectad_cb control.
@@ -176,15 +104,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus9_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus9_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus9_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus10_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -192,15 +111,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus10_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus10_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus10_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus11_bus20collectad_cb control.
@@ -212,15 +122,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus11_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus11_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus11_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus12_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -228,15 +129,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus12_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus12_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus12_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus13_bus20collectad_cb control.
@@ -248,15 +140,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus13_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus13_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus13_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus14_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -264,15 +147,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus14_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus14_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus14_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus17_bus20collectad_cb control.
@@ -284,15 +158,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus17_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus17_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus17_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus19_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -300,15 +165,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus19_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus19_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus19_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus20_bus20collectad_cb control.
@@ -320,15 +176,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus20_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus20_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus20_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus22_adpaper_cb control.
     '''</summary>
     '''<remarks>
@@ -336,15 +183,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus22_adpaper_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''CheckBox1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''bus21_bus20collectad_cb control.
@@ -356,15 +194,6 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     Protected WithEvents bus21_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''bus21_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus21_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
     '''bus23_bus20collectad_cb control.
     '''</summary>
     '''<remarks>
@@ -372,13 +201,4 @@ Partial Public Class Tampa_Bay_Times_Marketing_Representative_Checklist
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bus23_bus20collectad_cb As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''bus23_bus20collect_cb control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bus23_bus20collect_cb As Global.System.Web.UI.WebControls.CheckBox
 End Class

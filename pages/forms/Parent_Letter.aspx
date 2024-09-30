@@ -68,8 +68,8 @@
                         <th style="text-decoration: underline;">Volunteer Dismissal Time</th>
                     </tr>
                     <tr>
-                        <td><asp:Label ID="volArrive_lbl" runat="server"></asp:Label></td>
-                        <td><asp:Label ID="volDepart_lbl" runat="server"></asp:Label></td>
+                        <td><asp:TextBox ID="textbox1" runat="server" CssClass="textbox" textmode="Time"></asp:TextBox></td>
+                        <td><asp:TextBox ID="textbox2" runat="server" CssClass="textbox" textmode="Time"></asp:TextBox></td>
                     </tr>
                 </table>
                 <p style="font-weight: bold;">Tear on the dotted line and return bottom portion to school. Keep top portion for future reference.</p>

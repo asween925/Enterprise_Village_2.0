@@ -104,49 +104,49 @@ Partial Public Class Badge_Creator_Print
     Protected WithEvents photo_img1 As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''studentName_lbl1 control.
+    '''studentName1_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents studentName_lbl1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents studentName1_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''businessName_lbl1 control.
+    '''businessName1_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents businessName_lbl1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents businessName1_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''position_lbl1 control.
+    '''position1_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents position_lbl1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents position1_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''date_lbl1 control.
+    '''date1_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents date_lbl1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents date1_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''employeeNumber_lbl1 control.
+    '''employeeNumber1_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents employeeNumber_lbl1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents employeeNumber1_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''photo_img2 control.
@@ -158,49 +158,49 @@ Partial Public Class Badge_Creator_Print
     Protected WithEvents photo_img2 As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''studentName_lbl2 control.
+    '''studentName2_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents studentName_lbl2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents studentName2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''businessName_lbl2 control.
+    '''businessName2_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents businessName_lbl2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents businessName2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''position_lbl2 control.
+    '''position2_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents position_lbl2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents position2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''date_lbl2 control.
+    '''date2_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents date_lbl2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents date2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''employeeNumber_lbl2 control.
+    '''employeeNumber2_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents employeeNumber_lbl2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents employeeNumber2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''photo_img3 control.
@@ -212,49 +212,49 @@ Partial Public Class Badge_Creator_Print
     Protected WithEvents photo_img3 As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''studentName_lbl3 control.
+    '''studentName3_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents studentName_lbl3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents studentName3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''businessName_lbl3 control.
+    '''businessName3_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents businessName_lbl3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents businessName3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''position_lbl3 control.
+    '''position3_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents position_lbl3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents position3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''date_lbl3 control.
+    '''date3_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents date_lbl3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents date3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''employeeNumber_lbl3 control.
+    '''employeeNumber3_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents employeeNumber_lbl3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents employeeNumber3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''photo_img4 control.
@@ -266,49 +266,49 @@ Partial Public Class Badge_Creator_Print
     Protected WithEvents photo_img4 As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
-    '''studentName_lbl4 control.
+    '''studentName4_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents studentName_lbl4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents studentName4_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''businessName_lbl4 control.
+    '''businessName4_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents businessName_lbl4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents businessName4_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''position_lbl4 control.
+    '''position4_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents position_lbl4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents position4_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''date_lbl4 control.
+    '''date4_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents date_lbl4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents date4_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''employeeNumber_lbl4 control.
+    '''employeeNumber4_lbl control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents employeeNumber_lbl4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents employeeNumber4_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''printBadges_dgv control.

@@ -122,22 +122,22 @@ Partial Public Class Parent_Letter
     Protected WithEvents replyBy_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''volArrive_lbl control.
+    '''textbox1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents volArrive_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents textbox1 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''volDepart_lbl control.
+    '''textbox2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents volDepart_lbl As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents textbox2 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''returnSlip_div control.

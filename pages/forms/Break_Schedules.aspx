@@ -67,6 +67,7 @@
                     <asp:ListItem>8:15</asp:ListItem>
                     <asp:ListItem>8:25</asp:ListItem>
                     <asp:ListItem>8:30</asp:ListItem>
+                    <asp:ListItem>8:40</asp:ListItem>
                     <asp:ListItem>8:45</asp:ListItem>
                     <asp:ListItem>8:50</asp:ListItem>
                     <asp:ListItem>8:55</asp:ListItem>

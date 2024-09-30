@@ -83,21 +83,19 @@
                     <br />
 
                     <%--badge--%>
-                    <div class="badge">                 
-                        <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
-                        <asp:Image ID="photo_img" CssClass="photo" runat="server"/>    
-                        <br /><br /><br /><br /><br /><br /><br />
-                        <asp:Label runat="server" Text="Name: "></asp:Label>
-                        <asp:Label ID="studentName_lbl" runat="server"></asp:Label>
+                    <div class="badge">
+                        <img class="badge_logo_stav" alt="Stavros logo" src="../../Images/Stavros-Logo.jpg">
                         <br />
-                        <asp:Label runat="server" Text="Business: "></asp:Label>
-                        <asp:Label ID="businessName_lbl" runat="server"></asp:Label>
+                        <asp:Image ID="photo_img" CssClass="badge_photo" runat="server"/>    
+                        <br /><br /><br /><br /><br /><br /><br /><br />
+                        <asp:Label ID="studentName_lbl" runat="server" Text="Student Name" CssClass="badge_student_name"></asp:Label>
                         <br />
-                        <asp:Label runat="server" Text="Position: "></asp:Label>
-                        <asp:Label ID="position_lbl" runat="server"></asp:Label>
+                        <asp:Label ID="businessName_lbl" runat="server" Text="Business Name" CssClass="badge_biz_name"></asp:Label>
                         <br />
-                        <asp:Label runat="server" Text="Date: "></asp:Label>
-                        <asp:Label ID="date_lbl" runat="server"></asp:Label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<asp:Label ID="employeeNumber_lbl" runat="server"></asp:Label>
+                        <asp:Label ID="position_lbl" runat="server" Text="Job Title" CssClass="badge_job_title"></asp:Label>
+                        <br />
+                        <asp:Label ID="date_lbl" runat="server" Text="10/10/1900" CssClass="badge_date"></asp:Label>&emsp;<asp:Label ID="employeeNumber_lbl" runat="server" Text="#000" CssClass="badge_emp"></asp:Label>
+                        <img class="badge_logo" alt="TD SYNNEX logo" src="../../Images/TD_SYNNEX.png">&ensp;<img class="badge_logo_PCS" alt="PCS Logo" src="../../Images/PCSB_icon_round.png">
                     </div>
                     <br />
                     <asp:Label ID="uploadWarning_lbl" runat="server" Text="Uploading a photo takes 3 seconds, please DO NOT click upload again after clicking once." Font-Bold="True" Font-Size="16px" ForeColor="Yellow"></asp:Label>

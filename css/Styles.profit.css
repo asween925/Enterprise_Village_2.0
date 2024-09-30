@@ -56,6 +56,7 @@ li {
     transition: all 500ms ease-in-out !important;
     position: absolute;
     font-family: 'Franklin Gothic Book', sans-serif;
+    overflow: auto;
 }
 
 .disable {
@@ -213,12 +214,13 @@ li {
     float: right;
 }
 
-.photo {
+.badge_photo {
     position: absolute;
-    width: 140px;
-    height: 140px;
-    bottom: 70px;
-    left: 240px;
+    width: 130px;
+    height: 130px;
+    top: 60px;
+    left: 50px;
+    border: 1px solid black;
 }
 
 .photo2 {
@@ -242,8 +244,10 @@ li {
     border: 2px solid black;
     border-radius: 10px;
     text-align: left;
-    width: 10cm;
-    height: 6cm;
+    /*width: 10cm;
+    height: 6cm;*/
+    width: 6cm;
+    height: 10cm;
     margin: auto;
     margin-top: 15px;
     margin-bottom: 10px;
@@ -260,8 +264,8 @@ li {
     border: 2px solid black;
     border-radius: 10px;
     text-align: left;
-    width: 8cm;
-    height: 5cm;
+    width: 6cm;
+    height: 9cm;
     margin: auto;
     margin-top: 15px;
     margin-bottom: 10px;
@@ -299,19 +303,41 @@ li {
     
 
     .badge_logo {
-        float: left;     
-        margin-right: auto;
-        padding-top: 10px;
-        margin-left: auto;
-        height: 25%;
-        width: 45%;
+        float: left;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        height: 10%;
+        width: 50%;
     }
 
-    .badge_count {
+    .badge_logo_PCS {
+        float: right;
         position: absolute;
-        left: 300px;
-        font-size: 30px;
+        bottom: 0px;
+        right: 0px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        height: 12%;
+        width: 22%;
     }
+
+    .badge_logo_stav {        
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 16%;
+        width: 60%;
+    }
+
+.badge_count {
+    position: absolute;
+    left: 300px;
+    font-size: 30px;
+}
 
 .badge_total {
     position: absolute;
@@ -320,15 +346,48 @@ li {
     font-size: 30px;
 }
 
+.badge_student_name {
+    font-weight: bold;
+    font-size: calc(4px + 0.7vw);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge_biz_name {
+    /*font-weight: bold;*/
+    font-size: calc(2px + 0.6vw);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge_job_title {
+    font-style: italic;
+    font-size: calc(2px + 0.6vw);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge_date {
+    font-size: calc(2px + 0.6vw);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge_emp {
+    font-size: calc(2px + 0.6vw);
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
-    #container {
-        margin: 0px auto;
-        width: 50px;
-        height: 37px;
-        border: 10px #333 solid;
-        float: right;
-    }
+
+#container {
+    margin: 0px auto;
+    width: 50px;
+    height: 37px;
+    border: 10px #333 solid;
+    float: right;
+}
 
     #videoElement {
         width: 110px;
@@ -727,7 +786,7 @@ li {
     border-image-slice: 5;
     overflow: hidden;
     text-align: center;
-    height: 100%;
+    height: auto;
 }
 
 .main_base {

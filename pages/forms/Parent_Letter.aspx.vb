@@ -68,8 +68,8 @@ Public Class Parent_Letter
 		trainingTimeSlip_lbl.Text = DateTime.Parse(vTrainingTime).ToString("t")
 
 		'Assign arrival and dismissal times
-		volArrive_lbl.Text = DateTime.Parse(vArrival).ToString("t")
-		volDepart_lbl.Text = DateTime.Parse(vDismissal).ToString("t")
+		'volArrive_lbl.Text = DateTime.Parse(vArrival).ToString("t")
+		'volDepart_lbl.Text = DateTime.Parse(vDismissal).ToString("t")
 
 	End Sub
 

@@ -13,18 +13,19 @@
     <link href="~/css/Styles.profit.css" rel="stylesheet" media="screen" type="text/css">
     <link rel="shortcut icon" type="image/png" href="~/media/EV_favicon_2.png" />
 
-    <script src="../../Scripts.js"></script>  
+    <script src="../../Scripts.js"></script>
 </head>
 
 <body>
-    <form autocomplete="off"  id="Profit_display_Form" runat="server">
-        <div id="site_wrap">
-            <div class="main_mix">
+    <form autocomplete="off" id="Profit_display_Form" runat="server">
+        <div id="site_wrap" style="overflow: auto;">
+            <div class="main_mix" style="overflow: auto;">
                 <asp:Label ID="Label19" runat="server" Text="Badge Printing" Font-Size="70px" CssClass="no-print"></asp:Label>
                 <br />
                 <asp:LinkButton ID="LinkButton9" runat="server" PostBackUrl="/pages/student/badge_creator_history.aspx" Font-Size="Medium" CssClass="button button1 no-print">Badge History</asp:LinkButton>
                 <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="/pages/student/badge_creator.aspx" Font-Size="Medium" CssClass="button button1 no-print">Badge Creator</asp:LinkButton>
-                <br /><br />
+                <br />
+                <br />
                 <%--Printed Badges--%>
                 <h4 class="no-print" style="font-size: 16px; text-decoration: underline;">Select a Badge to Print</h4>
                 <asp:DropDownList ID="badges_ddl" runat="server" AutoPostBack="true" CssClass="ddl no-print"></asp:DropDownList>
@@ -37,119 +38,67 @@
 
                 <%--badge--%>
                 <div class="badge_history badge_print">
-                    <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
-                    <asp:Image ID="photo_img1" CssClass="photo2 print_photo" runat="server" />
+                    <img class="badge_logo_stav" alt="Stavros logo" src="../../Images/Stavros-Logo.jpg">
                     <br />
+                    <asp:Image ID="photo_img1" CssClass="badge_photo" runat="server"/>    
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <asp:Label ID="studentName1_lbl" runat="server" Text="Student Name" CssClass="badge_student_name"></asp:Label>
                     <br />
+                    <asp:Label ID="businessName1_lbl" runat="server" Text="Business Name" CssClass="badge_biz_name"></asp:Label>
                     <br />
+                    <asp:Label ID="position1_lbl" runat="server" Text="Job Title" CssClass="badge_job_title"></asp:Label>
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <asp:Label runat="server" Text="Name: "></asp:Label>
-                    <asp:Label ID="studentName_lbl1" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Business: "></asp:Label>
-                    <asp:Label ID="businessName_lbl1" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Position: "></asp:Label>
-                    <asp:Label ID="position_lbl1" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Date: "></asp:Label>
-                    <asp:Label ID="date_lbl1" runat="server"></asp:Label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<asp:Label ID="employeeNumber_lbl1" runat="server"></asp:Label>
+                    <asp:Label ID="date1_lbl" runat="server" Text="10/10/1900" CssClass="badge_date"></asp:Label>&emsp;<asp:Label ID="employeeNumber1_lbl" runat="server" Text="#000" CssClass="badge_emp"></asp:Label>
+                    <img class="badge_logo" alt="TD SYNNEX logo" src="../../Images/TD_SYNNEX.png">&ensp;<img class="badge_logo_PCS" alt="PCS Logo" src="../../Images/PCSB_icon_round.png">
                 </div>
 
                 <%--badge2--%>
                 <div class="badge_history badge_print2">
-                    <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
-                    <asp:Image ID="photo_img2" CssClass="photo2 print_photo" runat="server" />
+                    <img class="badge_logo_stav" alt="Stavros logo" src="../../Images/Stavros-Logo.jpg">
                     <br />
+                    <asp:Image ID="photo_img2" CssClass="badge_photo" runat="server"/>    
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <asp:Label ID="studentName2_lbl" runat="server" Text="Student Name" CssClass="badge_student_name"></asp:Label>
                     <br />
+                    <asp:Label ID="businessName2_lbl" runat="server" Text="Business Name" CssClass="badge_biz_name"></asp:Label>
                     <br />
+                    <asp:Label ID="position2_lbl" runat="server" Text="Job Title" CssClass="badge_job_title"></asp:Label>
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <asp:Label runat="server" Text="Name: "></asp:Label>
-                    <asp:Label ID="studentName_lbl2" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Business: "></asp:Label>
-                    <asp:Label ID="businessName_lbl2" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Position: "></asp:Label>
-                    <asp:Label ID="position_lbl2" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Date: "></asp:Label>
-                    <asp:Label ID="date_lbl2" runat="server"></asp:Label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<asp:Label ID="employeeNumber_lbl2" runat="server"></asp:Label>
+                    <asp:Label ID="date2_lbl" runat="server" Text="10/10/1900" CssClass="badge_date"></asp:Label>&emsp;<asp:Label ID="employeeNumber2_lbl" runat="server" Text="#000" CssClass="badge_emp"></asp:Label>
+                    <img class="badge_logo" alt="TD SYNNEX logo" src="../../Images/TD_SYNNEX.png">&ensp;<img class="badge_logo_PCS" alt="PCS Logo" src="../../Images/PCSB_icon_round.png">
                 </div>
                 <br class="no-print" />
 
                 <%--badge3--%>
                 <div class="badge_history badge_print3">
-                    <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
-                    <asp:Image ID="photo_img3" CssClass="photo2 print_photo" runat="server" />
+                    <img class="badge_logo_stav" alt="Stavros logo" src="../../Images/Stavros-Logo.jpg">
                     <br />
+                    <asp:Image ID="photo_img3" CssClass="badge_photo" runat="server"/>    
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <asp:Label ID="studentName3_lbl" runat="server" Text="Student Name" CssClass="badge_student_name"></asp:Label>
                     <br />
+                    <asp:Label ID="businessName3_lbl" runat="server" Text="Business Name" CssClass="badge_biz_name"></asp:Label>
                     <br />
+                    <asp:Label ID="position3_lbl" runat="server" Text="Job Title" CssClass="badge_job_title"></asp:Label>
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <asp:Label runat="server" Text="Name: "></asp:Label>
-                    <asp:Label ID="studentName_lbl3" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Business: "></asp:Label>
-                    <asp:Label ID="businessName_lbl3" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Position: "></asp:Label>
-                    <asp:Label ID="position_lbl3" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Date: "></asp:Label>
-                    <asp:Label ID="date_lbl3" runat="server"></asp:Label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<asp:Label ID="employeeNumber_lbl3" runat="server"></asp:Label>
+                    <asp:Label ID="date3_lbl" runat="server" Text="10/10/1900" CssClass="badge_date"></asp:Label>&emsp;<asp:Label ID="employeeNumber3_lbl" runat="server" Text="#000" CssClass="badge_emp"></asp:Label>
+                    <img class="badge_logo" alt="TD SYNNEX logo" src="../../Images/TD_SYNNEX.png">&ensp;<img class="badge_logo_PCS" alt="PCS Logo" src="../../Images/PCSB_icon_round.png">
                 </div>
 
                 <%--badge4--%>
                 <div class="badge_history badge_print4">
-                    <img class="badge_logo" alt="Tech Data" src="../../Images/TD_SYNNEX.png">
-                    <asp:Image ID="photo_img4" CssClass="photo2 print_photo" runat="server" />
+                    <img class="badge_logo_stav" alt="Stavros logo" src="../../Images/Stavros-Logo.jpg">
                     <br />
+                    <asp:Image ID="photo_img4" CssClass="badge_photo" runat="server"/>    
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <asp:Label ID="studentName4_lbl" runat="server" Text="Student Name" CssClass="badge_student_name"></asp:Label>
                     <br />
+                    <asp:Label ID="businessName4_lbl" runat="server" Text="Business Name" CssClass="badge_biz_name"></asp:Label>
                     <br />
+                    <asp:Label ID="position4_lbl" runat="server" Text="Job Title" CssClass="badge_job_title"></asp:Label>
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <br class="disable" />
-                    <asp:Label runat="server" Text="Name: "></asp:Label>
-                    <asp:Label ID="studentName_lbl4" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Business: "></asp:Label>
-                    <asp:Label ID="businessName_lbl4" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Position: "></asp:Label>
-                    <asp:Label ID="position_lbl4" runat="server"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="Date: "></asp:Label>
-                    <asp:Label ID="date_lbl4" runat="server"></asp:Label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<asp:Label ID="employeeNumber_lbl4" runat="server"></asp:Label>
+                    <asp:Label ID="date4_lbl" runat="server" Text="10/10/1900" CssClass="badge_date"></asp:Label>&emsp;<asp:Label ID="employeeNumber4_lbl" runat="server" Text="#000" CssClass="badge_emp"></asp:Label>
+                    <img class="badge_logo" alt="TD SYNNEX logo" src="../../Images/TD_SYNNEX.png">&ensp;<img class="badge_logo_PCS" alt="PCS Logo" src="../../Images/PCSB_icon_round.png">
                 </div>
 
                 <asp:GridView ID="printBadges_dgv" runat="server" PageSize="100" Visible="false" ShowHeaderWhenEmpty="True" CssClass="no-print"></asp:GridView>
