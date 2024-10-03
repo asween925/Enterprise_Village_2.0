@@ -176,6 +176,8 @@ Public Class Volunteer_Database
 				'Make volunteers div visible
 				viewVol_div.Visible = True
 
+				error_lbl.Text = "No visit date scheduled for today."
+
 			End If
 
 		Else
@@ -2218,11 +2220,12 @@ Public Class Volunteer_Database
 			addVol_div.Visible = True
 			scheduleVol_div.Visible = False
 			checkIn_div.Visible = False
+			viewVolControls_div.Visible = False
 
 			'Clear error label and visit date
 			error_lbl.Text = ""
 			visitDateCheckin_tb.Text = ""
-			volNameSchedule_ddl.SelectedIndex = 0
+			'volNameSchedule_ddl.SelectedIndex = 0
 
 			LoadData()
 
@@ -2237,6 +2240,7 @@ Public Class Volunteer_Database
 			addVol_div.Visible = False
 			scheduleVol_div.Visible = True
 			checkIn_div.Visible = False
+			viewVolControls_div.Visible = False
 
 			'Clear error label and visit date
 			error_lbl.Text = ""
@@ -2254,6 +2258,7 @@ Public Class Volunteer_Database
 			checkIn_div.Visible = True
 			addVol_div.Visible = False
 			scheduleVol_div.Visible = False
+			viewVolControls_div.Visible = False
 
 			'Clear error label and visit date
 			error_lbl.Text = ""

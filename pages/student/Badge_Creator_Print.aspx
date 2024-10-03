@@ -101,7 +101,7 @@
                     <img class="badge_logo" alt="TD SYNNEX logo" src="../../Images/TD_SYNNEX.png">&ensp;<img class="badge_logo_PCS" alt="PCS Logo" src="../../Images/PCSB_icon_round.png">
                 </div>
 
-                <asp:GridView ID="printBadges_dgv" runat="server" PageSize="100" Visible="false" ShowHeaderWhenEmpty="True" CssClass="no-print"></asp:GridView>
+                <asp:GridView ID="printBadges_dgv" runat="server" PageSize="100" Visible="true" ShowHeaderWhenEmpty="True" CssClass="no-print"></asp:GridView>
                 <asp:HiddenField ID="visitdate_hf" runat="server" />
 
             </div>

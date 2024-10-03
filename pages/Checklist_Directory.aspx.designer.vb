@@ -383,24 +383,6 @@ Partial Public Class Checklist_Directory
     Protected WithEvents LinkButton13 As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Image23 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Image23 As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''LinkButton8 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents LinkButton8 As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''visitdate_hf control.
     '''</summary>
     '''<remarks>

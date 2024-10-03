@@ -102,8 +102,8 @@ Public Class Badge_Creator
 
         'Check if entered number is already saved
         Try
-            If Badges.CheckIfBadgeExists(VisitID, StudentID) = True Then
-                error_lbl.Text = "A badge with that number associated to it already exists. Please delete the badge from the 'Badge History' to create it again."
+            If Badges.CheckIfBadgeExists(VisitID, AccountNumber) = True Then
+                error_lbl.Text = "A badge with that number associated to it already exists."
                 Exit Sub
             End If
         Catch

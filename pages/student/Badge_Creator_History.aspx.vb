@@ -54,13 +54,13 @@ Public Class Badge_Creator_History
         End If
 
         'Load badges into table
-        Try
-            existingBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhereSearch, SQLOrderBy)
+        'Try
+        existingBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhereSearch, SQLOrderBy)
             existingBadges_dgv.DataBind()
-        Catch
-            error_lbl.Text = "Error. Cannot load badges into table. Please find an Enterprise Village teacher for help!"
-            Exit Sub
-        End Try
+        'Catch
+        '    error_lbl.Text = "Error. Cannot load badges into table. Please find an Enterprise Village teacher for help!"
+        '    Exit Sub
+        'End Try
 
     End Sub
 

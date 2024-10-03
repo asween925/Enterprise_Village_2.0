@@ -5,7 +5,7 @@
 <head runat ="server">
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=2.0; user-scalable=0;">
-          <title>POwer Design Marketing Representative Checklist</title>
+          <title>PCS TV Marketing Representative Checklist</title>
 
 
 <link href="~/css/Styles.Checklist.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,7 @@
         </div>
         
       <div class="header3">
-        <img class="business" alt="Business" src="../../Images/times_logo_horizontal_black.jpg" >
+        <img class="business" alt="Business" src="../../Images/PCSB_icon_round.png" />
         </div>
         
      <div class="main_tbt">
@@ -122,7 +122,7 @@
         
     <div class="second">
         <ul>
-        <li><h4>Collect the TBT advertisements 5 at a time from each business and place them in the tray on your desk BEFORE your 2nd break.</h4></li>
+        <li><h4>Collect the advertisements 5 at a time from each business and place them in the tray on your desk BEFORE your 2nd break.</h4></li>
         <li><h4>Check them off as you collect them.</h4></li>
         <li><h4>After lunch, return to each business and collect the $4.00 check from each manager or financial officer.</h4></li>
         <li><h4>Give the checks to your Managing Editor.</h4></li>

@@ -86,7 +86,7 @@
                         <%--<RowStyle BackColor="White" />--%>
                         <Columns>
                             <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="true" Visible="false" />
-                            <asp:BoundField DataField="employeeNumber" HeaderText="Employee Number" ReadOnly="true" Visible="true" />
+                            <asp:BoundField DataField="accountNumber" HeaderText="Account Number" ReadOnly="true" Visible="true" />
                             <asp:BoundField DataField="employeeName" HeaderText="Name" ReadOnly="true" Visible="true" />
                             <asp:BoundField DataField="businessName" HeaderText="Business Assigned" ReadOnly="true" Visible="true" />
                             <asp:BoundField DataField="jobTitle" HeaderText="Job" ReadOnly="true" Visible="true" />

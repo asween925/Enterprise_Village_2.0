@@ -37,7 +37,7 @@
                 <div class="button_item">
                     <asp:Label ID="error_lbl" runat="server" ForeColor="Red" Font-Bold="true" Font-Size="X-Large"></asp:Label>
                     <!---Astro Skate--->
-                    <asp:Image ID="Image1" runat="server" Class="Business_logo" ImageUrl="~/media/logos/AstroSkate/astroskate.png" />
+                    <asp:Image ID="Image1" runat="server" Class="Business_logo" ImageUrl="~/media/logos/10/astroskate.png" />
                     <br />
                     <asp:LinkButton ID="LinkButton11" runat="server" PostBackUrl="/pages/checklists/astro_skate_editorial.aspx" CssClass="button3">Editoral</asp:LinkButton>
                     <br />
@@ -48,7 +48,7 @@
 
                 <div class="button_item">
                     <!---Achieva Credit Union (formerly Bank of America)--->
-                    <asp:Image ID="Image2" runat="server" ImageUrl="~/media/logos/Achieva/achieva.png" Class="Business_logo" />
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/media/logos/12/achieva.png" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton9" runat="server" PostBackUrl="/pages/checklists/bank_of_america_manager_checklist.aspx" CssClass="button3">Branch Manager Checklist</asp:LinkButton>
                     <br />
@@ -61,14 +61,14 @@
 
                 <div class="button_item">
                     <!---Bay Care--->
-                    <asp:Image ID="Image15" runat="server" ImageUrl="~/media/logos/BayCare/bayCare.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image15" runat="server" ImageUrl="~/media/logos/13/bayCare.jpg" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="/pages/checklists/baycare_bill_collection_checklist.aspx" CssClass="button3">Bill Collection Checklist</asp:LinkButton>
                 </div>
 
                 <div class="button_item">
                     <!---BBB--->
-                    <asp:Image ID="Image4" runat="server" ImageUrl="~/media/logos/bbb/bbb.png" Class="Business_logo" />
+                    <asp:Image ID="Image4" runat="server" ImageUrl="~/media/logos/9/bbb.png" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton15" runat="server" PostBackUrl="/pages/checklists/bbb_accreditation_specialist_checklist.aspx" CssClass="button3">BBB Accreditation Specialist Checklist</asp:LinkButton>
                     <br />
@@ -79,13 +79,13 @@
 
                 <div class="button_item">
                     <!---Bic--->
-                    <asp:Image ID="Image5" runat="server" ImageUrl="~/media/logos/Bic/Bic.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image5" runat="server" ImageUrl="~/media/logos/6/Koozie.png" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton17" runat="server" PostBackUrl="/pages/checklists/Bic_Graphic_Manager_Advertising_Letter_Checklist.aspx" CssClass="button3">Manager's Advertising Letter Checklist</asp:LinkButton>
                 </div>
                 <!---city Hall--->
                 <div class="button_item">
-                    <asp:Image ID="Image6" runat="server" ImageUrl="~/media/logos/city_hall/cityhall.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image6" runat="server" ImageUrl="~/media/logos/14/cityhall.jpg" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="/pages/checklists/city_hall_mayor_checklist.aspx" CssClass="button3">Mayor's Population Count and Shopping Bad Delivery Checklist</asp:LinkButton>
                     <br />
@@ -110,7 +110,7 @@
 
                 <div class="button_item">
                     <!---Ditek--->
-                    <asp:Image ID="Image8" runat="server" ImageUrl="~/media/logos/Ditek/Ditek.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image8" runat="server" ImageUrl="~/media/logos/11/Ditek.jpg" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton23" runat="server" PostBackUrl="/pages/checklists/ditek_inventory_checklist.aspx" CssClass="button3">Inventory Control Specialist's Checklist</asp:LinkButton>
                 </div>
@@ -119,7 +119,7 @@
 
                 <div class="button_item">
                     <!---Duke--->
-                    <asp:Image ID="Image9" runat="server" ImageUrl="~/media/logos/Duke/Duke.gif" Class="Business_logo" />
+                    <asp:Image ID="Image9" runat="server" ImageUrl="~/media/logos/16/Duke.gif" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton25" runat="server" PostBackUrl="/pages/checklists/duke_electric_bill_checklist.aspx" CssClass="button3">Energy Bill Checklist</asp:LinkButton>
                     <%--<br />
@@ -148,7 +148,7 @@
 
                 <div class="button_item">
                     <!---KnowBe4--->
-                    <asp:Image ID="Image11" runat="server" ImageUrl="~/media/logos/KnowBe4/KnowBe4 Full Logo Full Color (2).png" Class="Business_logo" />
+                    <asp:Image ID="Image11" runat="server" ImageUrl="~/media/logos/21/KnowBe4 Full Logo Full Color (2).png" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton29" runat="server" PostBackUrl="/pages/checklists/KnowBe4_FO_Checklist.aspx" CssClass="button3">Financial Officer Checklist</asp:LinkButton>
                 </div>
@@ -163,14 +163,14 @@
 
                 <div class="button_item">
                     <!---Mix 100.7--->
-                    <asp:Image ID="Image13" runat="server" ImageUrl="~/media/logos/Mix 1007/MIX100.7 Wide.png" Class="Business_logo" />
+                    <asp:Image ID="Image13" runat="server" ImageUrl="~/media/logos/18/MIX100.7 Wide.png" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton33" runat="server" PostBackUrl="/pages/checklists/mix_100.7_marketing_representative_checklist.aspx" CssClass="button3">Marketing Representative Checklist</asp:LinkButton>
                 </div>
 
                 <div class="button_item">
                     <!---Solid Waste--->
-                    <asp:Image ID="Image14" runat="server" ImageUrl="~/media/logos/solid_waste/solid_waste.png" Class="Business_logo" />
+                    <asp:Image ID="Image14" runat="server" ImageUrl="~/media/logos/19/solid_waste.png" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton35" runat="server" PostBackUrl="/pages/checklists/pinellas_county_utilities_checklist.aspx" CssClass="button3">Manager's Checklist</asp:LinkButton>
                     <br />
@@ -208,11 +208,11 @@
 
                 <div class="button_item">
                     <!---Times--->
-                    <asp:Image ID="Image21" runat="server" ImageUrl="~/media/logos/Times/times_logo.jpg" Class="Business_logo" />
+                    <asp:Image ID="Image21" runat="server" ImageUrl="~/media/logos/22/times_logo.jpg" Class="Business_logo" />
                     <br />
                     <asp:LinkButton ID="LinkButton49" runat="server" PostBackUrl="/pages/checklists/tampa_bay_times_graphic_artist_checklist.aspx" CssClass="button3">Times Graphic Artist Checklist</asp:LinkButton>
                     <br />
-                    <asp:LinkButton ID="LinkButton50" runat="server" PostBackUrl="tampa_bay_times_marketing_representative_checklist.aspx" CssClass="button3">Times Marketing Representative</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton50" runat="server" PostBackUrl="/pages/checklists/tampa_bay_times_marketing_representative_checklist.aspx" CssClass="button3">Times Marketing Representative</asp:LinkButton>
                 </div>
 
                 <%--<br />--%>
@@ -228,16 +228,16 @@
                     <asp:LinkButton ID="LinkButton13" runat="server" PostBackUrl="/pages/checklists/ups_package_handler_checklist.aspx" CssClass="button3">UPS Package Handler Checklist</asp:LinkButton>
                 </div>
 
-                <div class="button_item">
+               <%-- <div class="button_item">
                     <!---Verizon--->
                     <asp:Image ID="Image23" runat="server" ImageUrl="~/media/logos/Verizon/verizon1.png" Class="Business_logo" />
                     <%--<br />
                             <asp:LinkButton ID="LinkButton53" runat="server" PostBackUrl="/pages/checklists/verizon_graphic_artist_checklist.aspx" CssClass="button3">Verizon Graphic Artist Checklist</asp:LinkButton>--%>
 
                     <%--<asp:LinkButton ID="LinkButton7" runat="server" PostBackUrl="/pages/checklists/verizon_manager's_checklist.aspx" CssClass="button3">Verizon Manager's Checklist</asp:LinkButton>--%>
-                    <br />
+                    <%--<br />
                     <asp:LinkButton ID="LinkButton8" runat="server" PostBackUrl="/pages/checklists/verizon_telecommunication_engineer_checklist.aspx" CssClass="button3">Verizon Telecommunication Engineer Checklist</asp:LinkButton>
-                </div>
+                </div>--%>--%>
             </div>
         </div>
 

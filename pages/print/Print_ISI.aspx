@@ -37,7 +37,7 @@
                 <asp:Label ID="Schools4_lbl" runat="server" Font-Size="XX-Large" Font-Underline="false"></asp:Label>
                 <asp:Label ID="Schools5_lbl" runat="server" Font-Size="XX-Large" Font-Underline="false"></asp:Label>
                 <asp:Label ID="visitDate_lbl" runat="server" Font-Size="XX-Large" Font-Underline="false"></asp:Label>
-                <br />
+                <br /><br />
                 <asp:GridView ID="employees_dgv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" CellPadding="5" CellSpacing="1" PageSize="20" Font-Size="Medium" Visible="true">
                     <AlternatingRowStyle BackColor="#99CCFF" />
                     <Columns>

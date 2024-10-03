@@ -69,7 +69,7 @@
                 <asp:DropDownList ID="pr_ddl" runat="server" CssClass="ddl">
                     <asp:ListItem></asp:ListItem>
                     <asp:ListItem>Not Registered</asp:ListItem>
-                    <asp:ListItem>Yes</asp:ListItem>
+                    <asp:ListItem>Active</asp:ListItem>
                     <asp:ListItem>Inactive</asp:ListItem>
                     <asp:ListItem>Hold</asp:ListItem>
                     <asp:ListItem>Pending</asp:ListItem>
@@ -98,7 +98,8 @@
                 <asp:DropDownList ID="schoolNameSchedule_ddl" runat="server" AutoPostBack="true" CssClass="ddl"></asp:DropDownList>
                 <p>Volunteer Name:</p>
                 <asp:DropDownList ID="volNameSchedule_ddl" runat="server" CssClass="ddl" AutoPostBack="true"></asp:DropDownList>
-                <br /><br />
+                <br />
+                <br />
 
                 <%--Table of Volunteers--%>
                 <div id="scheduledVol_div" runat="server" visible="false">
@@ -107,11 +108,12 @@
                     <%--Visit Date Schedule--%>
                     <p>Visit Date:</p>
                     <asp:TextBox ID="visitDateSchedule_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>
-                    <br /><br />
+                    <br />
+                    <br />
                     <asp:Button ID="submitSchedule_btn" runat="server" CssClass="button3" Text="Submit" />
                 </div>
 
-                
+
             </div>
 
             <%--Check In Volunteer--%>
@@ -254,9 +256,11 @@
                 <asp:TextBox ID="visitDateViewVolCtrl_tb" runat="server" CssClass="textbox" TextMode="Date" AutoPostBack="true"></asp:TextBox>
                 <p>or Volunteer Name:</p>
                 <asp:DropDownList ID="volNameViewVolCtrl_ddl" runat="server" CssClass="ddl" AutoPostBack="true"></asp:DropDownList>
-                <br /><br />
-                
-                <p>Total SV Hours: <asp:Label ID="totalSVHoursCtrl_lbl" runat="server"></asp:Label></p>
+                <br />
+                <br />
+
+                <p>Total SV Hours:
+                    <asp:Label ID="totalSVHoursCtrl_lbl" runat="server"></asp:Label></p>
                 <div id="viewVolCtrlDGV_div" runat="server" visible="false">
                     <asp:GridView ID="viewVolCtrl_dgv" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" CellPadding="5" Height="50" AllowPaging="True" ShowHeaderWhenEmpty="True" Font-Size="Medium" Visible="true" PageSize="20" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
                         <Columns>
@@ -269,7 +273,7 @@
                             <asp:BoundField DataField="pr" HeaderText="PR" ReadOnly="true" Visible="true" />
                             <asp:BoundField DataField="svHours" HeaderText="SV Hours" ReadOnly="true" Visible="true" />
                             <asp:BoundField DataField="notes" HeaderText="Notes" ReadOnly="true" Visible="true" />
-                            <asp:BoundField DataField="regular" HeaderText="Regular Volunteer?" ReadOnly="true" Visible="true" />                           
+                            <asp:BoundField DataField="regular" HeaderText="Regular Volunteer?" ReadOnly="true" Visible="true" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -282,9 +286,9 @@
                     <asp:TextBox ID="search_tb" runat="server" CssClass="textbox"></asp:TextBox>&ensp;<asp:Button ID="search_btn" runat="server" CssClass="button3" Text="Search" />&ensp;|&ensp;
                     Sort By:
                     <asp:DropDownList ID="sortBy_ddl" runat="server" CssClass="ddl">
-                        <asp:ListItem>Recently Added</asp:ListItem>
-                        <asp:ListItem>First Name</asp:ListItem>
                         <asp:ListItem>Last Name</asp:ListItem>
+                        <asp:ListItem>First Name</asp:ListItem>
+                        <asp:ListItem>Recently Added</asp:ListItem>
                         <asp:ListItem>Business Name</asp:ListItem>
                         <asp:ListItem>School Name</asp:ListItem>
                         <asp:ListItem>Visit Date</asp:ListItem>
@@ -294,11 +298,12 @@
                     </asp:DropDownList>
                     &ensp;
                     <asp:DropDownList ID="ascDesc_ddl" runat="server" CssClass="ddl">
+                        <asp:ListItem>Ascending</asp:ListItem>
                         <asp:ListItem>Descending</asp:ListItem>
-                        <asp:ListItem>Ascending</asp:ListItem>                     
                     </asp:DropDownList>&ensp;<asp:Button ID="sortBy_btn" runat="server" CssClass="button3" Text="Sort" />
                     &ensp;
-                    <a>Total SV Hours: <asp:Label ID="totalSVHours_lbl" runat="server" Text="-"></asp:Label></a>
+                    <a>Total SV Hours:
+                        <asp:Label ID="totalSVHours_lbl" runat="server" Text="-"></asp:Label></a>
                 </p>
                 <div>
                     <asp:GridView ID="volunteers_dgv" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="true" AutoGenerateDeleteButton="true" DataKeyNames="ID" CellPadding="5" Height="50" AllowPaging="True" ShowHeaderWhenEmpty="True" Font-Size="Medium" Visible="true" PageSize="20" PagerStyle-CssClass="pager" HeaderStyle-CssClass="header" RowStyle-CssClass="rows">
@@ -338,7 +343,7 @@
                                     <asp:DropDownList CssClass="ddl" ID="prDGV_ddl" runat="server" ReadOnly="false">
                                         <asp:ListItem>PR</asp:ListItem>
                                         <asp:ListItem>Not Registered</asp:ListItem>
-                                        <asp:ListItem>Yes</asp:ListItem>
+                                        <asp:ListItem>Active</asp:ListItem>
                                         <asp:ListItem>Inactive</asp:ListItem>
                                         <asp:ListItem>Hold</asp:ListItem>
                                         <asp:ListItem>Pending</asp:ListItem>

@@ -88,10 +88,10 @@
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="School Name" Visible="false">
+                        <asp:TemplateField HeaderText="School Name" Visible="true">
                             <ItemTemplate>
-                                <asp:Label ID="schoolID_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="false" />
-                                <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" ReadOnly="true" Visible="false">
+                                <asp:Label ID="schoolID_lbl" runat="server" Text='<%#Bind("schoolID") %>' Visible="true" />
+                                <asp:DropDownList CssClass="ddl" ID="schoolName_ddl" runat="server" Width="200px" ReadOnly="true" Visible="true">
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>

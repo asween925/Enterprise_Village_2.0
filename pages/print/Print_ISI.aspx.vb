@@ -99,7 +99,7 @@ Public Class Print_ISI
             Try
                 Dim visitDate As String = visitDate_lbl.Text
                 con.ConnectionString = connection_string
-                Dim sql As String = "Select s.id, s.firstName, s.lastName, s.employeenumber, b.businessName, sc.schoolName, j.jobTitle
+                Dim sql As String = "Select s.id, s.firstName, s.lastName, s.accountnumber, b.businessName, sc.schoolName, j.jobTitle
                                 from studentInfo s
                                 inner join businessInfo b 
 	                                on b.id=s.businessID

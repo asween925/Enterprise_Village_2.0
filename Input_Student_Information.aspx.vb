@@ -143,7 +143,7 @@ Public Class Input_Student_Information
             business_ddl.Enabled = True
 
             'Assign labels
-            visitDate_lbl.Text = VisitDate
+            visitDate_lbl.Text = DateTime.Parse(VisitDate).ToLongDateString
             Schools_lbl.Text = SchoolName
 
         End If
@@ -261,7 +261,7 @@ Public Class Input_Student_Information
             ddlSchool1.DataSource = GetData("SELECT s.id as 'id', s.schoolName as 'schoolName'
 											  FROM schoolInfo s 
 											  JOIN visitInfo v ON v.school = s.id OR v.school2 = s.id OR v.school3 = s.id OR v.school4 = s.id OR v.school5 = s.id
-											  WHERE v.id='" & visitID_hf.Value & "' AND s.id=" & schoolID & " AND NOT s.id=505 
+											  WHERE v.id='" & VisitID & "' AND s.id=" & schoolID & " AND NOT s.id=505 
 											  ORDER BY schoolName ")
             ddlSchool1.DataTextField = "schoolName"
             ddlSchool1.DataValueField = "id"
@@ -415,7 +415,7 @@ Public Class Input_Student_Information
 
     Protected Sub confirm_btn_Click(sender As Object, e As EventArgs) Handles confirm_btn.Click
         Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("UPDATE visitInfo SET teacherCompleted=1, lastEdited='" & DateTime.Now & "' WHERE ID='" & visitID_hf.Value & "'")
+            Using cmd As New SqlCommand("UPDATE visitInfo SET teacherCompleted=1, lastEdited='" & DateTime.Now & "' WHERE ID='" & VisitID & "'")
                 cmd.Connection = con
                 con.Open()
                 cmd.ExecuteNonQuery()

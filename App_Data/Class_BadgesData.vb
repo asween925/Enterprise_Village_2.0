@@ -32,10 +32,13 @@ Public Class Class_BadgesData
         End If
 
         'Populate existing badges table
+        cmd.Dispose()
+        con.Close()
         con.ConnectionString = connection_string
         con.Open()
-        cmd.Connection = con
         cmd.CommandText = SQLStatement
+        cmd.Connection = con
+
 
         Dim da As New SqlDataAdapter
         da.SelectCommand = cmd
@@ -56,7 +59,7 @@ Public Class Class_BadgesData
                                         FROM badges b
 										INNER JOIN studentInfo s
 										ON b.studentID = s.id
-                                        WHERE visitID='" & VisitID & "'
+                                        WHERE b.visitID='" & VisitID & "'
                                         ORDER BY s.accountNumber DESC"
 
         'Add student names who have a saved badge to DDL

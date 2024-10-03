@@ -29,9 +29,9 @@ Public Class Badge_Creator_Print
 
     Sub LoadPrintBadges()
         Dim studentName() As String = badges_ddl.SelectedValue.Split(".")
-        Dim SQLWhere As String = " AND (s.employeeNumber = '" & studentName(0) & "')"
+        Dim SQLWhere As String = " AND (s.accountNumber = '" & studentName(0) & "')"
 
-        If employeeNumber1_lbl.Text = Nothing Then
+        If employeeNumber1_lbl.Text = "#000" Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -67,7 +67,7 @@ Public Class Badge_Creator_Print
                 Exit Sub
             End If
 
-        ElseIf employeeNumber2_lbl.Text = Nothing Then
+        ElseIf employeeNumber2_lbl.Text = "#000" Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -103,7 +103,7 @@ Public Class Badge_Creator_Print
                 Exit Sub
             End If
 
-        ElseIf employeeNumber3_lbl.Text = Nothing Then
+        ElseIf employeeNumber3_lbl.Text = "#000" Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -139,7 +139,7 @@ Public Class Badge_Creator_Print
                 Exit Sub
             End If
 
-        ElseIf employeeNumber4_lbl.Text = Nothing Then
+        ElseIf employeeNumber4_lbl.Text = "#000" Then
 
             'Clear out gridview
             printBadges_dgv.DataSource = Nothing
@@ -189,19 +189,19 @@ Public Class Badge_Creator_Print
         End Try
 
         'If printed badges are loaded, clear out loaded names from DDL
-        If studentName1_lbl.Text <> Nothing Then
+        If studentName1_lbl.Text <> "Student Name" Then
             badges_ddl.Items.Remove(employeeNumber1_lbl.Text & ".   " & studentName1_lbl.Text)
         End If
 
-        If studentName2_lbl.Text <> Nothing Then
+        If studentName2_lbl.Text <> "Student Name" Then
             badges_ddl.Items.Remove(employeeNumber2_lbl.Text & ".   " & studentName2_lbl.Text)
         End If
 
-        If studentName3_lbl.Text <> Nothing Then
+        If studentName3_lbl.Text <> "Student Name" Then
             badges_ddl.Items.Remove(employeeNumber3_lbl.Text & ".   " & studentName3_lbl.Text)
         End If
 
-        If studentName4_lbl.Text <> Nothing Then
+        If studentName4_lbl.Text <> "Student Name" Then
             badges_ddl.Items.Remove(employeeNumber4_lbl.Text & ".   " & studentName4_lbl.Text)
             error_lbl.Text = "You have 4 badges ready to be printed. Please find a teacher so you can print the badges."
             badges_ddl.Enabled = False
