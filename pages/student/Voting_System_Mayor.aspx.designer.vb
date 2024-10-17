@@ -68,6 +68,15 @@ Partial Public Class Voting_System_Mayor
     Protected WithEvents q1a3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''q1a4_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents q1a4_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''q2a1_lbl control.
     '''</summary>
     '''<remarks>
@@ -95,6 +104,15 @@ Partial Public Class Voting_System_Mayor
     Protected WithEvents q2a3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''q2a4_lbl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents q2a4_lbl As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''q3a1_lbl control.
     '''</summary>
     '''<remarks>
@@ -113,15 +131,6 @@ Partial Public Class Voting_System_Mayor
     Protected WithEvents q3a2_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''q3a3_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents q3a3_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''q4a1_lbl control.
     '''</summary>
     '''<remarks>
@@ -138,15 +147,6 @@ Partial Public Class Voting_System_Mayor
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents q4a2_lbl As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''q4a3_lbl control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents q4a3_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''q5a1_lbl control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Employee_Management_System_Review.aspx.vb" Inherits="Enterprise_Village_2._0.Employee_Management_System_Review" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Employee_Management_System_Review.aspx.vb" MaintainScrollPositionOnPostback="true" Inherits="Enterprise_Village_2._0.Employee_Management_System_Review" %>
 
 <!doctype html>
 <html>

@@ -37,6 +37,13 @@
 
         .d-none {
         }
+
+        .canvas {
+            width: 440px;
+            height: 200px;
+            margin-top: 20px;
+            padding-left: 10px;
+        }
     </style>
 </head>
 
@@ -68,7 +75,8 @@
                 <div class="camera_controls">
                     <video id="capturevideo" width="275" height="275" class="camera d-none no-print"></video><%--camera--%>
                     <asp:Button runat="server" ID="capture_btn" Text="Take Picture" class="button button1 no-print" OnClientClick="javascript:capture(); return false;" /> 
-                    <canvas id="capturecanvas" runat="server" width="275" height="275" class="badge_photo d-none"></canvas> <%--badge photo--%> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <canvas id="capturecanvas" class="canvas" runat="server"></canvas> <%--badge photo--%> 
+                    <br /><br /><br /><br /><br /><br />
                     <asp:Button runat="server" ID="upload_btn" Text="Upload Picture" class="button button1 no-print"/>
                     
                 </div>

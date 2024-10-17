@@ -9,6 +9,9 @@ Public Class Employee_Management_System_Review
     Dim sqldatabase As String = System.Configuration.ConfigurationManager.AppSettings("EV_DB").ToString
     Dim sqluser As String = System.Configuration.ConfigurationManager.AppSettings("db_user").ToString
     Dim sqlpassword As String = System.Configuration.ConfigurationManager.AppSettings("db_password").ToString
+    Dim con As New SqlConnection
+    Dim cmd As New SqlCommand
+    Dim dr As SqlDataReader
     Dim connection_string As String = "Server=" & sqlserver & ";database=" & sqldatabase & ";uid=" & sqluser & ";pwd=" & sqlpassword & ";Connection Timeout=20;"
     Dim Visits As New Class_VisitData
     Dim Businesses As New Class_BusinessData
@@ -36,13 +39,40 @@ Public Class Employee_Management_System_Review
         Dim visitDate As String = date_tb.Text
         Dim VIDOfDate As Integer = Visits.GetVisitIDFromDate(date_tb.Text)
         Dim businessID As Integer = Businesses.GetBusinessID(business_ddl.SelectedItem.ToString())
+        Dim da As New SqlDataAdapter
+        Dim dt As New DataTable
+        Dim SQLStatement As String = "Select s.id, s.firstName, s.lastName, s.accountNumber, b.id as BusinessID,j.id as JobID, s.schoolID as 'schoolID'
+                                    from studentInfo s
+                                    inner join businessInfo b 
+	                                    on b.id=s.businessID
+                                    left join jobs j
+	                                    on j.id=s.jobID
+                                    inner join visitInfo v
+	                                    on v.id=s.visitID
+                                    where v.id='" & VIDOfDate & "' and b.ID='" & businessID & "'"
 
         'Clear error
         error_lbl.Text = ""
 
         'Load table
+        'Try
+        '    Students.LoadEMSTable(VIDOfDate, Review_dgv, businessID)
+        'Catch
+        '    error_lbl.Text = "Error in loaddata(). Cannot load data."
+        '    Exit Sub
+        'End Try
+
+        'Load table
         Try
-            Students.LoadEMSTable(VIDOfDate, Review_dgv, businessID)
+            con.ConnectionString = connection_string
+            con.Open()
+            cmd.CommandText = SQLStatement
+            cmd.Connection = con
+            da.SelectCommand = cmd
+            da.Fill(dt)
+
+            Review_dgv.DataSource = dt
+            Review_dgv.DataBind()
         Catch
             error_lbl.Text = "Error in loaddata(). Cannot load data."
             Exit Sub
@@ -231,27 +261,44 @@ Public Class Employee_Management_System_Review
         Dim employeeLast As String = TryCast(Review_dgv.Rows(e.RowIndex).FindControl("lastName_tb"), TextBox).Text
         Dim employeePosition As String = TryCast(Review_dgv.Rows(e.RowIndex).FindControl("job_ddl"), DropDownList).SelectedValue.ToString
         Dim school As String = TryCast(Review_dgv.Rows(e.RowIndex).FindControl("schoolName_ddl"), DropDownList).SelectedValue.ToString
-
-        'If TryCast(row.Cells(x).Controls(0), CheckBox).Checked = True Then                 Used for checkboxes, just need to assign a value after then
-
-        'End If
         Dim empNum As Integer = GetEmptNum(businessName, employeePosition)
 
-        Using con As New SqlConnection(connection_string)
-            Using cmd As New SqlCommand("UPDATE studentInfo SET businessID=@business, accountNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, schoolID =@school, jobID=@employeePosition WHERE ID=@Id")
-                cmd.Parameters.AddWithValue("@ID", ID)
-                cmd.Parameters.AddWithValue("@business", businessName)
-                cmd.Parameters.AddWithValue("@employeeID", employeeNumber)
-                cmd.Parameters.AddWithValue("@employeeFirst", employeeFirst)
-                cmd.Parameters.AddWithValue("@employeeLast", employeeLast)
-                cmd.Parameters.AddWithValue("@employeePosition", employeePosition)
-                cmd.Parameters.AddWithValue("@school", school)
-                cmd.Connection = con
-                con.Open()
-                cmd.ExecuteNonQuery()
-                con.Close()
+        'Check if employeePosiution is blank
+        If employeePosition = "" Then
+            Using con As New SqlConnection(connection_string)
+                Using cmd As New SqlCommand("UPDATE studentInfo SET businessID=@business, accountNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, schoolID =@school, jobID=NULL WHERE ID=@Id")
+                    cmd.Parameters.AddWithValue("@ID", ID)
+                    cmd.Parameters.AddWithValue("@business", businessName)
+                    cmd.Parameters.AddWithValue("@employeeID", employeeNumber)
+                    cmd.Parameters.AddWithValue("@employeeFirst", employeeFirst)
+                    cmd.Parameters.AddWithValue("@employeeLast", employeeLast)
+                    'cmd.Parameters.AddWithValue("@employeePosition", employeePosition)
+                    cmd.Parameters.AddWithValue("@school", school)
+                    cmd.Connection = con
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                    con.Close()
+                End Using
             End Using
-        End Using
+        Else
+            Using con As New SqlConnection(connection_string)
+                Using cmd As New SqlCommand("UPDATE studentInfo SET businessID=@business, accountNumber=@employeeID, firstName=@employeeFirst, lastName =@employeeLast, schoolID =@school, jobID=@employeePosition WHERE ID=@Id")
+                    cmd.Parameters.AddWithValue("@ID", ID)
+                    cmd.Parameters.AddWithValue("@business", businessName)
+                    cmd.Parameters.AddWithValue("@employeeID", employeeNumber)
+                    cmd.Parameters.AddWithValue("@employeeFirst", employeeFirst)
+                    cmd.Parameters.AddWithValue("@employeeLast", employeeLast)
+                    cmd.Parameters.AddWithValue("@employeePosition", employeePosition)
+                    cmd.Parameters.AddWithValue("@school", school)
+                    cmd.Connection = con
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                    con.Close()
+                End Using
+            End Using
+        End If
+
+
         Review_dgv.EditIndex = -1       'reset the grid after editing
         loadData()
     End Sub
@@ -328,11 +375,12 @@ Public Class Employee_Management_System_Review
             ddlJobs.DataTextField = "JobTitle"
             ddlJobs.DataValueField = "Jobid"
             ddlJobs.DataBind()
+            ddlJobs.Items.Insert(0, "")
             Dim lblJobs As String = CType(e.Row.FindControl("job_lbl"), Label).Text
-            Try
+
+            If lblJobs <> Nothing Then
                 ddlJobs.Items.FindByValue(lblJobs).Selected = True
-            Catch
-            End Try
+            End If
 
         End If
     End Sub

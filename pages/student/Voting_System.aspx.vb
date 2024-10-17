@@ -85,24 +85,24 @@ Public Class Voting_System
 
         'Check if all questions are answered
         'If q1a1_rdo.Checked = False And q1a2_rdo.Checked = False And q1a3_rdo.Checked = False And q1a4_rdo.Checked = False Then
-        If q1a1_rdo.Checked = False And q1a2_rdo.Checked = False And q1a3_rdo.Checked = False Then
+        If q1a1_rdo.Checked = False And q1a2_rdo.Checked = False And q1a3_rdo.Checked = False And q1a4_rdo.Checked = False Then
             questionsError_lbl.Text = "Please answer question #1 before casting your vote."
             Exit Sub
         End If
 
         'If q2a1_rdo.Checked = False And q2a2_rdo.Checked = False And q2a3_rdo.Checked = False And q2a4_rdo.Checked = False Then
-        If q2a1_rdo.Checked = False And q2a2_rdo.Checked = False And q2a3_rdo.Checked = False Then
+        If q2a1_rdo.Checked = False And q2a2_rdo.Checked = False And q2a3_rdo.Checked = False And q2a4_rdo.Checked = False Then
             questionsError_lbl.Text = "Please answer question #2 before casting your vote."
             Exit Sub
         End If
 
-        If q3a1_rdo.Checked = False And q3a2_rdo.Checked = False And q3a3_rdo.Checked = False Then
+        If q3a1_rdo.Checked = False And q3a2_rdo.Checked = False Then
             questionsError_lbl.Text = "Please answer question #3 before casting your vote."
             Exit Sub
         End If
 
         'If q4a1_rdo.Checked = False And q4a2_rdo.Checked = False And q4a3_rdo.Checked = False And q4a4_rdo.Checked = False Then
-        If q4a1_rdo.Checked = False And q4a2_rdo.Checked = False And q4a3_rdo.Checked = False Then
+        If q4a1_rdo.Checked = False And q4a2_rdo.Checked = False Then
             questionsError_lbl.Text = "Please answer question #4 before casting your vote."
             Exit Sub
         End If
@@ -120,9 +120,9 @@ Public Class Voting_System
 
         'Assign strings
         'SQLInsert = "INSERT INTO voting (visitID, visitDate, q1a1, q1a2, q1a3, q1a4, q2a1, q2a2, q2a3, q2a4, q3a1, q3a2, q3a3, q3a4, q4a1, q4a2, q4a3, q4a4, q5a1, q5a2, q5a3, q5a4) VALUES ('" & VisitID & "', '" & Date.Today.ToShortDateString & "', '" & CountVotes.Q1A1 & "', '" & CountVotes.Q1A2 & "', '" & CountVotes.Q1A3 & "', '" & CountVotes.Q1A4 & "', '" & CountVotes.Q2A1 & "', '" & CountVotes.Q2A2 & "', '" & CountVotes.Q2A3 & "', '" & CountVotes.Q2A4 & "', '" & CountVotes.Q3A1 & "', '" & CountVotes.Q3A2 & "', '" & CountVotes.Q3A3 & "', '" & CountVotes.Q3A4 & "', '" & CountVotes.Q4A1 & "', '" & CountVotes.Q4A2 & "', '" & CountVotes.Q4A3 & "', '" & CountVotes.Q4A4 & "', '" & CountVotes.Q5A1 & "', '" & CountVotes.Q5A2 & "', '" & CountVotes.Q5A3 & "', '" & CountVotes.Q5A4 & "')"
-        SQLInsert = "INSERT INTO voting (visitID, visitDate, q1a1, q1a2, q1a3, q2a1, q2a2, q2a3, q3a1, q3a2, q3a3, q4a1, q4a2, q4a3, q5a1, q5a2, q5a3, q6a1, q6a2) VALUES ('" & VisitID & "', '" & Date.Today.ToShortDateString & "', '" & CountVotes.Q1A1 & "', '" & CountVotes.Q1A2 & "', '" & CountVotes.Q1A3 & "', '" & CountVotes.Q2A1 & "', '" & CountVotes.Q2A2 & "', '" & CountVotes.Q2A3 & "', '" & CountVotes.Q3A1 & "', '" & CountVotes.Q3A2 & "', '" & CountVotes.Q3A3 & "', '" & CountVotes.Q4A1 & "','" & CountVotes.Q4A2 & "', '" & CountVotes.Q4A3 & "', '" & CountVotes.Q5A1 & "', '" & CountVotes.Q5A2 & "', '" & CountVotes.Q5A3 & "', '" & CountVotes.Q6A1 & "', '" & CountVotes.Q6A2 & "')"
+        SQLInsert = "INSERT INTO voting (visitID, visitDate, q1a1, q1a2, q1a3, q1a4, q2a1, q2a2, q2a3, q2a4, q3a1, q3a2, q4a1, q4a2, q5a1, q5a2, q5a3, q6a1, q6a2) VALUES ('" & VisitID & "', '" & Date.Today.ToShortDateString & "', '" & CountVotes.Q1A1 & "', '" & CountVotes.Q1A2 & "', '" & CountVotes.Q1A3 & "', '" & CountVotes.Q1A4 & "','" & CountVotes.Q2A1 & "', '" & CountVotes.Q2A2 & "', '" & CountVotes.Q2A3 & "', '" & CountVotes.Q2A4 & "', '" & CountVotes.Q3A1 & "', '" & CountVotes.Q3A2 & "', '" & CountVotes.Q4A1 & "','" & CountVotes.Q4A2 & "', '" & CountVotes.Q5A1 & "', '" & CountVotes.Q5A2 & "', '" & CountVotes.Q5A3 & "', '" & CountVotes.Q6A1 & "', '" & CountVotes.Q6A2 & "')"
         'SQLUpdate = "UPDATE voting SET q1a1=q1a1+'" & CountVotes.Q1A1 & "', q1a2=q1a2+'" & CountVotes.Q1A2 & "', q1a3=q1a3+'" & CountVotes.Q1A3 & "', q1a4=q1a4+'" & CountVotes.Q1A4 & "', q2a1=q2a1+'" & CountVotes.Q2A1 & "', q2a2=q2a2+'" & CountVotes.Q2A2 & "', q2a3=q2a3+'" & CountVotes.Q2A3 & "', q2a4=q2a4+'" & CountVotes.Q2A4 & "', q3a1=q3a1+'" & CountVotes.Q3A1 & "', q3a2=q3a2+'" & CountVotes.Q3A2 & "', q3a3=q3a3+'" & CountVotes.Q3A3 & "', q3a4=q3a4+'" & CountVotes.Q3A4 & "', q4a1=q4a1+'" & CountVotes.Q4A1 & "', q4a2=q4a2+'" & CountVotes.Q4A2 & "', q4a3=q4a3+'" & CountVotes.Q4A3 & "', q4a4=q4a4+'" & CountVotes.Q4A4 & "', q5a1=q5a1+'" & CountVotes.Q5A1 & "', q5a2=q5a2+'" & CountVotes.Q5A2 & "', q5a3=q5a3+'" & CountVotes.Q5A3 & "', q5a4=q5a4+'" & CountVotes.Q5A4 & "' WHERE visitID = '" & VisitID & "'"
-        SQLUpdate = "UPDATE voting SET q1a1=q1a1+'" & CountVotes.Q1A1 & "', q1a2=q1a2+'" & CountVotes.Q1A2 & "', q1a3=q1a3+'" & CountVotes.Q1A3 & "', q2a1=q2a1+'" & CountVotes.Q2A1 & "',q2a2=q2a2+'" & CountVotes.Q2A2 & "', q2a3=q2a3+'" & CountVotes.Q2A3 & "', q3a1=q3a1+'" & CountVotes.Q3A1 & "', q3a2=q3a2+'" & CountVotes.Q3A2 & "', q3a3=q3a3+'" & CountVotes.Q3A3 & "', q4a1=q4a1+'" & CountVotes.Q4A1 & "', q4a2=q4a2+'" & CountVotes.Q4A2 & "', q4a3=q4a3+'" & CountVotes.Q4A3 & "', q5a1=q5a1+'" & CountVotes.Q5A1 & "', q5a2=q5a2+'" & CountVotes.Q5A2 & "', q5a3=q5a3+'" & CountVotes.Q5A3 & "', q6a1=q6a1+'" & CountVotes.Q6A1 & "', q6a2=q6a2+'" & CountVotes.Q6A2 & "' WHERE visitID = '" & VisitID & "'"
+        SQLUpdate = "UPDATE voting SET q1a1=q1a1+'" & CountVotes.Q1A1 & "', q1a2=q1a2+'" & CountVotes.Q1A2 & "', q1a3=q1a3+'" & CountVotes.Q1A3 & "', q1a4=q1a4+'" & CountVotes.Q1A4 & "', q2a1=q2a1+'" & CountVotes.Q2A1 & "',q2a2=q2a2+'" & CountVotes.Q2A2 & "', q2a3=q2a3+'" & CountVotes.Q2A3 & "', q2a4=q2a4+'" & CountVotes.Q2A4 & "', q3a1=q3a1+'" & CountVotes.Q3A1 & "', q3a2=q3a2+'" & CountVotes.Q3A2 & "', q4a1=q4a1+'" & CountVotes.Q4A1 & "', q4a2=q4a2+'" & CountVotes.Q4A2 & "', q5a1=q5a1+'" & CountVotes.Q5A1 & "', q5a2=q5a2+'" & CountVotes.Q5A2 & "', q5a3=q5a3+'" & CountVotes.Q5A3 & "', q6a1=q6a1+'" & CountVotes.Q6A1 & "', q6a2=q6a2+'" & CountVotes.Q6A2 & "' WHERE visitID = '" & VisitID & "'"
 
         'If not yet created, submit answers into DB
         Try
@@ -207,9 +207,9 @@ Public Class Voting_System
             Q1A3 = 1
         End If
 
-        'If q1a4_rdo.Checked = True Then
-        '    Q1A4 = 1
-        'End If
+        If q1a4_rdo.Checked = True Then
+            Q1A4 = 1
+        End If
 
         If q2a1_rdo.Checked = True Then
             Q2A1 = 1
@@ -223,9 +223,9 @@ Public Class Voting_System
             Q2A3 = 1
         End If
 
-        'If q2a4_rdo.Checked = True Then
-        '    Q2A4 = 1
-        'End If
+        If q2a4_rdo.Checked = True Then
+            Q2A4 = 1
+        End If
 
         If q3a1_rdo.Checked = True Then
             Q3A1 = 1
@@ -235,9 +235,9 @@ Public Class Voting_System
             Q3A2 = 1
         End If
 
-        If q3a3_rdo.Checked = True Then
-            Q3A3 = 1
-        End If
+        'If q3a3_rdo.Checked = True Then
+        '    Q3A3 = 1
+        'End If
 
         'If q3a4_rdo.Checked = True Then
         '    Q3A4 = 1
@@ -251,9 +251,9 @@ Public Class Voting_System
             Q4A2 = 1
         End If
 
-        If q4a3_rdo.Checked = True Then
-            Q4A3 = 1
-        End If
+        'If q4a3_rdo.Checked = True Then
+        '    Q4A3 = 1
+        'End If
 
         'If q4a4_rdo.Checked = True Then
         '    Q4A4 = 1

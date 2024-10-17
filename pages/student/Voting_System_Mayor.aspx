@@ -24,42 +24,42 @@
 
             <%--Content--%>
             <div>            
-                <h4 class="Voting_System_Questions_H4">#1. How would you describe your day at Enterprise Village?</h4>
+                <h4 class="Voting_System_Questions_H4">#1. How would you rate your day at Enterprise Village? (out of 4 stars, 4 being the best)</h4>
 
-                    <p>OK - <asp:Label ID="q1a1_lbl" runat="server"></asp:Label></p>
-                    <p>Great - <asp:Label ID="q1a2_lbl" runat="server"></asp:Label></p>
-                    <p>Fantastic - <asp:Label ID="q1a3_lbl" runat="server"></asp:Label></p>
-                    <%--<p>My Teacher - <asp:Label ID="q1a4_lbl" runat="server"></asp:Label></p>--%>
+                    <p>4 stars - <asp:Label ID="q1a1_lbl" runat="server"></asp:Label></p>
+                    <p>3 stars - <asp:Label ID="q1a2_lbl" runat="server"></asp:Label></p>
+                    <p>2 stars - <asp:Label ID="q1a3_lbl" runat="server"></asp:Label></p>
+                    <p>1 star - <asp:Label ID="q1a4_lbl" runat="server"></asp:Label></p>
 
-                <h4 class="Voting_System_Questions_H4">#2. Did you enjoy your job today?</h4>
+                <h4 class="Voting_System_Questions_H4">#2. What have you liked most about being at Enterprise Village today?</h4>
 
-                    <p>Yes - <asp:Label ID="q2a1_lbl" runat="server"></asp:Label></p>
-                    <p>No - <asp:Label ID="q2a2_lbl" runat="server"></asp:Label></p>
-                    <p>I don't know - <asp:Label ID="q2a3_lbl" runat="server"></asp:Label></p>
-                    <%--<p>Endorsed check and savings ticket - <asp:Label ID="q2a4_lbl" runat="server"></asp:Label></p>--%>
+                    <p>My job - <asp:Label ID="q2a1_lbl" runat="server"></asp:Label></p>
+                    <p>Lunch - <asp:Label ID="q2a2_lbl" runat="server"></asp:Label></p>
+                    <p>Spending the money I earned - <asp:Label ID="q2a3_lbl" runat="server"></asp:Label></p>
+                    <p>Interacting with other citizens in their businesses - <asp:Label ID="q2a4_lbl" runat="server"></asp:Label></p>
 
-                <h4 class="Voting_System_Questions_H4">#3. Do you feel you know more about Free Enterprise after your visit today?</h4>
+                <h4 class="Voting_System_Questions_H4">#3. Do you know more about earning and spending money?</h4>
 
                     <p>Yes - <asp:Label ID="q3a1_lbl" runat="server"></asp:Label></p>
                     <p>No - <asp:Label ID="q3a2_lbl" runat="server"></asp:Label></p>
-                    <p>I don't know - <asp:Label ID="q3a3_lbl" runat="server"></asp:Label></p>
+                    <%--<p>I don't know - <asp:Label ID="q3a3_lbl" runat="server"></asp:Label></p>--%>
                     <%--<p>All of the above - <asp:Label ID="q3a4_lbl" runat="server"></asp:Label></p>--%>
 
-                <h4 class="Voting_System_Questions_H4">#4. What was your favorite part or the day? </h4>
+                <h4 class="Voting_System_Questions_H4">#4. Do you have a better understanding of what it means to have a job? </h4>
 
-                    <p>Spending money - <asp:Label ID="q4a1_lbl" runat="server"></asp:Label></p>
-                    <p>Lunch - <asp:Label ID="q4a2_lbl" runat="server"></asp:Label></p>
-                    <p>Hanging with my friends - <asp:Label ID="q4a3_lbl" runat="server"></asp:Label></p>
+                    <p>Yes - <asp:Label ID="q4a1_lbl" runat="server"></asp:Label></p>
+                    <p>No - <asp:Label ID="q4a2_lbl" runat="server"></asp:Label></p>
+                    <%--<p> - <asp:Label ID="q4a3_lbl" runat="server"></asp:Label></p>--%>
                     <%--<p>Maybe so - <asp:Label ID="q4a4_lbl" runat="server"></asp:Label></p>--%>
 
-                <h4 class="Voting_System_Questions_H4">#5. I would describe my volunteer as:</h4>
+                <h4 class="Voting_System_Questions_H4">#5. I will think more about managing money in the future:</h4>
 
-                    <p>Okay - <asp:Label ID="q5a1_lbl" runat="server"></asp:Label></p>
-                    <p>Great - <asp:Label ID="q5a2_lbl" runat="server"></asp:Label></p>
-                    <p>Fantastic - <asp:Label ID="q5a3_lbl" runat="server"></asp:Label></p>
+                    <p>Often - <asp:Label ID="q5a1_lbl" runat="server"></asp:Label></p>
+                    <p>Sometimes - <asp:Label ID="q5a2_lbl" runat="server"></asp:Label></p>
+                    <p>Never - <asp:Label ID="q5a3_lbl" runat="server"></asp:Label></p>
                     <%--<p>Mayor - <asp:Label ID="q5a4_lbl" runat="server"></asp:Label></p> --%> 
                 
-                <h4 class="Voting_System_Questions_H4">#6. Would you like to come back to Enterprise Village?</h4>
+                <h4 class="Voting_System_Questions_H4">#6. Are you interesting in learning more about the businesses and careers that you interacting with today at Enterprise Village?</h4>
                     <p>Yes - <asp:Label ID="q6a1_lbl" runat="server"></asp:Label></p>
                     <p>No - <asp:Label ID="q6a2_lbl" runat="server"></asp:Label></p>
                     <%--<p>Maybe - <asp:Label ID="q6a3_lbl" runat="server"></asp:Label></p>--%>

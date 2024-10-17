@@ -4,6 +4,7 @@ Imports System.Configuration
 Imports System.Data.SqlClient
 Imports System.Drawing
 Imports System.Net.Mime.MediaTypeNames
+Imports System.Net
 Public Class Edit_Business
     Inherits System.Web.UI.Page
     Dim sqlserver As String = System.Configuration.ConfigurationManager.AppSettings("EV_sfp").ToString
@@ -28,6 +29,9 @@ Public Class Edit_Business
 
             'Populating school header
             headerSchoolName_lbl.Text = SH.GetSchoolHeader()
+
+            'Load business names into ddl
+            BusinessData.LoadBusinessNamesDDL(businessName_ddl)
 
             'Load data
             LoadData()
@@ -61,6 +65,153 @@ Public Class Edit_Business
             End If
         Next
 
+    End Sub
+
+    Sub LoadAssignJobsToAcctNums(BusinessName As String)
+        Dim da As New SqlDataAdapter
+        Dim dt As New DataTable
+        Dim BusinessID As String
+        Dim SQLStatement As String = "SELECT id, accountNumber, jobID FROM studentInfo_template "
+
+        'Clear out visit table
+        jobs_dgv.DataSource = Nothing
+        jobs_dgv.DataBind()
+
+        'Check for business name
+        If BusinessName <> Nothing Then
+
+            'Get business ID
+            BusinessID = BusinessData.GetBusinessID(BusinessName)
+
+            'Assign it to SQL statement
+            SQLStatement = SQLStatement & "WHERE businessID='" & BusinessID & "'"
+        Else
+            error_lbl.Text = "Error in LoadAssign(). Could not find business name."
+            Exit Sub
+        End If
+
+        'Fill visit table
+        Try
+            con.ConnectionString = connection_string
+            con.Open()
+            cmd.CommandText = SQLStatement
+            cmd.Connection = con
+            da.SelectCommand = cmd
+            da.Fill(dt)
+
+            jobs_dgv.DataSource = dt
+            jobs_dgv.DataBind()
+        Catch
+            error_lbl.Text = "Error in LoadAssign(). Could not fill table."
+            Exit Sub
+        End Try
+
+        'Highlight row being edited
+        For Each row As GridViewRow In jobs_dgv.Rows
+            If row.RowIndex = jobs_dgv.EditIndex Then
+                row.BackColor = ColorTranslator.FromHtml("#ebe534")
+                'row.BorderColor = ColorTranslator.FromHtml("#ffffff")
+                row.BorderWidth = 2
+            End If
+        Next
+    End Sub
+
+    Private Sub jobs_dgv_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles jobs_dgv.RowUpdating
+        Dim row As GridViewRow = jobs_dgv.Rows(0)                           'Code is used to enable the editing prodecure
+        Dim ID As Integer = Convert.ToInt32(jobs_dgv.DataKeys(e.RowIndex).Values(0)) 'Gets id number
+        Dim JobID As String = TryCast(jobs_dgv.Rows(e.RowIndex).FindControl("jobTitleDGV_ddl"), DropDownList).SelectedValue.ToString
+
+        'Check if job DDL is blank
+        If JobID = "" Then
+            Try
+                'Update student info template
+                Using con As New SqlConnection(connection_string)
+                    Using cmd As New SqlCommand("UPDATE studentInfo_template SET jobID=NULL WHERE ID=@Id")
+                        cmd.Parameters.AddWithValue("@ID", ID)
+                        'cmd.Parameters.AddWithValue("@jobID", JobID)
+                        cmd.Connection = con
+                        con.Open()
+                        cmd.ExecuteNonQuery()
+                        con.Close()
+                    End Using
+                End Using
+
+                jobs_dgv.EditIndex = -1       'reset the grid after editing
+                LoadAssignJobsToAcctNums(businessName_ddl.SelectedValue)
+
+            Catch ex As Exception
+                error_lbl.Text = "Error in updating for assignments. Cannot update row for null value."
+                Exit Sub
+            End Try
+        Else
+            Try
+                'Update student info template
+                Using con As New SqlConnection(connection_string)
+                    Using cmd As New SqlCommand("UPDATE studentInfo_template SET jobID=@jobID WHERE ID=@Id")
+                        cmd.Parameters.AddWithValue("@ID", ID)
+                        cmd.Parameters.AddWithValue("@jobID", JobID)
+                        cmd.Connection = con
+                        con.Open()
+                        cmd.ExecuteNonQuery()
+                        con.Close()
+                    End Using
+                End Using
+
+                jobs_dgv.EditIndex = -1       'reset the grid after editing
+                LoadAssignJobsToAcctNums(businessName_ddl.SelectedValue)
+
+            Catch ex As Exception
+                error_lbl.Text = "Error in updating for assignments. Cannot update row."
+                Exit Sub
+            End Try
+        End If
+
+        'Update DB
+
+    End Sub
+
+    Private Sub jobs_dgv_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles jobs_dgv.RowEditing
+        jobs_dgv.EditIndex = e.NewEditIndex
+        LoadAssignJobsToAcctNums(businessName_ddl.SelectedValue)
+    End Sub
+
+    Private Sub jobs_dgv_RowCanceling(sender As Object, e As GridViewCancelEditEventArgs) Handles jobs_dgv.RowCancelingEdit
+        jobs_dgv.EditIndex = -1
+        LoadAssignJobsToAcctNums(businessName_ddl.SelectedValue)
+    End Sub
+
+    Private Sub jobs_dgv_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles jobs_dgv.RowDataBound
+        If (e.Row.RowType = DataControlRowType.DataRow) Then
+            Dim ddlPosition As DropDownList = CType(e.Row.FindControl("jobTitleDGV_ddl"), DropDownList)
+            Dim lblPosition As String = CType(e.Row.FindControl("jobIDDGV_lbl"), Label).Text
+            Dim businessID As String = BusinessData.GetBusinessID(businessName_ddl.SelectedValue)
+
+            ddlPosition.DataSource = GetData("SELECT j.ID AS JobID,j.JobTitle
+                                            FROM Jobs j
+                                            JOIN businessinfo b
+	                                            ON j.id = b.position1
+	                                            OR j.id = b.position2
+	                                            OR j.id = b.position3
+	                                            OR j.id = b.position4
+	                                            OR j.id = b.position5
+	                                            OR j.id = b.position6
+	                                            OR j.id = b.position7
+	                                            OR j.id = b.position8
+	                                            OR j.id = b.position9
+	                                            OR j.id = b.position10
+                                                OR j.id = b.position11
+                                            WHERE b.Id='" & businessID & "'
+                                            ORDER BY JobTitle")
+            ddlPosition.DataTextField = "jobTitle"
+            ddlPosition.DataValueField = "Jobid"
+            ddlPosition.DataBind()
+            ddlPosition.Items.Insert(0, "")
+
+            If lblPosition <> Nothing Then
+                ddlPosition.Items.FindByValue(lblPosition).Selected = True
+            End If
+
+        End If
     End Sub
 
     Private Sub business_dgv_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles business_dgv.RowUpdating
@@ -360,4 +511,40 @@ Public Class Edit_Business
         Return LogoFileName
     End Function
 
+    Protected Sub businessName_ddl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles businessName_ddl.SelectedIndexChanged
+        If businessName_ddl.SelectedIndex <> 0 Then
+
+            'Make jobs div visible
+            jobs_dgv.Visible = True
+
+            'Load gridview
+            LoadAssignJobsToAcctNums(businessName_ddl.SelectedValue)
+        Else
+
+            'Make jobs div invisible
+            jobs_dgv.Visible = False
+        End If
+    End Sub
+
+    Protected Sub changeView_btn_Click(sender As Object, e As EventArgs) Handles changeView_btn.Click
+        If businessTable_div.Visible = True Then
+
+            'Change text of button
+            changeView_btn.Text = "Edit a Business"
+
+            'Change view to assign positions
+            assignJobs_div.Visible = True
+            businessTable_div.Visible = False
+
+        Else
+
+            'Change text of button
+            changeView_btn.Text = "Assign Positions"
+
+            'Change view to assign positions
+            assignJobs_div.Visible = False
+            businessTable_div.Visible = True
+
+        End If
+    End Sub
 End Class

@@ -104,6 +104,15 @@ Partial Public Class Voting_System
     Protected WithEvents q1a3_rdo As Global.System.Web.UI.WebControls.RadioButton
 
     '''<summary>
+    '''q1a4_rdo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents q1a4_rdo As Global.System.Web.UI.WebControls.RadioButton
+
+    '''<summary>
     '''q2a1_rdo control.
     '''</summary>
     '''<remarks>
@@ -131,6 +140,15 @@ Partial Public Class Voting_System
     Protected WithEvents q2a3_rdo As Global.System.Web.UI.WebControls.RadioButton
 
     '''<summary>
+    '''q2a4_rdo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents q2a4_rdo As Global.System.Web.UI.WebControls.RadioButton
+
+    '''<summary>
     '''q3a1_rdo control.
     '''</summary>
     '''<remarks>
@@ -149,15 +167,6 @@ Partial Public Class Voting_System
     Protected WithEvents q3a2_rdo As Global.System.Web.UI.WebControls.RadioButton
 
     '''<summary>
-    '''q3a3_rdo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents q3a3_rdo As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
     '''q4a1_rdo control.
     '''</summary>
     '''<remarks>
@@ -174,15 +183,6 @@ Partial Public Class Voting_System
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents q4a2_rdo As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''q4a3_rdo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents q4a3_rdo As Global.System.Web.UI.WebControls.RadioButton
 
     '''<summary>
     '''q5a1_rdo control.

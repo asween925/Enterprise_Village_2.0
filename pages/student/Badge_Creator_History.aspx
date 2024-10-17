@@ -101,7 +101,7 @@
             <asp:HiddenField ID="visitdate_hf" runat="server" />
             <asp:HiddenField ID="deletingID_hf" runat="server" />
             <asp:HiddenField ID="deletingName_hf" runat="server" />
-            <asp:GridView ID="printBadges_dgv" runat="server" PageSize="100" Visible="true" ShowHeaderWhenEmpty="True" CssClass="no-print"></asp:GridView>
+            <asp:GridView ID="printBadges_dgv" runat="server" PageSize="100" Visible="false" ShowHeaderWhenEmpty="True" CssClass="no-print"></asp:GridView>
         </div>
     </form>
 

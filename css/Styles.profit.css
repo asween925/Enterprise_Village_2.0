@@ -216,11 +216,11 @@ li {
 
 .badge_photo {
     position: absolute;
-    width: 130px;
+    width: 170px;
     height: 130px;
     top: 60px;
     left: 50px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 .photo2 {

@@ -38,47 +38,47 @@
                     <br />
                 </div>
                 <asp:Label ID="questionsError_lbl" runat="server" ForeColor="Red" Font-Bold="true" Font-Size="X-Large"></asp:Label>
-                <h4 class="Voting_System_Questions_H4">#1. How would you describe your day at Enterprise Village?.</h4>
+                <h4 class="Voting_System_Questions_H4">#1. 1)	How would you rate your day at Enterprise Village? (out of 4 stars, 4 being the best)</h4>
                 <div class="Voting_System_Radio_Buttons">
-                    <asp:RadioButton ID="q1a1_rdo" runat="server" GroupName="Q1" Text="OK" /><br />
-                    <asp:RadioButton ID="q1a2_rdo" runat="server" GroupName="Q1" Text="Great" /><br />
-                    <asp:RadioButton ID="q1a3_rdo" runat="server" GroupName="Q1" Text="Fantastic" /><br />
-                    <%--<asp:RadioButton ID="q1a4_rdo" runat="server" GroupName="Q1" Text="My Teacher" />--%>
+                    <asp:RadioButton ID="q1a1_rdo" runat="server" GroupName="Q1" Text="4 stars" /><br />
+                    <asp:RadioButton ID="q1a2_rdo" runat="server" GroupName="Q1" Text="3 stars" /><br />
+                    <asp:RadioButton ID="q1a3_rdo" runat="server" GroupName="Q1" Text="2 stars" /><br />
+                    <asp:RadioButton ID="q1a4_rdo" runat="server" GroupName="Q1" Text="1 star" />
                 </div>
 
-                <h4 class="Voting_System_Questions_H4">#2. Did you enjoy your job today?</h4>
+                <h4 class="Voting_System_Questions_H4">#2. What have you liked most about being at Enterprise Village today?</h4>
                 <div class="Voting_System_Radio_Buttons">
-                    <asp:RadioButton ID="q2a1_rdo" runat="server" GroupName="Q2" Text="Yes" /> <br />
-                    <asp:RadioButton ID="q2a2_rdo" runat="server" GroupName="Q2" Text="No" /> <br />
-                    <asp:RadioButton ID="q2a3_rdo" runat="server" GroupName="Q2" Text="I don't know" /><br />
-                    <%--<asp:RadioButton ID="q2a4_rdo" runat="server" GroupName="Q2" Text="Endorsed check and savings ticket" />--%>
+                    <asp:RadioButton ID="q2a1_rdo" runat="server" GroupName="Q2" Text="My job" /> <br />
+                    <asp:RadioButton ID="q2a2_rdo" runat="server" GroupName="Q2" Text="Lunch" /> <br />
+                    <asp:RadioButton ID="q2a3_rdo" runat="server" GroupName="Q2" Text="Spending the money I earned" /><br />
+                    <asp:RadioButton ID="q2a4_rdo" runat="server" GroupName="Q2" Text="Interacting with other citizens in their businesses" />
                 </div>
 
-                <h4 class="Voting_System_Questions_H4">#3. Do you feel you know more about Free Enterprise after your visit today?</h4>
+                <h4 class="Voting_System_Questions_H4">#3. Do you know more about earning and spending money?</h4>
                 <div class="Voting_System_Radio_Buttons">
                     <asp:RadioButton ID="q3a1_rdo" runat="server" GroupName="Q3" Text="Yes" /> <br />
                     <asp:RadioButton ID="q3a2_rdo" runat="server" GroupName="Q3" Text="No" /> <br />
-                    <asp:RadioButton ID="q3a3_rdo" runat="server" GroupName="Q3" Text="I don't know" /><br />
+                    <%--<asp:RadioButton ID="q3a3_rdo" runat="server" GroupName="Q3" Text="I don't know" /><br />--%>
                     <%--<asp:RadioButton ID="q3a4_rdo" runat="server" GroupName="Q3" Text="All of the above" /> --%>
                 </div>
 
-                <h4 class="Voting_System_Questions_H4">#4. What was your favorite part of the day? </h4>
+                <h4 class="Voting_System_Questions_H4">#4. Do you have a better understanding of what it means to have a job?</h4>
                 <div class="Voting_System_Radio_Buttons">
-                    <asp:RadioButton ID="q4a1_rdo" runat="server" GroupName="Q4" Text="Spending money" /> <br />
-                    <asp:RadioButton ID="q4a2_rdo" runat="server" GroupName="Q4" Text="Lunch" /> <br />
-                    <asp:RadioButton ID="q4a3_rdo" runat="server" GroupName="Q4" Text="Hanging with my friends" /> <br />
+                    <asp:RadioButton ID="q4a1_rdo" runat="server" GroupName="Q4" Text="Yes" /> <br />
+                    <asp:RadioButton ID="q4a2_rdo" runat="server" GroupName="Q4" Text="No" /> <br />
+                    <%--<asp:RadioButton ID="q4a3_rdo" runat="server" GroupName="Q4" Text="Hanging with my friends" /> <br />--%>
                     <%--<asp:RadioButton ID="q4a4_rdo" runat="server" GroupName="Q4" Text="Maybe so" />--%>
                 </div>
 
-                <h4 class="Voting_System_Questions_H4">#5. I would describe my volunteer as:</h4>
+                <h4 class="Voting_System_Questions_H4">#5. I will think more about managing money in the future:</h4>
                 <div class="Voting_System_Radio_Buttons">
-                    <asp:RadioButton ID="q5a1_rdo" runat="server" GroupName="Q5" Text="Okay" /> <br />
-                    <asp:RadioButton ID="q5a2_rdo" runat="server" GroupName="Q5" Text="Great" /><br />
-                    <asp:RadioButton ID="q5a3_rdo" runat="server" GroupName="Q5" Text="Fantastic" /> <br />
+                    <asp:RadioButton ID="q5a1_rdo" runat="server" GroupName="Q5" Text="Often" /> <br />
+                    <asp:RadioButton ID="q5a2_rdo" runat="server" GroupName="Q5" Text="Sometimes" /><br />
+                    <asp:RadioButton ID="q5a3_rdo" runat="server" GroupName="Q5" Text="Never" /> <br />
                     <%--<asp:RadioButton ID="q5a4_rdo" runat="server" GroupName="Q5" Text="Mayor" /> --%>
                 </div>
 
-                <h4 class="Voting_System_Questions_H4">#6. Would you like to come back to Enterprise Village?</h4>
+                <h4 class="Voting_System_Questions_H4">#6. Are you interested in learning more about the businesses and careers that you interacted with today at Enterprise Village?</h4>
                 <div class="Voting_System_Radio_Buttons">
                     <asp:RadioButton ID="q6a1_rdo" runat="server" GroupName="Q6" Text="Yes" /> <br />
                     <asp:RadioButton ID="q6a2_rdo" runat="server" GroupName="Q6" Text="No" /> <br />

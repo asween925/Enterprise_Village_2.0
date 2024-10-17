@@ -32,6 +32,15 @@ Partial Public Class Edit_Business
     Protected WithEvents headerSchoolName_lbl As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''changeView_btn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents changeView_btn As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''error_lbl control.
     '''</summary>
     '''<remarks>
@@ -57,6 +66,42 @@ Partial Public Class Edit_Business
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents business_dgv As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''assignJobs_div control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents assignJobs_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''businessName_ddl control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents businessName_ddl As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''jobs_div control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents jobs_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''jobs_dgv control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents jobs_dgv As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''currentVisitID_hf control.

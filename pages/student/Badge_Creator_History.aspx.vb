@@ -50,17 +50,17 @@ Public Class Badge_Creator_History
         'Check if searching from DDL
         If studentSearch_ddl.SelectedIndex <> 0 Then
             Dim StudentAccountNum() As String = studentSearch_ddl.SelectedValue.Split(".")
-            SQLWhereSearch = " AND (s.employeeNumber = '" & StudentAccountNum(0) & "')"
+            SQLWhereSearch = " AND (s.accountNumber = '" & StudentAccountNum(0) & "')"
         End If
 
         'Load badges into table
-        'Try
-        existingBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhereSearch, SQLOrderBy)
+        Try
+            existingBadges_dgv.DataSource = Badges.LoadExistingBadgesTable(VisitID, SQLWhereSearch, SQLOrderBy)
             existingBadges_dgv.DataBind()
-        'Catch
-        '    error_lbl.Text = "Error. Cannot load badges into table. Please find an Enterprise Village teacher for help!"
-        '    Exit Sub
-        'End Try
+        Catch
+            error_lbl.Text = "Error. Cannot load badges into table. Please find an Enterprise Village teacher for help!"
+            Exit Sub
+        End Try
 
     End Sub
 
