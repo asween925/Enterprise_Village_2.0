@@ -46,6 +46,29 @@ Public Class Magic_Computer
                 'deposit4Update_btn.Enabled = False
             End If
 
+            'Check if direct deposit has been initiated
+            Try
+                con.ConnectionString = connection_string
+                con.Open()
+                cmd.CommandText = "SELECT deposit2Enable FROM visitInfo WHERE id = '" & visitdate_hf.Value & "'"
+                cmd.Connection = con
+                dr = cmd.ExecuteReader
+
+                While dr.Read()
+                    If dr("deposit2Enable").ToString = "True" Then
+                        directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
+                    Else
+                        directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)"
+                    End If
+                End While
+
+                cmd.Dispose()
+                con.Close()
+            Catch
+                error_lbl.Text = "Error Page Load(). Cannot check if direct deposit is enabled."
+                Exit Sub
+            End Try
+
             'Check if deposit 2 and 3 are enabled / disabled
             Try
                 con.ConnectionString = connection_string
@@ -57,10 +80,10 @@ Public Class Magic_Computer
                 While dr.Read()
                     If dr("deposit3Enable").ToString = "True" Then
                         deposit3Enable_btn.Text = "Disable Deposit #3"
-                        directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
+                        'directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
                     Else
                         deposit3Enable_btn.Text = "Enable Deposit #3"
-                        directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)"
+                        'directDeposit_btn.Text = "Initiate Direct Deposit (Deposit #2)"
                     End If
                 End While
 
@@ -159,6 +182,15 @@ Public Class Magic_Computer
                 cmd.ExecuteNonQuery()
                 con.Close()
 
+                'depositEnable2
+                con.ConnectionString = connection_string
+                con.Open()
+                cmd.Connection = con
+                cmd.CommandText = "UPDATE visitInfo SET deposit2Enable=1 WHERE id='" & visitID & "'"
+                cmd.ExecuteNonQuery()
+                con.Close()
+
+
                 'Change button text
                 directDeposit_btn.Text = "Remove Direct Deposit (Deposit #2)"
 
@@ -182,6 +214,14 @@ Public Class Magic_Computer
                 con.Open()
                 cmd.Connection = con
                 cmd.CommandText = "UPDATE studentInfo SET initialDeposit2='0.00', netDeposit2='0.00', cbw2='0.00' FROM studentInfo s WHERE visitID='" & visitID & "'"
+                cmd.ExecuteNonQuery()
+                con.Close()
+
+                'depositEnable2
+                con.ConnectionString = connection_string
+                con.Open()
+                cmd.Connection = con
+                cmd.CommandText = "UPDATE visitInfo SET deposit2Enable=0 WHERE id='" & visitID & "'"
                 cmd.ExecuteNonQuery()
                 con.Close()
 

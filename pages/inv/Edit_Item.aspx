@@ -101,7 +101,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Current Location in EV">
                             <ItemTemplate>
-                                <asp:Label ID="businessUsed_lbl" runat="server" Text='<%#Bind("businessUsed") %>' Visible="false"></asp:Label>
+                                <asp:Label ID="businessUsed_lbl" runat="server" Text='<%#Bind("businessUsedID") %>' Visible="false"></asp:Label>
                                 <asp:DropDownList CssClass="ddl" ID="businessUsed_ddl" runat="server" Width="150px" AutoPostBack="true" readonly="false"></asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>

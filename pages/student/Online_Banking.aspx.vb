@@ -127,10 +127,14 @@ Public Class Online_Banking
         Deposits = Deposit1 + Deposit2 + Deposit3 + Deposit4 + StartingBalance
         Profit = Deposits - LoanAmount
 
-        'Add amounts to labels
+        'Add amounts to labels and textboxes
         loan_amount_display_lbl.Text = LoanAmount.ToString("C2")
         total_deposits_lbl.Text = Deposits.ToString("C2")
         profit_lbl.Text = Profit.ToString("C2")
+        Loan_Amount_tb.Text = LoanAmount
+        Deposit1_tb.Text = Deposit1
+        Deposit2_tb.Text = Deposit2
+        Deposit3_tb.Text = Deposit3
 
         'Change color of profit label based on if the profit is positive or negative
         If Profit <= 0 Then
@@ -149,13 +153,13 @@ Public Class Online_Banking
             Exit Sub
         End If
 
-        If Deposit1_tb.Text = "" Then
+        If Loan_Amount_tb.Text <> Nothing And Deposit1_tb.Text = "0" Then
             Loan_Amount_tb.Enabled = True
             Deposit1_tb.Enabled = True
             Exit Sub
         End If
 
-        If Deposit2_tb.Text = "" Then
+        If Deposit1_tb.Text <> "0" And Deposit2_tb.Text = "0" Then
             Loan_Amount_tb.Enabled = True
             update_btn.Enabled = True
             Deposit1_tb.Enabled = True
@@ -163,7 +167,7 @@ Public Class Online_Banking
             Exit Sub
         End If
 
-        If Deposit3_tb.Text = "" Then
+        If Deposit2_tb.Text <> "0" And Deposit3_tb.Text = "0" Then
             Loan_Amount_tb.Enabled = True
             update_btn.Enabled = True
             Deposit1_tb.Enabled = True

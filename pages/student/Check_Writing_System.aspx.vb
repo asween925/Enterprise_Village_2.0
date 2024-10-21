@@ -345,8 +345,8 @@ Public Class Check_Writing_System
     End Sub
 
     Sub SaveCheck()
-        Dim StudentID As Integer = students_ddl.SelectedValue.ToString
-        Dim CheckAmount As String = Position_ddl.SelectedValue.ToString.Remove(0, 1)
+        Dim StudentID As Integer
+        Dim CheckAmount As String
         Dim Timestamp As DateTime = DateTime.Now
         Dim TimestampSTR As String = Timestamp.ToString("yyyy-MM-dd HH:mm:ss")
         Dim WrittenAmount As String = Written_amount_tb.Text
@@ -388,7 +388,7 @@ Public Class Check_Writing_System
                 error_lbl.Text = "Operation failed. No student name or memo inputed."
                 Exit Sub
             ElseIf students_ddl.SelectedIndex = 0 And Position_ddl.SelectedIndex <> 0 And memo_ddl.SelectedIndex <> 0 Then
-                error_lbl.Text = "Operation failed. No student memo or payment inputed."
+                error_lbl.Text = "Operation failed. No student name inputed."
                 Exit Sub
             ElseIf students_ddl.SelectedIndex <> 0 And Position_ddl.SelectedIndex = 0 And memo_ddl.SelectedIndex <> 0 Then
                 error_lbl.Text = "Operation failed. No payment inputed."
@@ -400,6 +400,10 @@ Public Class Check_Writing_System
                 error_lbl.Text = "Operation failed. Please enter all information in the check before saving."
                 Exit Sub
             End If
+
+            'Assign variables from selected DDLs
+            StudentID = students_ddl.SelectedValue.ToString
+            CheckAmount = Position_ddl.SelectedValue.ToString.Remove(0, 1)
 
             'If existing checks is not 0, enable the print button
             If existingChecks_dgv.Rows.Count <> 0 Then
@@ -538,10 +542,17 @@ Public Class Check_Writing_System
             Print_checks_btn.Text = "Review"
 
             '--------------------------------------------------------------------------------------------------
-            'UNCOMMENT THE 3 LINES BELOW TO REDIRECT THE PAYROLL 3 GROUP TO DIRECT DEPOSIT SLIPS
-            If Check_selector_ddl.SelectedIndex = 3 Then
+            'UNCOMMENT THE 3 LINES BELOW TO REDIRECT THE PAYROLL 2 GROUP TO DIRECT DEPOSIT SLIPS, THEN COMMENT OUT PAYROLL 3 SLIPS
+            If Check_selector_ddl.SelectedIndex = 2 Then
                 Response.Redirect("/pages/print/Print_Direct_Deposit.aspx?b=" & BusinessID & URLEnd)
             End If
+            '--------------------------------------------------------------------------------------------------
+
+            '--------------------------------------------------------------------------------------------------
+            'UNCOMMENT THE 3 LINES BELOW TO REDIRECT THE PAYROLL 3 GROUP TO DIRECT DEPOSIT SLIPS
+            'If Check_selector_ddl.SelectedIndex = 3 Then
+            '    Response.Redirect("/pages/print/Print_Direct_Deposit.aspx?b=" & BusinessID & URLEnd)
+            'End If
             '--------------------------------------------------------------------------------------------------
 
             'Go to print checks page

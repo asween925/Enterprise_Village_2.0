@@ -94,7 +94,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label6" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Deposit1_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="Deposit1_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false" min="0" step="any"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="deposit2_tr" runat="server">
@@ -103,7 +103,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label7" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Deposit2_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="Deposit2_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false" min="0" step="any"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="deposit3_tr" runat="server">
@@ -112,7 +112,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label8" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Deposit3_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="Deposit3_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" enabled="false" min="0" step="any"></asp:TextBox>
                             </td>
                         </tr>
                     </table>

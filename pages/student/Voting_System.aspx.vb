@@ -297,6 +297,6 @@ Public Class Voting_System
     End Sub
 
     Protected Sub cancel_btn_Click(sender As Object, e As EventArgs) Handles cancel_btn.Click
-        Response.Redirect("~/voting_system.aspx")
+        Response.Redirect("~/pages/student/voting_system.aspx")
     End Sub
 End Class

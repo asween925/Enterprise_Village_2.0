@@ -47,7 +47,8 @@ Public Class Edit_Item
         Dim SearchTerm As String
         Dim SortingBy As String = " ORDER BY "
         Dim FilterBy As String
-        Dim SQLStatement As String = "SELECT DISTINCT id, itemName, itemCategory, itemSubCat, currentLocation, onHand, source, businessUsed, comments, merchCode, usedDaily
+        Dim BusinessID As String
+        Dim SQLStatement As String = "SELECT DISTINCT id, itemName, itemCategory, itemSubCat, currentLocation, onHand, source, businessUsedID, comments, merchCode, usedDaily
                                         FROM EV_Inventory"
 
         'Clear out table
@@ -65,7 +66,11 @@ Public Class Edit_Item
 
         'Check if filter DDL is not blank
         If filterBy_ddl.SelectedIndex <> 0 Then
-            FilterBy = " businessUsed='" & filterBy_ddl.SelectedValue & "'"
+
+            'Get business ID of business selected
+            BusinessID = BusinessData.GetBusinessID(filterBy_ddl.SelectedValue)
+
+            FilterBy = " businessUsedID='" & BusinessID & "'"
 
             If search_tb.Text <> Nothing Or search_tb.Text <> "" Then
                 SQLStatement &= " AND " & FilterBy
@@ -117,7 +122,7 @@ Public Class Edit_Item
             items_dgv.DataBind()
         Catch
             error_lbl.Text = "Error in loaddata(). Could not get info for items."
-            error_lbl.Text = SQLStatement
+            'error_lbl.Text = SQLStatement
             Exit Sub
             cmd.Dispose()
             con.Close()
@@ -228,6 +233,11 @@ Public Class Edit_Item
             Exit Sub
         End If
 
+        'Check if business name is N/A
+        If businessUsed = "N/A" Then
+            businessUsed = "0"
+        End If
+
         'Check if last name new value is blank or empty
         If onHand = Nothing Or onHand = " " Then
             error_lbl.Text = "On hand cannot be blank."
@@ -236,13 +246,13 @@ Public Class Edit_Item
 
         Try
             Using con As New SqlConnection(connection_string)
-                Using cmd As New SqlCommand("UPDATE EV_Inventory SET itemName=@itemName, itemCategory=@itemCategory, itemSubCat=@itemSubCat, currentLocation=@currentLocation, businessUsed=@businessUsed, onHand=@onHand, source=@source, merchCode=@merchCode, usedDaily=@usedDaily, comments=@comments WHERE ID=@Id")
+                Using cmd As New SqlCommand("UPDATE EV_Inventory SET itemName=@itemName, itemCategory=@itemCategory, itemSubCat=@itemSubCat, currentLocation=@currentLocation, businessUsedID=@businessUsedID, onHand=@onHand, source=@source, merchCode=@merchCode, usedDaily=@usedDaily, comments=@comments WHERE ID=@Id")
                     cmd.Parameters.AddWithValue("@ID", ID)
                     cmd.Parameters.AddWithValue("@itemName", itemName)
                     cmd.Parameters.AddWithValue("@itemCategory", itemCategory)
                     cmd.Parameters.AddWithValue("@itemSubCat", itemSubCat)
                     cmd.Parameters.AddWithValue("@currentLocation", currentLocation)
-                    cmd.Parameters.AddWithValue("@businessUsed", businessUsed)
+                    cmd.Parameters.AddWithValue("@businessUsedID", businessUsed)
                     cmd.Parameters.AddWithValue("@onHand", onHand)
                     cmd.Parameters.AddWithValue("@source", source)
                     cmd.Parameters.AddWithValue("@merchCode", merchCode)
@@ -258,7 +268,7 @@ Public Class Edit_Item
             LoadData()
 
         Catch ex As Exception
-            error_lbl.Text = "Error in rowUpdating. Cannot update row."
+            error_lbl.Text = "Error in rowUpdating. Cannot update row." & businessUsed
             Exit Sub
         End Try
 
@@ -344,38 +354,41 @@ Public Class Edit_Item
 
             'Business Used Dropdown
             Dim ddlBusinessUsed As DropDownList = CType(e.Row.FindControl("businessUsed_ddl"), DropDownList)
-            ddlBusinessUsed.DataSource = GetData("SELECT DISTINCT businessName FROM businessInfo ORDER BY businessName")
+            ddlBusinessUsed.DataSource = GetData("SELECT DISTINCT id, businessName FROM businessInfo ORDER BY businessName")
             ddlBusinessUsed.DataTextField = "businessName"
-            'ddlSchool.DataValueField = "Businessid"
+            ddlBusinessUsed.DataValueField = "id"
             ddlBusinessUsed.DataBind()
             ddlBusinessUsed.Items.Insert(0, "N/A")
             Dim lblBusinessUsed As String = CType(e.Row.FindControl("businessUsed_lbl"), Label).Text
 
-            ddlBusinessUsed.Items.FindByValue(lblBusinessUsed).Selected = True
+            If lblBusinessUsed <> "0" Then
+                ddlBusinessUsed.Items.FindByValue(lblBusinessUsed).Selected = True
+            End If
+
             'Dim businessID As String = ddlSchool.SelectedValue
 
             'Source Dropdown
             Dim ddlSource As DropDownList = CType(e.Row.FindControl("source_ddl"), DropDownList)
-            ddlSource.DataSource = GetData("SELECT DISTINCT source FROM EV_Inventory")
-            ddlSource.DataTextField = "source"
-            'ddlSchool.DataValueField = "Businessid"
-            ddlSource.DataBind()
-            Dim lblSource As String = CType(e.Row.FindControl("source_lbl"), Label).Text
+                ddlSource.DataSource = GetData("SELECT DISTINCT source FROM EV_Inventory")
+                ddlSource.DataTextField = "source"
+                'ddlSchool.DataValueField = "Businessid"
+                ddlSource.DataBind()
+                Dim lblSource As String = CType(e.Row.FindControl("source_lbl"), Label).Text
 
-            ddlSource.Items.FindByValue(lblSource).Selected = True
-            'Dim businessID As String = ddlSchool.SelectedValue
+                ddlSource.Items.FindByValue(lblSource).Selected = True
+                'Dim businessID As String = ddlSchool.SelectedValue
 
-            'Merch Code Dropdown
-            Dim ddlMerchCode As DropDownList = CType(e.Row.FindControl("merchCode_ddl"), DropDownList)
-            ddlMerchCode.DataSource = GetData("SELECT DISTINCT merchCode FROM EV_Inventory")
-            ddlMerchCode.DataTextField = "merchCode"
-            'ddlSchool.DataValueField = "Businessid"
-            ddlMerchCode.DataBind()
-            Dim lblMerchCode As String = CType(e.Row.FindControl("merchCode_lbl"), Label).Text
+                'Merch Code Dropdown
+                Dim ddlMerchCode As DropDownList = CType(e.Row.FindControl("merchCode_ddl"), DropDownList)
+                ddlMerchCode.DataSource = GetData("SELECT DISTINCT merchCode FROM EV_Inventory")
+                ddlMerchCode.DataTextField = "merchCode"
+                'ddlSchool.DataValueField = "Businessid"
+                ddlMerchCode.DataBind()
+                Dim lblMerchCode As String = CType(e.Row.FindControl("merchCode_lbl"), Label).Text
 
-            ddlMerchCode.Items.FindByValue(lblMerchCode).Selected = True
-            'Dim businessID As String = ddlSchool.SelectedValue
-        End If
+                ddlMerchCode.Items.FindByValue(lblMerchCode).Selected = True
+                'Dim businessID As String = ddlSchool.SelectedValue
+            End If
     End Sub
 
     Protected Sub currentLocation_ddl_SelectedIndexChanged(sender As Object, e As EventArgs)
