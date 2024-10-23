@@ -85,7 +85,7 @@
                             </td>
                             <td>
                                 &emsp;&emsp;&emsp;<asp:Label ID="Label100" runat="server" Text="$" ForeColor="Black"></asp:Label>
-                                <asp:TextBox ID="Loan_Amount_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center"></asp:TextBox>                            
+                                <asp:TextBox ID="Loan_Amount_tb" runat="server" Width="50px" CssClass="textbox" TextMode="Number" Style="text-align: center" min="0" step="any"></asp:TextBox>                            
                             </td>
                         </tr>
                         <tr>

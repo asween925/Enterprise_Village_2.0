@@ -69,6 +69,17 @@ Public Class Teller_System
         'Clear error label
         error_lbl.Text = ""
 
+        'Enable all buttons
+        seven_rdo.Disabled = False
+        sixfive_rdo.Disabled = False
+        six_rdo.Disabled = False
+        cash100_rdo.Disabled = False
+        cash75_rdo.Disabled = False
+        cash50_rdo.Disabled = False
+        cash25_rdo.Disabled = False
+        cash00_rdo.Disabled = False
+        submit_btn.Enabled = True
+
         'Get account number data and assign it to variables
         StudentName = Student.FirstName & " " & Student.LastName
         Deposit1 = DepositInfo.InitialDeposit1
@@ -208,29 +219,33 @@ Public Class Teller_System
 
     Sub Submit()
         Dim AcctNum As Integer = acctNum_lbl.Text
-        Dim DepositAmount As Double = 0.00
+        Dim DepositAmount As String = "0"
         Dim NetDeposit As Double = 0.00
         Dim Cashback As String
         Dim Savings As Double = 0.00
         Dim Timestamp As String = DateTime.Now()
         Dim SQLStatementUpdate As String
         Dim Deposit3Status As String = GetDeposit3Status()
-        Dim SQLStatementND As String = "SELECT 
-            CASE WHEN netDeposit1 IS NULL OR netDeposit1 = 0.00 THEN 0 ELSE 1 END as ND1, 
-            CASE WHEN netDeposit2 IS NULL OR netDeposit2 = 0.00 THEN 0 ELSE 1 END as ND2, 
-            CASE WHEN netDeposit3 IS NULL OR netDeposit3 = 0.00 THEN 0 ELSE 1 END as ND3, 
-            CASE WHEN netDeposit4 IS NULL OR netDeposit4 = 0.00 THEN 0 ELSE 1 END as ND4,
-			CASE WHEN savings IS NULL OR savings = 0.00 THEN 0 ELSE 1 END as savings 
-            FROM studentInfo WHERE visitID='" & Visit & "' AND accountNumber ='" & AcctNum & "'"
+        Dim SQLStatementND As String = "  SELECT 
+            CASE WHEN s.netDeposit1 IS NULL OR s.netDeposit1 = 0.00 THEN 0 ELSE 1 END as ND1, 
+            CASE WHEN s.netDeposit2 IS NULL OR s.netDeposit2 = 0.00 THEN 0 ELSE 1 END as ND2, 
+            CASE WHEN s.netDeposit3 IS NULL OR s.netDeposit3 = 0.00 THEN 0 ELSE 1 END as ND3, 
+            CASE WHEN s.netDeposit4 IS NULL OR s.netDeposit4 = 0.00 THEN 0 ELSE 1 END as ND4,
+			CASE WHEN s.savings IS NULL OR s.savings = 0.00 THEN 0 ELSE 1 END as savings, 
+			v.deposit3Enable 
+            FROM studentInfo s
+			INNER JOIN visitInfo v
+			ON v.id = s.visitID
+            WHERE s.visitID='" & Visit & "' AND s.accountNumber ='" & AcctNum & "'"
 
         'Check if dollar amount is selected
         If deposit_div.Visible = True Then
             If seven_rdo.Checked = True Then
-                DepositAmount = 7.0
+                DepositAmount = "7.00"
             ElseIf sixfive_rdo.Checked = True Then
-                DepositAmount = 6.5
+                DepositAmount = "6.50"
             ElseIf six_rdo.Checked = True Then
-                DepositAmount = 6.0
+                DepositAmount = "6.00"
             Else
                 error_lbl.Text = "Please select a dollar amount to deposit."
                 Exit Sub
@@ -277,9 +292,9 @@ Public Class Teller_System
                         SQLStatementUpdate = "UPDATE studentInfo SET netDeposit1 = @nDeposit, CBW1 = @CBW, initialDeposit1 = @initial, tellerTimestamp1 = @tellerTimestamp WHERE visitID='" & Visit & "' AND accountNumber ='" & AcctNum & "'"
                         'ElseIf dr("ND2").ToString = "0" Then
                         '    SQLStatementUpdate = "UPDATE studentInfo SET savings = @savings, netDeposit2 = @nDeposit, CBW2 = @CBW, initialDeposit2 = @initial, tellerTimestamp2 = @tellerTimestamp WHERE visitID='" & Visit & "' AND accountNumber ='" & AcctNum & "'"
-                    ElseIf dr("ND2").ToString = "1" And dr("savings").ToString = "0" Then
+                    ElseIf dr("ND2").ToString = "1" And dr("savings").ToString = "0" And dr("deposit3Enable").ToString() = "0" Then
                         SQLStatementUpdate = "UPDATE studentInfo SET savings = @savings, savingsTimestamp = @savingsTimestamp WHERE visitID='" & Visit & "' AND accountNumber ='" & AcctNum & "'"
-                    ElseIf dr("ND3").ToString = "0" Then
+                    ElseIf dr("ND3").ToString = "0" And dr("deposit3Enable").ToString() = "1" Then
                         SQLStatementUpdate = "UPDATE studentInfo SET netDeposit3 = @nDeposit, CBW3 = @CBW, initialDeposit3 = @initial, tellerTimestamp3 = @tellerTimestamp WHERE visitID='" & Visit & "' AND accountNumber ='" & AcctNum & "'"
                     Else
                         cmd.Dispose()
@@ -313,7 +328,7 @@ Public Class Teller_System
                 cmd.Dispose()
 
             Catch
-                error_lbl.Text = "Error in Submit(). Cannot deposit amount."
+                error_lbl.Text = "Error in Submit(). Cannot deposit amount." & SQLStatementUpdate
                 Exit Sub
             End Try
         ElseIf savings_div.Visible = True Then
@@ -335,12 +350,12 @@ Public Class Teller_System
 
 
         'Show success message
-        error_lbl.Text = "Deposit successful!"
+        error_lbl.Text = "Deposit successful! Refreshing your screen..."
 
         'Refresh page after 4 seconds
         Dim meta As New HtmlMeta()
         meta.HttpEquiv = "Refresh"
-        meta.Content = "4;url=teller_system.aspx"
+        meta.Content = "3;url=teller_system.aspx"
         Me.Page.Controls.Add(meta)
 
     End Sub

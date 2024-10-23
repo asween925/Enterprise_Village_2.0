@@ -291,7 +291,7 @@ Public Class Home_Page
         VisitID = VisitData.GetVisitIDFromDate(VisitDate)
 
         'Link to student report
-        Response.Redirect("employee_report.aspx?b=" & VisitID & "&c=" & SchoolID)
+        Response.Redirect("~/pages/reports/employee_report.aspx?b=" & VisitID & "&c=" & SchoolID)
     End Sub
 
     Protected Sub LinkButton24_Click(sender As Object, e As EventArgs) Handles LinkButton24.Click

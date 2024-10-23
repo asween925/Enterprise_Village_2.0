@@ -210,7 +210,8 @@ Public Class login
                                 'Dim URLEndTeacher As String
 
                                 Session.Add("isAdmin", "False")
-                                Response.Redirect(".\input_student_information.aspx?b=" & URLEnd)
+                                'Response.Redirect(".\input_student_information.aspx?b=" & URLEnd)
+                                Response.Redirect(".\teacher_home.aspx?b=" & URLEnd)
                             Else
                                 'this error could happen if the email entered is associated with two or more schools. Check the teacherInfo table and search for the email entered.
                                 error_lbl.Text = "We do not have a record of an upcoming visit for you. Please use the link above to email us about this issue."

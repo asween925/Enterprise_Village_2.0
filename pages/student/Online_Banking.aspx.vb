@@ -147,13 +147,13 @@ Public Class Online_Banking
 
         'Enable / disable fields based on deposits enetered
 
-        If Loan_Amount_tb.Text = Nothing Then
+        If Loan_Amount_tb.Text = "0" Then
             Loan_Amount_tb.Enabled = True
             update_btn.Enabled = True
             Exit Sub
         End If
 
-        If Loan_Amount_tb.Text <> Nothing And Deposit1_tb.Text = "0" Then
+        If Loan_Amount_tb.Text <> "0" And Deposit1_tb.Text = "0" Then
             Loan_Amount_tb.Enabled = True
             Deposit1_tb.Enabled = True
             Exit Sub

@@ -508,7 +508,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check5 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check5 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -540,7 +540,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check6 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check6 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -572,7 +572,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check7 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check7 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -604,7 +604,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check8 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check8 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -636,7 +636,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check9 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check9 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -668,7 +668,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check10 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check10 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -700,7 +700,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check11 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check11 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -732,7 +732,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check12 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check12 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -764,7 +764,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check13 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check13 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -796,7 +796,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check14 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check14 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -828,7 +828,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check15 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check15 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -860,7 +860,7 @@ Public Class Print_Direct_Deposit
         FROM checksinfo c 
         Inner join studentinfo s
         ON c.studentID = s.id
-        WHERE c.ID='" & check16 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+        WHERE c.ID='" & check16 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
                 cmd.Connection = con
                 dr = cmd.ExecuteReader
 
@@ -922,7 +922,7 @@ Public Class Print_Direct_Deposit
     '        cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
     '                                        FROM checksInfo c
     '                                        RIGHT JOIN studentInfo s ON s.id = c.studentID
-    '                                        WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
+    '                                        WHERE c.memo='" & payrollGroup_lbl.Text & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")
     '                                        ORDER BY id ASC"
     '        cmd.Connection = con
     '        dr = cmd.ExecuteReader
@@ -1085,7 +1085,7 @@ Public Class Print_Direct_Deposit
     '            cmd.CommandText = "SELECT c.id, c.businessID,  CONCAT(s.Firstname,' ',s.lastname) as payee2, c.checkAmount, c.writtenAmount, c.memo
     '                                        FROM checksInfo c
     '                                        RIGHT JOIN studentInfo s ON s.id = c.studentID
-    '                                        WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '                                        WHERE c.id = '" & check1 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1116,7 +1116,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check2 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check2 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1148,7 +1148,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check3 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check3 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1180,7 +1180,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check4 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check4 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1212,7 +1212,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check5 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check5 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1244,7 +1244,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check6 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check6 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1276,7 +1276,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check7 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check7 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1308,7 +1308,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check8 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check8 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1340,7 +1340,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check9 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check9 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1372,7 +1372,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check10 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check10 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1404,7 +1404,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check11 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check11 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1436,7 +1436,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check12 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check12 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1468,7 +1468,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check13 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check13 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1500,7 +1500,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check14 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check14 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1532,7 +1532,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check15 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check15 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 
@@ -1564,7 +1564,7 @@ Public Class Print_Direct_Deposit
     '    FROM checksinfo c 
     '    Inner join studentinfo s
     '    ON c.studentID = s.id
-    '    WHERE c.ID='" & check16 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visit='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
+    '    WHERE c.ID='" & check16 & "' AND (c.visitID='" & visitdate_hf.Value & "' AND s.visitID='" & visitdate_hf.Value & "' AND c.businessID=" & businessID & ")"
     '            cmd.Connection = con
     '            dr = cmd.ExecuteReader
 

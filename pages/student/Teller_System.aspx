@@ -89,7 +89,7 @@
                                     <%--$7.00--%>
                                     <td>
                                         <label>
-                                            <input id="seven_rdo" runat="server" type="radio" name="deposit" value="small" class="TS_Radio">
+                                            <input id="seven_rdo" runat="server" type="radio" name="deposit" value="7.0" class="TS_Radio">
                                             <img src="../../images/tellermoney3.png" class="TS_Radio_Img" alt="$7.00">
                                         </label>
                                     </td>
@@ -97,7 +97,7 @@
                                     <%--$6.50--%>
                                     <td>
                                         <label>
-                                            <input id="sixfive_rdo" runat="server" type="radio" name="deposit" value="small" class="TS_Radio">
+                                            <input id="sixfive_rdo" runat="server" type="radio" name="deposit" value="6.50" class="TS_Radio">
                                             <img src="../../images/tellermoney2.png" class="TS_Radio_Img" alt="$6.50">
                                         </label>
                                     </td>
@@ -105,7 +105,7 @@
                                     <%--$6.00--%>
                                     <td>
                                         <label>
-                                            <input id="six_rdo" runat="server" type="radio" name="deposit" value="small" class="TS_Radio">
+                                            <input id="six_rdo" runat="server" type="radio" name="deposit" value="6.0" class="TS_Radio">
                                             <img src="../../images/tellermoney1.png" class="TS_Radio_Img" alt="$6.00">
                                         </label>
                                     </td>
